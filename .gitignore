@@ -44,3 +44,4 @@ Thumbs.db
 # Swagger Codegen
 src/app/api/**/swagger-codegen
 
+/fraudbusters-ui.iml
