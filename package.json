@@ -15,7 +15,10 @@
     "e2e": "ng e2e",
     "postinstall": "ngcc",
     "swagger-codegen": "ts-node --project tools/tsconfig.json tools/swagger-codegen.ts",
-    "codegen": "run-p swagger-codegen"
+    "codegen": "run-p swagger-codegen",
+    "parallel-cmd": "concurrently --kill-others-on-fail --prefix-colors magenta,green,red,yellow,blue",
+    "ci:test": "npm run test -- --configuration=ci",
+    "ci:check": "npm run parallel-cmd -- --names PRETTIER,LINT \"npm run prettier\" \"npm run lint-cmd -- --quiet\""
   },
   "private": true,
   "dependencies": {
