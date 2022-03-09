@@ -4,8 +4,6 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Injectable()
 export class ErrorHandlerService {
-    constructor() {}
-
     handleError(error: HttpErrorResponse, snackBar: MatSnackBar): void {
         snackBar.open(`${error.status}: ${error.message}`, 'ERROR', {
             duration: 1500,

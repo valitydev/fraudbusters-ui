@@ -2,7 +2,7 @@ import { Roles } from '../../auth';
 import { NavItem } from './nav-item';
 
 export class MenuModel {
-    public static NAV_ITEMS: NavItem[] = [
+    public static navItems: NavItem[] = [
         {
             displayName: 'Templates',
             iconName: 'business',

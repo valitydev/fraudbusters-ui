@@ -38,7 +38,7 @@ export class FetchReferencesService extends PartialFetcher<GroupReference, Fetch
         return this.paymentGroupsReferencesService.filter({
             searchValue: searchValue || '',
             size: size || this.SIZE,
-            sortOrder: sortOrder || SortOrder.ASC,
+            sortOrder: sortOrder || SortOrder.Asc,
             sortFieldValue: sortFieldValue || '',
             ...(lastId ? { lastId } : {}),
             ...(sortBy ? { sortBy } : {}),

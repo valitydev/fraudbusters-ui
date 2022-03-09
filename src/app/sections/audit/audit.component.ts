@@ -53,7 +53,7 @@ export class AuditComponent {
     }
 
     sortData(sort: Sort): void {
-        this.auditService.sort$.next(sort.direction === 'asc' ? SortOrder.ASC : SortOrder.DESC);
+        this.auditService.sort$.next(sort.direction === 'asc' ? SortOrder.Asc : SortOrder.DESC);
     }
 
     loadMore(): void {

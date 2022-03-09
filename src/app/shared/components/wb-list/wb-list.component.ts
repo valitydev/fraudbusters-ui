@@ -30,10 +30,12 @@ export class WbListComponent implements OnInit {
     searchValue: FormControl = new FormControl('');
     listNames: string[] = [];
     selectedListNames: string[] = [];
-
+    isLoadMore = false;
+    displayedColumns = new ReplaySubject<string[]>();
+    sortType = SortOrder.Desc;
     paymentColumns = ['listName', 'partyId', 'shopId', 'value', 'insertTime'];
 
-    private SIZE = this.configService.pageSize;
+    private size = this.configService.pageSize;
 
     constructor(
         private router: Router,
@@ -48,10 +50,6 @@ export class WbListComponent implements OnInit {
         this.displayedColumns.next([]);
     }
 
-    isLoadMore = false;
-    displayedColumns = new ReplaySubject<string[]>();
-    sortType = SortOrder.DESC;
-
     ngOnInit(): void {
         this.getListNames();
         this.searchValue.valueChanges.pipe(debounceTime(300)).subscribe(() => {
@@ -62,10 +60,6 @@ export class WbListComponent implements OnInit {
     selectionChange(): void {
         this.displayedColumns.next(this.initColumns(this.paymentColumns));
         this.search();
-    }
-
-    private initColumns(columns: string[]): string[] {
-        return this.isCounting ? columns.concat(['info', 'edit']) : columns.concat(['edit']);
     }
 
     getListNames(): void {
@@ -85,38 +79,12 @@ export class WbListComponent implements OnInit {
         this.searchWithSort(null, this.sortType, null);
     }
 
-    private searchWithSort(lastInListName, sortOrder: SortOrder, sortFieldValueNew): void {
-        this.listService
-            .findListRows({
-                searchValue: this.searchFieldService.formatField(this.searchValue.value),
-                lastId: lastInListName,
-                size: this.SIZE,
-                sortOrder: sortOrder ? sortOrder : SortOrder.ASC,
-                sortFieldValue: sortFieldValueNew,
-                listNames: this.selectedListNames,
-                listType: this.listType,
-            })
-            .subscribe(
-                (response) => {
-                    if (!!!lastInListName) {
-                        this.listsRows = response.result;
-                    } else {
-                        this.listsRows = this.listsRows.concat(response.result);
-                    }
-                    this.isLoadMore = this.listsRows.length < response.count;
-                },
-                (error: HttpErrorResponse) => {
-                    this.errorHandlerService.handleError(error, this.snackBar);
-                }
-            );
-    }
-
     navigateToNew(): void {
         this.router.navigate([`/list/${this.listType}/new`]);
     }
 
     sortData(sort: Sort): void {
-        this.sortType = sort.direction === 'asc' ? SortOrder.ASC : SortOrder.DESC;
+        this.sortType = sort.direction === 'asc' ? SortOrder.Asc : SortOrder.DESC;
         this.search();
     }
 
@@ -126,7 +94,7 @@ export class WbListComponent implements OnInit {
             data: { listRecord: listRecordRow, listType: this.listType },
         });
 
-        dialogRef.afterClosed().subscribe((result) => {
+        dialogRef.afterClosed().subscribe(() => {
             this.search();
         });
     }
@@ -137,5 +105,35 @@ export class WbListComponent implements OnInit {
             this.sortType,
             this.listsRows[this.listsRows.length - 1].insertTime
         );
+    }
+
+    private initColumns(columns: string[]): string[] {
+        return this.isCounting ? columns.concat(['info', 'edit']) : columns.concat(['edit']);
+    }
+
+    private searchWithSort(lastInListName, sortOrder: SortOrder, sortFieldValueNew): void {
+        this.listService
+            .findListRows({
+                searchValue: this.searchFieldService.formatField(this.searchValue.value),
+                lastId: lastInListName,
+                size: this.size,
+                sortOrder: sortOrder ? sortOrder : SortOrder.Asc,
+                sortFieldValue: sortFieldValueNew,
+                listNames: this.selectedListNames,
+                listType: this.listType,
+            })
+            .subscribe(
+                (response) => {
+                    if (!lastInListName) {
+                        this.listsRows = response.result;
+                    } else {
+                        this.listsRows = this.listsRows.concat(response.result);
+                    }
+                    this.isLoadMore = this.listsRows.length < response.count;
+                },
+                (error: HttpErrorResponse) => {
+                    this.errorHandlerService.handleError(error, this.snackBar);
+                }
+            );
     }
 }

@@ -42,7 +42,7 @@ export abstract class FetchHistoricalService<T, P> extends PartialFetcherContinu
         return this.filter({
             from: this.datepipe.transform(from, this._yyyyMMDdHHMmSs),
             to: this.datepipe.transform(to, this._yyyyMMDdHHMmSs),
-            sortOrder: sortOrder || SortOrder.ASC,
+            sortOrder: sortOrder || SortOrder.Asc,
             paymentId: paymentId || '',
             cardToken: cardToken || '',
             shopId: shopId || '',

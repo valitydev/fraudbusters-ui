@@ -38,7 +38,7 @@ export class FetchDefaultReferencesService extends PartialFetcher<PaymentReferen
         return this.paymentDefaultReferencesService.filter({
             searchValue: searchValue || '',
             sortFieldValue: sortFieldValue || '',
-            sortOrder: sortOrder || SortOrder.ASC,
+            sortOrder: sortOrder || SortOrder.Asc,
             size: size ? size : this.SIZE,
             ...(lastId ? { lastId } : {}),
             ...(sortBy ? { sortBy } : {}),

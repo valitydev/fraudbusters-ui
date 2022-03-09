@@ -12,7 +12,7 @@ const baseTsRules = {
         'prettier',
     ],
     rules: {
-        ...rules.createImportOrderRule({ internalPathsPattern: '@dsh/**' }),
+        ...rules.createImportOrderRule({ internalPathsPattern: '@fb/**' }),
         // TODO: pretenders for error
         '@typescript-eslint/no-unsafe-call': 'warn',
         '@typescript-eslint/no-unsafe-member-access': 'warn',
@@ -29,14 +29,21 @@ const baseTsRules = {
 module.exports = {
     root: true,
     parser: '@typescript-eslint/parser',
-    ignorePatterns: ['**/openapi-codegen/**/*.ts', '**/swagger-codegen/**/*.ts'],
+    ignorePatterns: [
+        '**/openapi-codegen/**/*.ts',
+        '**/swagger-codegen/**/*.ts',
+        'src/app/shared/components/inputs/custom-form-control/custom-form-control.component.ts',
+        'src/app/shared/components/create-template/services/template/template.service.ts',
+        'src/app/shared/components/create-notification/services/notification.service.ts',
+        'src/app/shared/components/testing-data-set-list/services/data-set/testing-data-set.service.ts',
+    ],
     overrides: [
         {
             ...baseTsRules,
             files: ['*.ts'],
             rules: {
                 ...baseTsRules.rules,
-                ...rules.createAngularSelectorRules({ prefix: 'dsh' }),
+                ...rules.createAngularSelectorRules({ prefix: 'fb' }),
                 // TODO: pretenders for error
                 '@typescript-eslint/no-floating-promises': 'warn',
             },

@@ -36,7 +36,7 @@ export class FetchReferencesService extends PartialFetcher<PaymentReference, Fet
             isDefault: isDefault || false,
             searchValue: searchValue || '',
             sortFieldValue: sortFieldValue || '',
-            sortOrder: sortOrder || SortOrder.ASC,
+            sortOrder: sortOrder || SortOrder.Asc,
             size: size ? size : this.SIZE,
             isGlobal,
             ...(lastId ? { lastId } : {}),

@@ -23,23 +23,23 @@ export class PaymentTemplateReferencesTableComponent {
     sort(sort: Sort): void {
         switch (sort.direction) {
             case 'asc':
-                this.action.emit({ type: ActionType.sortReferences, sortDirection: SortOrder.ASC });
+                this.action.emit({ type: ActionType.SortReferences, sortDirection: SortOrder.Asc });
                 break;
             case 'desc':
-                this.action.emit({ type: ActionType.sortReferences, sortDirection: SortOrder.DESC });
+                this.action.emit({ type: ActionType.SortReferences, sortDirection: SortOrder.DESC });
                 break;
         }
     }
 
     removeReference(reference: PaymentReference): void {
-        this.action.emit({ type: ActionType.removeReference, reference });
+        this.action.emit({ type: ActionType.RemoveReference, reference });
     }
 
     editReference(reference: PaymentReference) {
-        this.action.emit({ type: ActionType.editReference, reference });
+        this.action.emit({ type: ActionType.EditReference, reference });
     }
 
     goToTempalte(reference: PaymentReference) {
-        this.action.emit({ type: ActionType.goToTemplate, reference });
+        this.action.emit({ type: ActionType.GoToTemplate, reference });
     }
 }

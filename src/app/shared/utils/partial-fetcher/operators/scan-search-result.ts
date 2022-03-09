@@ -27,8 +27,7 @@ export const scanFetchResult = <P, R>(fn: FetchFn<P, R>) => (
                     case 'search':
                         return fn(value).pipe(first(), handleFetchResultError());
                     case 'fetchMore':
-                        const lastId = (result[result.length - 1] as any).id;
-                        return fn(value, lastId).pipe(
+                        return fn(value, (result[result.length - 1] as any).id).pipe(
                             first(),
                             map((r) => ({
                                 result: result.concat(r.result),

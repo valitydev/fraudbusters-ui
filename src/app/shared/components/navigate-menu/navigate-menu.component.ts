@@ -9,5 +9,5 @@ import { NavItem } from '../../model/nav-item';
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NavigateMenuComponent {
-    navItems: NavItem[] = MenuModel.NAV_ITEMS;
+    navItems: NavItem[] = MenuModel.navItems;
 }

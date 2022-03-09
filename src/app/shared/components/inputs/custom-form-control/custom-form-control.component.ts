@@ -17,20 +17,19 @@ import {
     SimpleChanges,
 } from '@angular/core';
 import { ControlValueAccessor, FormControl, FormGroupDirective, NgControl, NgForm } from '@angular/forms';
-import { MatAutocompleteOrigin } from '@angular/material/autocomplete';
 import { ErrorStateMatcher } from '@angular/material/core';
 import { MatFormFieldControl } from '@angular/material/form-field';
 import { Subject } from 'rxjs';
 import uuid from 'uuid';
 
-import { InputMixinBase } from './input-base';
+import { INPUT_MIX_IN_BASE } from './input-base';
 
-// tslint:disable-next-line: no-conflicting-lifecycle
+// tslint: no-conflicting-lifecycle
 @Component({
     template: '',
 })
 export abstract class CustomFormControlComponent<I extends any = any, P extends any = I>
-    extends InputMixinBase
+    extends INPUT_MIX_IN_BASE
     implements AfterViewInit, ControlValueAccessor, MatFormFieldControl<I>, OnDestroy, DoCheck, OnChanges {
     /** The aria-describedby attribute on the input for improved a11y. */
     @HostBinding('attr.aria-describedby') _ariaDescribedby: string;
@@ -38,10 +37,12 @@ export abstract class CustomFormControlComponent<I extends any = any, P extends 
     readonly stateChanges: Subject<void> = new Subject<void>();
 
     controlType = 'text';
-
     autofilled = false;
+    inputRef = new ElementRef<HTMLInputElement>(null);
 
     protected _disabled = false;
+    protected _id: string;
+
     @Input()
     get disabled(): boolean {
         if (this.ngControl && this.ngControl.disabled !== null) {
@@ -49,6 +50,7 @@ export abstract class CustomFormControlComponent<I extends any = any, P extends 
         }
         return this._disabled;
     }
+
     set disabled(value: boolean) {
         this._disabled = coerceBooleanProperty(value);
 
@@ -60,7 +62,6 @@ export abstract class CustomFormControlComponent<I extends any = any, P extends 
         }
     }
 
-    protected _id: string;
     @HostBinding('attr.id')
     @Input()
     get id(): string {
@@ -109,8 +110,6 @@ export abstract class CustomFormControlComponent<I extends any = any, P extends 
         return this.focused || !this.empty;
     }
 
-    inputRef = new ElementRef<HTMLInputElement>(null);
-
     get empty(): boolean {
         return !this.formControl.value;
     }
@@ -125,7 +124,6 @@ export abstract class CustomFormControlComponent<I extends any = any, P extends 
     }
 
     formControl = new FormControl();
-    autocompleteOrigin: MatAutocompleteOrigin;
     monitorsRegistered = false;
 
     private _onTouched: () => void;
@@ -199,21 +197,6 @@ export abstract class CustomFormControlComponent<I extends any = any, P extends 
         this._onTouched();
     }
 
-    private registerMonitors() {
-        if (!this.monitorsRegistered && this.inputRef.nativeElement) {
-            this.monitorsRegistered = true;
-            if (this.platform.isBrowser) {
-                this.autofillMonitor.monitor(this.inputRef).subscribe((event) => {
-                    this.autofilled = event.isAutofilled;
-                    this.stateChanges.next();
-                });
-            }
-            this.focusMonitor.monitor(this.elementRef.nativeElement, true).subscribe((focusOrigin) => {
-                this.focused = !!focusOrigin;
-            });
-        }
-    }
-
     setDescribedByIds(ids: string[]): void {
         this._ariaDescribedby = ids.join(' ');
     }
@@ -247,5 +230,20 @@ export abstract class CustomFormControlComponent<I extends any = any, P extends 
 
     protected toPublicValue(value: I): P {
         return value as any;
+    }
+
+    private registerMonitors() {
+        if (!this.monitorsRegistered && this.inputRef.nativeElement) {
+            this.monitorsRegistered = true;
+            if (this.platform.isBrowser) {
+                this.autofillMonitor.monitor(this.inputRef).subscribe((event) => {
+                    this.autofilled = event.isAutofilled;
+                    this.stateChanges.next();
+                });
+            }
+            this.focusMonitor.monitor(this.elementRef.nativeElement, true).subscribe((focusOrigin) => {
+                this.focused = !!focusOrigin;
+            });
+        }
     }
 }

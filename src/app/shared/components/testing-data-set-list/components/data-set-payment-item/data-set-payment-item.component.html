@@ -25,8 +25,8 @@
             <div class="fb-body-2" fxFlex="15%">Shop id:</div>
             <div fxFlex>{{ checkedDataSetRow.payment.merchantInfo.shopId }}</div>
         </div>
-        <mat-divider *ngIf="checkedDataSetRow.resultStatus == 'notify'"></mat-divider>
-        <div class="row" *ngIf="checkedDataSetRow.resultStatus == 'notify'">
+        <mat-divider *ngIf="checkedDataSetRow.resultStatus === 'notify'"></mat-divider>
+        <div class="row" *ngIf="checkedDataSetRow.resultStatus === 'notify'">
             <div class="fb-body-2" fxFlex="15%">Notifications:</div>
             <div fxFlex>{{ checkedDataSetRow.notificationRule }}</div>
         </div>

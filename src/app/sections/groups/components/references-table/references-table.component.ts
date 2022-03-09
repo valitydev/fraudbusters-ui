@@ -25,7 +25,7 @@ export class ReferencesTableComponent {
     sort(sort: Sort): void {
         switch (sort.direction) {
             case 'asc':
-                this.action.emit({ type: ActionType.sortReferences, sortDirection: SortOrder.ASC });
+                this.action.emit({ type: ActionType.sortReferences, sortDirection: SortOrder.Asc });
                 break;
             case 'desc':
                 this.action.emit({ type: ActionType.sortReferences, sortDirection: SortOrder.DESC });

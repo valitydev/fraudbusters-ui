@@ -2,11 +2,11 @@ import { PaymentReference } from '../../../api/fb-management/swagger-codegen/mod
 import { SortOrder } from '../../constants/sort-order';
 
 export enum ActionType {
-    createReference = 'createReference',
-    editReference = 'editReference',
-    removeReference = 'removeReference',
-    sortReferences = 'sortReferences',
-    goToTemplate = 'goToTemplate',
+    CreateReference = 'createReference',
+    EditReference = 'editReference',
+    RemoveReference = 'removeReference',
+    SortReferences = 'sortReferences',
+    GoToTemplate = 'goToTemplate',
 }
 
 export interface Action {

@@ -28,7 +28,7 @@ export class FetchPaymentTemplatesService extends PartialFetcher<Template, Fetch
         const { searchValue, sortOrder, pageSize } = params;
         return this.paymentTemplatesService.findTemplates({
             size: pageSize ? pageSize : this.SIZE,
-            sortOrder: sortOrder || SortOrder.ASC,
+            sortOrder: sortOrder || SortOrder.Asc,
             ...(searchValue ? { searchValue } : {}),
             ...(lastId ? { lastId } : {}),
         });
