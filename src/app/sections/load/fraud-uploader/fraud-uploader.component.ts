@@ -36,15 +36,15 @@ export class FraudUploaderComponent {
             .forEach((item) => {
                 this.startProgress(this.files.indexOf(item), this.calcProgressCoef(item.size));
                 this.fraudUploadService.postFile(item).subscribe(
-                    (response) => {
-                        this.finishProgress(this.files.indexOf(item), UploadStatus.success);
-                        this.uploadFiles.set(item.name, { file: item, status: UploadStatus.success });
+                    () => {
+                        this.finishProgress(this.files.indexOf(item), UploadStatus.Success);
+                        this.uploadFiles.set(item.name, { file: item, status: UploadStatus.Success });
                     },
                     (error: HttpErrorResponse) => {
-                        this.finishProgress(this.files.indexOf(item), UploadStatus.error);
+                        this.finishProgress(this.files.indexOf(item), UploadStatus.Error);
                         this.uploadFiles.set(item.name, {
                             file: item,
-                            status: UploadStatus.error,
+                            status: UploadStatus.Error,
                             errorMessage: error.message,
                         });
                     }
@@ -113,11 +113,11 @@ export class FraudUploaderComponent {
     }
 
     isLoadError(name: string): boolean {
-        return !!this.uploadFiles.get(name) && this.uploadFiles.get(name).status === UploadStatus.error;
+        return !!this.uploadFiles.get(name) && this.uploadFiles.get(name).status === UploadStatus.Error;
     }
 
     isLoadSuccess(name: string): boolean {
-        return !!this.uploadFiles.get(name) && this.uploadFiles.get(name).status === UploadStatus.success;
+        return !!this.uploadFiles.get(name) && this.uploadFiles.get(name).status === UploadStatus.Success;
     }
 
     back() {

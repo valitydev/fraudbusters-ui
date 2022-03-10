@@ -13,19 +13,19 @@ import { EditChannelComponent } from './components/edit-channel/edit-channel.com
                 path: '',
                 component: ChannelComponent,
                 canActivate: [AuthGuard],
-                data: { roles: [Roles.fraudOfficer] },
+                data: { roles: [Roles.FraudOfficer] },
                 children: [
                     {
                         path: 'new',
                         component: CreateChannelComponent,
                         canActivate: [AuthGuard],
-                        data: { roles: [Roles.fraudOfficer] },
+                        data: { roles: [Roles.FraudOfficer] },
                     },
                     {
                         path: ':id',
                         component: EditChannelComponent,
                         canActivate: [AuthGuard],
-                        data: { roles: [Roles.fraudOfficer] },
+                        data: { roles: [Roles.FraudOfficer] },
                     },
                 ],
             },

@@ -13,19 +13,19 @@ import { TestingComponent } from './testing.component';
                 path: '',
                 component: TestingComponent,
                 canActivate: [AuthGuard],
-                data: { roles: [Roles.fraudOfficer] },
+                data: { roles: [Roles.FraudOfficer] },
                 children: [
                     {
                         path: 'data-sets',
                         component: PaymentDataSetsComponent,
                         canActivate: [AuthGuard],
-                        data: { roles: [Roles.fraudOfficer] },
+                        data: { roles: [Roles.FraudOfficer] },
                     },
                     {
                         path: 'emulation',
                         component: EmulationTemplateComponent,
                         canActivate: [AuthGuard],
-                        data: { roles: [Roles.fraudOfficer] },
+                        data: { roles: [Roles.FraudOfficer] },
                     },
                 ],
             },

@@ -27,13 +27,13 @@ export interface FetchPaymentParams {
 
 export abstract class FetchHistoricalService<T, P> extends PartialFetcherContinuation<T, FetchPaymentParams> {
     inProgress$ = this.doAction$.pipe(booleanDelay(), shareReplay(1));
-    protected SIZE = this.configService.pageSize;
+    protected pageSize = this.configService.pageSize;
+
+    private readonly _yyyyMMDdHHMmSs = 'yyyy-MM-dd HH:mm:ss';
 
     constructor(protected configService: ConfigService, protected datepipe: DatePipe) {
         super();
     }
-
-    private readonly _yyyyMMDdHHMmSs = 'yyyy-MM-dd HH:mm:ss';
 
     protected abstract filter(params: SearchHistoricalParams): Observable<P>;
 
@@ -42,7 +42,7 @@ export abstract class FetchHistoricalService<T, P> extends PartialFetcherContinu
         return this.filter({
             from: this.datepipe.transform(from, this._yyyyMMDdHHMmSs),
             to: this.datepipe.transform(to, this._yyyyMMDdHHMmSs),
-            sortOrder: sortOrder || SortOrder.ASC,
+            sortOrder: sortOrder || SortOrder.Asc,
             paymentId: paymentId || '',
             cardToken: cardToken || '',
             shopId: shopId || '',
@@ -50,7 +50,7 @@ export abstract class FetchHistoricalService<T, P> extends PartialFetcherContinu
             status: status || '',
             fingerprint: fingerprint || '',
             email: email || '',
-            size: size ? size : this.SIZE,
+            size: size ? size : this.pageSize,
             ...(continuationId ? { continuationId } : {}),
         });
     }

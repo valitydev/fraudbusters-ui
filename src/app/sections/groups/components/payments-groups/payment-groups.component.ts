@@ -68,15 +68,13 @@ export class PaymentGroupsComponent implements OnInit {
         this.router.navigate([`/group/${id}`]);
     }
 
-    loadMore(): void {}
-
     openDialog(groupId): void {
         const dialogRef = this.dialog.open(RemoveGroupDialogComponent, {
             width: '350px',
             data: { id: groupId },
         });
 
-        dialogRef.afterClosed().subscribe((result) => {
+        dialogRef.afterClosed().subscribe(() => {
             this.search();
         });
     }

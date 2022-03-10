@@ -37,9 +37,33 @@ export class ReferencesService {
         this.isLoadMore$ = this.isLoadMoreSubject$.pipe();
     }
 
+    nextReferences(filter: FilterReference): void {
+        this.filterReference$.next(filter);
+    }
+
+    getReferences(filter: FilterReference): Observable<HttpSearchResponse<PaymentReference>> {
+        return this.paymentReferencesService.findReferences({
+            searchValue: filter.search,
+            lastId: filter.lastInListName,
+            size: filter.size,
+            sortOrder: filter.sortOrder ? filter.sortOrder : SortOrder.Asc,
+            isGlobal: filter.isGlobalValue,
+            isDefault: filter.isDefaultValue,
+            sortFieldValue: filter.sortField,
+        });
+    }
+
+    deleteReference(reference: PaymentReference): Observable<string> {
+        return this.paymentReferencesService.deleteReference(reference);
+    }
+
+    saveReferences(references: PaymentReference[]): Observable<string[]> {
+        return this.paymentReferencesService.saveReferences(references);
+    }
+
     private checkMoreReferences(result: any, references: any[]): void {
         this.isLoadMoreSubject$.next(
-            !!result.references ? references.length + result.references.length < result.count : false
+            result.references ? references.length + result.references.length < result.count : false
         );
     }
 
@@ -54,29 +78,5 @@ export class ReferencesService {
                 return { references: ref.result, filter: filterReference, count: ref.count };
             })
         );
-    }
-
-    nextReferences(filter: FilterReference): void {
-        this.filterReference$.next(filter);
-    }
-
-    getReferences(filter: FilterReference): Observable<HttpSearchResponse<PaymentReference>> {
-        return this.paymentReferencesService.findReferences({
-            searchValue: filter.search,
-            lastId: filter.lastInListName,
-            size: filter.size,
-            sortOrder: filter.sortOrder ? filter.sortOrder : SortOrder.ASC,
-            isGlobal: filter.isGlobalValue,
-            isDefault: filter.isDefaultValue,
-            sortFieldValue: filter.sortField,
-        });
-    }
-
-    deleteReference(reference: PaymentReference): Observable<string> {
-        return this.paymentReferencesService.deleteReference(reference);
-    }
-
-    saveReferences(references: PaymentReference[]): Observable<string[]> {
-        return this.paymentReferencesService.saveReferences(references);
     }
 }

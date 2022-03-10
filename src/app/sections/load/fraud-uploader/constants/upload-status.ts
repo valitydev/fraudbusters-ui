@@ -1,5 +1,5 @@
 export enum UploadStatus {
-    new = 'new',
-    error = 'error',
-    success = 'success',
+    New = 'new',
+    Error = 'error',
+    Success = 'success',
 }

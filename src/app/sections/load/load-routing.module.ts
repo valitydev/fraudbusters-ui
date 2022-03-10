@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-const routes: Routes = [
+const ROUTES: Routes = [
     {
         path: '',
         redirectTo: 'fraud',
@@ -14,7 +14,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-    imports: [RouterModule.forChild(routes)],
+    imports: [RouterModule.forChild(ROUTES)],
     exports: [RouterModule],
 })
 export class LoadRoutingModule {}

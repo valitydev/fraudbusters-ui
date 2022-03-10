@@ -18,6 +18,8 @@ export class TestingDataSetService {
         checkingTimestamp: null,
     };
 
+    form = this.fb.group(TestingDataSetService.defaultParams);
+
     private test$ = new Subject<ApplyRuleOnHistoricalDataSetRequest>();
     private validate$ = new Subject<string>();
 
@@ -40,8 +42,6 @@ export class TestingDataSetService {
         private dataSetService: DataSetService,
         private paymentTemplatesService: PaymentTemplatesService
     ) {}
-
-    form = this.fb.group(TestingDataSetService.defaultParams);
 
     testTemplate(
         templateValue: string,

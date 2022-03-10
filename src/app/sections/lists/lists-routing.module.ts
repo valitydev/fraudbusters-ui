@@ -14,25 +14,25 @@ import { ListsComponent } from './lists.component';
                 path: '',
                 component: ListsComponent,
                 canActivate: [AuthGuard],
-                data: { roles: [Roles.fraudOfficer] },
+                data: { roles: [Roles.FraudOfficer] },
                 children: [
                     {
                         path: 'white-list',
                         component: WhiteListComponent,
                         canActivate: [AuthGuard],
-                        data: { roles: [Roles.fraudOfficer] },
+                        data: { roles: [Roles.FraudOfficer] },
                     },
                     {
                         path: 'black-list',
                         component: BlackListComponent,
                         canActivate: [AuthGuard],
-                        data: { roles: [Roles.fraudOfficer] },
+                        data: { roles: [Roles.FraudOfficer] },
                     },
                     {
                         path: 'grey-list',
                         component: GreyListComponent,
                         canActivate: [AuthGuard],
-                        data: { roles: [Roles.fraudOfficer] },
+                        data: { roles: [Roles.FraudOfficer] },
                     },
                     {
                         path: '',

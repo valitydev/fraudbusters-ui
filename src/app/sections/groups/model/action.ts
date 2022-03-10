@@ -2,9 +2,9 @@ import { GroupReference } from '../../../api/fb-management/swagger-codegen/model
 import { SortOrder } from '../../../shared/constants/sort-order';
 
 export enum ActionType {
-    createReference = 'createReference',
-    removeReference = 'removeReference',
-    sortReferences = 'sortReferences',
+    CreateReference = 'createReference',
+    RemoveReference = 'removeReference',
+    SortReferences = 'sortReferences',
 }
 
 export interface Action {

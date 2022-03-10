@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-const routes: Routes = [
+const ROUTES: Routes = [
     {
         path: '',
         redirectTo: 'emulation/template',
@@ -82,7 +82,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-    imports: [RouterModule.forRoot(routes, { paramsInheritanceStrategy: 'always' })],
+    imports: [RouterModule.forRoot(ROUTES, { paramsInheritanceStrategy: 'always' })],
     exports: [RouterModule],
 })
 export class SectionsRoutingModule {}

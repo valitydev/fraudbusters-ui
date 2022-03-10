@@ -24,7 +24,7 @@ export interface FetchDefaultReferencesParams {
 @Injectable()
 export class FetchDefaultReferencesService extends PartialFetcher<PaymentReference, FetchDefaultReferencesParams> {
     inProgress$ = this.doAction$.pipe(booleanDelay(), shareReplay(1));
-    private SIZE = this.configService.pageSize;
+    private pageSize = this.configService.pageSize;
 
     constructor(
         private paymentDefaultReferencesService: PaymentDefaultReferencesService,
@@ -38,8 +38,8 @@ export class FetchDefaultReferencesService extends PartialFetcher<PaymentReferen
         return this.paymentDefaultReferencesService.filter({
             searchValue: searchValue || '',
             sortFieldValue: sortFieldValue || '',
-            sortOrder: sortOrder || SortOrder.ASC,
-            size: size ? size : this.SIZE,
+            sortOrder: sortOrder || SortOrder.Asc,
+            size: size ? size : this.pageSize,
             ...(lastId ? { lastId } : {}),
             ...(sortBy ? { sortBy } : {}),
             ...(id ? { id } : {}),

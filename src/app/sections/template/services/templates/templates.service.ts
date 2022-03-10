@@ -22,7 +22,7 @@ export class TemplatesService {
             searchValue: nameRegexp,
             lastId: lastInListName,
             size: sizeValue,
-            sortOrder: sortOrder ? sortOrder : SortOrder.ASC,
+            sortOrder: sortOrder ? sortOrder : SortOrder.Asc,
         });
     }
 

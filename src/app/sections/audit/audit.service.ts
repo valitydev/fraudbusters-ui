@@ -16,7 +16,7 @@ export class AuditService {
     searchFilter$ = new ReplaySubject<Filter>();
     searchField$ = new Subject<string>();
 
-    sort$ = new BehaviorSubject<SortOrder>(SortOrder.DESC);
+    sort$ = new BehaviorSubject<SortOrder>(SortOrder.Desc);
     last: Log;
     loadMoreAction$ = new BehaviorSubject<boolean>(false);
 
@@ -32,7 +32,7 @@ export class AuditService {
 
     private readonly yyyyMMDdHHMmSs = 'yyyy-MM-dd HH:mm:ss';
 
-    private readonly SIZE = 10;
+    private readonly size = 10;
 
     constructor(
         private errorHandlerService: ErrorHandlerService,
@@ -57,7 +57,7 @@ export class AuditService {
             .subscribe();
 
         this.sort$.subscribe(() => (this.isRefresh = true));
-        this.loadMoreAction$.subscribe((value) => (this.isRefresh = false));
+        this.loadMoreAction$.subscribe(() => (this.isRefresh = false));
         this.logs$ = combineLatest([this.searchFilter$, this.loadMoreAction$, this.sort$]).pipe(
             switchMap((value) => {
                 return this.auditRemoteService
@@ -68,7 +68,7 @@ export class AuditService {
                         from: this.datepipe.transform(value[0].from, this.yyyyMMDdHHMmSs),
                         to: this.datepipe.transform(value[0].to, this.yyyyMMDdHHMmSs),
                         sortOrder: SortOrder[value[2]],
-                        size: this.SIZE,
+                        size: this.size,
                         lastId: this.isLoadMore(value) ? this.last.id : null,
                         sortFieldValue: this.isLoadMore(value) ? this.last.insertTime : null,
                     })
@@ -98,18 +98,18 @@ export class AuditService {
         this.isLoadMore$ = this.isLoadMoreSubject$.pipe();
     }
 
-    private isLoadMore(value: any): boolean {
-        return value[1] && !this.isRefresh && !!this.last;
-    }
-
-    private checkMore(logs: any[]): void {
-        this.isLoadMoreSubject$.next(!!logs ? logs.length < this.count : false);
-    }
-
     mergeQueryParam(params): void {
         this.router.navigate([], {
             queryParams: params,
             queryParamsHandling: 'merge',
         });
+    }
+
+    private isLoadMore(value: any): boolean {
+        return value[1] && !this.isRefresh && !!this.last;
+    }
+
+    private checkMore(logs: any[]): void {
+        this.isLoadMoreSubject$.next(logs ? logs.length < this.count : false);
     }
 }

@@ -25,15 +25,15 @@ export class ReferencesTableComponent {
     sort(sort: Sort): void {
         switch (sort.direction) {
             case 'asc':
-                this.action.emit({ type: ActionType.sortReferences, sortDirection: SortOrder.ASC });
+                this.action.emit({ type: ActionType.SortReferences, sortDirection: SortOrder.Asc });
                 break;
             case 'desc':
-                this.action.emit({ type: ActionType.sortReferences, sortDirection: SortOrder.DESC });
+                this.action.emit({ type: ActionType.SortReferences, sortDirection: SortOrder.Desc });
                 break;
         }
     }
 
     removeReference(reference: GroupReference): void {
-        this.action.emit({ type: ActionType.removeReference, reference });
+        this.action.emit({ type: ActionType.RemoveReference, reference });
     }
 }

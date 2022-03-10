@@ -16,7 +16,7 @@ import { CreateDefaultReferenceComponent } from './create-default-reference.comp
                         path: 'payment',
                         component: CreateDefaultPaymentReferenceComponent,
                         canActivate: [AuthGuard],
-                        data: { roles: [Roles.fraudOfficer] },
+                        data: { roles: [Roles.FraudOfficer] },
                     },
                 ],
             },

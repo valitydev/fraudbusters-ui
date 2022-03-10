@@ -17,7 +17,7 @@ export class CreateDefaultPaymentReferenceComponent {
         private router: Router,
         @Inject(LAYOUT_GAP_M) public layoutGapM: string
     ) {
-        this.createDefaultPaymentReferenceService.created$.subscribe((q) => {
+        this.createDefaultPaymentReferenceService.created$.subscribe(() => {
             this.router.navigate(['/templates/default-references']);
         });
     }

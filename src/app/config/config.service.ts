@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
-import { BaseConfig } from './config';
+import { BASE_CONFIG } from './config';
 
 export interface AppConfig {
     fbManagementEndpoint: string;
@@ -9,7 +9,7 @@ export interface AppConfig {
 }
 
 @Injectable()
-export class ConfigService extends BaseConfig {
+export class ConfigService extends BASE_CONFIG {
     constructor(private http: HttpClient) {
         super();
     }

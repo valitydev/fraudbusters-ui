@@ -77,7 +77,7 @@ export class DataSetTemplateComponent implements OnInit {
         this.testingDataSetService.testTemplate(
             this.form.get('template').value,
             this.dataSet,
-            !!this.form.get('checkingTimestamp') ? this.form.get('checkingTimestamp').value : null,
+            this.form.get('checkingTimestamp') ? this.form.get('checkingTimestamp').value : null,
             this.form.get('party').value,
             this.form.get('shop').value
         );

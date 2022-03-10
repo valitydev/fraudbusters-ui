@@ -53,7 +53,7 @@ export class AuditComponent {
     }
 
     sortData(sort: Sort): void {
-        this.auditService.sort$.next(sort.direction === 'asc' ? SortOrder.ASC : SortOrder.DESC);
+        this.auditService.sort$.next(sort.direction === 'asc' ? SortOrder.Asc : SortOrder.Desc);
     }
 
     loadMore(): void {
@@ -64,13 +64,13 @@ export class AuditComponent {
         this.auditService.loadMoreAction$.next(false);
     }
 
-    selectionCommand($event): void {
+    selectionCommand(): void {
         this.auditService.mergeQueryParam({
             commandTypes: JSON.stringify(this.filter.commandTypes),
         });
     }
 
-    selectionObject($event): void {
+    selectionObject(): void {
         this.auditService.mergeQueryParam({
             objectTypes: JSON.stringify(this.filter.objectTypes),
         });

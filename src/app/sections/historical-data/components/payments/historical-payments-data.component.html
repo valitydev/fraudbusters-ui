@@ -1,7 +1,7 @@
 <div fxLayout="column" [fxLayoutGap]="layoutGapM">
     <fb-history-data-search (valueChanges)="search($event)"></fb-history-data-search>
     <div fxLayout fxLayoutAlign="end start">
-        <button mat-button color="primary" (click)="createDataSet()" [disabled]="selectedPayments$.length == 0">
+        <button mat-button color="primary" (click)="createDataSet()" [disabled]="selectedPayments$.length === 0">
             CREATE NEW DATASET
         </button>
     </div>

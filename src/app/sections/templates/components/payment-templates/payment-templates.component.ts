@@ -35,18 +35,18 @@ export class PaymentTemplatesComponent {
 
     action(action: Action) {
         switch (action.type) {
-            case ActionType.createTemplate:
+            case ActionType.CreateTemplate:
                 this.router.navigate(['/template/new'], { fragment: OperationType.Payment });
                 break;
-            case ActionType.editTemplate:
+            case ActionType.EditTemplate:
                 this.router.navigate([`/template/${action.templateID}`], { fragment: OperationType.Payment });
                 break;
-            case ActionType.removeTemplate:
+            case ActionType.RemoveTemplate:
                 this.removeTemplateService.removeTemplate({
                     templateID: action.templateID,
                 });
                 break;
-            case ActionType.sortTemplates:
+            case ActionType.SortTemplates:
                 this.fetchTemplatesService.search({ sortOrder: action.sortDirection });
                 break;
             default:

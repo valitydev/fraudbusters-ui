@@ -12,13 +12,13 @@ import { BlackListComponent } from './black-list.component';
                 path: '',
                 component: BlackListComponent,
                 canActivate: [AuthGuard],
-                data: { roles: [Roles.fraudOfficer, Roles.fraudMonitoring] },
+                data: { roles: [Roles.FraudOfficer, Roles.FraudMonitoring] },
                 children: [
                     {
                         path: 'new',
                         component: AddRowBlackListComponent,
                         canActivate: [AuthGuard],
-                        data: { roles: [Roles.fraudOfficer, Roles.fraudMonitoring] },
+                        data: { roles: [Roles.FraudOfficer, Roles.FraudMonitoring] },
                     },
                 ],
             },

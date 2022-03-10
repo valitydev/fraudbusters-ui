@@ -23,7 +23,7 @@ export class GroupsReferenceService {
             searchValue: nameRegexp,
             lastId: lastInListName,
             size: sizeValue,
-            sortOrder: sortOrder ? sortOrder : SortOrder.ASC,
+            sortOrder: sortOrder ? sortOrder : SortOrder.Asc,
             sortFieldValue: sortField,
         });
     }

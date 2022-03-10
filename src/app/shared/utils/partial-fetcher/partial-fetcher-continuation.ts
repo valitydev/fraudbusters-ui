@@ -21,8 +21,6 @@ import { scanAction } from './operators';
 import { scanFetchResultContinuation } from './operators/scan-continuation-search-result';
 
 export abstract class PartialFetcherContinuation<R, P> {
-    private action$ = new Subject<FetchAction<P>>();
-
     fetchResultChanges$: Observable<{ result: R[]; hasMore: boolean; continuationId: string }>;
 
     readonly searchResult$: Observable<R[]>;
@@ -30,6 +28,8 @@ export abstract class PartialFetcherContinuation<R, P> {
     readonly doAction$: Observable<boolean>;
     readonly doSearchAction$: Observable<boolean>;
     readonly errors$ = new Subject();
+
+    private action$ = new Subject<FetchAction<P>>();
 
     constructor(debounceActionTime: number = 300) {
         const actionWithParams$ = this.getActionWithParams(debounceActionTime);
@@ -83,10 +83,6 @@ export abstract class PartialFetcherContinuation<R, P> {
 
     protected abstract fetch(...args: Parameters<FetchFn<P, R>>): ReturnType<FetchFn<P, R>>;
 
-    private getActionWithParams(debounceActionTime: number): Observable<FetchAction<P>> {
-        return this.action$.pipe(scanAction, debounceActionTime ? debounceTime(debounceActionTime) : tap(), share());
-    }
-
     protected getFetchResult(actionWithParams$: Observable<FetchAction<P>>): Observable<FetchResultContinuation<R>> {
         const fetchFn = this.fetch.bind(this) as FetchFnContinuation<P, R>;
         return actionWithParams$.pipe(
@@ -98,5 +94,9 @@ export abstract class PartialFetcherContinuation<R, P> {
                 return error ? of(error) : EMPTY;
             })
         );
+    }
+
+    private getActionWithParams(debounceActionTime: number): Observable<FetchAction<P>> {
+        return this.action$.pipe(scanAction, debounceActionTime ? debounceTime(debounceActionTime) : tap(), share());
     }
 }

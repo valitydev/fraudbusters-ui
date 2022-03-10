@@ -24,7 +24,7 @@ export interface FetchReferencesParams {
 @Injectable()
 export class FetchReferencesService extends PartialFetcher<GroupReference, FetchReferencesParams> {
     inProgress$ = this.doAction$.pipe(booleanDebounceTime(0), shareReplay(1));
-    private SIZE = this.configService.pageSize;
+    private pageSize = this.configService.pageSize;
 
     constructor(
         private paymentGroupsReferencesService: PaymentGroupsReferencesService,
@@ -37,8 +37,8 @@ export class FetchReferencesService extends PartialFetcher<GroupReference, Fetch
         const { searchValue, sortOrder, sortFieldValue, size, sortBy } = params;
         return this.paymentGroupsReferencesService.filter({
             searchValue: searchValue || '',
-            size: size || this.SIZE,
-            sortOrder: sortOrder || SortOrder.ASC,
+            size: size || this.pageSize,
+            sortOrder: sortOrder || SortOrder.Asc,
             sortFieldValue: sortFieldValue || '',
             ...(lastId ? { lastId } : {}),
             ...(sortBy ? { sortBy } : {}),

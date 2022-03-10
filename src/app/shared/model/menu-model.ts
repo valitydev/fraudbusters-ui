@@ -2,48 +2,48 @@ import { Roles } from '../../auth';
 import { NavItem } from './nav-item';
 
 export class MenuModel {
-    public static NAV_ITEMS: NavItem[] = [
+    public static navItems: NavItem[] = [
         {
             displayName: 'Templates',
             iconName: 'business',
             route: 'templates',
-            roles: [Roles.fraudOfficer],
+            roles: [Roles.FraudOfficer],
         },
         {
             displayName: 'Groups',
             iconName: 'group_work',
             route: 'groups',
-            roles: [Roles.fraudOfficer],
+            roles: [Roles.FraudOfficer],
         },
         {
             displayName: 'Lists',
             iconName: 'list_alt',
             route: 'lists',
-            roles: [Roles.fraudOfficer, Roles.fraudMonitoring],
+            roles: [Roles.FraudOfficer, Roles.FraudMonitoring],
         },
         {
             displayName: 'Historical data',
             iconName: 'history',
             route: 'historical-data/payments',
-            roles: [Roles.fraudOfficer, Roles.fraudMonitoring],
+            roles: [Roles.FraudOfficer, Roles.FraudMonitoring],
         },
         {
             displayName: 'Testing',
             iconName: 'bug_report',
             route: 'testing/data-sets',
-            roles: [Roles.fraudOfficer],
+            roles: [Roles.FraudOfficer],
         },
         {
             displayName: 'Notifications',
             iconName: 'notifications',
             route: 'notifications',
-            roles: [Roles.fraudOfficer],
+            roles: [Roles.FraudOfficer],
         },
         {
             displayName: 'Audit',
             iconName: 'wysiwyg',
             route: 'audit',
-            roles: [Roles.fraudOfficer, Roles.fraudMonitoring],
+            roles: [Roles.FraudOfficer, Roles.FraudMonitoring],
         },
     ];
 }

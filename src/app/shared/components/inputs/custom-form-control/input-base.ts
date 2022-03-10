@@ -10,4 +10,4 @@ export class InputBase {
     ) {}
 }
 
-export const InputMixinBase: CanUpdateErrorStateCtor & typeof InputBase = mixinErrorState(InputBase);
+export const INPUT_MIX_IN_BASE: CanUpdateErrorStateCtor & typeof InputBase = mixinErrorState(InputBase);
