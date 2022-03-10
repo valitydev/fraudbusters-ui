@@ -7,8 +7,6 @@ import { Group } from '../model/group';
     providedIn: 'root',
 })
 export class GroupUtilsService {
-    constructor() {}
-
     sortData(sort: Sort, group: Group): void {
         const data = group.priorityTemplates.slice();
         if (!sort.active || sort.direction === '') {

@@ -17,17 +17,17 @@ export interface FetchChannelsParams {
 @Injectable()
 export class FetchChannelsService extends PartialFetcher<Channel, FetchChannelsParams> {
     inProgress$ = this.doAction$.pipe(booleanDebounceTime(), shareReplay(1));
-    private SIZE = this.configService.pageSize;
+    private pageSize = this.configService.pageSize;
 
     constructor(private notificationsService: NotificationsService, private configService: ConfigService) {
         super();
     }
 
-    protected fetch(params: FetchChannelsParams, id?: string): Observable<FetchResult<Channel>> {
+    protected fetch(params: FetchChannelsParams): Observable<FetchResult<Channel>> {
         const { searchValue, size, lastId } = params;
         return this.notificationsService.getChannels({
             searchValue: searchValue || '',
-            size: size ? size : this.SIZE,
+            size: size ? size : this.pageSize,
             ...(lastId ? { lastId } : {}),
         });
     }

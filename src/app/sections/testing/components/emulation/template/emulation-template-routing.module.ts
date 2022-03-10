@@ -11,7 +11,7 @@ import { EmulationTemplateComponent } from './emulation-template.component';
                 path: '',
                 component: EmulationTemplateComponent,
                 canActivate: [AuthGuard],
-                data: { roles: [Roles.fraudOfficer, Roles.fraudMonitoring, Roles.fraudSupport] },
+                data: { roles: [Roles.FraudOfficer, Roles.FraudMonitoring, Roles.FraudSupport] },
             },
         ]),
     ],

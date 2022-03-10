@@ -12,13 +12,13 @@ import { GreyListComponent } from './grey-list.component';
                 path: '',
                 component: GreyListComponent,
                 canActivate: [AuthGuard],
-                data: { roles: [Roles.fraudOfficer, Roles.fraudMonitoring] },
+                data: { roles: [Roles.FraudOfficer, Roles.FraudMonitoring] },
                 children: [
                     {
                         path: 'new',
                         component: AddRowGreyListComponent,
                         canActivate: [AuthGuard],
-                        data: { roles: [Roles.fraudOfficer, Roles.fraudMonitoring] },
+                        data: { roles: [Roles.FraudOfficer, Roles.FraudMonitoring] },
                     },
                 ],
             },

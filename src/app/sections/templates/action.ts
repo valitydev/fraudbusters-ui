@@ -1,10 +1,10 @@
 import { SortOrder } from '../../shared/constants/sort-order';
 
 export enum ActionType {
-    createTemplate = 'createTemplate',
-    editTemplate = 'editTemplate',
-    removeTemplate = 'removeTemplate',
-    sortTemplates = 'sortTemplates',
+    CreateTemplate = 'createTemplate',
+    EditTemplate = 'editTemplate',
+    RemoveTemplate = 'removeTemplate',
+    SortTemplates = 'sortTemplates',
 }
 
 export interface Action {

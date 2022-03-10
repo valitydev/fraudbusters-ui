@@ -42,6 +42,4 @@ export class ChannelsComponent {
     goToChannel(id: string) {
         this.router.navigate([`/channel/${id}`]);
     }
-
-    fetchMore() {}
 }

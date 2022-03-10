@@ -40,12 +40,6 @@ export class EditGroupComponent implements OnInit {
         );
     }
 
-    private preloadData(): void {
-        this.route.params.subscribe(({ id }) => {
-            this.editGroupId = id;
-        });
-    }
-
     save(): void {
         this.groupsService.save(this.editGroup).subscribe(
             (id) => {
@@ -80,5 +74,11 @@ export class EditGroupComponent implements OnInit {
 
     sortData(sort: Sort, group: Group): void {
         this.groupUtilsService.sortData(sort, group);
+    }
+
+    private preloadData(): void {
+        this.route.params.subscribe(({ id }) => {
+            this.editGroupId = id;
+        });
     }
 }

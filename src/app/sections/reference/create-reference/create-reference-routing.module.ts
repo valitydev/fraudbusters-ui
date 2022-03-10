@@ -16,7 +16,7 @@ import { CreateReferenceComponent } from './create-reference.component';
                         path: 'payment',
                         component: CreatePaymentReferenceComponent,
                         canActivate: [AuthGuard],
-                        data: { roles: [Roles.fraudOfficer] },
+                        data: { roles: [Roles.FraudOfficer] },
                     },
                 ],
             },

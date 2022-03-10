@@ -11,7 +11,7 @@ import { FraudUploaderComponent } from './fraud-uploader.component';
                 path: '',
                 component: FraudUploaderComponent,
                 canActivate: [AuthGuard],
-                data: { roles: [Roles.fraudOfficer] },
+                data: { roles: [Roles.FraudOfficer] },
             },
         ]),
     ],

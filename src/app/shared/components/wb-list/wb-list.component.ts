@@ -84,7 +84,7 @@ export class WbListComponent implements OnInit {
     }
 
     sortData(sort: Sort): void {
-        this.sortType = sort.direction === 'asc' ? SortOrder.Asc : SortOrder.DESC;
+        this.sortType = sort.direction === 'asc' ? SortOrder.Asc : SortOrder.Desc;
         this.search();
     }
 

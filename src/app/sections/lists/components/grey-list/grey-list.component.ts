@@ -7,5 +7,5 @@ import { ListType } from '../../../../shared/constants/list-type';
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class GreyListComponent {
-    LIST_TYPE = ListType.grey;
+    listType = ListType.Grey;
 }

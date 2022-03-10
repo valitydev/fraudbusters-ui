@@ -1,5 +1,5 @@
 export enum Roles {
-    fraudOfficer = 'fraud-officer',
-    fraudMonitoring = 'fraud-monitoring',
-    fraudSupport = 'fraud-support',
+    FraudOfficer = 'fraud-officer',
+    FraudMonitoring = 'fraud-monitoring',
+    FraudSupport = 'fraud-support',
 }

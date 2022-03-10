@@ -13,11 +13,10 @@ import { RemoveDataSetsService } from '../../services/payment-data-sets/remove-d
 })
 export class PaymentDataSetsComponent {
     dataSets$ = this.fetchDataSetsService.searchResult$;
-
-    private readonly yyyyMMDdHHMmSs = 'yyyy-MM-dd HH:mm:ss';
-
     inProgress$ = this.fetchDataSetsService.inProgress$;
     hasMore$ = this.fetchDataSetsService.hasMore$;
+
+    private readonly yyyyMMDdHHMmSs = 'yyyy-MM-dd HH:mm:ss';
 
     constructor(
         private router: Router,
@@ -39,7 +38,7 @@ export class PaymentDataSetsComponent {
         this.fetchDataSetsService.search(this.initParams(event));
     }
 
-    fetchMore(sortFieldValue: string) {
+    fetchMore() {
         this.fetchDataSetsService.fetchMore({});
     }
 

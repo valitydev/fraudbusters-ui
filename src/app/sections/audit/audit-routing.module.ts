@@ -11,7 +11,7 @@ import { AuditComponent } from './audit.component';
                 path: '',
                 component: AuditComponent,
                 canActivate: [AuthGuard],
-                data: { roles: [Roles.fraudOfficer, Roles.fraudMonitoring] },
+                data: { roles: [Roles.FraudOfficer, Roles.FraudMonitoring] },
             },
         ]),
     ],

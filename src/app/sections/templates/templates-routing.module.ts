@@ -14,25 +14,25 @@ import { TemplatesComponent } from './templates.component';
                 path: '',
                 component: TemplatesComponent,
                 canActivate: [AuthGuard],
-                data: { roles: [Roles.fraudOfficer] },
+                data: { roles: [Roles.FraudOfficer] },
                 children: [
                     {
                         path: 'templates',
                         component: PaymentTemplatesComponent,
                         canActivate: [AuthGuard],
-                        data: { roles: [Roles.fraudOfficer] },
+                        data: { roles: [Roles.FraudOfficer] },
                     },
                     {
                         path: 'references',
                         component: PaymentReferencesComponent,
                         canActivate: [AuthGuard],
-                        data: { roles: [Roles.fraudOfficer] },
+                        data: { roles: [Roles.FraudOfficer] },
                     },
                     {
                         path: 'default-references',
                         component: DefaultPaymentReferencesComponent,
                         canActivate: [AuthGuard],
-                        data: { roles: [Roles.fraudOfficer] },
+                        data: { roles: [Roles.FraudOfficer] },
                     },
                     {
                         path: '',

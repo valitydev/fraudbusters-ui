@@ -16,7 +16,7 @@ import { CreateGroupReferenceComponent } from './create-group-reference.componen
                         path: 'payment',
                         component: CreatePaymentReferenceComponent,
                         canActivate: [AuthGuard],
-                        data: { roles: [Roles.fraudOfficer] },
+                        data: { roles: [Roles.FraudOfficer] },
                     },
                 ],
             },

@@ -37,25 +37,6 @@ export class ReferencesService {
         this.isLoadMore$ = this.isLoadMoreSubject$.pipe();
     }
 
-    private checkMoreReferences(result: any, references: any[]): void {
-        this.isLoadMoreSubject$.next(
-            !!result.references ? references.length + result.references.length < result.count : false
-        );
-    }
-
-    private pipeReferences(filterReference: FilterReference): Observable<any> {
-        return this.getReferences(filterReference).pipe(
-            catchError((error) => {
-                this.errorHandlerService.handleError(error, this.snackBar);
-                return of(error);
-            }),
-            map((ref) => {
-                this.lastRefSubject$.next(ref.result[ref.result.length - 1]);
-                return { references: ref.result, filter: filterReference, count: ref.count };
-            })
-        );
-    }
-
     nextReferences(filter: FilterReference): void {
         this.filterReference$.next(filter);
     }
@@ -78,5 +59,24 @@ export class ReferencesService {
 
     saveReferences(references: PaymentReference[]): Observable<string[]> {
         return this.paymentReferencesService.saveReferences(references);
+    }
+
+    private checkMoreReferences(result: any, references: any[]): void {
+        this.isLoadMoreSubject$.next(
+            result.references ? references.length + result.references.length < result.count : false
+        );
+    }
+
+    private pipeReferences(filterReference: FilterReference): Observable<any> {
+        return this.getReferences(filterReference).pipe(
+            catchError((error) => {
+                this.errorHandlerService.handleError(error, this.snackBar);
+                return of(error);
+            }),
+            map((ref) => {
+                this.lastRefSubject$.next(ref.result[ref.result.length - 1]);
+                return { references: ref.result, filter: filterReference, count: ref.count };
+            })
+        );
     }
 }

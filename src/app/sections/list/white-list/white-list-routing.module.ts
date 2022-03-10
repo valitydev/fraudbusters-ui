@@ -12,13 +12,13 @@ import { WhiteListComponent } from './white-list.component';
                 path: '',
                 component: WhiteListComponent,
                 canActivate: [AuthGuard],
-                data: { roles: [Roles.fraudOfficer, Roles.fraudMonitoring] },
+                data: { roles: [Roles.FraudOfficer, Roles.FraudMonitoring] },
                 children: [
                     {
                         path: 'new',
                         component: AddRowWhiteListComponent,
                         canActivate: [AuthGuard],
-                        data: { roles: [Roles.fraudOfficer, Roles.fraudMonitoring] },
+                        data: { roles: [Roles.FraudOfficer, Roles.FraudMonitoring] },
                     },
                 ],
             },

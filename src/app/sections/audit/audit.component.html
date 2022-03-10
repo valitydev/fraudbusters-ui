@@ -30,14 +30,14 @@
                     <ngx-mat-datetime-picker showSeconds="true" #pickerTo></ngx-mat-datetime-picker>
                 </mat-form-field>
                 <mat-form-field appearance="fill">
-                    <mat-select (selectionChange)="selectionCommand($event)" multiple [(value)]="filter.commandTypes">
+                    <mat-select (selectionChange)="selectionCommand()" multiple [(value)]="filter.commandTypes">
                         <mat-option *ngFor="let name of commandsTypes$ | async" value="{{ name }}">{{
                             name
                         }}</mat-option>
                     </mat-select>
                 </mat-form-field>
                 <mat-form-field appearance="fill">
-                    <mat-select (selectionChange)="selectionObject($event)" multiple [(value)]="filter.objectTypes">
+                    <mat-select (selectionChange)="selectionObject()" multiple [(value)]="filter.objectTypes">
                         <mat-option *ngFor="let name of objectsTypes$ | async" value="{{ name }}">{{
                             name
                         }}</mat-option>

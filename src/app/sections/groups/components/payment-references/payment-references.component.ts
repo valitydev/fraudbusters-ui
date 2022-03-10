@@ -38,15 +38,15 @@ export class PaymentReferencesComponent {
 
     action(action: Action) {
         switch (action.type) {
-            case ActionType.createReference:
+            case ActionType.CreateReference:
                 this.router.navigate(['/create-group-reference/payment'], { fragment: OperationType.Payment });
                 break;
-            case ActionType.removeReference:
+            case ActionType.RemoveReference:
                 this.removeReferenceService.removeReference({
                     reference: action.reference,
                 });
                 break;
-            case ActionType.sortReferences:
+            case ActionType.SortReferences:
                 this.fetchReferencesService.search({
                     type: OperationType.Payment,
                     sortOrder: action.sortDirection,
@@ -59,7 +59,7 @@ export class PaymentReferencesComponent {
     }
 
     createReference() {
-        this.action({ type: ActionType.createReference });
+        this.action({ type: ActionType.CreateReference });
     }
 
     search(searchValue: string) {

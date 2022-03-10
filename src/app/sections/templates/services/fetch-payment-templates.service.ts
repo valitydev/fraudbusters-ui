@@ -18,7 +18,7 @@ export interface FetchTemplatesParams {
 @Injectable()
 export class FetchPaymentTemplatesService extends PartialFetcher<Template, FetchTemplatesParams> {
     inProgress$ = this.doAction$.pipe(booleanDebounceTime(), shareReplay(1));
-    private SIZE = this.configService.pageSize;
+    private pageSize = this.configService.pageSize;
 
     constructor(private paymentTemplatesService: PaymentTemplatesService, private configService: ConfigService) {
         super();
@@ -27,7 +27,7 @@ export class FetchPaymentTemplatesService extends PartialFetcher<Template, Fetch
     protected fetch(params: FetchTemplatesParams, lastId?: string): Observable<FetchResult<Template>> {
         const { searchValue, sortOrder, pageSize } = params;
         return this.paymentTemplatesService.findTemplates({
-            size: pageSize ? pageSize : this.SIZE,
+            size: pageSize ? pageSize : this.pageSize,
             sortOrder: sortOrder || SortOrder.Asc,
             ...(searchValue ? { searchValue } : {}),
             ...(lastId ? { lastId } : {}),

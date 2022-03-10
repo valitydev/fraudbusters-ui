@@ -24,7 +24,7 @@ export interface FetchDataSetsParams {
 @Injectable()
 export class FetchDataSetsService extends PartialFetcherContinuation<DataSet, FetchDataSetsParams> {
     inProgress$ = this.doAction$.pipe(booleanDelay(), shareReplay(1));
-    private SIZE = this.configService.pageSize;
+    private pageSize = this.configService.pageSize;
 
     constructor(
         private dataSetService: DataSetService,
@@ -37,8 +37,8 @@ export class FetchDataSetsService extends PartialFetcherContinuation<DataSet, Fe
     protected fetch(params: FetchDataSetsParams, lastId?: string): Observable<FetchResultContinuation<DataSet>> {
         const { sortOrder, sortBy, searchValue, size, from, to } = params;
         return this.dataSetService.filterDataSets({
-            sortOrder: sortOrder || SortOrder.DESC,
-            size: size ? size : this.SIZE,
+            sortOrder: sortOrder || SortOrder.Desc,
+            size: size ? size : this.pageSize,
             dataSetName: searchValue ? searchValue : null,
             ...(lastId ? { lastId } : {}),
             ...(sortBy ? { sortBy } : {}),

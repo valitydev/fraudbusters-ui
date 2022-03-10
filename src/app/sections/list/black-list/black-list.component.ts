@@ -7,5 +7,5 @@ import { ListType } from '../../../shared/constants/list-type';
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BlackListComponent {
-    LIST_TYPE = ListType.Black;
+    listType = ListType.Black;
 }

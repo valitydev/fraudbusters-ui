@@ -33,18 +33,6 @@ export class CreateGroupComponent implements OnInit {
         this.preloadData();
     }
 
-    private preloadData(): void {
-        this.route.fragment.subscribe((fragment: string) => {
-            this.templatesService.getTemplatesName('').subscribe(
-                (names) => {
-                    this.options = names;
-                },
-                (error: HttpErrorResponse) => this.errorHandlerService.handleError(error, this.snackBar)
-            );
-            this.addTemplate();
-        });
-    }
-
     save(): void {
         this.groupsService.save(this.newGroup).subscribe(
             (id) => {
@@ -71,5 +59,17 @@ export class CreateGroupComponent implements OnInit {
 
     sortData(sort: Sort, group: Group): void {
         this.groupUtilsService.sortData(sort, group);
+    }
+
+    private preloadData(): void {
+        this.route.fragment.subscribe(() => {
+            this.templatesService.getTemplatesName('').subscribe(
+                (names) => {
+                    this.options = names;
+                },
+                (error: HttpErrorResponse) => this.errorHandlerService.handleError(error, this.snackBar)
+            );
+            this.addTemplate();
+        });
     }
 }

@@ -7,5 +7,5 @@ import { ListType } from '../../../../../shared/constants/list-type';
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AddRowWhiteListComponent {
-    LIST_TYPE = ListType.white;
+    listType = ListType.White;
 }

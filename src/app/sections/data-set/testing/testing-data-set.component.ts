@@ -21,13 +21,6 @@ export class TestingDataSetComponent {
         shareReplay(1)
     );
 
-    updateSet(id): void {
-        const currentUrl = this.router.url;
-        this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
-            this.router.navigate([currentUrl]);
-        });
-    }
-
     constructor(
         private route: ActivatedRoute,
         private router: Router,
@@ -35,6 +28,13 @@ export class TestingDataSetComponent {
         @Inject(LAYOUT_GAP_L) public layoutGapL: string,
         @Inject(LAYOUT_GAP_M) public layoutGapM: string
     ) {}
+
+    updateSet(): void {
+        const currentUrl = this.router.url;
+        this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+            this.router.navigate([currentUrl]);
+        });
+    }
 
     back() {
         this.router.navigate([`../testing/data-sets`]);

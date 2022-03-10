@@ -13,19 +13,19 @@ import { TemplateComponent } from './template.component';
                 path: '',
                 component: TemplateComponent,
                 canActivate: [AuthGuard],
-                data: { roles: [Roles.fraudOfficer] },
+                data: { roles: [Roles.FraudOfficer] },
                 children: [
                     {
                         path: 'new',
                         component: CreateTemplateComponent,
                         canActivate: [AuthGuard],
-                        data: { roles: [Roles.fraudOfficer] },
+                        data: { roles: [Roles.FraudOfficer] },
                     },
                     {
                         path: ':id',
                         component: EditTemplateComponent,
                         canActivate: [AuthGuard],
-                        data: { roles: [Roles.fraudOfficer] },
+                        data: { roles: [Roles.FraudOfficer] },
                     },
                 ],
             },

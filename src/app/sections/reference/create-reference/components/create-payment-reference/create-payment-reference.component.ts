@@ -20,7 +20,7 @@ export class CreatePaymentReferenceComponent {
         private router: Router,
         @Inject(LAYOUT_GAP_M) public layoutGapM: string
     ) {
-        this.createPaymentReferenceService.created$.subscribe((q) => {
+        this.createPaymentReferenceService.created$.subscribe(() => {
             this.router.navigate(['/templates/references']);
         });
     }
