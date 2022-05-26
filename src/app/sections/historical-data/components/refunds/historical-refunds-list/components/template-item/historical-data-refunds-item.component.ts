@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, Inject, Input } from '@angular/core';
 
-import { Payment } from '../../../../../../../api/fb-management/swagger-codegen/model/payment';
+import { Refund } from '../../../../../../../api/fb-management/swagger-codegen/model/refund';
 import { LAYOUT_GAP_M, LAYOUT_GAP_S } from '../../../../../../../tokens';
 
 @Component({
@@ -10,7 +10,7 @@ import { LAYOUT_GAP_M, LAYOUT_GAP_S } from '../../../../../../../tokens';
 })
 export class HistoricalDataRefundsItemComponent {
     @Input()
-    payment: Payment;
+    refund: Refund;
 
     constructor(@Inject(LAYOUT_GAP_S) public layoutGapS: string, @Inject(LAYOUT_GAP_M) public layoutGapM: string) {}
 }

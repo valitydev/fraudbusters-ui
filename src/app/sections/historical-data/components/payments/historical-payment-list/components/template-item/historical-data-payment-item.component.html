@@ -5,6 +5,9 @@
                 <mat-checkbox color="primary" (change)="emmitChange()" [checked]="enabled"> </mat-checkbox>
             </div>
             <div class="fb-body-2" fxFlex>{{ payment.id }}</div>
+            <div class="fb-body-2" fxFlex>
+                <fb-tag [color]="payment.status | paymentStatusToColor" [title]="payment.status"></fb-tag>
+            </div>
             <div class="fb-body-2" fxFlex>{{ payment.merchantInfo.partyId }}</div>
             <div class="fb-body-2" fxFlex>{{ payment.merchantInfo.shopId }}</div>
             <div class="fb-body-2" fxFlex>{{ payment.amount }}</div>
