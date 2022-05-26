@@ -8,7 +8,6 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { ListHeaderModule } from '../../../../../shared/components/list-header';
 import { TagModule } from '../../../../../shared/components/tag';
 import { SharedPipesModule } from '../../../../../shared/pipes';
-
 import { HistoricalDataFraudPaymentsHeaderComponent } from './components/template-header/historical-data-fraud-payments-header.component';
 import { HistoricalDataFraudPaymentsItemComponent } from './components/template-item/historical-data-fraud-payments-item.component';
 import { HistoricalDataFraudPaymentsListComponent } from './historical-data-fraud-payments-list.component';
