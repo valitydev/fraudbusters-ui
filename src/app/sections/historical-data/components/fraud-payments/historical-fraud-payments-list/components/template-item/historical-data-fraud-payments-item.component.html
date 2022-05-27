@@ -2,6 +2,12 @@
     <mat-expansion-panel-header>
         <div fxLayout fxFlexFill [fxLayoutGap]="layoutGapM">
             <div class="fb-body-2" fxFlex>{{ fraudPayment.payment.id }}</div>
+            <div class="fb-body-2" fxFlex>
+                <fb-tag
+                    [color]="fraudPayment.payment.status | paymentStatusToColor"
+                    [title]="fraudPayment.payment.status"
+                ></fb-tag>
+            </div>
             <div class="fb-body-2" fxFlex>{{ fraudPayment.payment.merchantInfo.partyId }}</div>
             <div class="fb-body-2" fxFlex>{{ fraudPayment.payment.merchantInfo.shopId }}</div>
             <div class="fb-body-2" fxFlex>{{ fraudPayment.payment.amount }}</div>

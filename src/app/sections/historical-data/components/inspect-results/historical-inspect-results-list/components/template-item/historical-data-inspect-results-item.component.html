@@ -2,6 +2,12 @@
     <mat-expansion-panel-header>
         <div fxLayout fxFlexFill [fxLayoutGap]="layoutGapM">
             <div class="fb-body-2" fxFlex>{{ inspectResult.payment.id }}</div>
+            <div class="fb-body-2" fxFlex>
+                <fb-tag
+                    [color]="inspectResult.payment.status | paymentStatusToColor"
+                    [title]="inspectResult.payment.status"
+                ></fb-tag>
+            </div>
             <div class="fb-body-2" fxFlex>{{ inspectResult.payment.merchantInfo.partyId }}</div>
             <div class="fb-body-2" fxFlex>{{ inspectResult.payment.merchantInfo.shopId }}</div>
             <div class="fb-body-2" fxFlex>{{ inspectResult.payment.clientInfo.email }}</div>
