@@ -15,19 +15,10 @@
     </mat-expansion-panel-header>
     <div class="panel-content" fxLayout="column" [fxLayoutGap]="layoutGapM">
         <mat-divider></mat-divider>
-        <!-- TODO нет таких полей в refund как cardToken и paymentCountry -->
-        <!--        <div class="row">-->
-        <!--            <div fxFlex>Token:</div>-->
-        <!--            <div fxFlex>{{ refund.cardToken }}</div>-->
-        <!--        </div>-->
         <div class="row">
             <div fxFlex>Fingerprint:</div>
             <div fxFlex>{{ refund.clientInfo.fingerprint }}</div>
         </div>
-        <!--        <div fxLayout="row">-->
-        <!--            <div fxFlex>Country:</div>-->
-        <!--            <div fxFlex>{{ refund.paymentCountry }}</div>-->
-        <!--        </div>-->
         <div fxLayout="row">
             <div fxFlex>Terminal:</div>
             <div fxFlex>{{ refund.provider.terminalId }}</div>
