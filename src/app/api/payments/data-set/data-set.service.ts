@@ -10,6 +10,8 @@ import { ApplyRuleOnHistoricalDataSetRequest } from '../../fb-management/swagger
 import { CheckedDataSet } from '../../fb-management/swagger-codegen/model/checkedDataSet';
 import { DataSet } from '../../fb-management/swagger-codegen/model/dataSet';
 import { DataSetsResponse } from '../../fb-management/swagger-codegen/model/dataSetsResponse';
+import { map } from 'rxjs/operators';
+import { IdResponse } from '../../fb-management/swagger-codegen/model/idResponse';
 
 @Injectable()
 export class DataSetService {
@@ -32,11 +34,15 @@ export class DataSetService {
     }
 
     deleteDataSets(id: string): Observable<string> {
-        return this.http.delete<string>(`${this.fbPaymentReferenceEndpoint}/data-sets/${id}`);
+        return this.http
+            .delete(`${this.fbPaymentReferenceEndpoint}/data-sets/${id}`)
+            .pipe(map((response: IdResponse) => response.id));
     }
 
     saveDataSets(dataSet: DataSet): Observable<string> {
-        return this.http.post<string>(`${this.fbPaymentReferenceEndpoint}/data-sets`, dataSet, new HttpRequestModel());
+        return this.http
+            .post(`${this.fbPaymentReferenceEndpoint}/data-sets`, dataSet, new HttpRequestModel())
+            .pipe(map((response: IdResponse) => response.id));
     }
 
     applyRuleOnHistoricalDataSet(request: ApplyRuleOnHistoricalDataSetRequest): Observable<string> {

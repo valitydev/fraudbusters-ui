@@ -9,6 +9,7 @@ import { SearchParams } from '../../../shared/model/search-params';
 import { filterParameters } from '../../../shared/utils/filter-params';
 import { GroupReference } from '../../fb-management/swagger-codegen/model/groupReference';
 import { GroupsReferencesResponse } from '../../fb-management/swagger-codegen/model/groupsReferencesResponse';
+import { IdResponse } from '../../fb-management/swagger-codegen/model/idResponse';
 import { ListResponse } from '../../fb-management/swagger-codegen/model/listResponse';
 
 @Injectable()
@@ -24,10 +25,11 @@ export class PaymentGroupsReferencesService {
     }
 
     deleteGroupReference(reference: GroupReference): Observable<string> {
-        return this.http.delete(`${this.fbPaymentReferenceEndpoint}/${reference.groupId}/references/remove`, {
-            params: { partyId: reference.partyId, shopId: reference.shopId, groupId: reference.groupId },
-            responseType: 'text',
-        });
+        return this.http
+            .delete(`${this.fbPaymentReferenceEndpoint}/${reference.groupId}/references/remove`, {
+                params: { partyId: reference.partyId, shopId: reference.shopId, groupId: reference.groupId },
+            })
+            .pipe(map((response: IdResponse) => response.id));
     }
 
     saveGroupReference(groupReferenceModels: GroupReference[]): Observable<string[]> {
