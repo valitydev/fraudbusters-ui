@@ -1,14 +1,14 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 import { ConfigService } from '../../../config';
 import { SearchParams } from '../../../shared/model/search-params';
 import { filterParameters } from '../../../shared/utils/filter-params';
+import { IdResponse } from '../../fb-management/swagger-codegen/model/idResponse';
 import { PaymentReference } from '../../fb-management/swagger-codegen/model/paymentReference';
 import { ReferencesResponse } from '../../fb-management/swagger-codegen/model/referencesResponse';
-import { map } from 'rxjs/operators';
-import { IdResponse } from '../../fb-management/swagger-codegen/model/idResponse';
 
 @Injectable()
 export class PaymentDefaultReferencesService {
