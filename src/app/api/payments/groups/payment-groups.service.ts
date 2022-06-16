@@ -1,10 +1,12 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 import { ConfigService } from '../../../config';
 import { Group } from '../../../sections/groups/components/payments-groups/model/group';
 import { GroupsResponse } from '../../fb-management/swagger-codegen/model/groupsResponse';
+import { IdResponse } from '../../fb-management/swagger-codegen/model/idResponse';
 
 @Injectable()
 export class PaymentGroupsService {
@@ -23,10 +25,14 @@ export class PaymentGroupsService {
     }
 
     delete(id: string): Observable<string> {
-        return this.http.delete(`${this.fbPaymentReferenceEndpoint}/${id}`, { responseType: 'text' });
+        return this.http
+            .delete(`${this.fbPaymentReferenceEndpoint}/${id}`)
+            .pipe(map((response: IdResponse) => response.id));
     }
 
     save(group: Group): Observable<string> {
-        return this.http.post(`${this.fbPaymentReferenceEndpoint}`, group, { responseType: 'text' });
+        return this.http
+            .post(`${this.fbPaymentReferenceEndpoint}`, group)
+            .pipe(map((response: IdResponse) => response.id));
     }
 }

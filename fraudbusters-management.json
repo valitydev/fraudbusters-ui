@@ -2,24 +2,20 @@
     "openapi": "3.0.3",
     "info": {
         "version": "1.0.0",
-        "title": "RBKmoney Fraudbusters Management API",
+        "title": "Vality Fraudbusters Management API",
         "description": "Fraudbusters management API является интерфейсом для \nсервиса управления антифрод системой.\n\nМы предоставляем REST API поверх HTTP-протокола, схема которого описывается в\nсоответствии со стандартом [OpenAPI 3][OAS3].\nКоды возврата описываются соответствующими HTTP-статусами. Платформа принимает и\nвозвращает значения JSON в теле запросов и ответов.\n\n[OAS3]: https://swagger.io/specification/\n\n## Формат содержимого\n\nЛюбой запрос к API должен выполняться в кодировке UTF-8 и с указанием\nсодержимого в формате JSON.\n\n```\nContent-Type: application/json; charset=utf-8\n```\n",
-        "termsOfService": "https://rbk.money/",
+        "termsOfService": "https://vality.dev/",
         "contact": {
-            "name": "RBKmoney Support Team",
-            "email": "support@rbk.money",
-            "url": "https://developer.rbk.money"
+            "name": "Vality Support Team",
+            "email": "support@vality.dev",
+            "url": "https://developer.vality.dev"
         },
         "license": {
             "name": "Apache 2.0",
             "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
         }
     },
-    "security": [
-        {
-            "bearer": []
-        }
-    ],
+    "security": [],
     "tags": [
         {
             "name": "audit",
@@ -510,7 +506,7 @@
                 }
             }
         },
-        "/notifications/channels/{name}": {
+        "/notifications/channels/channel/{name}": {
             "get": {
                 "summary": "Получить канал для нотификации по имени",
                 "operationId": "getChannel",
@@ -701,7 +697,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "type": "string"
+                                    "$ref": "#/components/schemas/IdResponse"
                                 }
                             }
                         }
@@ -739,7 +735,43 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "type": "string"
+                                    "$ref": "#/components/schemas/IdResponse"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            },
+            "get": {
+                "summary": "Поиск группы",
+                "operationId": "getGroup",
+                "tags": ["group"],
+                "parameters": [
+                    {
+                        "name": "groupId",
+                        "required": true,
+                        "in": "path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Group model",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Group"
                                 }
                             }
                         }
@@ -773,44 +805,6 @@
                             "application/json": {
                                 "schema": {
                                     "$ref": "#/components/schemas/GroupsResponse"
-                                }
-                            }
-                        }
-                    },
-                    "401": {
-                        "description": "Unauthorized"
-                    },
-                    "403": {
-                        "description": "Forbidden"
-                    },
-                    "404": {
-                        "description": "Not Found"
-                    }
-                }
-            }
-        },
-        "/payments-groups/{id}": {
-            "get": {
-                "summary": "Поиск группы",
-                "operationId": "getGroup",
-                "tags": ["group"],
-                "parameters": [
-                    {
-                        "name": "id",
-                        "required": true,
-                        "in": "path",
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                ],
-                "responses": {
-                    "201": {
-                        "description": "Group model",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/Group"
                                 }
                             }
                         }
@@ -1006,10 +1000,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "type": "array",
-                                    "items": {
-                                        "type": "string"
-                                    }
+                                    "$ref": "#/components/schemas/ListResponse"
                                 }
                             }
                         }
@@ -1086,7 +1077,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "type": "string"
+                                    "$ref": "#/components/schemas/IdResponse"
                                 }
                             }
                         }
@@ -1295,7 +1286,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "type": "string"
+                                    "$ref": "#/components/schemas/IdResponse"
                                 }
                             }
                         }
@@ -1457,10 +1448,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "type": "array",
-                                    "items": {
-                                        "type": "string"
-                                    }
+                                    "$ref": "#/components/schemas/ListResponse"
                                 }
                             }
                         }
@@ -1498,7 +1486,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "type": "string"
+                                    "$ref": "#/components/schemas/IdResponse"
                                 }
                             }
                         }
@@ -1583,7 +1571,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "type": "string"
+                                    "$ref": "#/components/schemas/IdResponse"
                                 }
                             }
                         }
@@ -1621,7 +1609,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "type": "string"
+                                    "$ref": "#/components/schemas/IdResponse"
                                 }
                             }
                         }
@@ -2482,7 +2470,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "type": "string"
+                                    "$ref": "#/components/schemas/IdResponse"
                                 }
                             }
                         }
@@ -2499,14 +2487,14 @@
                 }
             }
         },
-        "/payments-data-set/data-sets/{id}": {
+        "/payments-data-set/data-sets/{setId}": {
             "delete": {
                 "summary": "Удаление тестового набора данных",
                 "operationId": "removeDataSet",
                 "tags": ["data-sets"],
                 "parameters": [
                     {
-                        "name": "id",
+                        "name": "setId",
                         "required": true,
                         "in": "path",
                         "schema": {
@@ -2520,7 +2508,43 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "type": "string"
+                                    "$ref": "#/components/schemas/IdResponse"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            },
+            "get": {
+                "summary": "Получить конкретный набор данных",
+                "operationId": "getDataSet",
+                "tags": ["data-sets"],
+                "parameters": [
+                    {
+                        "name": "setId",
+                        "required": true,
+                        "in": "path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Data set",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/DataSet"
                                 }
                             }
                         }
@@ -2640,44 +2664,6 @@
                 }
             }
         },
-        "/payments-data-set/data-sets/{setId}": {
-            "get": {
-                "summary": "Получить конкретный набор данных",
-                "operationId": "getDataSet",
-                "tags": ["data-sets"],
-                "parameters": [
-                    {
-                        "name": "setId",
-                        "required": true,
-                        "in": "path",
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                ],
-                "responses": {
-                    "201": {
-                        "description": "Data set",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/DataSet"
-                                }
-                            }
-                        }
-                    },
-                    "401": {
-                        "description": "Unauthorized"
-                    },
-                    "403": {
-                        "description": "Forbidden"
-                    },
-                    "404": {
-                        "description": "Not Found"
-                    }
-                }
-            }
-        },
         "/payments-data-set/checked-data-sets/{id}": {
             "get": {
                 "summary": "Получить конкретный набор данных с последними результатами тестирования",
@@ -2728,7 +2714,7 @@
                 "type": "http",
                 "scheme": "bearer",
                 "bearerFormat": "JWT",
-                "description": "Для аутентификации вызовов мы используем [JWT](https://jwt.io). Токен доступа передается в заголовке.\n```shell\n Authorization: Bearer {JWT}\n```\nЗапросы к данному API авторизуются сессионным токеном доступа, который вы получаете в результате аутентификации в личном кабинете по адресу https://dashboard.rbk.money/.\n"
+                "description": "Для аутентификации вызовов мы используем [JWT](https://jwt.io). Токен доступа передается в заголовке.\n```shell\n Authorization: Bearer {JWT}\n```\nЗапросы к данному API авторизуются сессионным токеном доступа, который вы получаете в результате аутентификации в личном кабинете по адресу https://dashboard.vality.dev/.\n"
             }
         },
         "schemas": {
@@ -3006,6 +2992,14 @@
                         "items": {
                             "$ref": "#/components/schemas/PriorityId"
                         }
+                    }
+                }
+            },
+            "IdResponse": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string"
                     }
                 }
             },

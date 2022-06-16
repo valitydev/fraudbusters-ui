@@ -9,6 +9,7 @@ import { HttpSearchResponse } from '../../../shared/model/http-search-response';
 import { SearchParams } from '../../../shared/model/search-params';
 import { filterParameters } from '../../../shared/utils/filter-params';
 import { CreateTemplateResponse } from '../../fb-management/swagger-codegen/model/createTemplateResponse';
+import { IdResponse } from '../../fb-management/swagger-codegen/model/idResponse';
 import { ListResponse } from '../../fb-management/swagger-codegen/model/listResponse';
 import { Template } from '../../fb-management/swagger-codegen/model/template';
 import { TemplatesResponse } from '../../fb-management/swagger-codegen/model/templatesResponse';
@@ -27,7 +28,9 @@ export class PaymentTemplatesService {
     }
 
     deleteTemplate(id: string): Observable<string> {
-        return this.http.delete<string>(`${this.fbPaymentTemplatesEndpoint}/${id}`);
+        return this.http
+            .delete(`${this.fbPaymentTemplatesEndpoint}/${id}`)
+            .pipe(map((response: IdResponse) => response.id));
     }
 
     getTemplatesName(nameRegexp?: string): Observable<string[]> {

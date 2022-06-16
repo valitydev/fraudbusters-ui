@@ -7,6 +7,7 @@ import { ConfigService } from '../../../config';
 import { ListType } from '../../../shared/constants/list-type';
 import { HttpRequestModel } from '../../../shared/model/http-request-model';
 import { filterParameters } from '../../../shared/utils/filter-params';
+import { IdResponse } from '../../fb-management/swagger-codegen/model/idResponse';
 import { ListResponse } from '../../fb-management/swagger-codegen/model/listResponse';
 import { PaymentCountInfo } from '../../fb-management/swagger-codegen/model/paymentCountInfo';
 import { WbListRecordsResponse } from '../../fb-management/swagger-codegen/model/wbListRecordsResponse';
@@ -19,9 +20,9 @@ export class PaymentListsService {
     constructor(private http: HttpClient, private configService: ConfigService) {}
 
     deleteListRow(id: string): Observable<string> {
-        return this.http.delete(`${this.fbPaymentReferenceEndpoint}/${id}`, {
-            responseType: 'text',
-        });
+        return this.http
+            .delete(`${this.fbPaymentReferenceEndpoint}/${id}`)
+            .pipe(map((response: IdResponse) => response.id));
     }
 
     findListRows(params: SearchListsParams): Observable<WbListRecordsResponse> {
@@ -52,11 +53,9 @@ export class PaymentListsService {
     }
 
     saveListsRows(listType: ListType, records: PaymentCountInfo[]): Observable<string[]> {
-        return this.http.post<string[]>(
-            `${this.fbPaymentReferenceEndpoint}`,
-            { listType, records },
-            new HttpRequestModel()
-        );
+        return this.http
+            .post(`${this.fbPaymentReferenceEndpoint}`, { listType, records }, new HttpRequestModel())
+            .pipe(map((response: ListResponse) => response.result));
     }
 
     saveListsRowsFromFile(listType: ListType, file: File): Observable<any> {
