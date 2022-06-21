@@ -41,6 +41,8 @@ import { ReferencesTableComponent } from './components/references-table/referenc
 import { GroupsRoutingModule } from './groups-routing.module';
 import { GroupsComponent } from './groups.component';
 import { GroupsReferenceService } from './services/groups-reference/groups-reference.service';
+import { GroupsSearchComponent } from './components/groups-search/groups-search.component';
+import { GroupsListModule } from './components/groups-list';
 
 @NgModule({
     declarations: [
@@ -49,6 +51,7 @@ import { GroupsReferenceService } from './services/groups-reference/groups-refer
         PaymentReferencesComponent,
         ReferencesTableComponent,
         ReferencesSearchComponent,
+        GroupsSearchComponent,
     ],
     imports: [
         FlexModule,
@@ -82,6 +85,7 @@ import { GroupsReferenceService } from './services/groups-reference/groups-refer
         NgxMatDatetimePickerModule,
         ShowMoreContinuationPanelModule,
         GroupsRoutingModule,
+        GroupsListModule,
     ],
     providers: [
         DatePipe,
