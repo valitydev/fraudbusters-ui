@@ -1,15 +1,15 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Inject, Input, Output } from '@angular/core';
-
 import { LAYOUT_GAP_M } from '../../../../../../tokens';
+import { Group } from '../../../../../../api/fb-management/swagger-codegen/model/group';
 
 @Component({
-    selector: 'fb-actions',
-    templateUrl: 'actions.component.html',
+    selector: 'fb-groups-list',
+    templateUrl: 'groups-list.component.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ActionsComponent {
+export class GroupsListComponent {
     @Input()
-    id: string;
+    groups: Group[];
 
     @Output()
     editItem = new EventEmitter<string>();

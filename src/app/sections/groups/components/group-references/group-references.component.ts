@@ -7,14 +7,15 @@ import { LAYOUT_GAP_M } from '../../../../tokens';
 import { Action, ActionType } from '../../model/action';
 import { FetchReferencesService } from '../../services/fetch-references/fetch-references.service';
 import { RemoveReferenceService } from '../../services/remove-reference/remove-reference.service';
+import { GroupReference } from '../../../../api/fb-management/swagger-codegen/model/groupReference';
 
 @Component({
     selector: 'fb-payment-references',
-    templateUrl: 'payment-references.component.html',
+    templateUrl: 'group-references.component.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
     providers: [FetchReferencesService, RemoveReferenceService],
 })
-export class PaymentReferencesComponent {
+export class GroupReferencesComponent {
     displayedColumns = ['groupId', 'partyId', 'shopId', 'lastUpdateDate', 'delete'];
 
     references$ = this.fetchReferencesService.searchResult$;
@@ -68,5 +69,13 @@ export class PaymentReferencesComponent {
 
     fetchMore(sortFieldValue: string) {
         this.fetchReferencesService.fetchMore({ type: OperationType.Payment, sortFieldValue, isGlobal: false });
+    }
+
+    removeReference(reference: GroupReference): void {
+        this.action({ type: ActionType.RemoveReference, reference });
+    }
+
+    goToGroup(id: string) {
+        this.router.navigate([`/group/${id}`]);
     }
 }

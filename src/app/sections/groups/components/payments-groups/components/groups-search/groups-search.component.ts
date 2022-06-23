@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { debounceTime, map, take } from 'rxjs/operators';
 
-import { removeEmptyProperties } from '../../../../shared/utils/remove-empty-properties';
+import { removeEmptyProperties } from '../../../../../../shared/utils/remove-empty-properties';
 
 @Component({
     selector: 'fb-groups-search',

@@ -34,12 +34,12 @@ export class PaymentGroupsComponent {
         this.router.navigate(['/group/new']);
     }
 
-    editTemplate(id: string) {
+    editGroup(id: string) {
         this.router.navigate([`/group/${id}`]);
     }
 
-    removeTemplate(templateID: string) {
-        this.removeGroupService.remove({ id: templateID });
+    removeGroup(groupId: string) {
+        this.removeGroupService.remove({ id: groupId });
     }
 
     search(searchValue: string) {

@@ -3,8 +3,8 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { debounceTime, map, take } from 'rxjs/operators';
 
-import { removeEmptyProperties } from '../../../../shared/utils/remove-empty-properties';
-import { LAYOUT_GAP_M } from '../../../../tokens';
+import { removeEmptyProperties } from '../../../../../../shared/utils/remove-empty-properties';
+import { LAYOUT_GAP_M } from '../../../../../../tokens';
 
 @Component({
     selector: 'fb-references-search',

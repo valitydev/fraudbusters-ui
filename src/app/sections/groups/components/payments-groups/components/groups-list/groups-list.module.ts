@@ -9,8 +9,8 @@ import { ActionsComponent } from './components/actions/actions.component';
 import { GroupHeaderComponent } from './components/group-header/group-header.component';
 import { GroupItemComponent } from './components/group-item/group-item.component';
 import { GroupsListComponent } from './groups-list.component';
-import { SharedPipesModule } from '../../../../shared/pipes';
-import { ListHeaderModule } from '../../../../shared/components/list-header';
+import { SharedPipesModule } from '../../../../../../shared/pipes';
+import { ListHeaderModule } from '../../../../../../shared/components/list-header';
 
 @NgModule({
     imports: [
