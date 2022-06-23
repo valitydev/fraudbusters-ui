@@ -4,9 +4,10 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { combineLatest, merge, NEVER, of, Subject } from 'rxjs';
 import { catchError, filter, shareReplay, switchMap } from 'rxjs/operators';
+
+import { PaymentGroupsService } from '../../../api/payments/groups';
 import { ConfirmActionDialogComponent } from '../../../shared/components/confirm-action-dialog';
 import { progress } from '../../../shared/operators';
-import { PaymentGroupsService } from '../../../api/payments/groups';
 
 export interface RemoveGroupParams {
     id: string;

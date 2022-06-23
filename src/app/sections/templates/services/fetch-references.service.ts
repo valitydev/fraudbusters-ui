@@ -6,7 +6,7 @@ import { PaymentReference } from '../../../api/fb-management/swagger-codegen/mod
 import { PaymentReferencesService } from '../../../api/payments/references';
 import { ConfigService } from '../../../config';
 import { SortOrder } from '../../../shared/constants/sort-order';
-import { booleanDebounceTime, booleanDelay } from '../../../shared/operators';
+import { booleanDebounceTime } from '../../../shared/operators';
 import { FetchResult, PartialFetcher } from '../../../shared/utils/partial-fetcher';
 
 export interface FetchReferencesParams {

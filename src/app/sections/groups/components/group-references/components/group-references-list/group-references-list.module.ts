@@ -8,12 +8,12 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule, _MatMenuDirectivesModule } from '@angular/material/menu';
 
+import { ListHeaderModule } from '../../../../../../shared/components/list-header';
 import { SharedPipesModule } from '../../../../../../shared/pipes';
 import { ActionsComponent } from './components/actions/actions.component';
 import { ReferenceHeaderComponent } from './components/reference-header/reference-header.component';
 import { ReferenceItemComponent } from './components/reference-item/reference-item.component';
 import { GroupReferencesListComponent } from './group-references-list.component';
-import { ListHeaderModule } from '../../../../../../shared/components/list-header';
 
 @NgModule({
     imports: [

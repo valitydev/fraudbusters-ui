@@ -1,13 +1,14 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { EMPTY, Subject } from 'rxjs';
 import { catchError, filter, shareReplay, switchMap } from 'rxjs/operators';
-import { progress } from '../../../operators';
+
 import { Group } from '../../../../api/fb-management/swagger-codegen/model/group';
-import { PaymentGroupsService } from '../../../../api/payments/groups';
-import { HttpErrorResponse } from '@angular/common/http';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { PriorityId } from '../../../../api/fb-management/swagger-codegen/model/priorityId';
+import { PaymentGroupsService } from '../../../../api/payments/groups';
+import { progress } from '../../../operators';
 
 @Injectable()
 export class GroupService {

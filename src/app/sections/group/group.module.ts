@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { FlexModule } from '@angular/flex-layout';
 import { FormsModule } from '@angular/forms';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatButtonModule } from '@angular/material/button';
@@ -15,6 +16,8 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { PaymentTemplatesModule } from '../../api';
 import { PaymentGroupsService } from '../../api/payments/groups';
 import { PaymentGroupsReferencesModule, PaymentGroupsReferencesService } from '../../api/payments/groups-references';
+import { CreateGroupModule } from '../../shared/components/create-group/create-group.module';
+import { HeadlineModule } from '../../shared/components/headline';
 import { ErrorHandlerService } from '../../shared/services/utils/error-handler.service';
 import { CreateGroupReferenceModule } from '../create-group-reference';
 import { TemplatesService } from '../template/services/templates/templates.service';
@@ -22,9 +25,6 @@ import { CreateGroupComponent } from './create-group/create-group.component';
 import { EditGroupComponent } from './edit-group/edit-group.component';
 import { GroupRoutingModule } from './group-routing.module';
 import { GroupComponent } from './group.component';
-import { FlexModule } from '@angular/flex-layout';
-import { HeadlineModule } from '../../shared/components/headline';
-import { CreateGroupModule } from '../../shared/components/create-group/create-group.module';
 
 @NgModule({
     imports: [

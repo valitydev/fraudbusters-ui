@@ -2,12 +2,12 @@ import { ChangeDetectionStrategy, Component, Inject } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 
+import { GroupReference } from '../../../../api/fb-management/swagger-codegen/model/groupReference';
 import { OperationType } from '../../../../shared/constants/operation-type';
 import { LAYOUT_GAP_M } from '../../../../tokens';
 import { Action, ActionType } from '../../model/action';
 import { FetchReferencesService } from '../../services/fetch-references/fetch-references.service';
 import { RemoveReferenceService } from '../../services/remove-reference/remove-reference.service';
-import { GroupReference } from '../../../../api/fb-management/swagger-codegen/model/groupReference';
 
 @Component({
     selector: 'fb-payment-references',
