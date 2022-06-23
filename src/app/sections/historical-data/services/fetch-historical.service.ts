@@ -4,7 +4,7 @@ import { shareReplay } from 'rxjs/operators';
 
 import { ConfigService } from '../../../config';
 import { SortOrder } from '../../../shared/constants/sort-order';
-import { booleanDelay } from '../../../shared/operators';
+import { booleanDebounceTime, booleanDelay } from '../../../shared/operators';
 import { FetchResultContinuation } from '../../../shared/utils/partial-fetcher/fetch-result-continuation';
 import { PartialFetcherContinuation } from '../../../shared/utils/partial-fetcher/partial-fetcher-continuation';
 import { SearchHistoricalParams } from '../search-historical-params';
@@ -26,7 +26,7 @@ export interface FetchPaymentParams {
 }
 
 export abstract class FetchHistoricalService<T, P> extends PartialFetcherContinuation<T, FetchPaymentParams> {
-    inProgress$ = this.doAction$.pipe(booleanDelay(), shareReplay(1));
+    inProgress$ = this.doAction$.pipe(booleanDebounceTime(), shareReplay(1));
     protected pageSize = this.configService.pageSize;
 
     private readonly _yyyyMMDdHHMmSs = 'yyyy-MM-dd HH:mm:ss';

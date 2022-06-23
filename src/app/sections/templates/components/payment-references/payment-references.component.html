@@ -5,7 +5,7 @@
     </div>
     <div *ngIf="references$ | async as references; else Empty" fxLayout="column" [fxLayoutGap]="layoutGapM">
         <fb-payment-references-list
-            *ngIf="references.length > 0; else Empty"
+            *ngIf="references.length; else Empty"
             [references]="references"
             (goToTemplate)="goToTemplate($event)"
             (deleteItem)="removeReference($event)"
@@ -16,11 +16,10 @@
             (showMore)="fetchMore(references[references.length - 1].templateId)"
         ></fb-show-more-panel>
     </div>
+    <ng-template #Empty>
+        <div *ngIf="inProgress$ | async" fxLayout fxLayoutAlign="center">
+            <mat-progress-spinner color="primary" mode="indeterminate" diameter="48"></mat-progress-spinner>
+        </div>
+        <fb-empty-search-result *ngIf="!(inProgress$ | async)"></fb-empty-search-result>
+    </ng-template>
 </div>
-
-<ng-template #Empty>
-    <div *ngIf="inProgress$ | async" fxLayout fxLayoutAlign="center">
-        <mat-progress-spinner color="primary" mode="indeterminate" diameter="128"></mat-progress-spinner>
-    </div>
-    <fb-empty-search-result *ngIf="!(inProgress$ | async)"></fb-empty-search-result>
-</ng-template>

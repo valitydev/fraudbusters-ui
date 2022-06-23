@@ -22,6 +22,9 @@ import { CreateGroupComponent } from './create-group/create-group.component';
 import { EditGroupComponent } from './edit-group/edit-group.component';
 import { GroupRoutingModule } from './group-routing.module';
 import { GroupComponent } from './group.component';
+import { FlexModule } from '@angular/flex-layout';
+import { HeadlineModule } from '../../shared/components/headline';
+import { CreateGroupModule } from '../../shared/components/create-group/create-group.module';
 
 @NgModule({
     imports: [
@@ -41,6 +44,9 @@ import { GroupComponent } from './group.component';
         PaymentTemplatesModule,
         CreateGroupReferenceModule,
         PaymentGroupsReferencesModule,
+        FlexModule,
+        HeadlineModule,
+        CreateGroupModule,
     ],
     declarations: [GroupComponent, EditGroupComponent, CreateGroupComponent],
     providers: [PaymentGroupsService, TemplatesService, ErrorHandlerService, PaymentGroupsReferencesService],

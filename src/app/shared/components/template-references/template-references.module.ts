@@ -11,10 +11,9 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 
 import { PaymentTemplateReferencesTableComponent } from './payment-template-references-table/payment-template-references-table.component';
-import { TemplateReferencesSearchComponent } from './template-references-search/template-references-search.component';
 
 @NgModule({
-    declarations: [PaymentTemplateReferencesTableComponent, TemplateReferencesSearchComponent],
+    declarations: [PaymentTemplateReferencesTableComponent],
     imports: [
         CommonModule,
         FlexModule,
@@ -27,6 +26,6 @@ import { TemplateReferencesSearchComponent } from './template-references-search/
         MatMenuModule,
         MatButtonModule,
     ],
-    exports: [PaymentTemplateReferencesTableComponent, TemplateReferencesSearchComponent],
+    exports: [PaymentTemplateReferencesTableComponent],
 })
 export class TemplateReferencesModule {}

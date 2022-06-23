@@ -26,11 +26,10 @@
             </mat-card-footer>
         </mat-card>
     </div>
+    <ng-template #Empty>
+        <div *ngIf="inProgress$ | async" fxLayout fxLayoutAlign="center">
+            <mat-progress-spinner color="primary" mode="indeterminate" diameter="48"></mat-progress-spinner>
+        </div>
+        <fb-empty-search-result *ngIf="!(inProgress$ | async)"></fb-empty-search-result>
+    </ng-template>
 </div>
-
-<ng-template #Empty>
-    <div *ngIf="inProgress$ | async" fxLayout fxLayoutAlign="center">
-        <mat-progress-spinner color="primary" mode="indeterminate" diameter="40"></mat-progress-spinner>
-    </div>
-    <fb-empty-search-result *ngIf="!(inProgress$ | async)"></fb-empty-search-result>
-</ng-template>

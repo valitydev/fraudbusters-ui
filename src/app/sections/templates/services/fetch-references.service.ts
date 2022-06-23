@@ -6,7 +6,7 @@ import { PaymentReference } from '../../../api/fb-management/swagger-codegen/mod
 import { PaymentReferencesService } from '../../../api/payments/references';
 import { ConfigService } from '../../../config';
 import { SortOrder } from '../../../shared/constants/sort-order';
-import { booleanDelay } from '../../../shared/operators';
+import { booleanDebounceTime, booleanDelay } from '../../../shared/operators';
 import { FetchResult, PartialFetcher } from '../../../shared/utils/partial-fetcher';
 
 export interface FetchReferencesParams {
@@ -23,7 +23,7 @@ export interface FetchReferencesParams {
 
 @Injectable()
 export class FetchReferencesService extends PartialFetcher<PaymentReference, FetchReferencesParams> {
-    inProgress$ = this.doAction$.pipe(booleanDelay(), shareReplay(1));
+    inProgress$ = this.doAction$.pipe(booleanDebounceTime(), shareReplay(1));
     private pageSize = this.configService.pageSize;
 
     constructor(private paymentReferencesService: PaymentReferencesService, private configService: ConfigService) {

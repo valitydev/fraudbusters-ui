@@ -1,84 +1,31 @@
-import { HttpErrorResponse } from '@angular/common/http';
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { MatSnackBar } from '@angular/material/snack-bar';
-import { Sort } from '@angular/material/sort';
+import { ChangeDetectionStrategy, Component, Inject } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { PaymentGroupsService } from '../../../api/payments/groups';
-import { ErrorHandlerService } from '../../../shared/services/utils/error-handler.service';
-import { TemplatesService } from '../../template/services/templates/templates.service';
-import { Group } from '../model/group';
-import { GroupUtilsService } from '../utils/group-utils.service';
+import { map, pluck, shareReplay, switchMap, withLatestFrom } from 'rxjs/operators';
+import { LAYOUT_GAP_L, LAYOUT_GAP_M } from '../../../tokens';
 
 @Component({
     templateUrl: './edit-group.component.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class EditGroupComponent implements OnInit {
-    editGroupId: string;
-    editGroup: Group = { groupId: '', priorityTemplates: [] };
-    displayedColumns: string[] = ['id', 'priority', 'edit'];
-    options: string[] = [];
+export class EditGroupComponent {
+    group$ = this.route.params.pipe(
+        pluck('id'),
+        withLatestFrom(),
+        switchMap(([id]) => {
+            return this.paymentGroupsService.filter(id);
+        }),
+        pluck('result'),
+        map((res) => res[0]),
+        shareReplay(1)
+    );
 
     constructor(
-        private router: Router,
         private route: ActivatedRoute,
-        private groupsService: PaymentGroupsService,
-        private errorHandlerService: ErrorHandlerService,
-        private templatesService: TemplatesService,
-        private groupUtilsService: GroupUtilsService,
-        private snackBar: MatSnackBar
+        private router: Router,
+        private paymentGroupsService: PaymentGroupsService,
+        @Inject(LAYOUT_GAP_L) public layoutGapL: string,
+        @Inject(LAYOUT_GAP_M) public layoutGapM: string
     ) {}
-
-    ngOnInit(): void {
-        this.preloadData();
-        this.groupsService.getGroupById(this.editGroupId).subscribe(
-            (group) => {
-                this.editGroup = group;
-            },
-            (error: HttpErrorResponse) => this.errorHandlerService.handleError(error, this.snackBar)
-        );
-    }
-
-    save(): void {
-        this.groupsService.save(this.editGroup).subscribe(
-            (id) => {
-                this.snackBar.open(`Saved success: ${id}`, 'OK', {
-                    duration: 1500,
-                });
-            },
-            (error: HttpErrorResponse) => this.errorHandlerService.handleError(error, this.snackBar)
-        );
-    }
-
-    navigateReference(): void {
-        this.router.navigate([`../groups-reference`], { queryParams: { searchValue: this.editGroup.groupId } });
-    }
-
-    addTemplate(): void {
-        this.editGroup.priorityTemplates = this.editGroup.priorityTemplates.concat([{ id: '', priority: 0 }]);
-    }
-
-    removeTemplate(removeId: string): void {
-        this.editGroup.priorityTemplates = this.editGroup.priorityTemplates.filter((obj) => obj.id !== removeId);
-    }
-
-    doFilter(value): void {
-        this.templatesService.getTemplatesName(value).subscribe(
-            (names) => {
-                this.options = names;
-            },
-            (error: HttpErrorResponse) => this.errorHandlerService.handleError(error, this.snackBar)
-        );
-    }
-
-    sortData(sort: Sort, group: Group): void {
-        this.groupUtilsService.sortData(sort, group);
-    }
-
-    private preloadData(): void {
-        this.route.params.subscribe(({ id }) => {
-            this.editGroupId = id;
-        });
-    }
 }
