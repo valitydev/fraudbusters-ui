@@ -34,6 +34,8 @@ import { ShowMorePanelModule } from '../../shared/components/show-more-panel';
 import { ShowMoreContinuationPanelModule } from '../../shared/components/show-more-panel-continuation';
 import { ErrorHandlerService } from '../../shared/services/utils/error-handler.service';
 import { SearchFieldService } from '../../shared/services/utils/search-field.service';
+import { GroupsListModule } from './components/groups-list';
+import { GroupsSearchComponent } from './components/groups-search/groups-search.component';
 import { PaymentReferencesComponent } from './components/payment-references/payment-references.component';
 import { PaymentGroupsComponent } from './components/payments-groups/payment-groups.component';
 import { ReferencesSearchComponent } from './components/references-search/references-search.component';
@@ -41,8 +43,6 @@ import { ReferencesTableComponent } from './components/references-table/referenc
 import { GroupsRoutingModule } from './groups-routing.module';
 import { GroupsComponent } from './groups.component';
 import { GroupsReferenceService } from './services/groups-reference/groups-reference.service';
-import { GroupsSearchComponent } from './components/groups-search/groups-search.component';
-import { GroupsListModule } from './components/groups-list';
 
 @NgModule({
     declarations: [

@@ -4,7 +4,7 @@ import { shareReplay } from 'rxjs/operators';
 
 import { ConfigService } from '../../../config';
 import { SortOrder } from '../../../shared/constants/sort-order';
-import { booleanDebounceTime, booleanDelay } from '../../../shared/operators';
+import { booleanDebounceTime } from '../../../shared/operators';
 import { FetchResultContinuation } from '../../../shared/utils/partial-fetcher/fetch-result-continuation';
 import { PartialFetcherContinuation } from '../../../shared/utils/partial-fetcher/partial-fetcher-continuation';
 import { SearchHistoricalParams } from '../search-historical-params';

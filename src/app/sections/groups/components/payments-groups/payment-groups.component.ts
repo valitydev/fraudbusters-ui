@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, Inject } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+
 import { LAYOUT_GAP_M } from '../../../../tokens';
 import { FetchGroupsService } from '../../services/fetch-groups.service';
 import { RemoveGroupService } from '../../services/remove-group.service';

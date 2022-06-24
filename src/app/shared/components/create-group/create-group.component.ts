@@ -2,11 +2,12 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { ChangeDetectionStrategy, Component, Inject, Input, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
+
+import { PaymentTemplatesService } from '../../../api';
+import { Group } from '../../../api/fb-management/swagger-codegen/model/group';
 import { LAYOUT_GAP_L, LAYOUT_GAP_M } from '../../../tokens';
 import { ErrorHandlerService } from '../../services/utils/error-handler.service';
 import { GroupService } from './services/group.service';
-import { Group } from '../../../api/fb-management/swagger-codegen/model/group';
-import { PaymentTemplatesService } from '../../../api';
 
 @Component({
     selector: 'fb-create-group',
