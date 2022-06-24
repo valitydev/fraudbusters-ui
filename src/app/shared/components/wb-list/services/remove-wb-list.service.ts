@@ -5,39 +5,39 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { combineLatest, merge, NEVER, Observable, of, Subject } from 'rxjs';
 import { catchError, filter, shareReplay, switchMap } from 'rxjs/operators';
 
-import { PaymentGroupsService } from '../../../api/payments/groups';
-import { ConfirmActionDialogComponent } from '../../../shared/components/confirm-action-dialog';
-import { progress } from '../../../shared/operators';
+import { PaymentListsService } from '../../../../api/payments/lists';
+import { progress } from '../../../../shared/operators';
+import { ConfirmActionDialogComponent } from '../../confirm-action-dialog';
 
-export interface RemoveGroupParams {
-    id: string;
+export interface RemoveListRowParams {
+    rowId: string;
 }
 
 @Injectable()
-export class RemoveGroupService {
+export class RemoveWbListComponentService {
     removed$: Observable<string>;
     inProgress$: Observable<boolean>;
 
-    private removeGroup$ = new Subject<RemoveGroupParams>();
+    private removeRow$ = new Subject<RemoveListRowParams>();
     private hasError$ = new Subject();
 
     constructor(
         private dialog: MatDialog,
-        private paymentGroupsService: PaymentGroupsService,
+        private paymentListsService: PaymentListsService,
         private snackBar: MatSnackBar
     ) {
-        this.removed$ = this.removeGroup$.pipe(
+        this.removed$ = this.removeRow$.pipe(
             switchMap((params) =>
                 combineLatest([
                     of(params),
                     this.dialog
-                        .open(ConfirmActionDialogComponent, { data: { title: `Remove group ${params.id}?` } })
+                        .open(ConfirmActionDialogComponent, { data: { title: `Remove row ${params.rowId}?` } })
                         .afterClosed()
                         .pipe(filter((r) => r === 'confirm')),
                 ])
             ),
             switchMap(([params]) =>
-                this.paymentGroupsService.delete(params.id).pipe(
+                this.paymentListsService.deleteListRow(params.rowId).pipe(
                     catchError((error: HttpErrorResponse) => {
                         this.snackBar.open(`${error.status}: ${error.message}`, 'OK', {
                             duration: 1500,
@@ -50,10 +50,10 @@ export class RemoveGroupService {
             shareReplay(1)
         );
 
-        this.inProgress$ = progress(this.removeGroup$, merge(this.hasError$, this.removed$));
+        this.inProgress$ = progress(this.removeRow$, merge(this.hasError$, this.removed$));
     }
 
-    remove(params: RemoveGroupParams) {
-        this.removeGroup$.next(params);
+    remove(params: RemoveListRowParams) {
+        this.removeRow$.next(params);
     }
 }

@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
 import { AuthGuard, Roles } from '../../auth';
-import { PaymentReferencesComponent } from './components/payment-references/payment-references.component';
+import { GroupReferencesComponent } from './components/group-references/group-references.component';
 import { PaymentGroupsComponent } from './components/payments-groups/payment-groups.component';
 import { GroupsComponent } from './groups.component';
 
@@ -23,7 +23,7 @@ import { GroupsComponent } from './groups.component';
                     },
                     {
                         path: 'references',
-                        component: PaymentReferencesComponent,
+                        component: GroupReferencesComponent,
                         canActivate: [AuthGuard],
                         data: { roles: [Roles.FraudOfficer] },
                     },

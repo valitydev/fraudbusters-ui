@@ -34,12 +34,12 @@ import { ShowMorePanelModule } from '../../shared/components/show-more-panel';
 import { ShowMoreContinuationPanelModule } from '../../shared/components/show-more-panel-continuation';
 import { ErrorHandlerService } from '../../shared/services/utils/error-handler.service';
 import { SearchFieldService } from '../../shared/services/utils/search-field.service';
-import { GroupsListModule } from './components/groups-list';
-import { GroupsSearchComponent } from './components/groups-search/groups-search.component';
-import { PaymentReferencesComponent } from './components/payment-references/payment-references.component';
+import { GroupReferencesListModule } from './components/group-references/components/group-references-list';
+import { ReferencesSearchComponent } from './components/group-references/components/references-search/references-search.component';
+import { GroupReferencesComponent } from './components/group-references/group-references.component';
+import { GroupsListModule } from './components/payments-groups/components/groups-list';
+import { GroupsSearchComponent } from './components/payments-groups/components/groups-search/groups-search.component';
 import { PaymentGroupsComponent } from './components/payments-groups/payment-groups.component';
-import { ReferencesSearchComponent } from './components/references-search/references-search.component';
-import { ReferencesTableComponent } from './components/references-table/references-table.component';
 import { GroupsRoutingModule } from './groups-routing.module';
 import { GroupsComponent } from './groups.component';
 import { GroupsReferenceService } from './services/groups-reference/groups-reference.service';
@@ -48,8 +48,7 @@ import { GroupsReferenceService } from './services/groups-reference/groups-refer
     declarations: [
         GroupsComponent,
         PaymentGroupsComponent,
-        PaymentReferencesComponent,
-        ReferencesTableComponent,
+        GroupReferencesComponent,
         ReferencesSearchComponent,
         GroupsSearchComponent,
     ],
@@ -86,6 +85,7 @@ import { GroupsReferenceService } from './services/groups-reference/groups-refer
         ShowMoreContinuationPanelModule,
         GroupsRoutingModule,
         GroupsListModule,
+        GroupReferencesListModule,
     ],
     providers: [
         DatePipe,
