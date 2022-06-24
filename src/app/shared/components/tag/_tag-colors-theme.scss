@@ -33,5 +33,9 @@
         &-failed {
             background-color: map-get($theme, failed-base);
         }
+
+        &-unknown {
+            background-color: map-get($theme, unknown-base);
+        }
     }
 }
