@@ -4,12 +4,12 @@ import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Observable } from 'rxjs';
 
-import { CountInfo } from '../../../../api/fb-management/swagger-codegen/model/countInfo';
-import { PaymentCountInfo } from '../../../../api/fb-management/swagger-codegen/model/paymentCountInfo';
-import { PaymentListRecord } from '../../../../api/fb-management/swagger-codegen/model/paymentListRecord';
-import { PaymentListsService } from '../../../../api/payments/lists/payment-lists.service';
-import { ListType } from '../../../constants/list-type';
-import { ErrorHandlerService } from '../../../services/utils/error-handler.service';
+import { CountInfo } from '../../../../../api/fb-management/swagger-codegen/model/countInfo';
+import { PaymentCountInfo } from '../../../../../api/fb-management/swagger-codegen/model/paymentCountInfo';
+import { PaymentListRecord } from '../../../../../api/fb-management/swagger-codegen/model/paymentListRecord';
+import { PaymentListsService } from '../../../../../api/payments/lists/payment-lists.service';
+import { ListType } from '../../../../constants/list-type';
+import { ErrorHandlerService } from '../../../../services/utils/error-handler.service';
 
 @Component({
     selector: 'fb-add-row-list',

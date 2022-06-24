@@ -10,10 +10,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 
-import { PaymentTemplateReferencesTableComponent } from './payment-template-references-table/payment-template-references-table.component';
-
 @NgModule({
-    declarations: [PaymentTemplateReferencesTableComponent],
     imports: [
         CommonModule,
         FlexModule,
@@ -26,6 +23,5 @@ import { PaymentTemplateReferencesTableComponent } from './payment-template-refe
         MatMenuModule,
         MatButtonModule,
     ],
-    exports: [PaymentTemplateReferencesTableComponent],
 })
 export class TemplateReferencesModule {}

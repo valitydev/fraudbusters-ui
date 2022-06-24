@@ -3,11 +3,11 @@ import { ChangeDetectionStrategy, Component, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
-import { WbListRecord } from '../../../../api/fb-management/swagger-codegen/model/wbListRecord';
-import { PaymentListsService } from '../../../../api/payments/lists/payment-lists.service';
-import { ListType } from '../../../constants/list-type';
-import { OperationType } from '../../../constants/operation-type';
-import { ErrorHandlerService } from '../../../services/utils/error-handler.service';
+import { WbListRecord } from '../../../../../api/fb-management/swagger-codegen/model/wbListRecord';
+import { PaymentListsService } from '../../../../../api/payments/lists/payment-lists.service';
+import { ListType } from '../../../../constants/list-type';
+import { OperationType } from '../../../../constants/operation-type';
+import { ErrorHandlerService } from '../../../../services/utils/error-handler.service';
 
 export interface DialogData {
     listRecord: WbListRecord;

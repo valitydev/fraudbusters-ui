@@ -1,21 +1,16 @@
-import { HttpErrorResponse } from '@angular/common/http';
 import { ChangeDetectionStrategy, Component, Inject, Input, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
-import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { Sort } from '@angular/material/sort';
 import { Router } from '@angular/router';
-import { ReplaySubject } from 'rxjs';
-import { debounceTime } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
-import { PaymentListsService } from '../../../api/payments/lists/payment-lists.service';
-import { ConfigService } from '../../../config';
+import { PaymentListsService } from '../../../api/payments/lists';
 import { LAYOUT_GAP_M } from '../../../tokens';
 import { ListType } from '../../constants/list-type';
-import { SortOrder } from '../../constants/sort-order';
 import { ErrorHandlerService } from '../../services/utils/error-handler.service';
-import { SearchFieldService } from '../../services/utils/search-field.service';
-import { RemoveRowListDialogComponent } from './remove-row-list/remove-row-list-dialog.component';
+import { Action, ActionType } from './action';
+import { Filter } from './model/filter';
+import { FetchWbListService } from './services/fetch-wb-list.service';
+import { RemoveWbListComponentService } from './services/remove-wb-list.service';
 
 @Component({
     selector: 'fb-wb-list',
@@ -24,116 +19,68 @@ import { RemoveRowListDialogComponent } from './remove-row-list/remove-row-list-
 })
 export class WbListComponent implements OnInit {
     @Input() listType: ListType;
-    @Input() isCounting = false;
 
-    listsRows = [];
-    searchValue: FormControl = new FormControl('');
-    listNames: string[] = [];
-    selectedListNames: string[] = [];
-    isLoadMore = false;
-    displayedColumns = new ReplaySubject<string[]>();
-    sortType = SortOrder.Desc;
-    paymentColumns = ['listName', 'partyId', 'shopId', 'value', 'insertTime'];
-
-    private size = this.configService.pageSize;
+    rows$ = this.fetchWbListService.searchResult$;
+    listNames$: Observable<string[]>;
+    inProgress$ = this.fetchWbListService.inProgress$;
+    hasMore$ = this.fetchWbListService.hasMore$;
 
     constructor(
         private router: Router,
-        private errorHandlerService: ErrorHandlerService,
-        private searchFieldService: SearchFieldService,
-        private listService: PaymentListsService,
+        private fetchWbListService: FetchWbListService,
+        private removeWbListComponentService: RemoveWbListComponentService,
         private snackBar: MatSnackBar,
-        private dialog: MatDialog,
-        private configService: ConfigService,
+        private errorHandlerService: ErrorHandlerService,
+        private listService: PaymentListsService,
         @Inject(LAYOUT_GAP_M) public layoutGapM: string
     ) {
-        this.displayedColumns.next([]);
-    }
-
-    ngOnInit(): void {
-        this.getListNames();
-        this.searchValue.valueChanges.pipe(debounceTime(300)).subscribe(() => {
-            this.search();
+        this.removeWbListComponentService.removed$.subscribe((id) => {
+            this.snackBar.open(`WbList ${id} has been deleted`, 'OK', {
+                duration: 1500,
+            });
+            this.fetchWbListService.search({ listType: this.listType });
         });
     }
 
-    selectionChange(): void {
-        this.displayedColumns.next(this.initColumns(this.paymentColumns));
-        this.search();
+    action(action: Action) {
+        switch (action.type) {
+            case ActionType.CreateRow:
+                this.router.navigate([`/list/${this.listType}/new`]);
+                break;
+            case ActionType.RemoveRow:
+                this.removeWbListComponentService.remove({
+                    rowId: action.rowId,
+                });
+                break;
+            case ActionType.SortRow:
+                this.fetchWbListService.search({ sortOrder: action.sortDirection, listType: this.listType });
+                break;
+            default:
+                console.error('Wrong list row action.');
+        }
     }
 
-    getListNames(): void {
-        this.listService.getNames(this.listType).subscribe(
-            (names) => {
-                this.listNames = names;
-                this.selectedListNames = this.listNames;
-                this.selectionChange();
-            },
-            (error: HttpErrorResponse) => {
-                this.errorHandlerService.handleError(error, this.snackBar);
-            }
-        );
-    }
-
-    search(): void {
-        this.searchWithSort(null, this.sortType, null);
-    }
-
-    navigateToNew(): void {
+    createRow() {
         this.router.navigate([`/list/${this.listType}/new`]);
     }
 
-    sortData(sort: Sort): void {
-        this.sortType = sort.direction === 'asc' ? SortOrder.Asc : SortOrder.Desc;
-        this.search();
+    removeRow(rowId: string) {
+        this.removeWbListComponentService.remove({ rowId });
     }
 
-    openDialog(listRecordRow): void {
-        const dialogRef = this.dialog.open(RemoveRowListDialogComponent, {
-            width: '350px',
-            data: { listRecord: listRecordRow, listType: this.listType },
-        });
-
-        dialogRef.afterClosed().subscribe(() => {
-            this.search();
+    search(filter?: Filter) {
+        this.fetchWbListService.search({
+            searchValue: filter.searchValue,
+            listType: this.listType,
+            listNames: filter.typeChanges,
         });
     }
 
-    loadMore(): void {
-        this.searchWithSort(
-            this.listsRows[this.listsRows.length - 1].id,
-            this.sortType,
-            this.listsRows[this.listsRows.length - 1].insertTime
-        );
+    fetchMore() {
+        this.fetchWbListService.fetchMore();
     }
 
-    private initColumns(columns: string[]): string[] {
-        return this.isCounting ? columns.concat(['info', 'edit']) : columns.concat(['edit']);
-    }
-
-    private searchWithSort(lastInListName, sortOrder: SortOrder, sortFieldValueNew): void {
-        this.listService
-            .findListRows({
-                searchValue: this.searchFieldService.formatField(this.searchValue.value),
-                lastId: lastInListName,
-                size: this.size,
-                sortOrder: sortOrder ? sortOrder : SortOrder.Asc,
-                sortFieldValue: sortFieldValueNew,
-                listNames: this.selectedListNames,
-                listType: this.listType,
-            })
-            .subscribe(
-                (response) => {
-                    if (!lastInListName) {
-                        this.listsRows = response.result;
-                    } else {
-                        this.listsRows = this.listsRows.concat(response.result);
-                    }
-                    this.isLoadMore = this.listsRows.length < response.count;
-                },
-                (error: HttpErrorResponse) => {
-                    this.errorHandlerService.handleError(error, this.snackBar);
-                }
-            );
+    ngOnInit(): void {
+        this.listNames$ = this.listService.getNames(this.listType);
     }
 }
