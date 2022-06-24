@@ -76,6 +76,7 @@ $theme: (
     warn-base: mat-color(mat-palette($fb-warn), 400),
     cancel-base: mat-color(mat-palette($fb-warn), 200),
     failed-base: mat-color(mat-palette($fb-warn), 900),
+    unknown-base: mat-color(mat-palette($fb-grey), 400),
     blue-base: mat-color(mat-palette($fb-blue), 500),
     gray: mat-palette($fb-grey),
     headline: #655b76,

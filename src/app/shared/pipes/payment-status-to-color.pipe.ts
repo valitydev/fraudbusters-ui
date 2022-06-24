@@ -16,8 +16,10 @@ export class PaymentStatusToColorPipe implements PipeTransform {
                 return ThemePaletteEnum.Success;
             case 'cancelled':
                 return ThemePaletteEnum.Cancel;
-            default:
+            case 'failed':
                 return ThemePaletteEnum.Failed;
+            default:
+                return ThemePaletteEnum.Unknown;
         }
     }
 }

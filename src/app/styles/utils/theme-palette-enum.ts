@@ -6,4 +6,5 @@ export enum ThemePaletteEnum {
     Blue = 'blue',
     Cancel = 'cancel',
     Failed = 'failed',
+    Unknown = 'unknown',
 }
