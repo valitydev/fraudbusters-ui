@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, Inject } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+
 import { LAYOUT_GAP_M } from '../../../../tokens';
 import { FetchGroupsService } from '../../services/fetch-groups.service';
 import { RemoveGroupService } from '../../services/remove-group.service';
@@ -34,12 +35,12 @@ export class PaymentGroupsComponent {
         this.router.navigate(['/group/new']);
     }
 
-    editTemplate(id: string) {
+    editGroup(id: string) {
         this.router.navigate([`/group/${id}`]);
     }
 
-    removeTemplate(templateID: string) {
-        this.removeGroupService.remove({ id: templateID });
+    removeGroup(groupId: string) {
+        this.removeGroupService.remove({ id: groupId });
     }
 
     search(searchValue: string) {

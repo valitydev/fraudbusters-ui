@@ -7,8 +7,8 @@
         <fb-groups-list
             *ngIf="groups.length; else Empty"
             [groups]="groups"
-            (editItem)="editTemplate($event)"
-            (deleteItem)="removeTemplate($event)"
+            (editItem)="editGroup($event)"
+            (deleteItem)="removeGroup($event)"
         ></fb-groups-list>
     </div>
     <fb-show-more-panel

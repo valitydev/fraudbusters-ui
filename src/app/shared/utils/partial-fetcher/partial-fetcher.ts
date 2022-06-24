@@ -26,7 +26,6 @@ export abstract class PartialFetcher<R, P> {
     readonly doAction$: Observable<boolean>;
     readonly doSearchAction$: Observable<boolean>;
     readonly errors$ = new Subject();
-
     private action$ = new Subject<FetchAction<P>>();
 
     constructor(debounceActionTime: number = 300) {
