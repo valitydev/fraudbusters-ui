@@ -30,20 +30,19 @@ import { ErrorHandlerService } from '../../services/utils/error-handler.service'
 import { SearchFieldService } from '../../services/utils/search-field.service';
 import { EmptySearchResultModule } from '../empty-search-result';
 import { ShowMorePanelModule } from '../show-more-panel';
-import { AddRowListComponent } from './components/add-row-list/add-row-list.component';
 import { RemoveRowListDialogComponent } from './components/remove-row-list/remove-row-list-dialog.component';
 import { WbListSearchComponent } from './components/wb-list-search/wb-list-search.component';
 import { WbRowsListModule } from './components/wb-rows-list';
 import { FetchWbListService } from './services/fetch-wb-list.service';
 import { RemoveWbListComponentService } from './services/remove-wb-list.service';
 import { WbListComponent } from './wb-list.component';
+import { AddRowListModule } from './components/add-row-list/add-row-list.module';
 
 @NgModule({
-    declarations: [WbListComponent, RemoveRowListDialogComponent, AddRowListComponent, WbListSearchComponent],
-    exports: [WbListComponent, AddRowListComponent, RemoveRowListDialogComponent],
+    declarations: [WbListComponent, RemoveRowListDialogComponent, WbListSearchComponent],
+    exports: [WbListComponent, RemoveRowListDialogComponent],
     imports: [
         CommonModule,
-        MatTableModule,
         MatCardModule,
         MatButtonModule,
         MatIconModule,
@@ -69,6 +68,7 @@ import { WbListComponent } from './wb-list.component';
         EmptySearchResultModule,
         MatProgressSpinnerModule,
         WbRowsListModule,
+        AddRowListModule,
     ],
     providers: [
         SearchFieldService,

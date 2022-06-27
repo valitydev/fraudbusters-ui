@@ -1,44 +1,41 @@
 import { Location } from '@angular/common';
-import { ChangeDetectionStrategy, Component, Inject, Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Inject, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Observable } from 'rxjs';
 import { PaymentCountInfo } from '../../../../../api/fb-management/swagger-codegen/model/paymentCountInfo';
 import { PaymentListsService } from '../../../../../api/payments/lists/payment-lists.service';
-import { ListType } from '../../../../constants/list-type';
 import { ErrorHandlerService } from '../../../../services/utils/error-handler.service';
 import { LAYOUT_GAP_M } from '../../../../../tokens';
-import { AddRowListService } from '../../services/add-row-list.service';
 import { Router } from '@angular/router';
+import { AddGreyRowListService } from '../../services/add-grey-row-list.service';
 
 @Component({
-    selector: 'fb-add-row-list',
-    templateUrl: './add-row-list.component.html',
-    styleUrls: ['./add-row-list.component.scss'],
+    selector: 'fb-add-grey-row-list',
+    templateUrl: './add-grey-row-list.component.html',
+    styleUrls: ['./add-grey-row-list.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AddRowListComponent implements OnInit {
+export class AddGreyRowListComponent implements OnInit {
     paymentRecords: PaymentCountInfo[] = [];
 
-    @Input() listType: ListType;
-
     filteredOptions: Observable<string[]>;
-    forms = this.addRowListService.forms;
-    inProgress$ = this.addRowListService.inProgress$;
+    forms = this.addGreyRowListService.forms;
+    inProgress$ = this.addGreyRowListService.inProgress$;
 
     constructor(
         private listService: PaymentListsService,
         private errorHandlerService: ErrorHandlerService,
-        private addRowListService: AddRowListService,
+        private addGreyRowListService: AddGreyRowListService,
         private snackBar: MatSnackBar,
         private location: Location,
         private router: Router,
         @Inject(LAYOUT_GAP_M) public layoutGapM: string
     ) {
-        this.addRowListService.created$.subscribe((results) => {
+        this.addGreyRowListService.created$.subscribe((results) => {
             this.snackBar.open(`Saved success: ${results.length} rows`, 'OK', {
                 duration: 3000,
             });
-            this.router.navigate(['/lists/' + this.listType]);
+            this.router.navigate(['/lists/grey']);
         });
     }
 
@@ -47,18 +44,18 @@ export class AddRowListComponent implements OnInit {
     }
 
     addItem() {
-        this.addRowListService.addItem();
+        this.addGreyRowListService.addItem();
     }
 
     removeItem(index: number) {
-        this.addRowListService.removeItem(index);
+        this.addGreyRowListService.removeItem(index);
     }
 
     prepareFilesList(files: Array<any>): void {
-        this.addRowListService.prepareFilesList(files, this.listType);
+        this.addGreyRowListService.prepareFilesList(files);
     }
 
     save(): void {
-        this.addRowListService.create(this.listType);
+        this.addGreyRowListService.create();
     }
 }

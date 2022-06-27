@@ -27,17 +27,8 @@ export class GroupService {
         private paymentGroupService: PaymentGroupsService,
         private snackBar: MatSnackBar
     ) {
-        this.inProgress$ = progress(this.save$, this.saved$);
         this.addItem();
         this.save$.subscribe();
-        this.inProgress$.subscribe((inProgress) => {
-            if (inProgress) {
-                this.forms.disable();
-            } else {
-                this.forms.enable();
-            }
-        });
-
         this.saved$ = this.save$.pipe(
             switchMap(() =>
                 this.paymentGroupService
@@ -53,6 +44,14 @@ export class GroupService {
             filter((r) => !!r),
             shareReplay(1)
         );
+        this.inProgress$ = progress(this.save$, this.saved$);
+        this.inProgress$.subscribe((inProgress) => {
+            if (inProgress) {
+                this.forms.disable();
+            } else {
+                this.forms.enable();
+            }
+        });
     }
 
     save() {

@@ -17,26 +17,26 @@ import { ListsComponent } from './lists.component';
                 data: { roles: [Roles.FraudOfficer] },
                 children: [
                     {
-                        path: 'white-list',
+                        path: 'white',
                         component: WhiteListComponent,
                         canActivate: [AuthGuard],
                         data: { roles: [Roles.FraudOfficer] },
                     },
                     {
-                        path: 'black-list',
+                        path: 'black',
                         component: BlackListComponent,
                         canActivate: [AuthGuard],
                         data: { roles: [Roles.FraudOfficer] },
                     },
                     {
-                        path: 'grey-list',
+                        path: 'grey',
                         component: GreyListComponent,
                         canActivate: [AuthGuard],
                         data: { roles: [Roles.FraudOfficer] },
                     },
                     {
                         path: '',
-                        redirectTo: 'black-list',
+                        redirectTo: 'black',
                     },
                 ],
             },
