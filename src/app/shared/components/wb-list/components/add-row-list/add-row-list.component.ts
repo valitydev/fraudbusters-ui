@@ -56,7 +56,7 @@ export class AddRowListComponent implements OnInit {
     }
 
     prepareFilesList(files: Array<any>): void {
-        this.addRowListService.prepareFilesList(files, this.listType);
+        this.addRowListService.prepareFilesList(files);
     }
 
     save(): void {
