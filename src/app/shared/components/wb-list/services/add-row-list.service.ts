@@ -15,11 +15,10 @@ import { WbListService } from '../wb-list.service';
 export class AddRowListService {
     created$: Observable<string | string[]>;
     inProgress$: Observable<boolean>;
+    forms = this.fb.array([]);
 
     private create$ = new Subject<ListType>();
     private errors$ = new Subject();
-
-    forms = this.fb.array([]);
 
     constructor(
         private fb: FormBuilder,
@@ -47,7 +46,7 @@ export class AddRowListService {
             filter((r) => !!r),
             shareReplay(1, 1000)
         );
-        this.created$.subscribe((value) => {
+        this.created$.subscribe(() => {
             this.forms = this.fb.array([]);
             this.addItem();
         });
@@ -73,7 +72,7 @@ export class AddRowListService {
         this.forms.removeAt(i);
     }
 
-    prepareFilesList(files: Array<any>, listType): void {
+    prepareFilesList(files: Array<any>): void {
         Object.values(files)
             .filter((value) => this.csvUtilsService.isValidFile(value, 'text/csv', 2097152))
             .forEach((item) =>

@@ -15,11 +15,10 @@ import { WbListService } from '../wb-list.service';
 export class AddGreyRowListService {
     created$: Observable<string[]>;
     inProgress$: Observable<boolean>;
+    forms = this.fb.array([]);
 
     private create$ = new Subject<ListType>();
     private errors$ = new Subject();
-
-    forms = this.fb.array([]);
 
     constructor(
         private fb: FormBuilder,
@@ -50,7 +49,7 @@ export class AddGreyRowListService {
             filter((r) => !!r),
             shareReplay(1, 1000)
         );
-        this.created$.subscribe((value) => {
+        this.created$.subscribe(() => {
             this.forms = this.fb.array([]);
             this.addItem();
         });
