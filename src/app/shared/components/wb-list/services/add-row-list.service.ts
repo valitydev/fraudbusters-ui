@@ -1,6 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { AbstractControl, FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Papa } from 'ngx-papaparse';
 import { EMPTY, merge, Observable, Subject } from 'rxjs';
@@ -8,8 +8,8 @@ import { catchError, filter, shareReplay, switchMap } from 'rxjs/operators';
 
 import { progress } from '../../../../shared/operators';
 import { CsvUtilsService } from '../../../../shared/services/utils/csv-utils.service';
-import { WbListService } from '../wb-list.service';
 import { ListType } from '../../../constants/list-type';
+import { WbListService } from '../wb-list.service';
 
 @Injectable()
 export class AddRowListService {
@@ -45,10 +45,11 @@ export class AddRowListService {
                     );
             }),
             filter((r) => !!r),
-            shareReplay(1)
+            shareReplay(1, 1000)
         );
         this.created$.subscribe((value) => {
-            this.forms.reset();
+            this.forms = this.fb.array([]);
+            this.addItem();
         });
         this.inProgress$ = progress(this.create$, merge(this.created$, this.errors$));
         this.inProgress$.subscribe((inProgress) => {

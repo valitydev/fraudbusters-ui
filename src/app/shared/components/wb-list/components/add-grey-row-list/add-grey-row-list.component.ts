@@ -1,12 +1,13 @@
 import { Location } from '@angular/common';
 import { ChangeDetectionStrategy, Component, Inject, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
+
 import { PaymentCountInfo } from '../../../../../api/fb-management/swagger-codegen/model/paymentCountInfo';
 import { PaymentListsService } from '../../../../../api/payments/lists/payment-lists.service';
-import { ErrorHandlerService } from '../../../../services/utils/error-handler.service';
 import { LAYOUT_GAP_M } from '../../../../../tokens';
-import { Router } from '@angular/router';
+import { ErrorHandlerService } from '../../../../services/utils/error-handler.service';
 import { AddGreyRowListService } from '../../services/add-grey-row-list.service';
 
 @Component({

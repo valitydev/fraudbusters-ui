@@ -8,12 +8,12 @@ import { catchError, filter, shareReplay, switchMap } from 'rxjs/operators';
 
 import { progress } from '../../../../shared/operators';
 import { CsvUtilsService } from '../../../../shared/services/utils/csv-utils.service';
-import { WbListService } from '../wb-list.service';
 import { ListType } from '../../../constants/list-type';
+import { WbListService } from '../wb-list.service';
 
 @Injectable()
 export class AddGreyRowListService {
-    created$: Observable<string | string[]>;
+    created$: Observable<string[]>;
     inProgress$: Observable<boolean>;
 
     private create$ = new Subject<ListType>();
@@ -48,12 +48,14 @@ export class AddGreyRowListService {
                     );
             }),
             filter((r) => !!r),
-            shareReplay(1)
+            shareReplay(1, 1000)
         );
         this.created$.subscribe((value) => {
-            this.forms.reset();
+            this.forms = this.fb.array([]);
+            this.addItem();
         });
         this.inProgress$ = progress(this.create$, merge(this.created$, this.errors$));
+
         this.inProgress$.subscribe((inProgress) => {
             if (inProgress) {
                 this.forms.disable();

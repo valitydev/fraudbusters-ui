@@ -1,14 +1,15 @@
 import { Location } from '@angular/common';
 import { ChangeDetectionStrategy, Component, Inject, Input, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
+
 import { PaymentCountInfo } from '../../../../../api/fb-management/swagger-codegen/model/paymentCountInfo';
 import { PaymentListsService } from '../../../../../api/payments/lists/payment-lists.service';
+import { LAYOUT_GAP_M } from '../../../../../tokens';
 import { ListType } from '../../../../constants/list-type';
 import { ErrorHandlerService } from '../../../../services/utils/error-handler.service';
-import { LAYOUT_GAP_M } from '../../../../../tokens';
 import { AddRowListService } from '../../services/add-row-list.service';
-import { Router } from '@angular/router';
 
 @Component({
     selector: 'fb-add-row-list',
