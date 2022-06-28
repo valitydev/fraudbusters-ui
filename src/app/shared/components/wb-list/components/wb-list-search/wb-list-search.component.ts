@@ -30,7 +30,7 @@ export class WbListSearchComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this.listNames$.subscribe((value) =>
+        this.listNames$.pipe(take(1)).subscribe((value) =>
             this.form.setValue({
                 searchQuery: '',
                 types: value,

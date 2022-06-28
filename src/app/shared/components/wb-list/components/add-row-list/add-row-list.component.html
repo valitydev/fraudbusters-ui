@@ -1,136 +1,98 @@
-<mat-toolbar>
-    <mat-toolbar-row>
-        <h3>New rows</h3>
-        <button mat-stroked-button color="primary" (click)="save()">Save</button>
-        <button mat-stroked-button color="primary" (click)="fileDropRef.click()">
-            <mat-icon>publish</mat-icon>
-        </button>
-        <input
-            hidden
-            type="file"
-            #fileDropRef
-            id="fileDropRef"
-            multiple
-            (change)="loadListFromCsv($event.target.files)"
-        />
-    </mat-toolbar-row>
-</mat-toolbar>
+<div fxLayout="column">
+    <fb-headline fbSecondaryTitle>New rows</fb-headline>
+    <mat-card>
+        <mat-card-content fxLayout="column" [fxLayoutGap]="layoutGapM">
+            <ng-container *ngFor="let form of forms.controls; let i = index">
+                <form
+                    class="create-payment-reference-form"
+                    [formGroup]="form"
+                    fxLayout
+                    [fxLayoutGap]="layoutGapM"
+                    fxLayoutAlign="center center"
+                >
+                    <mat-form-field fxFlex appearance="outline">
+                        <input
+                            matInput
+                            placeholder="List name"
+                            formControlName="listName"
+                            type="string"
+                            [matAutocomplete]="auto"
+                        />
+                        <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+                            <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+                                {{ option }}
+                            </mat-option>
+                        </mat-autocomplete>
+                    </mat-form-field>
+                    <mat-form-field fxFlex appearance="outline">
+                        <input
+                            matInput
+                            placeholder="Party id"
+                            formControlName="partyId"
+                            type="string"
+                            autocomplete="false"
+                        />
+                    </mat-form-field>
+                    <mat-form-field fxFlex appearance="outline">
+                        <input
+                            matInput
+                            placeholder="Shop ID"
+                            formControlName="shopId"
+                            type="string"
+                            autocomplete="false"
+                        />
+                    </mat-form-field>
+                    <mat-form-field fxFlex appearance="outline">
+                        <input
+                            matInput
+                            placeholder="Value"
+                            formControlName="value"
+                            type="string"
+                            autocomplete="false"
+                        />
+                    </mat-form-field>
+                    <button
+                        [style.visibility]="forms.length > 1 ? 'visible' : 'hidden'"
+                        mat-icon-button
+                        class="remove-btn"
+                        (click)="removeItem(i)"
+                        [disabled]="inProgress$ | async"
+                    >
+                        <mat-icon>remove</mat-icon>
+                    </button>
+                </form>
+            </ng-container>
 
-<mat-card>
-    <mat-card-content>
-        <div class="list-values" fxLayout fxLayoutAlign="center center">
-            <div fxFlex="100">
-                <div *ngFor="let reference of paymentRecords; let i = index">
-                    <div fxLayout>
-                        <div fxFlex="22">
-                            <mat-form-field floatLabel="always" class="full-width">
-                                <input
-                                    matInput
-                                    placeholder="List name"
-                                    label="listName"
-                                    [(ngModel)]="reference.listRecord.listName"
-                                    name="listName"
-                                    [matAutocomplete]="auto"
-                                />
-                                <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
-                                    <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
-                                        {{ option }}
-                                    </mat-option>
-                                </mat-autocomplete>
-                            </mat-form-field>
-                        </div>
-                        <div fxFlex="22">
-                            <mat-form-field floatLabel="always" class="full-width">
-                                <input
-                                    matInput
-                                    placeholder="Party ID"
-                                    label="partyId"
-                                    [(ngModel)]="reference.listRecord.partyId"
-                                    name="partyId"
-                                />
-                            </mat-form-field>
-                        </div>
-                        <div fxFlex="22">
-                            <mat-form-field floatLabel="always" class="full-width">
-                                <input
-                                    matInput
-                                    placeholder="Shop ID"
-                                    label="shopId"
-                                    [(ngModel)]="reference.listRecord.shopId"
-                                    name="shopId"
-                                />
-                            </mat-form-field>
-                        </div>
-                        <div fxFlex="22">
-                            <mat-form-field floatLabel="always" class="full-width">
-                                <input
-                                    matInput
-                                    placeholder="Value"
-                                    label="value"
-                                    [(ngModel)]="reference.listRecord.value"
-                                    name="value"
-                                />
-                            </mat-form-field>
-                        </div>
-                        <div fxFlex="10">
-                            <button mat-icon-button color="warn" (click)="deleteRef(i)">
-                                <mat-icon>clear</mat-icon>
-                            </button>
-                        </div>
-                    </div>
-                    <div fxLayout *ngIf="isCounting">
-                        <div fxFlex="100">
-                            <div fxFlex="22">
-                                <mat-form-field floatLabel="always" class="full-width">
-                                    <input
-                                        type="number"
-                                        matInput
-                                        placeholder="Count"
-                                        label="count"
-                                        [(ngModel)]="reference.countInfo.count"
-                                        name="count"
-                                    />
-                                </mat-form-field>
-                            </div>
-                            <div fxFlex="22">
-                                <mat-form-field floatLabel="always" class="full-width">
-                                    <input
-                                        matInput
-                                        placeholder="Start time"
-                                        label="startCountTime"
-                                        [(ngModel)]="reference.countInfo.startCountTime"
-                                        name="startCountTime"
-                                        [ngxMatDatetimePicker]="pickerFrom"
-                                    />
-                                    <mat-datepicker-toggle matSuffix [for]="pickerFrom"></mat-datepicker-toggle>
-                                    <ngx-mat-datetime-picker showSeconds="true" #pickerFrom></ngx-mat-datetime-picker>
-                                </mat-form-field>
-                            </div>
-                            <div fxFlex="22">
-                                <mat-form-field floatLabel="always" class="full-width">
-                                    <input
-                                        matInput
-                                        placeholder="End time"
-                                        label="endCountTime"
-                                        [(ngModel)]="reference.countInfo.endCountTime"
-                                        name="endCountTime"
-                                        [ngxMatDatetimePicker]="pickerTo"
-                                    />
-                                    <mat-datepicker-toggle matSuffix [for]="pickerTo"></mat-datepicker-toggle>
-                                    <ngx-mat-datetime-picker showSeconds="true" #pickerTo></ngx-mat-datetime-picker>
-                                </mat-form-field>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <mat-toolbar>
-            <mat-toolbar-row class="justify-content-center">
-                <button mat-stroked-button color="primary" (click)="addNewReference()">
-                    <span class="material-icons">add</span>
+            <div fxLayout fxLayoutAlign="end center" [fxLayoutGap]="layoutGapM">
+                <input
+                    hidden
+                    type="file"
+                    #fileDropRef
+                    id="fileDropRef"
+                    multiple
+                    (change)="prepareFilesList($event.target.files)"
+                />
+                <button mat-button color="accent" (click)="fileDropRef.click()">Add from CSV</button>
+                <button
+                    mat-button
+                    color="accent"
+                    (click)="addItem()"
+                    [disabled]="!forms.valid || (inProgress$ | async) || forms.value.length < 1"
+                >
+                    Add row
                 </button>
-            </mat-toolbar-row>
-        </mat-toolbar>
-    </mat-card-content>
-</mat-card>
+                <button
+                    mat-raised-button
+                    color="primary"
+                    (click)="save()"
+                    [disabled]="!forms.valid || (inProgress$ | async) || forms.value.length < 1"
+                >
+                    Create
+                </button>
+            </div>
+        </mat-card-content>
+        <mat-card-footer *ngIf="inProgress$ | async">
+            <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+        </mat-card-footer>
+    </mat-card>
+</div>

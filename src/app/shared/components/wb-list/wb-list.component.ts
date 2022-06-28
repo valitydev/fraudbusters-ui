@@ -7,7 +7,6 @@ import { PaymentListsService } from '../../../api/payments/lists';
 import { LAYOUT_GAP_M } from '../../../tokens';
 import { ListType } from '../../constants/list-type';
 import { ErrorHandlerService } from '../../services/utils/error-handler.service';
-import { Action, ActionType } from './action';
 import { Filter } from './model/filter';
 import { FetchWbListService } from './services/fetch-wb-list.service';
 import { RemoveWbListComponentService } from './services/remove-wb-list.service';
@@ -40,24 +39,6 @@ export class WbListComponent implements OnInit {
             });
             this.fetchWbListService.search({ listType: this.listType });
         });
-    }
-
-    action(action: Action) {
-        switch (action.type) {
-            case ActionType.CreateRow:
-                this.router.navigate([`/list/${this.listType}/new`]);
-                break;
-            case ActionType.RemoveRow:
-                this.removeWbListComponentService.remove({
-                    rowId: action.rowId,
-                });
-                break;
-            case ActionType.SortRow:
-                this.fetchWbListService.search({ sortOrder: action.sortDirection, listType: this.listType });
-                break;
-            default:
-                console.error('Wrong list row action.');
-        }
     }
 
     createRow() {

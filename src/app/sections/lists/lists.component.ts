@@ -11,17 +11,17 @@ import { LAYOUT_GAP_S } from '../../tokens';
 export class ListsComponent {
     links = [
         {
-            path: 'black-list',
+            path: 'black',
             name: 'Black',
             otherActiveUrlFragments: [],
         },
         {
-            path: 'white-list',
+            path: 'white',
             name: 'White',
             otherActiveUrlFragments: [],
         },
         {
-            path: 'grey-list',
+            path: 'grey',
             name: 'Grey',
             otherActiveUrlFragments: [],
         },
