@@ -19,5 +19,8 @@ export class TemplateItemComponent {
     @Output()
     deleteItem = new EventEmitter<string>();
 
+    @Output()
+    copyItem = new EventEmitter<string>();
+
     constructor(@Inject(LAYOUT_GAP_S) public layoutGapS: string, @Inject(LAYOUT_GAP_M) public layoutGapM: string) {}
 }

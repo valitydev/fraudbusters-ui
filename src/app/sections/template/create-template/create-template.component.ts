@@ -9,8 +9,6 @@ import { LAYOUT_GAP_L, LAYOUT_GAP_M } from '../../../tokens';
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CreateTemplateComponent {
-    operationType$ = this.route.fragment;
-
     constructor(
         private router: Router,
         private route: ActivatedRoute,

@@ -55,11 +55,15 @@ export class PaymentTemplatesComponent {
     }
 
     createTemplate() {
-        this.router.navigate(['/template/new'], { fragment: OperationType.Payment });
+        this.router.navigate(['/template/new']);
     }
 
     editTemplate(id: string) {
-        this.router.navigate([`/template/${id}`], { fragment: OperationType.Payment });
+        this.router.navigate([`/template/${id}`]);
+    }
+
+    copyTemplate(id: string) {
+        this.router.navigate([`/template/new/${id}`]);
     }
 
     removeTemplate(templateID: string) {

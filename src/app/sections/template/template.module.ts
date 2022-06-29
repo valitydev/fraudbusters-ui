@@ -18,9 +18,10 @@ import { EditTemplateComponent } from './edit-template/edit-template.component';
 import { TemplatesService } from './services/templates/templates.service';
 import { TemplateRoutingModule } from './template-routing.module';
 import { TemplateComponent } from './template.component';
+import { CopyTemplateComponent } from './copy-template/copy-template.component';
 
 @NgModule({
-    declarations: [TemplateComponent, EditTemplateComponent, CreateTemplateComponent],
+    declarations: [TemplateComponent, EditTemplateComponent, CreateTemplateComponent, CopyTemplateComponent],
     imports: [
         MatSnackBarModule,
         TemplateRoutingModule,
