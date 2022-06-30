@@ -1,7 +1,7 @@
 <mat-card>
     <mat-card-content fxLayout="column" [fxLayoutGap]="layoutGapL">
         <form [formGroup]="form" fxLayout="column" [fxLayoutGap]="layoutGapL">
-            <mat-form-field [attr.readonly]="editName" class="full-width" floatLabel="always">
+            <mat-form-field [attr.readonly]="isEditableName" class="full-width" floatLabel="always">
                 <input required matInput placeholder="Name" formControlName="id" />
             </mat-form-field>
             <mat-form-field class="full-width" floatLabel="always">

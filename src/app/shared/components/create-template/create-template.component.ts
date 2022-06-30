@@ -5,7 +5,6 @@ import { Router } from '@angular/router';
 
 import { Template } from '../../../api/fb-management/swagger-codegen/model/template';
 import { LAYOUT_GAP_L, LAYOUT_GAP_M } from '../../../tokens';
-import { OperationType } from '../../constants/operation-type';
 import { checkValidateResponse } from '../../services/utils/check-validation-response';
 import { ErrorHandlerService } from '../../services/utils/error-handler.service';
 import { TemplateService } from './services/template/template.service';
@@ -18,7 +17,7 @@ import { TemplateService } from './services/template/template.service';
 })
 export class CreateTemplateComponent implements OnInit {
     @Input() template: Template;
-    @Input() editName = true;
+    @Input() isEditableName = true;
 
     form = this.templateService.form;
 
@@ -38,7 +37,7 @@ export class CreateTemplateComponent implements OnInit {
     ngOnInit() {
         if (this.template) {
             this.form.setValue({ id: this.template.id, template: this.template.template });
-            if (this.editName === false) {
+            if (this.isEditableName === false) {
                 this.form.get('id').disable();
             }
         }

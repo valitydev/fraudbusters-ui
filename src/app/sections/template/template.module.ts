@@ -13,12 +13,12 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { PaymentTemplatesModule } from '../../api';
 import { CreateTemplateModule } from '../../shared/components/create-template/create-template.module';
 import { ErrorHandlerService } from '../../shared/services/utils/error-handler.service';
+import { CopyTemplateComponent } from './copy-template/copy-template.component';
 import { CreateTemplateComponent } from './create-template/create-template.component';
 import { EditTemplateComponent } from './edit-template/edit-template.component';
 import { TemplatesService } from './services/templates/templates.service';
 import { TemplateRoutingModule } from './template-routing.module';
 import { TemplateComponent } from './template.component';
-import { CopyTemplateComponent } from './copy-template/copy-template.component';
 
 @NgModule({
     declarations: [TemplateComponent, EditTemplateComponent, CreateTemplateComponent, CopyTemplateComponent],

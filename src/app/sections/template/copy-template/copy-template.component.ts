@@ -1,8 +1,8 @@
 import { ChangeDetectionStrategy, Component, Inject } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { map, pluck, shareReplay, switchMap, withLatestFrom } from 'rxjs/operators';
 
 import { LAYOUT_GAP_L, LAYOUT_GAP_M } from '../../../tokens';
-import { map, pluck, shareReplay, switchMap, withLatestFrom } from 'rxjs/operators';
 import { TemplatesService } from '../services/templates/templates.service';
 
 @Component({

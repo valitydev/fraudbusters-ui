@@ -2,10 +2,10 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
 import { AuthGuard, Roles } from '../../auth';
+import { CopyTemplateComponent } from './copy-template/copy-template.component';
 import { CreateTemplateComponent } from './create-template/create-template.component';
 import { EditTemplateComponent } from './edit-template/edit-template.component';
 import { TemplateComponent } from './template.component';
-import { CopyTemplateComponent } from './copy-template/copy-template.component';
 
 @NgModule({
     imports: [
