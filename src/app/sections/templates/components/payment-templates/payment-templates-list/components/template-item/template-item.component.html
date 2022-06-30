@@ -17,6 +17,7 @@
             [id]="template.id"
             (editItem)="editItem.emit($event)"
             (deleteItem)="deleteItem.emit($event)"
+            (copyItem)="copyItem.emit($event)"
         ></fb-actions>
     </div>
 </mat-expansion-panel>

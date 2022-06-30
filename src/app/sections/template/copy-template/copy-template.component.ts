@@ -6,12 +6,11 @@ import { LAYOUT_GAP_L, LAYOUT_GAP_M } from '../../../tokens';
 import { TemplatesService } from '../services/templates/templates.service';
 
 @Component({
-    templateUrl: './edit-template.component.html',
-    styleUrls: ['./edit-template.component.scss'],
+    templateUrl: './copy-template.component.html',
+    styleUrls: ['./copy-template.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class EditTemplateComponent {
-    operationType$ = this.route.fragment;
+export class CopyTemplateComponent {
     template$ = this.route.params.pipe(
         pluck('id'),
         withLatestFrom(),
@@ -19,13 +18,16 @@ export class EditTemplateComponent {
             return this.templateService.getTemplates(1, id);
         }),
         pluck('result'),
-        map((res) => res[0]),
+        map((res) => {
+            res[0].id = res[0].id + '_COPY';
+            return res[0];
+        }),
         shareReplay(1)
     );
 
     constructor(
-        private route: ActivatedRoute,
         private router: Router,
+        private route: ActivatedRoute,
         private templateService: TemplatesService,
         @Inject(LAYOUT_GAP_L) public layoutGapL: string,
         @Inject(LAYOUT_GAP_M) public layoutGapM: string

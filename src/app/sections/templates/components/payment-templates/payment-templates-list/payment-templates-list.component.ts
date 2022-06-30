@@ -18,5 +18,8 @@ export class PaymentTemplatesListComponent {
     @Output()
     deleteItem = new EventEmitter<string>();
 
+    @Output()
+    copyItem = new EventEmitter<string>();
+
     constructor(@Inject(LAYOUT_GAP_M) public layoutGapM: string) {}
 }

@@ -5,7 +5,6 @@ import { Router } from '@angular/router';
 
 import { Template } from '../../../api/fb-management/swagger-codegen/model/template';
 import { LAYOUT_GAP_L, LAYOUT_GAP_M } from '../../../tokens';
-import { OperationType } from '../../constants/operation-type';
 import { checkValidateResponse } from '../../services/utils/check-validation-response';
 import { ErrorHandlerService } from '../../services/utils/error-handler.service';
 import { TemplateService } from './services/template/template.service';
@@ -17,9 +16,8 @@ import { TemplateService } from './services/template/template.service';
     providers: [TemplateService],
 })
 export class CreateTemplateComponent implements OnInit {
-    @Input() operationType: OperationType;
-
     @Input() template: Template;
+    @Input() isEditableName = true;
 
     form = this.templateService.form;
 
@@ -39,7 +37,9 @@ export class CreateTemplateComponent implements OnInit {
     ngOnInit() {
         if (this.template) {
             this.form.setValue({ id: this.template.id, template: this.template.template });
-            this.form.get('id').disable();
+            if (this.isEditableName === false) {
+                this.form.get('id').disable();
+            }
         }
         this.saved$.subscribe(
             (template) => {
@@ -68,20 +68,18 @@ export class CreateTemplateComponent implements OnInit {
 
     saveTemplate() {
         this.templateService.saveTemplate({
-            type: this.operationType,
             template: { id: this.form.getRawValue().id, template: this.form.getRawValue().template },
         });
     }
 
     validateTemplate() {
         this.templateService.validateTemplate({
-            type: this.operationType,
             template: { id: this.form.getRawValue().id, template: this.form.getRawValue().template },
         });
     }
 
     navigateToEdit(id) {
-        this.router.navigate([`../template/${id}`], { fragment: this.operationType.toString() });
+        this.router.navigate([`../template/${id}`]);
     }
 
     back() {
