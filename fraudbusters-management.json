@@ -39,7 +39,7 @@
         },
         {
             "name": "lists",
-            "x-displayName": "Lists"
+            "x-displayName": "Payments lists"
         },
         {
             "name": "emulation",
@@ -60,6 +60,22 @@
         {
             "name": "historical-data",
             "x-displayName": "Historical data"
+        },
+        {
+            "name": "notification-template",
+            "x-displayName": "Notification template"
+        },
+        {
+            "name": "data-sets",
+            "x-displayName": "Data sets"
+        },
+        {
+            "name": "analytics",
+            "x-displayName": "Analytics"
+        },
+        {
+            "name": "dictionary",
+            "x-displayName": "Dictionary"
         }
     ],
     "paths": {
@@ -2701,6 +2717,318 @@
                     }
                 }
             }
+        },
+        "/analytics/fraud-payments/count": {
+            "get": {
+                "summary": "Получить количество платежей с подозрением на мошенничество",
+                "operationId": "getFraudPaymentsCount",
+                "tags": ["analytics"],
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/fromTime"
+                    },
+                    {
+                        "$ref": "#/components/parameters/toTime"
+                    },
+                    {
+                        "$ref": "#/components/parameters/currency"
+                    },
+                    {
+                        "$ref": "#/components/parameters/merchantId"
+                    },
+                    {
+                        "$ref": "#/components/parameters/shopId"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Attempted fraud-payments count",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/CountResponse"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            }
+        },
+        "/analytics/fraud-payments/blocked/count": {
+            "get": {
+                "summary": "Получить количество заблокированных мошеннических платежей",
+                "operationId": "getBlockedFraudPaymentsCount",
+                "tags": ["analytics"],
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/fromTime"
+                    },
+                    {
+                        "$ref": "#/components/parameters/toTime"
+                    },
+                    {
+                        "$ref": "#/components/parameters/currency"
+                    },
+                    {
+                        "$ref": "#/components/parameters/merchantId"
+                    },
+                    {
+                        "$ref": "#/components/parameters/shopId"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Blocked fraud-payments count",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/CountResponse"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            }
+        },
+        "/analytics/fraud-payments/blocked/sum": {
+            "get": {
+                "summary": "Получить общую сумму заблокированных мошеннических платежей",
+                "operationId": "getBlockedFraudPaymentsSum",
+                "tags": ["analytics"],
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/fromTime"
+                    },
+                    {
+                        "$ref": "#/components/parameters/toTime"
+                    },
+                    {
+                        "$ref": "#/components/parameters/currency"
+                    },
+                    {
+                        "$ref": "#/components/parameters/merchantId"
+                    },
+                    {
+                        "$ref": "#/components/parameters/shopId"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Blocked fraud-payments sum",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/SumResponse"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            }
+        },
+        "/analytics/fraud-payments/blocked/count/ratio": {
+            "get": {
+                "summary": "Получить соотношение количества заблокированных платежей к общему количеству мошеннических платежей",
+                "operationId": "getBlockedFraudPaymentsCountRatio",
+                "tags": ["analytics"],
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/fromTime"
+                    },
+                    {
+                        "$ref": "#/components/parameters/toTime"
+                    },
+                    {
+                        "$ref": "#/components/parameters/currency"
+                    },
+                    {
+                        "$ref": "#/components/parameters/merchantId"
+                    },
+                    {
+                        "$ref": "#/components/parameters/shopId"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Blocked fraud-payments count ratio",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/RatioResponse"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            }
+        },
+        "/analytics/fraud-payments/scores/split-count/ratio": {
+            "get": {
+                "summary": "Получить соотношение количества платежей по различными оценкам риска операции к общему числу мошеннических \nплатежей в разрезе временного интервала\n",
+                "operationId": "getFraudPaymentsScoreSplitCountRatio",
+                "tags": ["analytics"],
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/fromTime"
+                    },
+                    {
+                        "$ref": "#/components/parameters/toTime"
+                    },
+                    {
+                        "$ref": "#/components/parameters/currency"
+                    },
+                    {
+                        "$ref": "#/components/parameters/splitUnit"
+                    },
+                    {
+                        "$ref": "#/components/parameters/merchantId"
+                    },
+                    {
+                        "$ref": "#/components/parameters/shopId"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Split fraud-payments risc score count ratio",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/SplitRiskScoreCountRatioResponse"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            }
+        },
+        "/analytics/fraud-payments/results/summary": {
+            "get": {
+                "summary": "Получить статистику по результатам проверок платежей",
+                "operationId": "getFraudPaymentsResultsSummary",
+                "tags": ["analytics"],
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/fromTime"
+                    },
+                    {
+                        "$ref": "#/components/parameters/toTime"
+                    },
+                    {
+                        "$ref": "#/components/parameters/currency"
+                    },
+                    {
+                        "$ref": "#/components/parameters/merchantId"
+                    },
+                    {
+                        "$ref": "#/components/parameters/shopId"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Fraud-payments results summary",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/FraudResultListSummaryResponse"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            }
+        },
+        "/dictionaries/currencies": {
+            "get": {
+                "summary": "Получить список денежных единиц",
+                "operationId": "getCurrencies",
+                "tags": ["dictionary"],
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/fromTime"
+                    },
+                    {
+                        "$ref": "#/components/parameters/toTime"
+                    },
+                    {
+                        "$ref": "#/components/parameters/shopId"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "List of currencies",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ListResponse"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            }
         }
     },
     "servers": [
@@ -3804,6 +4132,139 @@
                         "$ref": "#/components/schemas/MerchantInfo"
                     }
                 }
+            },
+            "CountResponse": {
+                "type": "object",
+                "properties": {
+                    "count": {
+                        "type": "integer",
+                        "format": "int32"
+                    }
+                }
+            },
+            "SumResponse": {
+                "type": "object",
+                "properties": {
+                    "sum": {
+                        "type": "integer",
+                        "format": "int32"
+                    }
+                }
+            },
+            "RatioResponse": {
+                "type": "object",
+                "properties": {
+                    "ratio": {
+                        "type": "number",
+                        "format": "float"
+                    }
+                }
+            },
+            "SplitUnit": {
+                "description": "Единица времени сегмента разбиения",
+                "type": "string",
+                "enum": ["minute", "hour", "day", "week", "month", "year"]
+            },
+            "OffsetCountRatio": {
+                "type": "object",
+                "allOf": [
+                    {
+                        "type": "object",
+                        "required": ["countRatio", "offset"],
+                        "properties": {
+                            "countRatio": {
+                                "description": "Соотношение платежей c данной оценкой к общему количеству платежей",
+                                "type": "integer",
+                                "format": "int64",
+                                "minimum": 0
+                            },
+                            "offset": {
+                                "description": "Номер интервала в списке",
+                                "type": "integer",
+                                "format": "int64",
+                                "minimum": 0
+                            }
+                        }
+                    }
+                ]
+            },
+            "RiscScoreOffsetCountRatio": {
+                "type": "object",
+                "required": ["score", "offsetCountRatio"],
+                "properties": {
+                    "score": {
+                        "description": "Оценка платежа",
+                        "type": "string"
+                    },
+                    "offsetCountRatio": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/OffsetCountRatio"
+                        }
+                    }
+                }
+            },
+            "SplitRiskScoreCountRatioResponse": {
+                "type": "object",
+                "required": ["splitUnit", "offsetCountRatios"],
+                "properties": {
+                    "splitUnit": {
+                        "$ref": "#/components/schemas/SplitUnit"
+                    },
+                    "offsetCountRatios": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/RiscScoreOffsetCountRatio"
+                        }
+                    }
+                }
+            },
+            "Summary": {
+                "type": "object",
+                "properties": {
+                    "count": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "sum": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "ratio": {
+                        "type": "number",
+                        "format": "float"
+                    }
+                }
+            },
+            "FraudResultSummary": {
+                "type": "object",
+                "required": ["status", "summary"],
+                "properties": {
+                    "status": {
+                        "type": "string"
+                    },
+                    "checkedRule": {
+                        "type": "string"
+                    },
+                    "template": {
+                        "type": "string"
+                    },
+                    "summary": {
+                        "$ref": "#/components/schemas/Summary"
+                    }
+                }
+            },
+            "FraudResultListSummaryResponse": {
+                "type": "object",
+                "required": ["result"],
+                "properties": {
+                    "result": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/FraudResultSummary"
+                        }
+                    }
+                }
             }
         },
         "parameters": {
@@ -3875,6 +4336,59 @@
                 "in": "query",
                 "schema": {
                     "type": "string"
+                }
+            },
+            "fromTime": {
+                "name": "fromTime",
+                "in": "query",
+                "description": "Начало временного отрезка",
+                "required": true,
+                "schema": {
+                    "type": "string"
+                }
+            },
+            "toTime": {
+                "name": "toTime",
+                "in": "query",
+                "description": "Конец временного отрезка",
+                "required": true,
+                "schema": {
+                    "type": "string"
+                }
+            },
+            "currency": {
+                "name": "currency",
+                "in": "query",
+                "description": "Денежные единицы",
+                "required": true,
+                "schema": {
+                    "type": "string"
+                }
+            },
+            "merchantId": {
+                "name": "merchantId",
+                "in": "query",
+                "description": "Идентификатор мерчанта",
+                "schema": {
+                    "type": "string"
+                }
+            },
+            "shopId": {
+                "name": "shopId",
+                "in": "query",
+                "description": "Идентификатор магазина",
+                "schema": {
+                    "type": "string"
+                }
+            },
+            "splitUnit": {
+                "name": "splitUnit",
+                "in": "query",
+                "description": "Единица времени сегмента разбиения",
+                "required": true,
+                "schema": {
+                    "type": "string",
+                    "enum": ["minute", "hour", "day", "week", "month", "year"]
                 }
             }
         }

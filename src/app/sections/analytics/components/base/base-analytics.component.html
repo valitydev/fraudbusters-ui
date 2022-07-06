@@ -1,0 +1,31 @@
+<div fxLayout="column" [fxLayoutGap]="layoutGapM">
+    <div fxLayout fxLayoutAlign="space-between center">
+        <fb-base-analytics-search (valueChanges)="search($event)"></fb-base-analytics-search>
+    </div>
+    <div fxLayout="row" fxlayoutgap="10px grid" fxLayoutAlign="space-between center" [fxLayoutGap]="layoutGapM">
+        <fb-info-card
+            fxFlex="25"
+            [headerText]="'Attempted payments'"
+            [value]="'30 430 000'"
+            [type]="'success'"
+        ></fb-info-card>
+        <fb-info-card fxFlex="25" [headerText]="'Blocked payments'" [value]="'507'" [type]="'error'"></fb-info-card>
+        <fb-info-card
+            fxFlex="25"
+            [headerText]="'Block rates'"
+            [value]="'0.24'"
+            [units]="'%'"
+            [type]="'error'"
+        ></fb-info-card>
+        <fb-info-card
+            fxFlex="25"
+            [headerText]="'Block sum'"
+            [value]="'30 430'"
+            [units]="'$'"
+            [type]="'error'"
+        ></fb-info-card>
+    </div>
+    <div fxLayout="column" fxLayoutAlign="space-between center" [fxLayoutGap]="layoutGapM">
+        <mat-card fxLayout fxFlex="100" fxLayoutAlign="center"> </mat-card>
+    </div>
+</div>

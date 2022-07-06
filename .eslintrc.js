@@ -50,7 +50,7 @@ module.exports = {
         'src/app/sections/notifications/notifications.component.ts',
         'src/app/sections/load/fraud-uploader/dnd.directive.ts',
         'src/app/sections/groups/services/remove-reference/remove-reference.service.ts',
-        'src/app/shared/components/testing-data-set-list/services/data-set/testing-data-set.service.ts',
+        'src/app/shared/components/testing-data-set-list/services/data-set/testing-analytics.service.ts',
     ],
     overrides: [
         {
