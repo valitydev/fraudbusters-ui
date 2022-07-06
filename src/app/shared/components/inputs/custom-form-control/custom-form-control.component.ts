@@ -30,10 +30,13 @@ import { INPUT_MIX_IN_BASE } from './input-base';
 })
 export abstract class CustomFormControlComponent<I extends any = any, P extends any = I>
     extends INPUT_MIX_IN_BASE
-    implements AfterViewInit, ControlValueAccessor, MatFormFieldControl<I>, OnDestroy, DoCheck, OnChanges {
+    implements AfterViewInit, ControlValueAccessor, MatFormFieldControl<I>, OnDestroy, DoCheck, OnChanges
+{
     /** The aria-describedby attribute on the input for improved a11y. */
     @HostBinding('attr.aria-describedby') _ariaDescribedby: string;
 
+    readonly errorState: boolean;
+    readonly userAriaDescribedBy: string;
     readonly stateChanges: Subject<void> = new Subject<void>();
 
     controlType = 'text';

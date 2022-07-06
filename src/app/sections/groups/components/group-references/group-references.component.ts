@@ -10,7 +10,6 @@ import { FetchReferencesService } from '../../services/fetch-references/fetch-re
 import { RemoveReferenceService } from '../../services/remove-reference/remove-reference.service';
 
 @Component({
-    selector: 'fb-payment-references',
     templateUrl: 'group-references.component.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
     providers: [FetchReferencesService, RemoveReferenceService],
