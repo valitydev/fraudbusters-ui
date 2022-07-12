@@ -48,6 +48,8 @@
     "keycloak-angular": "^10.0.1",
     "keycloak-js": "^18.0.1",
     "lodash-es": "^4.17.20",
+    "moment": "^2.29.3",
+    "ng-apexcharts": "^1.7.1",
     "ngx-papaparse": "^4.0.4",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",

@@ -5,7 +5,7 @@ import { ApexAxisChartSeries } from 'ng-apexcharts/lib/model/apex-types';
 import { DEFAULT_CONFIG } from './default-config';
 
 @Component({
-    selector: 'dsh-bar-chart',
+    selector: 'fb-bar-chart',
     templateUrl: 'bar-chart.component.html',
     styleUrls: ['bar-chart.component.scss'],
 })

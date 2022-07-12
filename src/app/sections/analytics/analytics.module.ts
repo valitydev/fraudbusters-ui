@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FlexModule } from '@angular/flex-layout';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -22,7 +22,7 @@ import { SharedPipesModule } from '../../shared/pipes';
 import { AnalyticsRoutingModule } from './analytics-routing.module';
 import { AnalyticsComponent } from './analytics.component';
 import { BaseAnalyticsComponent } from './components/base/base-analytics.component';
-import { BaseAnalyticsSearchComponent } from './components/search/base-analytics-search.component';
+import { BaseAnalyticsSearchComponent } from './components/base/components/search/base-analytics-search.component';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatTooltipModule } from '@angular/material/tooltip';
@@ -35,6 +35,10 @@ import { SearchFieldService } from '../../shared/services/utils/search-field.ser
 import { MatSelectModule } from '@angular/material/select';
 import { AnalyticsService } from '../../api/payments/analytics';
 import { FbInfoCardModule } from '../../shared/components/fb-info-card';
+import { BarChartComponent } from '../../shared/components/charts/bar-chart/bar-chart.component';
+import { BarChartModule } from '../../shared/components/charts';
+import { BaseAnalyticsService } from './components/base/services/base-analytics.service';
+import { FraudSummaryListModule } from './components/base/components/fraud-summary-list';
 
 @NgModule({
     imports: [
@@ -67,8 +71,10 @@ import { FbInfoCardModule } from '../../shared/components/fb-info-card';
         NgxMatDatetimePickerModule,
         MatSelectModule,
         FbInfoCardModule,
+        BarChartModule,
+        FraudSummaryListModule,
     ],
     declarations: [AnalyticsComponent, BaseAnalyticsComponent, BaseAnalyticsSearchComponent],
-    providers: [AnalyticsService],
+    providers: [AnalyticsService, BaseAnalyticsService, DatePipe],
 })
 export class AnalyticsModule {}

@@ -72,10 +72,6 @@
         {
             "name": "analytics",
             "x-displayName": "Analytics"
-        },
-        {
-            "name": "dictionary",
-            "x-displayName": "Dictionary"
         }
     ],
     "paths": {
@@ -2991,22 +2987,11 @@
                 }
             }
         },
-        "/dictionaries/currencies": {
+        "/analytics/currencies": {
             "get": {
                 "summary": "Получить список денежных единиц",
                 "operationId": "getCurrencies",
-                "tags": ["dictionary"],
-                "parameters": [
-                    {
-                        "$ref": "#/components/parameters/fromTime"
-                    },
-                    {
-                        "$ref": "#/components/parameters/toTime"
-                    },
-                    {
-                        "$ref": "#/components/parameters/shopId"
-                    }
-                ],
+                "tags": ["analytics"],
                 "responses": {
                     "200": {
                         "description": "List of currencies",
@@ -4146,8 +4131,8 @@
                 "type": "object",
                 "properties": {
                     "sum": {
-                        "type": "integer",
-                        "format": "int32"
+                        "type": "number",
+                        "format": "float"
                     }
                 }
             },
@@ -4174,9 +4159,8 @@
                         "properties": {
                             "countRatio": {
                                 "description": "Соотношение платежей c данной оценкой к общему количеству платежей",
-                                "type": "integer",
-                                "format": "int64",
-                                "minimum": 0
+                                "type": "number",
+                                "format": "float"
                             },
                             "offset": {
                                 "description": "Номер интервала в списке",
@@ -4188,7 +4172,7 @@
                     }
                 ]
             },
-            "RiscScoreOffsetCountRatio": {
+            "RiskScoreOffsetCountRatio": {
                 "type": "object",
                 "required": ["score", "offsetCountRatio"],
                 "properties": {
@@ -4214,7 +4198,7 @@
                     "offsetCountRatios": {
                         "type": "array",
                         "items": {
-                            "$ref": "#/components/schemas/RiscScoreOffsetCountRatio"
+                            "$ref": "#/components/schemas/RiskScoreOffsetCountRatio"
                         }
                     }
                 }
@@ -4227,8 +4211,8 @@
                         "format": "int32"
                     },
                     "sum": {
-                        "type": "integer",
-                        "format": "int32"
+                        "type": "number",
+                        "format": "float"
                     },
                     "ratio": {
                         "type": "number",

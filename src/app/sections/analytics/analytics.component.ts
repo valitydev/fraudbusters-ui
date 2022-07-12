@@ -1,8 +1,9 @@
-import { ChangeDetectionStrategy, Component, Inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Inject, Input } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { hasActiveFragments } from '../../shared/utils/has-active-fragments';
 import { LAYOUT_GAP_S } from '../../tokens';
+import { ChartData } from './model/chart-data';
 
 @Component({
     templateUrl: 'analytics.component.html',

@@ -1,11 +1,10 @@
 import { ApexOptions } from 'ng-apexcharts/lib/model/apex-types';
 
-import { DEFAULT_ANIMATION } from '@dsh/components/charts/default-animation';
-import { formatAmount } from '@dsh/components/charts/format-amount';
+import { DEFAULT_ANIMATION } from '../default-animation';
+import { formatAmount } from '../format-amount';
 
 import { DEFAULT_LEGEND } from '../default-legend';
 import { DEFAULT_STATES } from '../default-states';
-import { customTooltip } from './custom-tooltip';
 
 const COLUMN_WIDTH = '30%';
 
@@ -13,7 +12,8 @@ export const DEFAULT_CONFIG: ApexOptions = {
     chart: {
         type: 'bar',
         stacked: true,
-        height: 300,
+        height: 350,
+        width: '100%',
         toolbar: {
             show: false,
         },
@@ -26,9 +26,6 @@ export const DEFAULT_CONFIG: ApexOptions = {
     fill: {
         opacity: 1,
     },
-    tooltip: {
-        custom: customTooltip,
-    },
     plotOptions: {
         bar: {
             horizontal: false,
@@ -40,10 +37,6 @@ export const DEFAULT_CONFIG: ApexOptions = {
         labels: {
             offsetY: -5,
             rotate: 0,
-            formatter(value: string): string {
-                const splitted = typeof value === 'string' ? value.split('#') : '';
-                return splitted[1] === 'hide' ? '' : splitted[0];
-            },
         },
         axisTicks: {
             show: false,

@@ -1,0 +1,24 @@
+<form [formGroup]="form">
+    <div fxLayout fxLayoutAlign="space-between center">
+        <div [fxLayoutGap]="layoutGapM">
+            <mat-form-field appearance="outline">
+                <input matInput placeholder="merchant" formControlName="partyId" autocomplete="false" />
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <input matInput placeholder="shop" formControlName="shopId" autocomplete="false" />
+            </mat-form-field>
+            <mat-form-field class="select" appearance="outline">
+                <mat-select formControlName="type" *ngIf="currencies$ | async as currencies">
+                    <mat-option *ngFor="let name of currencies" value="{{ name }}">{{ name }}</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <div fxLayout fxLayoutAlign="space-between end">
+            <mat-form-field class="select" appearance="outline" *ngIf="units">
+                <mat-select formControlName="time">
+                    <mat-option *ngFor="let name of units" value="{{ name }}">{{ name }}</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+    </div>
+</form>
