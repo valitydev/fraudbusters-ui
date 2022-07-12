@@ -1,8 +1,12 @@
 <div fxLayout="column" [fxLayoutGap]="layoutGapM">
     <div fxLayout fxFlexFill fxLayoutAlign="space-between center">
-        <fb-base-analytics-search fxFlexFill (valueChanges)="search($event)"></fb-base-analytics-search>
+        <fb-base-analytics-search
+            fxFlexFill
+            [inProgress]="inProgress$"
+            (valueChanges)="search($event)"
+        ></fb-base-analytics-search>
     </div>
-    <div fxFlexFill *ngIf="!(inProgress$ | async)" fxLayout="column" [fxLayoutGap]="layoutGapM">
+    <div fxFlexFill fxLayout="column" [fxLayoutGap]="layoutGapM">
         <div fxLayout="row" fxlayoutgap="10px grid" fxLayoutAlign="space-between center" [fxLayoutGap]="layoutGapM">
             <fb-info-card
                 fxFlex="25"
@@ -56,8 +60,5 @@
                 ></fb-fraud-summary-templates-list>
             </div>
         </div>
-    </div>
-    <div *ngIf="inProgress$ | async" fxLayout fxLayoutAlign="center">
-        <mat-progress-spinner color="primary" mode="indeterminate" diameter="48"></mat-progress-spinner>
     </div>
 </div>

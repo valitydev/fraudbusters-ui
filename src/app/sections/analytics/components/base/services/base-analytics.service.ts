@@ -5,6 +5,7 @@ import { SearchBaseAnalyticsParams } from '../../../../../api/payments/analytics
 import { catchError, filter, shareReplay, switchMap } from 'rxjs/operators';
 import { ChartData } from '../../../model/chart-data';
 import { FraudResultSummary } from '../../../../../api/fb-management/swagger-codegen/model/fraudResultSummary';
+import { progress } from '../../../../../shared/operators';
 
 @Injectable()
 export class BaseAnalyticsService {
@@ -19,15 +20,13 @@ export class BaseAnalyticsService {
 
     searchParameters$ = new Subject<SearchBaseAnalyticsParams>();
 
-    inProgress$ = new Subject<boolean>();
-    finished$ = new Observable<void>();
+    finished$ = new Subject<any>();
+    inProgress$ = progress(this.searchParameters$, this.finished$, true).pipe(shareReplay(1));
 
     constructor(private analyticsService: AnalyticsService) {
-        // this.inProgress$.next(true);
-
         this.currencies$ = this.analyticsService.getCurrencies();
+        this.searchParameters$.subscribe();
 
-        // this.searchParameters$.subscribe(() => this.inProgress$.next(true));
         this.fraudSummary$ = this.searchParameters$.pipe(
             switchMap((value) => this.analyticsService.getSummary(value)),
             filter((r) => !!r),
@@ -61,7 +60,6 @@ export class BaseAnalyticsService {
             filter((r) => !!r),
             shareReplay(1)
         );
-        this.finished$.subscribe((value) => this.inProgress$.next(false));
         merge(
             this.attemptedPayments$,
             this.blockedPayments$,
@@ -69,12 +67,7 @@ export class BaseAnalyticsService {
             this.blockSum$,
             this.chartDataX$,
             this.fraudSummary$
-        )
-            .pipe(
-                switchMap((value) => this.finished$),
-                shareReplay(1)
-            )
-            .subscribe();
+        ).subscribe((value) => this.finished$.next(value));
     }
 
     search(params): void {
