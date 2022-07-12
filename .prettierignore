@@ -10,3 +10,4 @@ src/app/**/gen-model
 .vscode
 .swagger-codegen
 *.svg
+.angular
