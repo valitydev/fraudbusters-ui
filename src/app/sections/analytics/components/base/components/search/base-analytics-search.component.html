@@ -7,9 +7,9 @@
             <mat-form-field appearance="outline">
                 <input matInput placeholder="shop" formControlName="shopId" autocomplete="false" />
             </mat-form-field>
-            <mat-form-field class="select" appearance="outline">
-                <mat-select formControlName="type" *ngIf="currencies$ | async as currencies">
-                    <mat-option *ngFor="let name of currencies" value="{{ name }}">{{ name }}</mat-option>
+            <mat-form-field class="select" appearance="outline" *ngIf="currencies$ | async as currencies">
+                <mat-select formControlName="type">
+                    <mat-option *ngFor="let name of currencies" [value]="name">{{ name }}</mat-option>
                 </mat-select>
             </mat-form-field>
         </div>

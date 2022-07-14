@@ -10,36 +10,36 @@
         <div fxLayout="row" fxlayoutgap="10px grid" fxLayoutAlign="space-between center" [fxLayoutGap]="layoutGapM">
             <fb-info-card
                 fxFlex="25"
-                [headerText]="'Attempted payments'"
+                [headerText]="ATTEMPTED_PAYMENTS"
                 [value]="attemptedPayments$"
-                [type]="'success'"
+                [type]="SUCCESS_STYLE"
             ></fb-info-card>
             <fb-info-card
                 fxFlex="25"
-                [headerText]="'Blocked payments'"
+                [headerText]="BLOCKED_PAYMENTS"
                 [value]="blockedPayments$"
-                [type]="'error'"
+                [type]="ERROR_STYLE"
             ></fb-info-card>
             <fb-info-card
                 fxFlex="25"
-                [headerText]="'Block rates'"
-                [value]="blockedRates$"
+                [headerText]="RATIO_OF_BLOCKED"
+                [value]="ratioOfBlocked$"
                 [units]="'%'"
-                [type]="'error'"
+                [type]="ERROR_STYLE"
             ></fb-info-card>
             <fb-info-card
                 fxFlex="25"
-                [headerText]="'Block sum'"
-                [value]="blockSum$"
+                [headerText]="BLOCKED_SUM"
+                [value]="blockedSum$"
                 [units]="'$'"
-                [type]="'error'"
+                [type]="ERROR_STYLE"
             ></fb-info-card>
         </div>
         <div fxFlexFill fxLayout="column" fxLayoutAlign="space-between center" [fxLayoutGap]="layoutGapM">
             <mat-card fxFlexFill fxLayoutAlign="start">
                 <mat-card-content fxFlexFill>
-                    <h4>Fraud result rate</h4>
-                    <label>Rate success and blocked operations</label>
+                    <h4>Fraud result ratio</h4>
+                    <label>Ratio success and blocked operations</label>
                     <fb-bar-chart
                         *ngIf="chartData$ | async as chartData"
                         fxFlexFill

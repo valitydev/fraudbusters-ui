@@ -13,14 +13,18 @@ import { RatioResponse } from '../../fb-management/swagger-codegen/model/ratioRe
 import { SplitRiskScoreCountRatioResponse } from '../../fb-management/swagger-codegen/model/splitRiskScoreCountRatioResponse';
 import { FraudResultListSummaryResponse } from '../../fb-management/swagger-codegen/model/fraudResultListSummaryResponse';
 import { FraudResultSummary } from '../../fb-management/swagger-codegen/model/fraudResultSummary';
-import { ChartData, Series } from '../../../sections/analytics/model/chart-data';
-import { RiskScoreOffsetCountRatio } from '../../fb-management/swagger-codegen/model/riskScoreOffsetCountRatio';
+import { ChartData } from '../../../sections/analytics/model/chart-data';
+import { RiskSeriesMapperService } from './riskSeriesMapper.service';
 
 @Injectable()
 export class AnalyticsService {
     private readonly fbAnalyticsUrl = `${this.configService.fbManagementEndpoint}/analytics`;
 
-    constructor(private http: HttpClient, private configService: ConfigService) {}
+    constructor(
+        private http: HttpClient,
+        private configService: ConfigService,
+        private riskSeriesMapperService: RiskSeriesMapperService
+    ) {}
 
     getCurrencies(): Observable<string[]> {
         return this.http
@@ -67,55 +71,11 @@ export class AnalyticsService {
             })
             .pipe(
                 map((response: SplitRiskScoreCountRatioResponse) => {
-                    let newVar = {
-                        series: this.mapSeries(response),
+                    return {
+                        series: this.riskSeriesMapperService.mapSeries(response),
                     } as ChartData;
-                    console.log(newVar);
-                    return newVar;
                 })
             );
-    }
-
-    private mapSeries(response: SplitRiskScoreCountRatioResponse) {
-        return response.offsetCountRatios.map(
-            (value) =>
-                ({
-                    name: value.score,
-                    data: value.offsetCountRatio.map((offsetCountRatioValue) => ({
-                        x: this.getX(offsetCountRatioValue.offset, response.splitUnit),
-                        y: offsetCountRatioValue.countRatio,
-                        fillColor: this.getFillColor(value),
-                    })),
-                } as Series)
-        );
-    }
-
-    private getFillColor(value: RiskScoreOffsetCountRatio) {
-        switch (value.score) {
-            case 'low':
-                return '#1ab152';
-            case 'fatal':
-                return '#cf1c1d';
-            default:
-                return '#c4c4c4';
-        }
-    }
-
-    private getX(value: number, splitUnit: string) {
-        switch (splitUnit) {
-            case 'hour':
-                return new Date(value).getHours() + 1;
-            case 'month':
-                return new Date(value).getMonth() + 1;
-            case 'day':
-                return new Date(value).getDay() + 1;
-            default:
-                return new Date(value).getDay() + 1;
-        }
-    }
-
-    getDaysInMonth(date: Date) {
-        return new Date(date.getFullYear(), date.getMonth(), 0);
     }
 
     getSummary(paramsRes: SearchBaseAnalyticsParams): Observable<FraudResultSummary[]> {

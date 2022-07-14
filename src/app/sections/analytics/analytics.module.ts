@@ -39,6 +39,8 @@ import { BarChartComponent } from '../../shared/components/charts/bar-chart/bar-
 import { BarChartModule } from '../../shared/components/charts';
 import { BaseAnalyticsService } from './components/base/services/base-analytics.service';
 import { FraudSummaryListModule } from './components/base/components/fraud-summary-list';
+import { RiskSeriesMapperService } from '../../api/payments/analytics/riskSeriesMapper.service';
+import { BaseAnalyticsUtilService } from './components/base/services/base-analytics-util.service';
 
 @NgModule({
     imports: [
@@ -75,6 +77,6 @@ import { FraudSummaryListModule } from './components/base/components/fraud-summa
         FraudSummaryListModule,
     ],
     declarations: [AnalyticsComponent, BaseAnalyticsComponent, BaseAnalyticsSearchComponent],
-    providers: [AnalyticsService, BaseAnalyticsService, DatePipe],
+    providers: [AnalyticsService, RiskSeriesMapperService, BaseAnalyticsService, DatePipe, BaseAnalyticsUtilService],
 })
 export class AnalyticsModule {}

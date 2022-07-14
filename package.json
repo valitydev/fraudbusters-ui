@@ -4,6 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
+    "start:dev": "ng serve --configuration development",
     "build": "ng build --prod",
     "test": "ng test",
     "lint-cmd": "eslint \"src/**/*.{ts,js,html}\" --max-warnings 1072",

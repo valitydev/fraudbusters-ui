@@ -12,8 +12,8 @@ export class BaseAnalyticsService {
     currencies$: Observable<string[]>;
     attemptedPayments$: Observable<number>;
     blockedPayments$: Observable<number>;
-    blockedRates$: Observable<number>;
-    blockSum$: Observable<number>;
+    ratioOfBlocked$: Observable<number>;
+    blockedSum$: Observable<number>;
     fraudSummary$: Observable<FraudResultSummary[]>;
 
     chartDataX$: Observable<ChartData>;
@@ -42,12 +42,12 @@ export class BaseAnalyticsService {
             filter((r) => !!r),
             shareReplay(1)
         );
-        this.blockedRates$ = this.searchParameters$.pipe(
+        this.ratioOfBlocked$ = this.searchParameters$.pipe(
             switchMap((value) => this.analyticsService.getBlockedPaymentsRatio(value)),
             filter((r) => !!r),
             shareReplay(1)
         );
-        this.blockSum$ = this.searchParameters$.pipe(
+        this.blockedSum$ = this.searchParameters$.pipe(
             switchMap((value) => this.analyticsService.getBlockedPaymentsSum(value)),
             filter((r) => !!r),
             shareReplay(1)
@@ -63,8 +63,8 @@ export class BaseAnalyticsService {
         merge(
             this.attemptedPayments$,
             this.blockedPayments$,
-            this.blockedRates$,
-            this.blockSum$,
+            this.ratioOfBlocked$,
+            this.blockedSum$,
             this.chartDataX$,
             this.fraudSummary$
         ).subscribe((value) => this.finished$.next(value));
