@@ -1,5 +1,7 @@
+import { Constructor } from '@angular/cdk/table';
 import { FormGroupDirective, NgControl, NgForm } from '@angular/forms';
-import { CanUpdateErrorStateCtor, ErrorStateMatcher, mixinErrorState } from '@angular/material/core';
+import { CanUpdateErrorState, ErrorStateMatcher, mixinErrorState } from '@angular/material/core';
+import { AbstractConstructor } from '@angular/material/core/common-behaviors/constructor';
 
 export class InputBase {
     constructor(
@@ -9,5 +11,7 @@ export class InputBase {
         public ngControl: NgControl
     ) {}
 }
+
+type CanUpdateErrorStateCtor = Constructor<CanUpdateErrorState> & AbstractConstructor<CanUpdateErrorState>;
 
 export const INPUT_MIX_IN_BASE: CanUpdateErrorStateCtor & typeof InputBase = mixinErrorState(InputBase);

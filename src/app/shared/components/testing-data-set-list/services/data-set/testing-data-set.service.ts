@@ -19,10 +19,8 @@ export class TestingDataSetService {
     };
 
     form = this.fb.group(TestingDataSetService.defaultParams);
-
-    private test$ = new Subject<ApplyRuleOnHistoricalDataSetRequest>();
-    private validate$ = new Subject<string>();
-
+    test$ = new Subject<ApplyRuleOnHistoricalDataSetRequest>();
+    validate$ = new Subject<string>();
     tested$ = this.test$.pipe(
         switchMap((value) => this.dataSetService.applyRuleOnHistoricalDataSet(value)),
         shareReplay(1)

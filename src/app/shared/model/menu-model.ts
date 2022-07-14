@@ -4,6 +4,12 @@ import { NavItem } from './nav-item';
 export class MenuModel {
     public static navItems: NavItem[] = [
         {
+            displayName: 'Analytics',
+            iconName: 'pie_chart',
+            route: 'analytics',
+            roles: [Roles.FraudOfficer, Roles.FraudMonitoring],
+        },
+        {
             displayName: 'Templates',
             iconName: 'business',
             route: 'templates',

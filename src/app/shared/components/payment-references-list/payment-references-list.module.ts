@@ -6,7 +6,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatIconModule } from '@angular/material/icon';
-import { MatMenuModule, _MatMenuDirectivesModule } from '@angular/material/menu';
+import { MatMenuModule } from '@angular/material/menu';
 
 import { SharedPipesModule } from '../../../shared/pipes';
 import { ListHeaderModule } from '../list-header';
@@ -24,7 +24,6 @@ import { PaymentReferencesListComponent } from './payment-references-list.compon
         MatDividerModule,
         SharedPipesModule,
         MatButtonModule,
-        _MatMenuDirectivesModule,
         MatIconModule,
         MatMenuModule,
         ListHeaderModule,

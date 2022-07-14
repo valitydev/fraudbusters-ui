@@ -6,7 +6,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatIconModule } from '@angular/material/icon';
-import { MatMenuModule, _MatMenuDirectivesModule } from '@angular/material/menu';
+import { MatMenuModule } from '@angular/material/menu';
 
 import { ListHeaderModule } from '../../../../../shared/components/list-header';
 import { TagModule } from '../../../../../shared/components/tag';
@@ -23,7 +23,6 @@ import { PeriodicalNotificationsListComponent } from './periodical-notifications
         MatCardModule,
         MatExpansionModule,
         MatDividerModule,
-        _MatMenuDirectivesModule,
         MatIconModule,
         MatMenuModule,
         SharedPipesModule,

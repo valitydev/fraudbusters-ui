@@ -13,11 +13,11 @@ async function replaceModuleWithProvidersNg10(outputDirPath: string) {
     return new Promise((resolve, reject) => {
         try {
             const result = shell.sed('-i', /ModuleWithProviders\s/, `ModuleWithProviders<ApiModule> `, modulePath);
-            // tslint:disable-next-line:no-console
+            // eslint-disable-next-line no-console
             console.log(`Replaced "ModuleWithProviders" in "${modulePath}"`);
             resolve(result);
         } catch (err) {
-            // tslint:disable-next-line:no-console
+            // eslint-disable-next-line no-console
             console.error(err);
             console.error(`Error on path "${modulePath}"`);
             reject(err);

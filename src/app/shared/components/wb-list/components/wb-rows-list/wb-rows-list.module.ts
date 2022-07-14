@@ -6,7 +6,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatIconModule } from '@angular/material/icon';
-import { MatMenuModule, _MatMenuDirectivesModule } from '@angular/material/menu';
+import { MatMenuModule } from '@angular/material/menu';
 
 import { ListHeaderModule } from '../../../../../shared/components/list-header';
 import { SharedPipesModule } from '../../../../../shared/pipes';
@@ -25,7 +25,6 @@ import { WbRowsListComponent } from './wb-rows-list.component';
         MatButtonModule,
         ListHeaderModule,
         MatButtonModule,
-        _MatMenuDirectivesModule,
         MatIconModule,
         MatMenuModule,
         ListHeaderModule,
