@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
-import { SplitRiskScoreCountRatioResponse } from '../../fb-management/swagger-codegen/model/splitRiskScoreCountRatioResponse';
+
 import { Series } from '../../../sections/analytics/model/chart-data';
 import { RiskScoreOffsetCountRatio } from '../../fb-management/swagger-codegen/model/riskScoreOffsetCountRatio';
+import { SplitRiskScoreCountRatioResponse } from '../../fb-management/swagger-codegen/model/splitRiskScoreCountRatioResponse';
 
 @Injectable()
 export class RiskSeriesMapperService {
@@ -31,16 +32,16 @@ export class RiskSeriesMapperService {
     }
 
     private getX(value: number, splitUnit: string) {
-        const ADDITIONAL_FOR_FIX_ZERO_START = 1;
+        const additionalForFixZeroStart = 1;
         switch (splitUnit) {
             case 'hour':
-                return new Date(value).getHours() + ADDITIONAL_FOR_FIX_ZERO_START;
+                return new Date(value).getHours() + additionalForFixZeroStart;
             case 'month':
-                return new Date(value).getMonth() + ADDITIONAL_FOR_FIX_ZERO_START;
+                return new Date(value).getMonth() + additionalForFixZeroStart;
             case 'day':
-                return new Date(value).getDay() + ADDITIONAL_FOR_FIX_ZERO_START;
+                return new Date(value).getDay() + additionalForFixZeroStart;
             default:
-                return new Date(value).getDay() + ADDITIONAL_FOR_FIX_ZERO_START;
+                return new Date(value).getDay() + additionalForFixZeroStart;
         }
     }
 }

@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component, Inject, Input } from '@angular/core';
+
 import { FraudResultSummary } from '../../../../../../../../api/fb-management/swagger-codegen/model/fraudResultSummary';
 import { LAYOUT_GAP_M, LAYOUT_GAP_S } from '../../../../../../../../tokens';
 

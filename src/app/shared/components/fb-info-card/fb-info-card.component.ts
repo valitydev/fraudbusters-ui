@@ -14,10 +14,8 @@ export class FbInfoCardComponent implements OnInit {
 
     valueNumber = 0;
 
-    constructor() {}
-
     ngOnInit(): void {
-        this.value.subscribe((value) => (this.valueNumber = !!value ? value : 0));
+        this.value.subscribe((value) => (this.valueNumber = value ? value : 0));
     }
 
     numberFormat(num) {

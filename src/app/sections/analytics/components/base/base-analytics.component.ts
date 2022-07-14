@@ -1,26 +1,24 @@
-import { ChangeDetectionStrategy, Component, Inject } from '@angular/core';
-import { LAYOUT_GAP_M } from '../../../../tokens';
-import { BaseAnalyticsService } from './services/base-analytics.service';
-import { ActivatedRoute, Router } from '@angular/router';
 import { DatePipe } from '@angular/common';
+import { ChangeDetectionStrategy, Component, Inject } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+
+import { LAYOUT_GAP_M } from '../../../../tokens';
 import { BaseAnalyticsUtilService } from './services/base-analytics-util.service';
+import { BaseAnalyticsService } from './services/base-analytics.service';
 
 @Component({
     templateUrl: 'base-analytics.component.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BaseAnalyticsComponent {
-    private readonly _yyyyMMDdHHMmSs = 'yyyy-MM-dd HH:mm:ss';
+    readonly successStyle = 'success';
+    readonly errorStyle = 'error';
+    readonly blockedSum = 'Blocked sum';
+    readonly ratioOfBlocked = 'Ratio of blocked';
+    readonly blockedPayments = 'Blocked payments';
+    readonly attemptedPayments = 'Attempted payments';
 
-    SUCCESS_STYLE = 'success';
-    ERROR_STYLE = 'error';
-
-    BLOCKED_SUM = 'Blocked sum';
-    RATIO_OF_BLOCKED = 'Ratio of blocked';
-    BLOCKED_PAYMENTS = 'Blocked payments';
-    ATTEMPTED_PAYMENTS = 'Attempted payments';
-
-    colors = ['#1ab152', '#c4c4c4', '#cf1c1d'];
+    readonly colors = ['#1ab152', '#c4c4c4', '#cf1c1d'];
 
     attemptedPayments$ = this.baseAnalyticsService.attemptedPayments$;
     blockedPayments$ = this.baseAnalyticsService.blockedPayments$;
@@ -29,6 +27,8 @@ export class BaseAnalyticsComponent {
     fraudSummary$ = this.baseAnalyticsService.fraudSummary$;
     chartData$ = this.baseAnalyticsService.chartDataX$;
     inProgress$ = this.baseAnalyticsService.inProgress$;
+
+    private readonly _yyyyMMDdHHMmSs = 'yyyy-MM-dd HH:mm:ss';
 
     constructor(
         private route: ActivatedRoute,

@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
 import { EMPTY, merge, Observable, Subject } from 'rxjs';
+import { catchError, filter, shareReplay, switchMap } from 'rxjs/operators';
+
+import { FraudResultSummary } from '../../../../../api/fb-management/swagger-codegen/model/fraudResultSummary';
 import { AnalyticsService } from '../../../../../api/payments/analytics';
 import { SearchBaseAnalyticsParams } from '../../../../../api/payments/analytics/searchBaseAnalyticsParams';
-import { catchError, filter, shareReplay, switchMap } from 'rxjs/operators';
-import { ChartData } from '../../../model/chart-data';
-import { FraudResultSummary } from '../../../../../api/fb-management/swagger-codegen/model/fraudResultSummary';
 import { progress } from '../../../../../shared/operators';
+import { ChartData } from '../../../model/chart-data';
 
 @Injectable()
 export class BaseAnalyticsService {
@@ -53,7 +54,7 @@ export class BaseAnalyticsService {
             shareReplay(1)
         );
         this.chartDataX$ = this.searchParameters$.pipe(
-            catchError((err, caught) => {
+            catchError(() => {
                 return EMPTY;
             }),
             switchMap((value) => this.analyticsService.getSplitCountRatio(value)),

@@ -10,29 +10,29 @@
         <div fxLayout="row" fxlayoutgap="10px grid" fxLayoutAlign="space-between center" [fxLayoutGap]="layoutGapM">
             <fb-info-card
                 fxFlex="25"
-                [headerText]="ATTEMPTED_PAYMENTS"
+                [headerText]="attemptedPayments"
                 [value]="attemptedPayments$"
-                [type]="SUCCESS_STYLE"
+                [type]="successStyle"
             ></fb-info-card>
             <fb-info-card
                 fxFlex="25"
-                [headerText]="BLOCKED_PAYMENTS"
+                [headerText]="blockedPayments"
                 [value]="blockedPayments$"
-                [type]="ERROR_STYLE"
+                [type]="errorStyle"
             ></fb-info-card>
             <fb-info-card
                 fxFlex="25"
-                [headerText]="RATIO_OF_BLOCKED"
+                [headerText]="ratioOfBlocked"
                 [value]="ratioOfBlocked$"
                 [units]="'%'"
-                [type]="ERROR_STYLE"
+                [type]="errorStyle"
             ></fb-info-card>
             <fb-info-card
                 fxFlex="25"
-                [headerText]="BLOCKED_SUM"
+                [headerText]="blockedSum"
                 [value]="blockedSum$"
                 [units]="'$'"
-                [type]="ERROR_STYLE"
+                [type]="errorStyle"
             ></fb-info-card>
         </div>
         <div fxFlexFill fxLayout="column" fxLayoutAlign="space-between center" [fxLayoutGap]="layoutGapM">

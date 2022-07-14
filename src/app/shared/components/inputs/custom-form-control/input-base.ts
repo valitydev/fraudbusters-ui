@@ -1,6 +1,6 @@
+import { Constructor } from '@angular/cdk/table';
 import { FormGroupDirective, NgControl, NgForm } from '@angular/forms';
 import { CanUpdateErrorState, ErrorStateMatcher, mixinErrorState } from '@angular/material/core';
-import { Constructor } from '@angular/cdk/table';
 import { AbstractConstructor } from '@angular/material/core/common-behaviors/constructor';
 
 export class InputBase {

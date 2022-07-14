@@ -1,20 +1,20 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 import { ConfigService } from '../../../config';
-import { ListResponse } from '../../fb-management/swagger-codegen/model/listResponse';
-import { map } from 'rxjs/operators';
-import { CountResponse } from '../../fb-management/swagger-codegen/model/countResponse';
+import { ChartData } from '../../../sections/analytics/model/chart-data';
 import { filterParameters } from '../../../shared/utils/filter-params';
-import { SearchBaseAnalyticsParams } from './searchBaseAnalyticsParams';
-import { SumResponse } from '../../fb-management/swagger-codegen/model/sumResponse';
-import { RatioResponse } from '../../fb-management/swagger-codegen/model/ratioResponse';
-import { SplitRiskScoreCountRatioResponse } from '../../fb-management/swagger-codegen/model/splitRiskScoreCountRatioResponse';
+import { CountResponse } from '../../fb-management/swagger-codegen/model/countResponse';
 import { FraudResultListSummaryResponse } from '../../fb-management/swagger-codegen/model/fraudResultListSummaryResponse';
 import { FraudResultSummary } from '../../fb-management/swagger-codegen/model/fraudResultSummary';
-import { ChartData } from '../../../sections/analytics/model/chart-data';
+import { ListResponse } from '../../fb-management/swagger-codegen/model/listResponse';
+import { RatioResponse } from '../../fb-management/swagger-codegen/model/ratioResponse';
+import { SplitRiskScoreCountRatioResponse } from '../../fb-management/swagger-codegen/model/splitRiskScoreCountRatioResponse';
+import { SumResponse } from '../../fb-management/swagger-codegen/model/sumResponse';
 import { RiskSeriesMapperService } from './riskSeriesMapper.service';
+import { SearchBaseAnalyticsParams } from './searchBaseAnalyticsParams';
 
 @Injectable()
 export class AnalyticsService {

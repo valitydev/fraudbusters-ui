@@ -1,11 +1,12 @@
 import { Component, EventEmitter, Inject, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Observable } from 'rxjs';
 import { debounceTime, map, take } from 'rxjs/operators';
+
 import { removeEmptyProperties } from '../../../../../../shared/utils/remove-empty-properties';
 import { LAYOUT_GAP_M } from '../../../../../../tokens';
 import { BaseAnalyticsService } from '../../services/base-analytics.service';
-import { Observable } from 'rxjs';
 
 @Component({
     selector: 'fb-base-analytics-search',

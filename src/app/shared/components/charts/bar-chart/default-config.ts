@@ -1,10 +1,9 @@
 import { ApexOptions } from 'ng-apexcharts/lib/model/apex-types';
 
 import { DEFAULT_ANIMATION } from '../default-animation';
-import { formatAmount } from '../format-amount';
-
 import { DEFAULT_LEGEND } from '../default-legend';
 import { DEFAULT_STATES } from '../default-states';
+import { formatAmount } from '../format-amount';
 
 const COLUMN_WIDTH = '30%';
 
