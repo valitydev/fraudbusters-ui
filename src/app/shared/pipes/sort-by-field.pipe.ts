@@ -19,8 +19,9 @@ export class ArraySortPipe implements PipeTransform {
     }
 
     deepValue(obj, path) {
-        for (let i = 0, path = path.split('.'), len = path.length; i < len; i++) {
-            obj = obj[path[i]];
+        const pathList = path.split('.');
+        for (let i = 0, len = pathList.length; i < len; i += 1) {
+            obj = obj[pathList[i]];
         }
         return obj;
     }
