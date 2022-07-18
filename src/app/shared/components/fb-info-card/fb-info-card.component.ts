@@ -13,13 +13,13 @@ export class FbInfoCardComponent implements OnInit {
     @Input() type: string;
     @Input() inProgress: Observable<boolean>;
 
-    valueNumber = 0;
+    valueNumber = 0.0;
 
     ngOnInit(): void {
         this.value.subscribe((value) => (this.valueNumber = value ? value : 0));
     }
 
     numberFormat(num) {
-        return num === 'NaN' ? 0 : num;
+        return num === 'NaN' ? 0.0 : num;
     }
 }
