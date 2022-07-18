@@ -1,11 +1,11 @@
 <mat-card fxLayoutAlign="center">
     <mat-card-content>
-        <h4 fxLayoutAlign="center">
-            {{ headerText }}
-            <div *ngIf="inProgress | async" fxLayout fxLayoutAlign="center" style="height: 30px; width: 40px">
-                <mat-progress-spinner color="primary" mode="indeterminate" diameter="20"></mat-progress-spinner>
-            </div>
-        </h4>
-        <h1 [class]="type" fxLayoutAlign="center">{{ numberFormat(valueNumber | number: '.1-4') }} {{ units }}</h1>
+        <h4 fxLayoutAlign="center">{{ headerText }}</h4>
+        <div *ngIf="inProgress | async" fxLayout fxLayoutAlign="center" style="height: 33px; width: 140px">
+            <mat-progress-spinner color="primary" mode="indeterminate" diameter="20"></mat-progress-spinner>
+        </div>
+        <h1 *ngIf="!(inProgress | async)" [class]="type" fxLayoutAlign="center">
+            {{ numberFormat(valueNumber | number: '.1-4') }} {{ units }}
+        </h1>
     </mat-card-content>
 </mat-card>
