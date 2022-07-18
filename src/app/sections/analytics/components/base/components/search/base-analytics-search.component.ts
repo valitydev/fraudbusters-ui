@@ -16,7 +16,7 @@ import { BaseAnalyticsService } from '../../services/base-analytics.service';
 export class BaseAnalyticsSearchComponent implements OnInit {
     @Output() valueChanges: EventEmitter<string> = new EventEmitter();
 
-    @Output() currencies$ = this.baseAnalyticsService.currencies$;
+    currencies$ = this.baseAnalyticsService.currencies$;
 
     @Input() inProgress: Observable<boolean>;
 
