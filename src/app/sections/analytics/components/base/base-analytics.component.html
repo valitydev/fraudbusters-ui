@@ -12,18 +12,21 @@
                 fxFlex="25"
                 [headerText]="attemptedPayments"
                 [value]="attemptedPayments$"
+                [inProgress]="inProgress$"
                 [type]="successStyle"
             ></fb-info-card>
             <fb-info-card
                 fxFlex="25"
                 [headerText]="blockedPayments"
                 [value]="blockedPayments$"
+                [inProgress]="inProgress$"
                 [type]="errorStyle"
             ></fb-info-card>
             <fb-info-card
                 fxFlex="25"
                 [headerText]="ratioOfBlocked"
                 [value]="ratioOfBlocked$"
+                [inProgress]="inProgress$"
                 [units]="'%'"
                 [type]="errorStyle"
             ></fb-info-card>
@@ -31,6 +34,7 @@
                 fxFlex="25"
                 [headerText]="blockedSum"
                 [value]="blockedSum$"
+                [inProgress]="inProgress$"
                 [type]="errorStyle"
             ></fb-info-card>
         </div>

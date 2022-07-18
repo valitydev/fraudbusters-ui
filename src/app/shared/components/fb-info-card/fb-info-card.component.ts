@@ -11,6 +11,7 @@ export class FbInfoCardComponent implements OnInit {
     @Input() value: Observable<number>;
     @Input() units = '';
     @Input() type: string;
+    @Input() inProgress: Observable<boolean>;
 
     valueNumber = 0;
 
