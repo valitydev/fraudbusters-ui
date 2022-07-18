@@ -4,5 +4,5 @@
     <div class="fb-body-2" fxFlex>{{ summary.checkedRule }}</div>
     <div class="fb-body-2" fxFlex>{{ summary.summary.sum }}</div>
     <div class="fb-body-2" fxFlex>{{ summary.summary.count }}</div>
-    <div class="fb-body-2" fxFlex>{{ numberFormat(summary.summary.ratio) }}%</div>
+    <div class="fb-body-2" fxFlex>{{ numberFormat(summary.summary.ratio) | number: '.1-4' }}</div>
 </mat-card>

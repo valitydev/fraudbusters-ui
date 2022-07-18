@@ -16,9 +16,9 @@ import { BaseAnalyticsService } from '../../services/base-analytics.service';
 export class BaseAnalyticsSearchComponent implements OnInit {
     @Output() valueChanges: EventEmitter<string> = new EventEmitter();
 
-    @Input() inProgress: Observable<boolean>;
-
     currencies$ = this.baseAnalyticsService.currencies$;
+
+    @Input() inProgress: Observable<boolean>;
 
     units = ['1 day', '1 week', 'last month', 'last year'];
 
@@ -37,25 +37,33 @@ export class BaseAnalyticsSearchComponent implements OnInit {
         @Inject(LAYOUT_GAP_M) public layoutGapM: string
     ) {
         this.form.valueChanges.pipe(debounceTime(600), map(removeEmptyProperties)).subscribe((v) => {
+            this.router.navigate([location.pathname], { queryParams: v });
             const params = Object.create(v);
             params.partyId = v.partyId;
             params.shopId = v.shopId;
             params.type = v.type;
             params.time = v.time;
-            this.router.navigate([location.pathname], { queryParams: params });
             this.valueChanges.emit(v);
         });
         this.route.queryParams.pipe(take(1)).subscribe((v) => this.form.patchValue(v));
     }
 
     ngOnInit(): void {
-        this.currencies$.pipe(take(1)).subscribe((value) =>
+        this.currencies$.pipe(take(1)).subscribe((value) => {
             this.form.setValue({
-                partyId: '',
-                shopId: '',
-                type: value[0],
-                time: this.units[0],
-            })
-        );
+                partyId: this.route.snapshot.queryParamMap.get('partyId')
+                    ? this.route.snapshot.queryParamMap.get('partyId')
+                    : '',
+                shopId: this.route.snapshot.queryParamMap.get('shopId')
+                    ? this.route.snapshot.queryParamMap.get('shopId')
+                    : '',
+                type: this.route.snapshot.queryParamMap.get('type')
+                    ? this.route.snapshot.queryParamMap.get('type')
+                    : value[0],
+                time: this.route.snapshot.queryParamMap.get('time')
+                    ? this.route.snapshot.queryParamMap.get('time')
+                    : this.units[0],
+            });
+        });
     }
 }
