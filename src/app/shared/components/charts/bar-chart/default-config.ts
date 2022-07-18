@@ -32,7 +32,7 @@ export const DEFAULT_CONFIG: ApexOptions = {
         },
     },
     xaxis: {
-        type: 'category',
+        type: 'datetime',
         labels: {
             offsetY: -5,
             rotate: 0,

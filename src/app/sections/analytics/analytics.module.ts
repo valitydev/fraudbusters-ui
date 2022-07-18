@@ -33,6 +33,7 @@ import { EmptySearchResultModule } from '../../shared/components/empty-search-re
 import { FbInfoCardModule } from '../../shared/components/fb-info-card';
 import { ShowMorePanelModule } from '../../shared/components/show-more-panel';
 import { SharedPipesModule } from '../../shared/pipes';
+import { ArraySortPipe } from '../../shared/pipes/sort-by-field.pipe';
 import { AnalyticsRoutingModule } from './analytics-routing.module';
 import { AnalyticsComponent } from './analytics.component';
 import { BaseAnalyticsComponent } from './components/base/base-analytics.component';
@@ -76,6 +77,13 @@ import { BaseAnalyticsService } from './components/base/services/base-analytics.
         FraudSummaryListModule,
     ],
     declarations: [AnalyticsComponent, BaseAnalyticsComponent, BaseAnalyticsSearchComponent],
-    providers: [AnalyticsService, RiskSeriesMapperService, BaseAnalyticsService, DatePipe, BaseAnalyticsUtilService],
+    providers: [
+        AnalyticsService,
+        RiskSeriesMapperService,
+        BaseAnalyticsService,
+        DatePipe,
+        BaseAnalyticsUtilService,
+        ArraySortPipe,
+    ],
 })
 export class AnalyticsModule {}

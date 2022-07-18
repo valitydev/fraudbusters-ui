@@ -12,7 +12,7 @@ export class RiskSeriesMapperService {
                 ({
                     name: value.score,
                     data: value.offsetCountRatio.map((offsetCountRatioValue) => ({
-                        x: this.getX(offsetCountRatioValue.offset, response.splitUnit),
+                        x: new Date(offsetCountRatioValue.offset),
                         y: offsetCountRatioValue.countRatio,
                         fillColor: this.getFillColor(value),
                     })),
@@ -28,20 +28,6 @@ export class RiskSeriesMapperService {
                 return '#cf1c1d';
             default:
                 return '#c4c4c4';
-        }
-    }
-
-    private getX(value: number, splitUnit: string) {
-        const additionalForFixZeroStart = 1;
-        switch (splitUnit) {
-            case 'hour':
-                return new Date(value).getHours() + additionalForFixZeroStart;
-            case 'month':
-                return new Date(value).getMonth() + additionalForFixZeroStart;
-            case 'day':
-                return new Date(value).getDay() + additionalForFixZeroStart;
-            default:
-                return new Date(value).getDay() + additionalForFixZeroStart;
         }
     }
 }

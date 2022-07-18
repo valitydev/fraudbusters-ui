@@ -31,7 +31,6 @@
                 fxFlex="25"
                 [headerText]="blockedSum"
                 [value]="blockedSum$"
-                [units]="'$'"
                 [type]="errorStyle"
             ></fb-info-card>
         </div>
@@ -56,7 +55,7 @@
                 <fb-fraud-summary-templates-list
                     fxFlexFill
                     *ngIf="summaries.length"
-                    [summaryRows]="summaries"
+                    [summaryRows]="summaries | sort: 'summary.count'"
                 ></fb-fraud-summary-templates-list>
             </div>
         </div>

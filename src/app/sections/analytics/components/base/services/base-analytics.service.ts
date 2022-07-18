@@ -62,6 +62,7 @@ export class BaseAnalyticsService {
             shareReplay(1)
         );
         merge(
+            this.currencies$,
             this.attemptedPayments$,
             this.blockedPayments$,
             this.ratioOfBlocked$,
