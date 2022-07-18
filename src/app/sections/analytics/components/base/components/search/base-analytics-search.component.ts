@@ -37,7 +37,6 @@ export class BaseAnalyticsSearchComponent implements OnInit {
         @Inject(LAYOUT_GAP_M) public layoutGapM: string
     ) {
         this.form.valueChanges.pipe(debounceTime(600), map(removeEmptyProperties)).subscribe((v) => {
-            // this.currentCurrency.next(v.type);
             this.router.navigate([location.pathname], { queryParams: v });
             const params = Object.create(v);
             params.partyId = v.partyId;
