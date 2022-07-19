@@ -7,7 +7,7 @@ export class MenuModel {
             displayName: 'Analytics',
             iconName: 'pie_chart',
             route: 'analytics',
-            roles: [Roles.FraudOfficer, Roles.FraudMonitoring],
+            roles: [Roles.FraudMonitoring],
         },
         {
             displayName: 'Templates',
