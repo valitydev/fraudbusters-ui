@@ -29,6 +29,7 @@
                 [inProgress]="inProgress$"
                 [units]="'%'"
                 [type]="errorStyle"
+                [formatNumber]="true"
             ></fb-info-card>
             <fb-info-card
                 fxFlex="25"
@@ -36,6 +37,7 @@
                 [value]="blockedSum$ | async"
                 [inProgress]="inProgress$"
                 [type]="errorStyle"
+                [formatNumber]="true"
             ></fb-info-card>
         </div>
         <div fxFlexFill fxLayout="column" fxLayoutAlign="space-between center" [fxLayoutGap]="layoutGapM">

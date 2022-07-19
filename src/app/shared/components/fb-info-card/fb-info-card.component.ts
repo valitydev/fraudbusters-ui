@@ -12,6 +12,7 @@ export class FbInfoCardComponent {
     @Input() units = '';
     @Input() type: string;
     @Input() inProgress: Observable<boolean>;
+    @Input() formatNumber = false;
 
     numberFormat(num) {
         return num === 'NaN' || !num ? 0.0 : num;
