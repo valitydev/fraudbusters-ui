@@ -7,7 +7,7 @@ import { RouterModule } from '@angular/router';
             [
                 {
                     path: '',
-                    redirectTo: 'analytics',
+                    redirectTo: 'emulation/template',
                     pathMatch: 'full',
                 },
             ],
