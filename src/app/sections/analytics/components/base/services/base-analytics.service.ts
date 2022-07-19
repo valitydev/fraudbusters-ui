@@ -35,22 +35,18 @@ export class BaseAnalyticsService {
         );
         this.attemptedPayments$ = this.searchParameters$.pipe(
             switchMap((value) => this.analyticsService.getAttemptedPaymentsCount(value)),
-            filter((r) => !!r),
             shareReplay(1)
         );
         this.blockedPayments$ = this.searchParameters$.pipe(
             switchMap((value) => this.analyticsService.getBlockedPaymentsCount(value)),
-            filter((r) => !!r),
             shareReplay(1)
         );
         this.ratioOfBlocked$ = this.searchParameters$.pipe(
             switchMap((value) => this.analyticsService.getBlockedPaymentsRatio(value)),
-            filter((r) => !!r),
             shareReplay(1)
         );
         this.blockedSum$ = this.searchParameters$.pipe(
             switchMap((value) => this.analyticsService.getBlockedPaymentsSum(value)),
-            filter((r) => !!r),
             shareReplay(1)
         );
         this.chartDataX$ = this.searchParameters$.pipe(
