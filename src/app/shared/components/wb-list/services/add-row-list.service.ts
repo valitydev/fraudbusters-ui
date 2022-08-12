@@ -81,14 +81,7 @@ export class AddRowListService {
                     header: true,
                     complete: (results) => {
                         const data = results.data;
-                        if (
-                            this.csvUtilsService.isValidFormatCsv(data, item, [
-                                'listName',
-                                'partyId',
-                                'shopId',
-                                'value',
-                            ])
-                        ) {
+                        if (this.csvUtilsService.isValidFormatCsv(data, item, ['listName', 'value'])) {
                             this.processCsv(data);
                         }
                     },
@@ -106,7 +99,7 @@ export class AddRowListService {
     private createItem(listName = '', partyId = '', shopId = '', value = '') {
         return this.fb.group({
             listName: [listName, Validators.required],
-            partyId: [partyId, Validators.required],
+            partyId: [partyId],
             shopId: [shopId],
             value: [value, Validators.required],
         });
