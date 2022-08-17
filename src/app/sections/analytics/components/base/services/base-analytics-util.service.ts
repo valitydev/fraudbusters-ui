@@ -26,7 +26,6 @@ export class BaseAnalyticsUtilService {
         }
         const now = new Date();
         now.setDate(now.getDate() - diffDay);
-        now.setHours(0, 0, 0, 0);
         return now;
     }
 
