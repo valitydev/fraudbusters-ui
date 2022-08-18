@@ -5,6 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { LAYOUT_GAP_M } from '../../../../tokens';
 import { BaseAnalyticsUtilService } from './services/base-analytics-util.service';
 import { BaseAnalyticsService } from './services/base-analytics.service';
+import { DateFormat } from '../../../../shared/constants/date-format';
 
 @Component({
     templateUrl: 'base-analytics.component.html',
@@ -28,8 +29,6 @@ export class BaseAnalyticsComponent {
     chartData$ = this.baseAnalyticsService.chartDataX$;
     inProgress$ = this.baseAnalyticsService.inProgress$;
 
-    private readonly _yyyyMMDdHHMmSs = 'yyyy-MM-dd HH:mm:ss';
-
     constructor(
         private route: ActivatedRoute,
         private router: Router,
@@ -46,7 +45,7 @@ export class BaseAnalyticsComponent {
                     this.baseAnalyticsUtilService.todayFromTime($event.time).toUTCString(),
                     this._yyyyMMDdHHMmSs
                 ),
-                toTime: this.datepipe.transform(new Date().toUTCString(), this._yyyyMMDdHHMmSs),
+                toTime: this.datepipe.transform(new Date().toUTCString(), DateFormat._yyyyMMDdHHMmSs),
                 currency: $event.type,
                 merchantId: $event.partyId,
                 shopId: $event.shopId,

@@ -10,6 +10,7 @@ import { SortOrder } from '../../shared/constants/sort-order';
 import { ErrorHandlerService } from '../../shared/services/utils/error-handler.service';
 import { Filter } from './model/filter';
 import { Log } from './model/log';
+import { DateFormat } from '../../shared/constants/date-format';
 
 @Injectable()
 export class AuditService {
@@ -29,8 +30,6 @@ export class AuditService {
 
     count = 0;
     isRefresh;
-
-    private readonly yyyyMMDdHHMmSs = 'yyyy-MM-dd HH:mm:ss';
 
     private readonly size = 10;
 
@@ -65,8 +64,8 @@ export class AuditService {
                         searchValue: value[0].user + '%',
                         objectTypes: value[0].objectTypes,
                         commandTypes: value[0].commandTypes,
-                        from: this.datepipe.transform(value[0].from, this.yyyyMMDdHHMmSs),
-                        to: this.datepipe.transform(value[0].to, this.yyyyMMDdHHMmSs),
+                        from: this.datepipe.transform(value[0].from, DateFormat._yyyyMMDdHHMmSs),
+                        to: this.datepipe.transform(value[0].to, DateFormat._yyyyMMDdHHMmSs),
                         sortOrder: SortOrder[value[2]],
                         size: this.size,
                         lastId: this.isLoadMore(value) ? this.last.id : null,
