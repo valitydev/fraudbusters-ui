@@ -43,10 +43,10 @@ export class BaseAnalyticsComponent {
         if ($event.type) {
             this.baseAnalyticsService.search({
                 fromTime: this.datepipe.transform(
-                    this.baseAnalyticsUtilService.todayFromTime($event.time).toISOString(),
+                    this.baseAnalyticsUtilService.todayFromTime($event.time).toUTCString(),
                     this._yyyyMMDdHHMmSs
                 ),
-                toTime: this.datepipe.transform(new Date().toISOString(), this._yyyyMMDdHHMmSs),
+                toTime: this.datepipe.transform(new Date().toUTCString(), this._yyyyMMDdHHMmSs),
                 currency: $event.type,
                 merchantId: $event.partyId,
                 shopId: $event.shopId,
