@@ -3,6 +3,7 @@ import { Observable } from 'rxjs';
 import { shareReplay } from 'rxjs/operators';
 
 import { ConfigService } from '../../../config';
+import { DateFormat } from '../../../shared/constants/date-format';
 import { SortOrder } from '../../../shared/constants/sort-order';
 import { booleanDebounceTime } from '../../../shared/operators';
 import { FetchResultContinuation } from '../../../shared/utils/partial-fetcher/fetch-result-continuation';
@@ -29,8 +30,6 @@ export abstract class FetchHistoricalService<T, P> extends PartialFetcherContinu
     inProgress$ = this.doAction$.pipe(booleanDebounceTime(), shareReplay(1));
     protected pageSize = this.configService.pageSize;
 
-    private readonly _yyyyMMDdHHMmSs = 'yyyy-MM-dd HH:mm:ss';
-
     constructor(protected configService: ConfigService, protected datepipe: DatePipe) {
         super();
     }
@@ -40,8 +39,8 @@ export abstract class FetchHistoricalService<T, P> extends PartialFetcherContinu
     protected fetch(params: FetchPaymentParams, continuationId?: string): Observable<FetchResultContinuation<T>> {
         const { sortOrder, size, from, to, paymentId, cardToken, shopId, partyId, status, fingerprint, email } = params;
         return this.filter({
-            from: this.datepipe.transform(from, this._yyyyMMDdHHMmSs),
-            to: this.datepipe.transform(to, this._yyyyMMDdHHMmSs),
+            from: this.datepipe.transform(from, DateFormat._yyyyMMDdHHMmSs),
+            to: this.datepipe.transform(to, DateFormat._yyyyMMDdHHMmSs),
             sortOrder: sortOrder || SortOrder.Desc,
             paymentId: paymentId || '',
             cardToken: cardToken || '',

@@ -2,6 +2,7 @@ import { DatePipe } from '@angular/common';
 import { ChangeDetectionStrategy, Component, Inject } from '@angular/core';
 import { Router } from '@angular/router';
 
+import { DateFormat } from '../../../../shared/constants/date-format';
 import { LAYOUT_GAP_M } from '../../../../tokens';
 import { FetchDataSetsService } from '../../services/payment-data-sets/fetch-data-sets.service';
 import { RemoveDataSetsService } from '../../services/payment-data-sets/remove-data-sets.service';
@@ -15,8 +16,6 @@ export class PaymentDataSetsComponent {
     dataSets$ = this.fetchDataSetsService.searchResult$;
     inProgress$ = this.fetchDataSetsService.inProgress$;
     hasMore$ = this.fetchDataSetsService.hasMore$;
-
-    private readonly yyyyMMDdHHMmSs = 'yyyy-MM-dd HH:mm:ss';
 
     constructor(
         private router: Router,
@@ -57,8 +56,8 @@ export class PaymentDataSetsComponent {
     private initParams(event) {
         return {
             searchValue: event.searchValue,
-            from: this.datePipe.transform(new Date(event.from), this.yyyyMMDdHHMmSs),
-            to: this.datePipe.transform(new Date(event.to), this.yyyyMMDdHHMmSs),
+            from: this.datePipe.transform(new Date(event.from), DateFormat._yyyyMMDdHHMmSs),
+            to: this.datePipe.transform(new Date(event.to), DateFormat._yyyyMMDdHHMmSs),
         };
     }
 }
