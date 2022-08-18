@@ -6,11 +6,11 @@ import { BehaviorSubject, combineLatest, Observable, of, ReplaySubject, Subject 
 import { catchError, debounceTime, map, scan, switchMap, tap } from 'rxjs/operators';
 
 import { AuditRemoteService } from '../../api/audit';
+import { DateFormat } from '../../shared/constants/date-format';
 import { SortOrder } from '../../shared/constants/sort-order';
 import { ErrorHandlerService } from '../../shared/services/utils/error-handler.service';
 import { Filter } from './model/filter';
 import { Log } from './model/log';
-import { DateFormat } from '../../shared/constants/date-format';
 
 @Injectable()
 export class AuditService {

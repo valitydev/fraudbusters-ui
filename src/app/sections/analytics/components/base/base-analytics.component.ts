@@ -2,10 +2,10 @@ import { DatePipe } from '@angular/common';
 import { ChangeDetectionStrategy, Component, Inject } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
+import { DateFormat } from '../../../../shared/constants/date-format';
 import { LAYOUT_GAP_M } from '../../../../tokens';
 import { BaseAnalyticsUtilService } from './services/base-analytics-util.service';
 import { BaseAnalyticsService } from './services/base-analytics.service';
-import { DateFormat } from '../../../../shared/constants/date-format';
 
 @Component({
     templateUrl: 'base-analytics.component.html',

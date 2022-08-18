@@ -3,12 +3,12 @@ import { Observable } from 'rxjs';
 import { shareReplay } from 'rxjs/operators';
 
 import { ConfigService } from '../../../config';
+import { DateFormat } from '../../../shared/constants/date-format';
 import { SortOrder } from '../../../shared/constants/sort-order';
 import { booleanDebounceTime } from '../../../shared/operators';
 import { FetchResultContinuation } from '../../../shared/utils/partial-fetcher/fetch-result-continuation';
 import { PartialFetcherContinuation } from '../../../shared/utils/partial-fetcher/partial-fetcher-continuation';
 import { SearchHistoricalParams } from '../search-historical-params';
-import { DateFormat } from '../../../shared/constants/date-format';
 
 export interface FetchPaymentParams {
     sortOrder?: SortOrder;
