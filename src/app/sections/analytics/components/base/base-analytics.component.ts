@@ -43,7 +43,7 @@ export class BaseAnalyticsComponent {
             this.baseAnalyticsService.search({
                 fromTime: this.datepipe.transform(
                     this.baseAnalyticsUtilService.todayFromTime($event.time).toUTCString(),
-                    this._yyyyMMDdHHMmSs
+                    DateFormat._yyyyMMDdHHMmSs
                 ),
                 toTime: this.datepipe.transform(new Date().toUTCString(), DateFormat._yyyyMMDdHHMmSs),
                 currency: $event.type,
