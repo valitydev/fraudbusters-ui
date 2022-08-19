@@ -1,8 +1,8 @@
 <mat-expansion-panel>
     <mat-expansion-panel-header>
         <div fxLayout fxFlexFill [fxLayoutGap]="layoutGapM">
-            <div class="fb-body-2" fxFlex>{{ inspectResult.payment.id }}</div>
-            <div class="fb-body-2" fxFlex>
+            <div class="fb-body-2" fxFlex="120px">{{ inspectResult.payment.id }}</div>
+            <div class="fb-body-2" fxFlex="120px">
                 <fb-tag
                     [color]="inspectResult.payment.status | paymentStatusToColor"
                     [title]="inspectResult.payment.status"
@@ -10,8 +10,8 @@
             </div>
             <div class="fb-body-2" fxFlex>{{ inspectResult.payment.merchantInfo.partyId }}</div>
             <div class="fb-body-2" fxFlex>{{ inspectResult.payment.merchantInfo.shopId }}</div>
-            <div class="fb-body-2" fxFlex>{{ inspectResult.payment.clientInfo.email }}</div>
-            <div class="fb-body-2" fxFlex>{{ inspectResult.resultStatus }}</div>
+            <div class="fb-body-2" fxFlex="120px">{{ inspectResult.payment.clientInfo.email }}</div>
+            <div class="fb-body-2" fxFlex="120px">{{ inspectResult.resultStatus }}</div>
             <div class="fb-body-2" fxFlex>{{ inspectResult.checkedTemplate }}</div>
             <div class="fb-body-2" fxFlex>{{ inspectResult.ruleChecked }}</div>
             <div class="fb-body-2" fxFlex="160px">
