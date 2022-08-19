@@ -1,14 +1,14 @@
 <mat-expansion-panel>
     <mat-expansion-panel-header>
         <div fxLayout fxFlexFill [fxLayoutGap]="layoutGapM">
-            <div class="fb-body-2" fxFlex>{{ refund.id }}</div>
-            <div class="fb-body-2" fxFlex>
+            <div class="fb-body-2" fxFlex="120px">{{ refund.id }}</div>
+            <div class="fb-body-2" fxFlex="120px">
                 <fb-tag [color]="refund.status | refundStatusToColor" [title]="refund.status"></fb-tag>
             </div>
             <div class="fb-body-2" fxFlex>{{ refund.merchantInfo.partyId }}</div>
             <div class="fb-body-2" fxFlex>{{ refund.merchantInfo.shopId }}</div>
-            <div class="fb-body-2" fxFlex>{{ refund.amount }}</div>
-            <div class="fb-body-2" fxFlex>{{ refund.currency }}</div>
+            <div class="fb-body-2" fxFlex="120px">{{ refund.amount }}</div>
+            <div class="fb-body-2" fxFlex="120px">{{ refund.currency }}</div>
             <div class="fb-body-2" fxFlex>{{ refund.clientInfo.email }}</div>
             <div class="fb-body-2" fxFlex="160px">{{ refund.eventTime | date: 'yyyy-MM-dd HH:mm:ss' }}</div>
         </div>

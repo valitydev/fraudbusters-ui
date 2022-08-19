@@ -1,14 +1,14 @@
 <mat-expansion-panel>
     <mat-expansion-panel-header>
         <div fxLayout fxFlexFill [fxLayoutGap]="layoutGapM">
-            <div class="fb-body-2" fxFlex>{{ chargeback.id }}</div>
-            <div class="fb-body-2" fxFlex>
+            <div class="fb-body-2" fxFlex="120px">{{ chargeback.id }}</div>
+            <div class="fb-body-2" fxFlex="120px">
                 <fb-tag [color]="chargeback.status | chargebackStatusToColor" [title]="chargeback.status"></fb-tag>
             </div>
             <div class="fb-body-2" fxFlex>{{ chargeback.merchantInfo.partyId }}</div>
             <div class="fb-body-2" fxFlex>{{ chargeback.merchantInfo.shopId }}</div>
-            <div class="fb-body-2" fxFlex>{{ chargeback.category }}</div>
-            <div class="fb-body-2" fxFlex>{{ chargeback.chargebackCode }}</div>
+            <div class="fb-body-2" fxFlex="120px">{{ chargeback.category }}</div>
+            <div class="fb-body-2" fxFlex="120px">{{ chargeback.chargebackCode }}</div>
             <div class="fb-body-2" fxFlex>{{ chargeback.clientInfo.email }}</div>
             <div class="fb-body-2" fxFlex="160px">{{ chargeback.eventTime | date: 'yyyy-MM-dd HH:mm:ss' }}</div>
         </div>

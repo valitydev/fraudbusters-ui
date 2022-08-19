@@ -4,14 +4,14 @@
             <div class="fb-body-checkbox" fxFlex="30px" (click)="!exppanel._toggle()">
                 <mat-checkbox color="primary" (change)="emmitChange()" [checked]="enabled"> </mat-checkbox>
             </div>
-            <div class="fb-body-2" fxFlex>{{ payment.id }}</div>
-            <div class="fb-body-2" fxFlex>
+            <div class="fb-body-2" fxFlex="120px">{{ payment.id }}</div>
+            <div class="fb-body-2" fxFlex="120px">
                 <fb-tag [color]="payment.status | paymentStatusToColor" [title]="payment.status"></fb-tag>
             </div>
             <div class="fb-body-2" fxFlex>{{ payment.merchantInfo.partyId }}</div>
             <div class="fb-body-2" fxFlex>{{ payment.merchantInfo.shopId }}</div>
-            <div class="fb-body-2" fxFlex>{{ payment.amount }}</div>
-            <div class="fb-body-2" fxFlex>{{ payment.currency }}</div>
+            <div class="fb-body-2" fxFlex="120px">{{ payment.amount }}</div>
+            <div class="fb-body-2" fxFlex="120px">{{ payment.currency }}</div>
             <div class="fb-body-2" fxFlex>{{ payment.clientInfo.email }}</div>
             <div class="fb-body-2" fxFlex="160px">{{ payment.eventTime | date: 'yyyy-MM-dd HH:mm:ss' }}</div>
         </div>
