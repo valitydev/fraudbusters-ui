@@ -5,7 +5,13 @@
                 <input required matInput placeholder="Name" formControlName="id" />
             </mat-form-field>
             <mat-form-field class="full-width" floatLabel="always">
-                <textarea required matInput placeholder="Templates rules" formControlName="template"></textarea>
+                <textarea
+                    required
+                    matInput
+                    placeholder="Templates rules"
+                    formControlName="template"
+                    class="code-editor"
+                ></textarea>
             </mat-form-field>
         </form>
         <div fxLayout fxLayoutAlign="end" [fxLayoutGap]="layoutGapM">
