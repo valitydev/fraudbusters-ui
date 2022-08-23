@@ -15,7 +15,7 @@ import { LAYOUT_GAP_L, LAYOUT_GAP_M } from '../../../tokens';
 export class TestingDataSetComponent {
     dataSet$ = this.route.params.pipe(
         pluck('id'),
-        switchMap(([id]) => {
+        switchMap((id) => {
             return this.dataSetService.getCheckedById(id);
         }),
         shareReplay(1)

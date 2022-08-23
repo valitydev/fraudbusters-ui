@@ -32,8 +32,45 @@
 }
 
 ::ng-deep {
+    textarea.code-editor {
+        font-size: 14px;
+        font-family: monospace;
+    }
+
+    ngx-mat-datetime-content.mat-datepicker-content.mat-primary.ng-trigger.ng-trigger-transformPanel.mat-datepicker-content-touch.ng-star-inserted {
+        box-shadow: none;
+    }
+
+    ngx-mat-timepicker {
+        .mat-form-field-appearance-outline {
+            width: 50px !important;
+            max-width: 50px !important;
+
+            .mat-form-field-wrapper {
+                padding-bottom: 0;
+            }
+
+            .mat-form-field-infix {
+                border-top: 0.36em solid transparent;
+            }
+        }
+
+        .mat-form-field-appearance-fill .mat-form-field-infix,
+        .mat-form-field-appearance-legacy .mat-form-field-infix,
+        .mat-form-field-appearance-outline .mat-form-field-infix {
+            border: none;
+            padding: 0;
+        }
+
+        .mat-form-field-appearance-legacy .mat-form-field-wrapper {
+            width: 20px;
+            margin-left: 0px;
+        }
+    }
+
     .mat-form-field-appearance-outline > .mat-form-field-wrapper {
         margin: 0 !important;
+
         .mat-form-field-flex {
             padding: 0 !important;
         }
@@ -76,6 +113,7 @@
 
     .mat-button.mat-primary:hover {
         background-color: #5f35a8;
+
         .mat-button-focus-overlay {
             display: none;
         }
@@ -83,6 +121,7 @@
 
     .mat-button.mat-accent:hover {
         background-color: #ece5f7;
+
         .mat-button-focus-overlay {
             display: none;
         }
@@ -90,6 +129,7 @@
 
     .mat-primary.mat-button-disabled {
         background-color: #c4c4c4;
+
         &:hover {
             background-color: #c4c4c4;
         }
@@ -97,9 +137,11 @@
 
     .mat-accent.mat-button-disabled {
         background-color: transparent;
+
         &:hover {
             background-color: transparent;
         }
+
         .mat-button-wrapper {
             color: #c4c4c4;
         }
@@ -112,6 +154,7 @@
     .mat-drawer-side {
         border-right: solid 1px #e6ecf5;
     }
+
     .toolbar {
         position: sticky;
         position: -webkit-sticky; /* For macOS/iOS Safari */
@@ -123,12 +166,15 @@
     .material-icons.md-18 {
         font-size: 18px;
     }
+
     .material-icons.md-24 {
         font-size: 24px;
     }
+
     .material-icons.md-36 {
         font-size: 36px;
     }
+
     .material-icons.md-48 {
         font-size: 48px;
     }
@@ -311,6 +357,7 @@
                 min-height: 400px;
             }
         }
+
         &.search {
             margin-top: 2px;
         }
