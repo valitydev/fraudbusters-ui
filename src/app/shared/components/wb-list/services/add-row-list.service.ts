@@ -14,6 +14,7 @@ import { WbListService } from '../wb-list.service';
 @Injectable()
 export class AddRowListService {
     created$: Observable<string | string[]>;
+    loadedFile$: Observable<string | string[]>;
     inProgress$: Observable<boolean>;
     forms = this.fb.array([]);
 
@@ -72,28 +73,10 @@ export class AddRowListService {
         this.forms.removeAt(i);
     }
 
-    prepareFilesList(files: Array<any>): void {
-        Object.values(files)
-            .filter((value) => this.csvUtilsService.isValidFile(value, 'text/csv', 2097152))
-            .forEach((item) =>
-                this.papa.parse(item, {
-                    skipEmptyLines: true,
-                    header: true,
-                    complete: (results) => {
-                        const data = results.data;
-                        if (this.csvUtilsService.isValidFormatCsv(data, item, ['listName', 'value'])) {
-                            this.processCsv(data);
-                        }
-                    },
-                })
-            );
-    }
-
-    private processCsv(data): void {
-        for (const item of data) {
-            this.forms.push(this.createItem(item.listName, item.partyId, item.shopId, item.value));
+    prepareFilesList(listType: ListType, file: File): void {
+        if (this.csvUtilsService.isValidFile(file, 'text/csv', 2097152)) {
+            this.loadedFile$ = this.wbListService.saveListRowsFromFile(listType, file);
         }
-        this.forms.patchValue(this.forms.value);
     }
 
     private createItem(listName = '', partyId = '', shopId = '', value = '') {
