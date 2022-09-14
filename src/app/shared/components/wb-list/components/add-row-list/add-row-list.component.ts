@@ -55,8 +55,8 @@ export class AddRowListComponent implements OnInit {
         this.addRowListService.removeItem(index);
     }
 
-    prepareFilesList(file: File): void {
-        this.addRowListService.prepareFilesList(this.listType, file);
+    saveFileWithList(file: File): void {
+        this.addRowListService.saveFileWithListRaws(this.listType, file);
     }
 
     save(): void {

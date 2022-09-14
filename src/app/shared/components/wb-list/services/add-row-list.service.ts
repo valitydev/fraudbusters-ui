@@ -2,7 +2,6 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { Papa } from 'ngx-papaparse';
 import { EMPTY, merge, Observable, Subject } from 'rxjs';
 import { catchError, filter, shareReplay, switchMap } from 'rxjs/operators';
 
@@ -14,10 +13,10 @@ import { WbListService } from '../wb-list.service';
 @Injectable()
 export class AddRowListService {
     created$: Observable<string | string[]>;
-    loadedFile$: Observable<string | string[]>;
     inProgress$: Observable<boolean>;
     forms = this.fb.array([]);
 
+    private loadedFile$ = new Subject<any>();
     private create$ = new Subject<ListType>();
     private errors$ = new Subject();
 
@@ -25,8 +24,7 @@ export class AddRowListService {
         private fb: FormBuilder,
         private wbListService: WbListService,
         private snackBar: MatSnackBar,
-        private csvUtilsService: CsvUtilsService,
-        private papa: Papa
+        private csvUtilsService: CsvUtilsService
     ) {
         this.addItem();
         this.created$ = this.create$.pipe(
@@ -47,6 +45,23 @@ export class AddRowListService {
             filter((r) => !!r),
             shareReplay(1, 1000)
         );
+
+        this.loadedFile$
+            .pipe(
+                switchMap((value) => {
+                    return this.wbListService.saveListRowsFromFile(value.listType, value.file).pipe(
+                        catchError((error: HttpErrorResponse) => {
+                            this.snackBar.open(`${error.status}: ${error.message}`, 'ERROR');
+                            this.errors$.next();
+                            return EMPTY;
+                        })
+                    );
+                }),
+                filter((r) => !!r),
+                shareReplay(1, 1000)
+            )
+            .subscribe({ next: () => this.snackBar.open('File success send to load', 'OK') });
+
         this.created$.subscribe(() => {
             this.forms = this.fb.array([]);
             this.addItem();
@@ -73,9 +88,9 @@ export class AddRowListService {
         this.forms.removeAt(i);
     }
 
-    prepareFilesList(listType: ListType, file: File): void {
+    saveFileWithListRaws(listType: ListType, file: File): void {
         if (this.csvUtilsService.isValidFile(file, 'text/csv', 2097152)) {
-            this.loadedFile$ = this.wbListService.saveListRowsFromFile(listType, file);
+            this.loadedFile$.next({ file, listType });
         }
     }
 
