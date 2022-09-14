@@ -61,6 +61,7 @@ export class PaymentListsService {
     saveListsRowsFromFile(listType: ListType, file: File): Observable<any> {
         const formData: FormData = new FormData();
         formData.append('file', file, file.name);
+        formData.append('listType', listType);
         return this.http.post<any>(`${this.fbPaymentReferenceEndpoint}/csv`, formData, {
             reportProgress: true,
             observe: 'events',

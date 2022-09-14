@@ -11,6 +11,8 @@ import { CsvUtilsService } from '../../../../shared/services/utils/csv-utils.ser
 import { ListType } from '../../../constants/list-type';
 import { WbListService } from '../wb-list.service';
 
+const SIZE_FILE_BYTE = 2097152;
+
 @Injectable()
 export class AddGreyRowListService {
     created$: Observable<string[]>;
@@ -78,7 +80,7 @@ export class AddGreyRowListService {
 
     prepareFilesList(files: Array<any>): void {
         Object.values(files)
-            .filter((value) => this.csvUtilsService.isValidFile(value, 'text/csv', 2097152))
+            .filter((value) => this.csvUtilsService.isValidFile(value, 'text/csv', SIZE_FILE_BYTE))
             .forEach((item) =>
                 this.papa.parse(item, {
                     skipEmptyLines: true,

@@ -5,7 +5,6 @@ import { PaymentCountInfo } from '../../../api/fb-management/swagger-codegen/mod
 import { PaymentListRecord } from '../../../api/fb-management/swagger-codegen/model/paymentListRecord';
 import { PaymentListsService } from '../../../api/payments/lists/payment-lists.service';
 import { ListType } from '../../constants/list-type';
-import { OperationType } from '../../constants/operation-type';
 import { SortOrder } from '../../constants/sort-order';
 import { HttpSearchResponse } from '../../model/http-search-response';
 
@@ -49,7 +48,7 @@ export class WbListService {
         return this.paymentListsService.saveListsRows(listType, rows);
     }
 
-    saveListRowsFromFile(type: OperationType, listType: ListType, file: File): Observable<any> {
+    saveListRowsFromFile(listType: ListType, file: File): Observable<any> {
         return this.paymentListsService.saveListsRowsFromFile(listType, file);
     }
 }

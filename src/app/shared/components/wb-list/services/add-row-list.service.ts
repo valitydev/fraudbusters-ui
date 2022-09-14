@@ -2,7 +2,6 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { Papa } from 'ngx-papaparse';
 import { EMPTY, merge, Observable, Subject } from 'rxjs';
 import { catchError, filter, shareReplay, switchMap } from 'rxjs/operators';
 
@@ -17,6 +16,7 @@ export class AddRowListService {
     inProgress$: Observable<boolean>;
     forms = this.fb.array([]);
 
+    private loadedFile$ = new Subject<any>();
     private create$ = new Subject<ListType>();
     private errors$ = new Subject();
 
@@ -24,8 +24,7 @@ export class AddRowListService {
         private fb: FormBuilder,
         private wbListService: WbListService,
         private snackBar: MatSnackBar,
-        private csvUtilsService: CsvUtilsService,
-        private papa: Papa
+        private csvUtilsService: CsvUtilsService
     ) {
         this.addItem();
         this.created$ = this.create$.pipe(
@@ -46,6 +45,23 @@ export class AddRowListService {
             filter((r) => !!r),
             shareReplay(1, 1000)
         );
+
+        this.loadedFile$
+            .pipe(
+                switchMap((value) => {
+                    return this.wbListService.saveListRowsFromFile(value.listType, value.file).pipe(
+                        catchError((error: HttpErrorResponse) => {
+                            this.snackBar.open(`${error.status}: ${error.message}`, 'ERROR');
+                            this.errors$.next();
+                            return EMPTY;
+                        })
+                    );
+                }),
+                filter((r) => !!r),
+                shareReplay(1, 1000)
+            )
+            .subscribe({ next: () => this.snackBar.open('File success send to load', 'OK') });
+
         this.created$.subscribe(() => {
             this.forms = this.fb.array([]);
             this.addItem();
@@ -72,28 +88,10 @@ export class AddRowListService {
         this.forms.removeAt(i);
     }
 
-    prepareFilesList(files: Array<any>): void {
-        Object.values(files)
-            .filter((value) => this.csvUtilsService.isValidFile(value, 'text/csv', 2097152))
-            .forEach((item) =>
-                this.papa.parse(item, {
-                    skipEmptyLines: true,
-                    header: true,
-                    complete: (results) => {
-                        const data = results.data;
-                        if (this.csvUtilsService.isValidFormatCsv(data, item, ['listName', 'value'])) {
-                            this.processCsv(data);
-                        }
-                    },
-                })
-            );
-    }
-
-    private processCsv(data): void {
-        for (const item of data) {
-            this.forms.push(this.createItem(item.listName, item.partyId, item.shopId, item.value));
+    saveFileWithListRaws(listType: ListType, file: File): void {
+        if (this.csvUtilsService.isValidFile(file, 'text/csv', 2097152)) {
+            this.loadedFile$.next({ file, listType });
         }
-        this.forms.patchValue(this.forms.value);
     }
 
     private createItem(listName = '', partyId = '', shopId = '', value = '') {

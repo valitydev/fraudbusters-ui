@@ -28,7 +28,7 @@ export class HistoricalInspectResultsDataComponent {
 
     private initParams(event) {
         return {
-            paymentId: event.paymentId,
+            paymentId: event.id,
             cardToken: event.cardToken,
             shopId: event.shopId,
             partyId: event.partyId,
