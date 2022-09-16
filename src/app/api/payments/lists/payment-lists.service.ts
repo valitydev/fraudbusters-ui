@@ -1,7 +1,7 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { filter, map } from 'rxjs/operators';
 
 import { ConfigService } from '../../../config';
 import { ListType } from '../../../shared/constants/list-type';
@@ -62,9 +62,11 @@ export class PaymentListsService {
         const formData: FormData = new FormData();
         formData.append('file', file, file.name);
         formData.append('listType', listType);
-        return this.http.post<any>(`${this.fbPaymentReferenceEndpoint}/csv`, formData, {
-            reportProgress: true,
-            observe: 'events',
-        });
+        return this.http
+            .post<any>(`${this.fbPaymentReferenceEndpoint}/csv`, formData, {
+                reportProgress: true,
+                observe: 'events',
+            })
+            .pipe(filter((r) => r instanceof HttpResponse && r.status === 200));
     }
 }

@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { EMPTY, merge, Observable, Subject } from 'rxjs';
-import { catchError, filter, shareReplay, switchMap } from 'rxjs/operators';
+import { catchError, filter, finalize, shareReplay, switchMap, map } from 'rxjs/operators';
 
 import { progress } from '../../../../shared/operators';
 import { CsvUtilsService } from '../../../../shared/services/utils/csv-utils.service';
@@ -12,11 +12,12 @@ import { WbListService } from '../wb-list.service';
 
 @Injectable()
 export class AddRowListService {
-    created$: Observable<string | string[]>;
+    created$: Observable<any>;
+    loadedFile$: Observable<any>;
     inProgress$: Observable<boolean>;
     forms = this.fb.array([]);
 
-    private loadedFile$ = new Subject<any>();
+    private loadFile$ = new Subject<any>();
     private create$ = new Subject<ListType>();
     private errors$ = new Subject();
 
@@ -46,27 +47,32 @@ export class AddRowListService {
             shareReplay(1, 1000)
         );
 
-        this.loadedFile$
-            .pipe(
-                switchMap((value) => {
-                    return this.wbListService.saveListRowsFromFile(value.listType, value.file).pipe(
-                        catchError((error: HttpErrorResponse) => {
-                            this.snackBar.open(`${error.status}: ${error.message}`, 'ERROR');
-                            this.errors$.next();
-                            return EMPTY;
-                        })
-                    );
-                }),
-                filter((r) => !!r),
-                shareReplay(1, 1000)
-            )
-            .subscribe({ next: () => this.snackBar.open('File success send to load', 'OK') });
+        this.loadedFile$ = this.loadFile$.pipe(
+            switchMap((value) => {
+                return this.wbListService.saveListRowsFromFile(value.listType, value.file).pipe(
+                    catchError((error: HttpErrorResponse) => {
+                        this.snackBar.open(`${error.status}: ${error.message}`, 'ERROR');
+                        this.errors$.next();
+                        return EMPTY;
+                    })
+                );
+            }),
+            filter((r) => {
+                return !!r;
+            }),
+            shareReplay(1, 1000)
+        );
 
         this.created$.subscribe(() => {
             this.forms = this.fb.array([]);
             this.addItem();
         });
-        this.inProgress$ = progress(this.create$, merge(this.created$, this.errors$));
+        this.loadedFile$.subscribe(() => this.snackBar.open('File success send to load', 'OK'));
+
+        this.inProgress$ = progress(
+            merge(this.create$, this.loadFile$),
+            merge(this.created$, this.errors$, this.loadedFile$)
+        );
         this.inProgress$.subscribe((inProgress) => {
             if (inProgress) {
                 this.forms.disable();
@@ -90,7 +96,8 @@ export class AddRowListService {
 
     saveFileWithListRaws(listType: ListType, file: File): void {
         if (this.csvUtilsService.isValidFile(file, 'text/csv', 2097152)) {
-            this.loadedFile$.next({ file, listType });
+            console.log(file);
+            this.loadFile$.next({ file, listType });
         }
     }
 
