@@ -96,7 +96,6 @@ export class AddRowListService {
 
     saveFileWithListRaws(listType: ListType, file: File): void {
         if (this.csvUtilsService.isValidFile(file, 'text/csv', 2097152)) {
-            console.log(file);
             this.loadFile$.next({ file, listType });
         }
     }
