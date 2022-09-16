@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { EMPTY, merge, Observable, Subject } from 'rxjs';
-import { catchError, filter, finalize, shareReplay, switchMap, map } from 'rxjs/operators';
+import { catchError, filter, shareReplay, switchMap } from 'rxjs/operators';
 
 import { progress } from '../../../../shared/operators';
 import { CsvUtilsService } from '../../../../shared/services/utils/csv-utils.service';
