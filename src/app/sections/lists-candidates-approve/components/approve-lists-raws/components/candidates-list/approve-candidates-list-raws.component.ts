@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, Component, EventEmitter, Inject, Input, Output
 
 import { LAYOUT_GAP_M } from '../../../../../../tokens';
 import { WbListCandidateBatch } from '../../../../../../api/fb-management/swagger-codegen/model/wbListCandidateBatch';
+import { Observable } from 'rxjs';
 
 @Component({
     selector: 'fb-approve-candidates-list-raws',
@@ -10,7 +11,9 @@ import { WbListCandidateBatch } from '../../../../../../api/fb-management/swagge
 })
 export class ApproveCandidatesListRawsComponent {
     @Input()
-    candidates: WbListCandidateBatch[];
+    candidates$: Observable<WbListCandidateBatch[]>;
+    inProgress$;
+    hasMore$;
 
     @Output()
     approveItem = new EventEmitter<string>();
@@ -23,4 +26,6 @@ export class ApproveCandidatesListRawsComponent {
     search($event) {}
 
     approveCandidates() {}
+
+    fetchMore() {}
 }
