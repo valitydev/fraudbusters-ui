@@ -89,7 +89,6 @@ import { GroupsReferenceService } from './services/groups-reference/groups-refer
     ],
     providers: [
         DatePipe,
-        SearchFieldService,
         DataSetService,
         ErrorHandlerService,
         PaymentGroupsService,

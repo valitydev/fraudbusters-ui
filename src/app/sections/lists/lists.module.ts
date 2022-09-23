@@ -24,6 +24,7 @@ import { SharedPipesModule } from '../../shared/pipes';
 import { PaymentTemplatesListModule } from '../templates/components/payment-templates/payment-templates-list';
 import { TemplatesRoutingModule } from '../templates/templates-routing.module';
 import { BlackListModule } from './components/black-list';
+import { CandidatesModule } from './components/candidates';
 import { GreyListModule } from './components/grey-list';
 import { WhiteListModule } from './components/white-list';
 import { ListsRoutingModule } from './lists-routing.module';
@@ -59,6 +60,7 @@ import { ListsComponent } from './lists.component';
         WhiteListModule,
         BlackListModule,
         GreyListModule,
+        CandidatesModule,
     ],
 })
 export class ListsModule {}

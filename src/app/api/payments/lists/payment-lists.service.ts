@@ -1,6 +1,6 @@
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { filter, map } from 'rxjs/operators';
 
 import { ConfigService } from '../../../config';
@@ -12,6 +12,10 @@ import { ListResponse } from '../../fb-management/swagger-codegen/model/listResp
 import { PaymentCountInfo } from '../../fb-management/swagger-codegen/model/paymentCountInfo';
 import { WbListRecordsResponse } from '../../fb-management/swagger-codegen/model/wbListRecordsResponse';
 import { SearchListsParams } from './search-lists-params';
+import { WbListCandidatesBatchesResponse } from '../../fb-management/swagger-codegen/model/wbListCandidatesBatchesResponse';
+import { SearchCandidatesListsParams } from './search-candidates-lists-params';
+import { WbListCandidateBatch } from '../../fb-management/swagger-codegen/model/wbListCandidateBatch';
+import { ListName } from '../../fb-management/swagger-codegen/model/listName';
 
 @Injectable()
 export class PaymentListsService {
@@ -68,5 +72,21 @@ export class PaymentListsService {
                 observe: 'events',
             })
             .pipe(filter((r) => r instanceof HttpResponse && r.status === 200));
+    }
+
+    findCandidatesBatch(params: SearchCandidatesListsParams): Observable<WbListCandidatesBatchesResponse> {
+        // return this.http.get<WbListCandidatesBatchesResponse>(`${this.fbPaymentReferenceEndpoint}/candidates-batches`, {
+        //     params: filterParameters(params),
+        // });
+        return of({
+            continuationId: 'asdas',
+            result: [
+                {
+                    source: 'test',
+                    size: 10,
+                    fields: ['CARD_TOKEN'],
+                },
+            ],
+        });
     }
 }

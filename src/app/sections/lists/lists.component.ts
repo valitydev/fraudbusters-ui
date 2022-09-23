@@ -25,6 +25,11 @@ export class ListsComponent {
             name: 'Grey',
             otherActiveUrlFragments: [],
         },
+        {
+            path: 'candidates',
+            name: 'Candidates',
+            otherActiveUrlFragments: [],
+        },
     ];
 
     constructor(private router: Router, @Inject(LAYOUT_GAP_S) public layoutGapS: string) {}

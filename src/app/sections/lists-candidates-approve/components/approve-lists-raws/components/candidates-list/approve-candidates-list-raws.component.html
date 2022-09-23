@@ -1,0 +1,16 @@
+<div fxLayout="column" [fxLayoutGap]="layoutGapM">
+    <div fxLayout fxLayoutAlign="space-between center">
+        <fb-approve-candidates-list-raws-search
+            (valueChanges)="search($event)"
+        ></fb-approve-candidates-list-raws-search>
+        <button mat-button color="primary" (click)="approveCandidates()">APPROVE</button>
+    </div>
+    <fb-candidate-header></fb-candidate-header>
+    <div *ngFor="let candidate of candidates" fxLayout="column" [fxLayoutGap]="layoutGapM">
+        <fb-candidate-item
+            [candidate]="candidate"
+            (approveItem)="approveItem.emit($event)"
+            (deleteItem)="deleteItem.emit($event)"
+        ></fb-candidate-item>
+    </div>
+</div>

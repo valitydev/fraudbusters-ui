@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { ListsCandidatesApproveModule } from './lists-candidates-approve';
 
 const ROUTES: Routes = [
     {
@@ -42,6 +43,10 @@ const ROUTES: Routes = [
     {
         path: 'lists',
         loadChildren: () => import('./lists').then((m) => m.ListsModule),
+    },
+    {
+        path: 'candidates',
+        loadChildren: () => import('./lists-candidates-approve').then((m) => m.ListsCandidatesApproveModule),
     },
     {
         path: 'list',
