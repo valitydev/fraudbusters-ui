@@ -1,29 +1,36 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Inject, Input, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Inject, Output } from '@angular/core';
 
 import { LAYOUT_GAP_M } from '../../../../../../tokens';
-import { WbListCandidateBatch } from '../../../../../../api/fb-management/swagger-codegen/model/wbListCandidateBatch';
-import { Observable } from 'rxjs';
+import { FetchCandidatesRecordService } from './services/fetch-candidates-record.service';
+import { SortOrder } from '../../../../../../shared/constants/sort-order';
+import { ConfigService } from '../../../../../../config';
+import { WbListRecord } from '../../../../../../api/fb-management/swagger-codegen/model/wbListRecord';
 
 @Component({
     selector: 'fb-approve-candidates-list-raws',
     templateUrl: 'approve-candidates-list-raws.component.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
+    providers: [FetchCandidatesRecordService],
 })
 export class ApproveCandidatesListRawsComponent {
-    @Input()
-    candidates$: Observable<WbListCandidateBatch[]>;
-    inProgress$;
-    hasMore$;
+    candidates$ = this.fetchCandidatesRecordService.searchResult$;
+    inProgress$ = this.fetchCandidatesRecordService.inProgress$;
+    hasMore$ = this.fetchCandidatesRecordService.hasMore$;
 
     @Output()
-    approveItem = new EventEmitter<string>();
+    approveItem = new EventEmitter<WbListRecord>();
 
-    @Output()
-    deleteItem = new EventEmitter<string>();
+    private SIZE = this.configService.pageSize;
 
-    constructor(@Inject(LAYOUT_GAP_M) public layoutGapM: string) {}
+    constructor(
+        private fetchCandidatesRecordService: FetchCandidatesRecordService,
+        private configService: ConfigService,
+        @Inject(LAYOUT_GAP_M) public layoutGapM: string
+    ) {}
 
-    search($event) {}
+    search(searchValue: string) {
+        this.fetchCandidatesRecordService.search({ sortOrder: SortOrder.Desc, searchValue, size: this.SIZE });
+    }
 
     approveCandidates() {}
 

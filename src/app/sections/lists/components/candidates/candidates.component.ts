@@ -3,6 +3,7 @@ import { FetchCandidatesService } from './services/fetch-candidates.service';
 import { LAYOUT_GAP_M } from '../../../../tokens';
 import { Router } from '@angular/router';
 import { SortOrder } from '../../../../shared/constants/sort-order';
+import { ConfigService } from '../../../../config';
 
 @Component({
     templateUrl: './candidates.component.html',
@@ -14,14 +15,17 @@ export class CandidatesComponent {
     inProgress$ = this.fetchCandidatesService.inProgress$;
     hasMore$ = this.fetchCandidatesService.hasMore$;
 
+    private SIZE = this.configService.pageSize;
+
     constructor(
         private router: Router,
         private fetchCandidatesService: FetchCandidatesService,
+        private configService: ConfigService,
         @Inject(LAYOUT_GAP_M) public layoutGapM: string
     ) {}
 
     search(searchValue: string) {
-        this.fetchCandidatesService.search({ sortOrder: SortOrder.Desc, searchValue });
+        this.fetchCandidatesService.search({ sortOrder: SortOrder.Desc, searchValue, size: this.SIZE });
     }
 
     goToApproveCandidates(id: string) {

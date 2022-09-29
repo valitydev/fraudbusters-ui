@@ -11,16 +11,22 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatToolbarModule } from '@angular/material/toolbar';
 
 import { PaymentTemplatesModule } from '../../api';
-import { NotificationsService } from '../../api/payments/notifications';
-import { ErrorHandlerService } from '../../shared/services/utils/error-handler.service';
 import { ListsCandidatesApproveRoutingModule } from './lists-candidates-approve-routing.module';
 import { ListsCandidatesApproveComponent } from './lists-candidates-approve.component';
 import { ApproveListsRawsComponent } from './components/approve-lists-raws/approve-lists-raws.component';
 import { ApproveCandidatesListRawsModule } from './components/approve-lists-raws/components/candidates-list';
+import { EmptySearchResultModule } from '../../shared/components/empty-search-result';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { SearchFieldService } from '../../shared/services/utils/search-field.service';
+import { PaymentListsService } from '../../api/payments/lists';
 
 @NgModule({
     declarations: [ListsCandidatesApproveComponent, ApproveListsRawsComponent],
     imports: [
+        EmptySearchResultModule,
+        MatDividerModule,
+        MatProgressSpinnerModule,
         MatSnackBarModule,
         ListsCandidatesApproveRoutingModule,
         MatCardModule,
@@ -35,6 +41,6 @@ import { ApproveCandidatesListRawsModule } from './components/approve-lists-raws
         CommonModule,
         ApproveCandidatesListRawsModule,
     ],
-    providers: [NotificationsService, ErrorHandlerService],
+    providers: [SearchFieldService, PaymentListsService],
 })
 export class ListsCandidatesApproveModule {}

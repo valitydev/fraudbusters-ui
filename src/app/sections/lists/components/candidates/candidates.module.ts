@@ -72,7 +72,6 @@ import { SearchFieldService } from '../../../../shared/services/utils/search-fie
         WbListModule,
         AddRowListModule,
         CandidatesListModule,
-        EmptySearchResultModule,
     ],
     providers: [SearchFieldService],
 })

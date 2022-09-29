@@ -1,6 +1,6 @@
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { Observable } from 'rxjs';
 import { filter, map } from 'rxjs/operators';
 
 import { ConfigService } from '../../../config';
@@ -13,9 +13,8 @@ import { PaymentCountInfo } from '../../fb-management/swagger-codegen/model/paym
 import { WbListRecordsResponse } from '../../fb-management/swagger-codegen/model/wbListRecordsResponse';
 import { SearchListsParams } from './search-lists-params';
 import { WbListCandidatesBatchesResponse } from '../../fb-management/swagger-codegen/model/wbListCandidatesBatchesResponse';
-import { SearchCandidatesListsParams } from './search-candidates-lists-params';
-import { WbListCandidateBatch } from '../../fb-management/swagger-codegen/model/wbListCandidateBatch';
-import { ListName } from '../../fb-management/swagger-codegen/model/listName';
+import { SearchParams } from '../../../shared/model/search-params';
+import { WbListCandidatesResponse } from '../../fb-management/swagger-codegen/model/wbListCandidatesResponse';
 
 @Injectable()
 export class PaymentListsService {
@@ -74,19 +73,15 @@ export class PaymentListsService {
             .pipe(filter((r) => r instanceof HttpResponse && r.status === 200));
     }
 
-    findCandidatesBatch(params: SearchCandidatesListsParams): Observable<WbListCandidatesBatchesResponse> {
-        // return this.http.get<WbListCandidatesBatchesResponse>(`${this.fbPaymentReferenceEndpoint}/candidates-batches`, {
-        //     params: filterParameters(params),
-        // });
-        return of({
-            continuationId: 'asdas',
-            result: [
-                {
-                    source: 'test',
-                    size: 10,
-                    fields: ['CARD_TOKEN'],
-                },
-            ],
+    findCandidatesBatch(params: SearchParams): Observable<WbListCandidatesBatchesResponse> {
+        return this.http.get<WbListCandidatesBatchesResponse>(`${this.fbPaymentReferenceEndpoint}/candidates-batches`, {
+            params: filterParameters(params),
+        });
+    }
+
+    findCandidates(params: SearchParams): Observable<WbListCandidatesResponse> {
+        return this.http.get<WbListCandidatesResponse>(`${this.fbPaymentReferenceEndpoint}/candidates`, {
+            params: filterParameters(params),
         });
     }
 }

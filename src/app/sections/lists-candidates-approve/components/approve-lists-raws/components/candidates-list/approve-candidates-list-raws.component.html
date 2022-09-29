@@ -5,14 +5,13 @@
         ></fb-approve-candidates-list-raws-search>
         <button mat-button color="primary" (click)="approveCandidates()">APPROVE</button>
     </div>
-    <fb-candidate-header></fb-candidate-header>
+    <fb-approve-candidate-header></fb-approve-candidate-header>
     <div *ngIf="candidates$ | async as candidates">
         <div *ngFor="let candidate of candidates" fxLayout="column" [fxLayoutGap]="layoutGapM">
-            <fb-candidate-item
+            <fb-approve-candidate-item
                 [candidate]="candidate"
-                (approveItem)="approveItem.emit($event)"
-                (deleteItem)="deleteItem.emit($event)"
-            ></fb-candidate-item>
+                (approve)="approveItem.emit(candidate)"
+            ></fb-approve-candidate-item>
         </div>
     </div>
     <fb-show-more-panel
@@ -20,9 +19,9 @@
         [isLoading]="inProgress$ | async"
         (showMore)="fetchMore()"
     ></fb-show-more-panel>
-    <!--    <div *ngIf="inProgress$ | async" fxLayout fxLayoutAlign="center">-->
-    <!--        <mat-progress-spinner color="primary" mode="indeterminate" diameter="48"></mat-progress-spinner>-->
-    <!--    </div>-->
+    <div *ngIf="inProgress$ | async" fxLayout fxLayoutAlign="center">
+        <mat-progress-spinner color="primary" mode="indeterminate" diameter="48"></mat-progress-spinner>
+    </div>
     <ng-template #Empty>
         <fb-empty-search-result *ngIf="!(inProgress$ | async)"></fb-empty-search-result>
     </ng-template>

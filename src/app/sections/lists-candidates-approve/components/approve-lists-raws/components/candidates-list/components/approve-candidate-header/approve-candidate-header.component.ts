@@ -4,11 +4,11 @@ import { LAYOUT_GAP_M } from '../../../../../../../../tokens';
 import { MatCheckboxChange } from '@angular/material/checkbox';
 
 @Component({
-    selector: 'fb-candidate-header',
-    templateUrl: 'candidate-header.component.html',
+    selector: 'fb-approve-candidate-header',
+    templateUrl: 'approve-candidate-header.component.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CandidateHeaderComponent {
+export class ApproveCandidateHeaderComponent {
     @Output()
     changedAll: EventEmitter<MatCheckboxChange> = new EventEmitter<MatCheckboxChange>();
 

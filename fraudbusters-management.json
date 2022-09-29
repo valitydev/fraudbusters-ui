@@ -1247,7 +1247,7 @@
                 "tags": ["lists"],
                 "parameters": [
                     {
-                        "$ref": "#/components/parameters/continuationId"
+                        "$ref": "#/components/parameters/numericLastId"
                     },
                     {
                         "$ref": "#/components/parameters/sortOrder"
@@ -1295,7 +1295,7 @@
                     "content": {
                         "application/json": {
                             "schema": {
-                                "$ref": "#/components/schemas/ListRequest"
+                                "$ref": "#/components/schemas/WbListCandidatesRequest"
                             }
                         }
                     }
@@ -1353,7 +1353,7 @@
                 "tags": ["lists"],
                 "parameters": [
                     {
-                        "$ref": "#/components/parameters/continuationId"
+                        "$ref": "#/components/parameters/lastId"
                     },
                     {
                         "$ref": "#/components/parameters/sortOrder"
@@ -3644,6 +3644,10 @@
                 "type": "object",
                 "required": ["source", "result"],
                 "properties": {
+                    "lastId": {
+                        "type": "integer",
+                        "format": "int64"
+                    },
                     "source": {
                         "type": "string"
                     },
@@ -3655,14 +3659,99 @@
                     }
                 }
             },
-            "ListRequest": {
+            "MerchantInfo": {
+                "type": "object",
+                "properties": {
+                    "partyId": {
+                        "type": "string"
+                    },
+                    "shopId": {
+                        "type": "string"
+                    }
+                }
+            },
+            "ProviderInfo": {
+                "type": "object",
+                "properties": {
+                    "providerId": {
+                        "type": "string"
+                    },
+                    "terminalId": {
+                        "type": "string"
+                    },
+                    "country": {
+                        "type": "string"
+                    }
+                }
+            },
+            "ClientInfo": {
+                "type": "object",
+                "properties": {
+                    "ip": {
+                        "type": "string"
+                    },
+                    "fingerprint": {
+                        "type": "string"
+                    },
+                    "email": {
+                        "type": "string"
+                    }
+                }
+            },
+            "Chargeback": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string"
+                    },
+                    "paymentId": {
+                        "type": "string"
+                    },
+                    "eventTime": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "merchantInfo": {
+                        "$ref": "#/components/schemas/MerchantInfo"
+                    },
+                    "paymentTool": {
+                        "type": "string"
+                    },
+                    "amount": {
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "currency": {
+                        "type": "string"
+                    },
+                    "provider": {
+                        "$ref": "#/components/schemas/ProviderInfo"
+                    },
+                    "status": {
+                        "type": "string"
+                    },
+                    "category": {
+                        "type": "string"
+                    },
+                    "chargebackCode": {
+                        "type": "string"
+                    },
+                    "clientInfo": {
+                        "$ref": "#/components/schemas/ClientInfo"
+                    },
+                    "payerType": {
+                        "type": "string"
+                    }
+                }
+            },
+            "WbListCandidatesRequest": {
                 "type": "object",
                 "required": ["records"],
                 "properties": {
                     "records": {
                         "type": "array",
                         "items": {
-                            "type": "string"
+                            "$ref": "#/components/schemas/Chargeback"
                         }
                     }
                 }
@@ -3680,25 +3769,21 @@
                     }
                 }
             },
-            "ListName": {
-                "type": "string",
-                "enum": ["CARD_TOKEN", "EMAIL", "BIN", "FINGERPRINT", "IP"]
-            },
             "WbListCandidateBatch": {
                 "type": "object",
                 "properties": {
+                    "id": {
+                        "type": "string"
+                    },
                     "source": {
                         "type": "string"
                     },
                     "size": {
                         "type": "integer",
-                        "format": "int64"
+                        "format": "int32"
                     },
                     "fields": {
-                        "type": "array",
-                        "items": {
-                            "$ref": "#/components/schemas/ListName"
-                        }
+                        "type": "string"
                     },
                     "createdAt": {
                         "type": "string",
@@ -3710,7 +3795,7 @@
                 "type": "object",
                 "required": ["result"],
                 "properties": {
-                    "continuationId": {
+                    "lastId": {
                         "type": "string"
                     },
                     "result": {
@@ -3850,31 +3935,6 @@
                     }
                 }
             },
-            "MerchantInfo": {
-                "type": "object",
-                "properties": {
-                    "partyId": {
-                        "type": "string"
-                    },
-                    "shopId": {
-                        "type": "string"
-                    }
-                }
-            },
-            "ClientInfo": {
-                "type": "object",
-                "properties": {
-                    "ip": {
-                        "type": "string"
-                    },
-                    "fingerprint": {
-                        "type": "string"
-                    },
-                    "email": {
-                        "type": "string"
-                    }
-                }
-            },
             "Error": {
                 "type": "object",
                 "properties": {
@@ -3882,20 +3942,6 @@
                         "type": "string"
                     },
                     "errorReason": {
-                        "type": "string"
-                    }
-                }
-            },
-            "ProviderInfo": {
-                "type": "object",
-                "properties": {
-                    "providerId": {
-                        "type": "string"
-                    },
-                    "terminalId": {
-                        "type": "string"
-                    },
-                    "country": {
                         "type": "string"
                     }
                 }
@@ -4015,52 +4061,6 @@
                         "items": {
                             "$ref": "#/components/schemas/InspectResult"
                         }
-                    }
-                }
-            },
-            "Chargeback": {
-                "type": "object",
-                "properties": {
-                    "id": {
-                        "type": "string"
-                    },
-                    "paymentId": {
-                        "type": "string"
-                    },
-                    "eventTime": {
-                        "type": "string",
-                        "format": "date-time"
-                    },
-                    "merchantInfo": {
-                        "$ref": "#/components/schemas/MerchantInfo"
-                    },
-                    "paymentTool": {
-                        "type": "string"
-                    },
-                    "amount": {
-                        "type": "integer",
-                        "format": "int64"
-                    },
-                    "currency": {
-                        "type": "string"
-                    },
-                    "provider": {
-                        "$ref": "#/components/schemas/ProviderInfo"
-                    },
-                    "status": {
-                        "type": "string"
-                    },
-                    "category": {
-                        "type": "string"
-                    },
-                    "chargebackCode": {
-                        "type": "string"
-                    },
-                    "clientInfo": {
-                        "$ref": "#/components/schemas/ClientInfo"
-                    },
-                    "payerType": {
-                        "type": "string"
                     }
                 }
             },

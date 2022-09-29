@@ -3,11 +3,10 @@
         <div class="fb-body-checkbox" fxFlex="30px">
             <mat-checkbox color="primary" (change)="emmitChange()" [checked]="enabled"> </mat-checkbox>
         </div>
-        <div class="fb-body-2" fxFlex>{{ candidate.source }}</div>
-        <div class="fb-body-2" fxFlex>{{ candidate.size }}</div>
-        <div class="fb-body-2" fxFlex>{{ candidate.fields }}</div>
-        <div class="fb-body-2" fxFlex="160px">
-            {{ candidate.createdAt | date: 'yyyy-MM-dd HH:mm:ss' }}
-        </div>
+        <div class="fb-body-2" fxFlex>{{ candidate.listType }}</div>
+        <div class="fb-body-2" fxFlex>{{ candidate.listName }}</div>
+        <div class="fb-body-2" fxFlex>{{ candidate.partyId }}</div>
+        <div class="fb-body-2" fxFlex>{{ candidate.shopId }}</div>
+        <div class="fb-body-2" fxFlex>{{ candidate.value }}</div>
     </div>
 </mat-card>
