@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { shareReplay } from 'rxjs/operators';
+
+import { WbListCandidateBatch } from '../../../../../api/fb-management/swagger-codegen/model/wbListCandidateBatch';
+import { PaymentListsService } from '../../../../../api/payments/lists';
+import { SearchParams } from '../../../../../shared/model/search-params';
 import { booleanDebounceTime } from '../../../../../shared/operators';
 import { FetchResult, PartialFetcher } from '../../../../../shared/utils/partial-fetcher';
-import { PaymentListsService } from '../../../../../api/payments/lists';
-import { WbListCandidateBatch } from '../../../../../api/fb-management/swagger-codegen/model/wbListCandidateBatch';
-import { SearchParams } from '../../../../../shared/model/search-params';
 
 @Injectable()
 export class FetchCandidatesService extends PartialFetcher<WbListCandidateBatch, SearchParams> {

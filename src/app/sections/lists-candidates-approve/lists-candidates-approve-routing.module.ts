@@ -2,8 +2,8 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
 import { AuthGuard, Roles } from '../../auth';
-import { ListsCandidatesApproveComponent } from './lists-candidates-approve.component';
 import { ApproveListsRawsComponent } from './components/approve-lists-raws/approve-lists-raws.component';
+import { ListsCandidatesApproveComponent } from './lists-candidates-approve.component';
 
 @NgModule({
     imports: [

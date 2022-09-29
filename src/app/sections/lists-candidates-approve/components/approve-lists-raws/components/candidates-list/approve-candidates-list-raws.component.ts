@@ -1,10 +1,10 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Inject, Output } from '@angular/core';
 
+import { WbListRecord } from '../../../../../../api/fb-management/swagger-codegen/model/wbListRecord';
+import { ConfigService } from '../../../../../../config';
+import { SortOrder } from '../../../../../../shared/constants/sort-order';
 import { LAYOUT_GAP_M } from '../../../../../../tokens';
 import { FetchCandidatesRecordService } from './services/fetch-candidates-record.service';
-import { SortOrder } from '../../../../../../shared/constants/sort-order';
-import { ConfigService } from '../../../../../../config';
-import { WbListRecord } from '../../../../../../api/fb-management/swagger-codegen/model/wbListRecord';
 
 @Component({
     selector: 'fb-approve-candidates-list-raws',

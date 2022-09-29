@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Inject, Output } from '@angular/core';
+import { MatCheckboxChange } from '@angular/material/checkbox';
 
 import { LAYOUT_GAP_M } from '../../../../../../../../tokens';
-import { MatCheckboxChange } from '@angular/material/checkbox';
 
 @Component({
     selector: 'fb-approve-candidate-header',

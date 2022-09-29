@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ListsCandidatesApproveModule } from './lists-candidates-approve';
 
 const ROUTES: Routes = [
     {

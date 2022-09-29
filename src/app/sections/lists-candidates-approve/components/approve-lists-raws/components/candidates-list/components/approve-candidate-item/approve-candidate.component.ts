@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Inject, Input, Output } from '@angular/core';
-import { LAYOUT_GAP_M, LAYOUT_GAP_S } from '../../../../../../../../tokens';
+
 import { WbListRecord } from '../../../../../../../../api/fb-management/swagger-codegen/model/wbListRecord';
+import { LAYOUT_GAP_M, LAYOUT_GAP_S } from '../../../../../../../../tokens';
 
 @Component({
     selector: 'fb-approve-candidate-item',

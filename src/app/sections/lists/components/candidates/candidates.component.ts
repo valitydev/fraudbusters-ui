@@ -1,9 +1,10 @@
 import { ChangeDetectionStrategy, Component, Inject } from '@angular/core';
-import { FetchCandidatesService } from './services/fetch-candidates.service';
-import { LAYOUT_GAP_M } from '../../../../tokens';
 import { Router } from '@angular/router';
-import { SortOrder } from '../../../../shared/constants/sort-order';
+
 import { ConfigService } from '../../../../config';
+import { SortOrder } from '../../../../shared/constants/sort-order';
+import { LAYOUT_GAP_M } from '../../../../tokens';
+import { FetchCandidatesService } from './services/fetch-candidates.service';
 
 @Component({
     templateUrl: './candidates.component.html',

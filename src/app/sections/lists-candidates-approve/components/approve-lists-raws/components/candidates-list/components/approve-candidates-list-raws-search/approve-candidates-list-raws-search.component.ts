@@ -1,9 +1,10 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { debounceTime, map, take } from 'rxjs/operators';
-import { removeEmptyProperties } from '../../../../../../../../shared/utils/remove-empty-properties';
 import { Observable } from 'rxjs';
+import { debounceTime, map, take } from 'rxjs/operators';
+
+import { removeEmptyProperties } from '../../../../../../../../shared/utils/remove-empty-properties';
 
 @Component({
     selector: 'fb-approve-candidates-list-raws-search',

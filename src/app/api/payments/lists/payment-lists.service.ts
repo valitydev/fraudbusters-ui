@@ -6,15 +6,15 @@ import { filter, map } from 'rxjs/operators';
 import { ConfigService } from '../../../config';
 import { ListType } from '../../../shared/constants/list-type';
 import { HttpRequestModel } from '../../../shared/model/http-request-model';
+import { SearchParams } from '../../../shared/model/search-params';
 import { filterParameters } from '../../../shared/utils/filter-params';
 import { IdResponse } from '../../fb-management/swagger-codegen/model/idResponse';
 import { ListResponse } from '../../fb-management/swagger-codegen/model/listResponse';
 import { PaymentCountInfo } from '../../fb-management/swagger-codegen/model/paymentCountInfo';
+import { WbListCandidatesBatchesResponse } from '../../fb-management/swagger-codegen/model/wbListCandidatesBatchesResponse';
+import { WbListCandidatesResponse } from '../../fb-management/swagger-codegen/model/wbListCandidatesResponse';
 import { WbListRecordsResponse } from '../../fb-management/swagger-codegen/model/wbListRecordsResponse';
 import { SearchListsParams } from './search-lists-params';
-import { WbListCandidatesBatchesResponse } from '../../fb-management/swagger-codegen/model/wbListCandidatesBatchesResponse';
-import { SearchParams } from '../../../shared/model/search-params';
-import { WbListCandidatesResponse } from '../../fb-management/swagger-codegen/model/wbListCandidatesResponse';
 
 @Injectable()
 export class PaymentListsService {
