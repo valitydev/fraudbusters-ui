@@ -5,12 +5,13 @@
         ></fb-approve-candidates-list-raws-search>
         <button mat-button color="primary" (click)="approveCandidates()">APPROVE</button>
     </div>
-    <fb-approve-candidate-header></fb-approve-candidate-header>
+    <fb-approve-candidate-header (changedAll)="onChangeAll($event)"></fb-approve-candidate-header>
     <div *ngIf="candidates$ | async as candidates">
         <div *ngFor="let candidate of candidates" fxLayout="column" [fxLayoutGap]="layoutGapM">
             <fb-approve-candidate-item
                 [candidate]="candidate"
-                (approve)="approveItem.emit(candidate)"
+                (approve)="onChange($event)"
+                [enabled]="allSelected"
             ></fb-approve-candidate-item>
         </div>
     </div>

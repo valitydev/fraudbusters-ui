@@ -84,4 +84,12 @@ export class PaymentListsService {
             params: filterParameters(params),
         });
     }
+
+    approveCandidates(ids: string[]): Observable<string> {
+        return this.http
+            .post<void>(`${this.fbPaymentReferenceEndpoint}/candidates/approved`, {
+                ids,
+            })
+            .pipe(map(() => 'OK'));
+    }
 }
