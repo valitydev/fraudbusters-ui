@@ -14,8 +14,5 @@ export class ActionsComponent {
     @Output()
     approveItem = new EventEmitter<string>();
 
-    @Output()
-    deleteItem = new EventEmitter<string>();
-
     constructor(@Inject(LAYOUT_GAP_M) public layoutGapM: string) {}
 }

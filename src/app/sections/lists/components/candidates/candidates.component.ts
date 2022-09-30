@@ -33,8 +33,6 @@ export class CandidatesComponent {
         this.router.navigate([`candidates/${id}`]);
     }
 
-    removeListCandidates() {}
-
     fetchMore(event) {
         this.fetchCandidatesService.fetchMore(this.initParams(event));
     }

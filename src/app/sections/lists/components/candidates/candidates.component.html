@@ -7,13 +7,12 @@
             *ngIf="candidates.length; else Empty"
             [candidates]="candidates"
             (approveItem)="goToApproveCandidates($event)"
-            (deleteItem)="removeListCandidates()"
         ></fb-candidates-list>
     </div>
     <fb-show-more-panel
         *ngIf="hasMore$ | async"
         [isLoading]="inProgress$ | async"
-        (showMore)="fetchMore()"
+        (showMore)="fetchMore($event)"
     ></fb-show-more-panel>
     <div *ngIf="inProgress$ | async" fxLayout fxLayoutAlign="center">
         <mat-progress-spinner color="primary" mode="indeterminate" diameter="48"></mat-progress-spinner>

@@ -11,10 +11,6 @@
     </mat-expansion-panel-header>
     <div class="panel-content" fxLayout="column" [fxLayoutGap]="layoutGapM">
         <mat-divider></mat-divider>
-        <fb-actions
-            [id]="candidate.source"
-            (approveItem)="approveItem.emit($event)"
-            (deleteItem)="deleteItem.emit($event)"
-        ></fb-actions>
+        <fb-actions [id]="candidate.source" (approveItem)="approveItem.emit($event)"></fb-actions>
     </div>
 </mat-expansion-panel>
