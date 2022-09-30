@@ -12,6 +12,7 @@ import { HistoricalDataChargebackHeaderComponent } from './components/template-h
 import { ChargebackStatusToColorPipe } from './components/template-item/chargeback-status-to-color.pipe';
 import { HistoricalDataChargebackItemComponent } from './components/template-item/historical-data-chargeback-item.component';
 import { HistoricalDataChargebackListComponent } from './historical-data-chargeback-list.component';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 @NgModule({
     imports: [
@@ -23,6 +24,7 @@ import { HistoricalDataChargebackListComponent } from './historical-data-chargeb
         MatButtonModule,
         ListHeaderModule,
         TagModule,
+        MatCheckboxModule,
     ],
     declarations: [
         HistoricalDataChargebackListComponent,

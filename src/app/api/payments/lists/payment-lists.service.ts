@@ -15,6 +15,7 @@ import { WbListCandidatesBatchesResponse } from '../../fb-management/swagger-cod
 import { WbListCandidatesResponse } from '../../fb-management/swagger-codegen/model/wbListCandidatesResponse';
 import { WbListRecordsResponse } from '../../fb-management/swagger-codegen/model/wbListRecordsResponse';
 import { SearchListsParams } from './search-lists-params';
+import { Chargeback } from '../../fb-management/swagger-codegen/model/chargeback';
 
 @Injectable()
 export class PaymentListsService {
@@ -89,6 +90,14 @@ export class PaymentListsService {
         return this.http
             .post<void>(`${this.fbPaymentReferenceEndpoint}/candidates/approved`, {
                 ids,
+            })
+            .pipe(map(() => 'OK'));
+    }
+
+    createCandidatesByChargebacks(chargebacks: Chargeback[]): Observable<string> {
+        return this.http
+            .post<void>(`${this.fbPaymentReferenceEndpoint}/candidates`, {
+                records: chargebacks,
             })
             .pipe(map(() => 'OK'));
     }

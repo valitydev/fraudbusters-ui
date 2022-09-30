@@ -2,19 +2,29 @@ import { ChangeDetectionStrategy, Component, Inject } from '@angular/core';
 
 import { LAYOUT_GAP_M } from '../../../../tokens';
 import { FetchHistoricalChargebacksService } from '../../services/fetch-historical-chargebacks.service';
+import { Chargeback } from '../../../../api/fb-management/swagger-codegen/model/chargeback';
+import { PaymentListsService } from '../../../../api/payments/lists';
+import { catchError } from 'rxjs/operators';
+import { HttpErrorResponse } from '@angular/common/http';
+import { NEVER } from 'rxjs';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
     templateUrl: 'historical-chargebacks-data.component.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
-    providers: [],
+    providers: [PaymentListsService],
 })
 export class HistoricalChargebacksDataComponent {
     chargebacks$ = this.fetchHistoricalChargebacksService.searchResult$;
     inProgress$ = this.fetchHistoricalChargebacksService.inProgress$;
     hasMore$ = this.fetchHistoricalChargebacksService.hasMore$;
 
+    selectedChargebacks$: Array<Chargeback> = new Array<Chargeback>();
+
     constructor(
         private fetchHistoricalChargebacksService: FetchHistoricalChargebacksService,
+        private paymentListsService: PaymentListsService,
+        private snackBar: MatSnackBar,
         @Inject(LAYOUT_GAP_M) public layoutGapM: string
     ) {}
 
@@ -24,6 +34,30 @@ export class HistoricalChargebacksDataComponent {
 
     fetchMore(event) {
         this.fetchHistoricalChargebacksService.fetchMore(this.initParams(event));
+    }
+
+    checkChargebacks($event) {
+        this.selectedChargebacks$ = $event;
+    }
+
+    addToListReview() {
+        this.paymentListsService
+            .createCandidatesByChargebacks(this.selectedChargebacks$)
+            .pipe(
+                catchError((error: HttpErrorResponse) => {
+                    this.snackBar.open(`${error.status}: ${error.message}`, 'ERROR', {
+                        duration: 1500,
+                    });
+                    return NEVER;
+                })
+            )
+            .subscribe((value) => {
+                if (value === 'OK') {
+                    this.snackBar.open(`List candidates send to review`, 'OK', {
+                        duration: 1000,
+                    });
+                }
+            });
     }
 
     private initParams(event) {
