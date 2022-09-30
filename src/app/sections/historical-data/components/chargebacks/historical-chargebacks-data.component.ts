@@ -1,13 +1,13 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { ChangeDetectionStrategy, Component, Inject } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { NEVER } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 
-import { LAYOUT_GAP_M } from '../../../../tokens';
-import { FetchHistoricalChargebacksService } from '../../services/fetch-historical-chargebacks.service';
 import { Chargeback } from '../../../../api/fb-management/swagger-codegen/model/chargeback';
 import { PaymentListsService } from '../../../../api/payments/lists';
-import { catchError } from 'rxjs/operators';
-import { HttpErrorResponse } from '@angular/common/http';
-import { NEVER } from 'rxjs';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import { LAYOUT_GAP_M } from '../../../../tokens';
+import { FetchHistoricalChargebacksService } from '../../services/fetch-historical-chargebacks.service';
 
 @Component({
     templateUrl: 'historical-chargebacks-data.component.html',

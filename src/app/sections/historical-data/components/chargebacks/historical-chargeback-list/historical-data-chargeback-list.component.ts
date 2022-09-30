@@ -2,7 +2,6 @@ import { ChangeDetectionStrategy, Component, EventEmitter, Inject, Input, Output
 
 import { Chargeback } from '../../../../../api/fb-management/swagger-codegen/model/chargeback';
 import { LAYOUT_GAP_M } from '../../../../../tokens';
-import { Payment } from '../../../../../api/fb-management/swagger-codegen/model/payment';
 
 @Component({
     selector: 'fb-historical-data-chargeback-list',

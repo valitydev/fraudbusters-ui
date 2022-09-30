@@ -8,6 +8,7 @@ import { ListType } from '../../../shared/constants/list-type';
 import { HttpRequestModel } from '../../../shared/model/http-request-model';
 import { SearchParams } from '../../../shared/model/search-params';
 import { filterParameters } from '../../../shared/utils/filter-params';
+import { Chargeback } from '../../fb-management/swagger-codegen/model/chargeback';
 import { IdResponse } from '../../fb-management/swagger-codegen/model/idResponse';
 import { ListResponse } from '../../fb-management/swagger-codegen/model/listResponse';
 import { PaymentCountInfo } from '../../fb-management/swagger-codegen/model/paymentCountInfo';
@@ -15,7 +16,6 @@ import { WbListCandidatesBatchesResponse } from '../../fb-management/swagger-cod
 import { WbListCandidatesResponse } from '../../fb-management/swagger-codegen/model/wbListCandidatesResponse';
 import { WbListRecordsResponse } from '../../fb-management/swagger-codegen/model/wbListRecordsResponse';
 import { SearchListsParams } from './search-lists-params';
-import { Chargeback } from '../../fb-management/swagger-codegen/model/chargeback';
 
 @Injectable()
 export class PaymentListsService {
