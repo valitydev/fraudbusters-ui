@@ -7,7 +7,7 @@
             *ngIf="candidates.length; else Empty"
             [candidates]="candidates"
             (approveItem)="goToApproveCandidates($event)"
-            (deleteItem)="removeListCandidates($event)"
+            (deleteItem)="removeListCandidates()"
         ></fb-candidates-list>
     </div>
     <fb-show-more-panel

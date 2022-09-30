@@ -33,9 +33,7 @@ export class CandidatesComponent {
         this.router.navigate([`candidates/${id}`]);
     }
 
-    removeListCandidates(id: string) {
-        // this.fetchGroupsService.search({ searchValue });
-    }
+    removeListCandidates() {}
 
     fetchMore(event) {
         this.fetchCandidatesService.fetchMore(this.initParams(event));
