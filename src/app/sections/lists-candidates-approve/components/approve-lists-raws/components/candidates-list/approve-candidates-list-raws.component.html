@@ -3,7 +3,9 @@
         <fb-approve-candidates-list-raws-search
             (valueChanges)="search($event)"
         ></fb-approve-candidates-list-raws-search>
-        <button mat-button color="primary" (click)="approveCandidates()">APPROVE</button>
+        <button mat-button color="primary" (click)="approveCandidates()" [disabled]="selectedRecords.length < 1">
+            APPROVE
+        </button>
     </div>
     <fb-approve-candidate-header (changedAll)="onChangeAll($event)"></fb-approve-candidate-header>
     <div *ngIf="candidates$ | async as candidates">
