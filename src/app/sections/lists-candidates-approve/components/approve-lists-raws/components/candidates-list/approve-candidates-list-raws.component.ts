@@ -35,7 +35,7 @@ export class ApproveCandidatesListRawsComponent {
 
     selectedRecords: WbListRecord[] = [];
 
-    private SIZE = this.configService.pageSize;
+    private size = this.configService.pageSize;
 
     constructor(
         private fetchCandidatesRecordService: FetchCandidatesRecordService,
@@ -77,7 +77,7 @@ export class ApproveCandidatesListRawsComponent {
 
     search(searchValue: string) {
         this.searchValue = searchValue;
-        this.fetchCandidatesRecordService.search({ sortOrder: SortOrder.Desc, searchValue, size: this.SIZE });
+        this.fetchCandidatesRecordService.search({ sortOrder: SortOrder.Desc, searchValue, size: this.size });
     }
 
     onChange($event) {
@@ -105,5 +105,15 @@ export class ApproveCandidatesListRawsComponent {
         this.approve$.next(this.selectedRecords.map((value) => value.id));
     }
 
-    fetchMore() {}
+    fetchMore(event) {
+        this.fetchCandidatesRecordService.fetchMore(this.initParams(event));
+    }
+
+    private initParams(event) {
+        return {
+            searchValue: event.searchValue,
+            sortOrder: SortOrder.Desc,
+            size: this.size,
+        };
+    }
 }

@@ -16,7 +16,7 @@ export class CandidatesComponent {
     inProgress$ = this.fetchCandidatesService.inProgress$;
     hasMore$ = this.fetchCandidatesService.hasMore$;
 
-    private SIZE = this.configService.pageSize;
+    private size = this.configService.pageSize;
 
     constructor(
         private router: Router,
@@ -26,7 +26,7 @@ export class CandidatesComponent {
     ) {}
 
     search(searchValue: string) {
-        this.fetchCandidatesService.search({ sortOrder: SortOrder.Desc, searchValue, size: this.SIZE });
+        this.fetchCandidatesService.search({ sortOrder: SortOrder.Desc, searchValue, size: this.size });
     }
 
     goToApproveCandidates(id: string) {
@@ -37,7 +37,15 @@ export class CandidatesComponent {
         // this.fetchGroupsService.search({ searchValue });
     }
 
-    fetchMore() {
-        // this.fetchGroupsService.fetchMore();
+    fetchMore(event) {
+        this.fetchCandidatesService.fetchMore(this.initParams(event));
+    }
+
+    private initParams(event) {
+        return {
+            searchValue: event.searchValue,
+            sortOrder: SortOrder.Desc,
+            size: this.size,
+        };
     }
 }
