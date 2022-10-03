@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
 import { AuthGuard, Roles } from '../../auth';
-import { ApproveListsRawsComponent } from './components/approve-lists-raws/approve-lists-raws.component';
+import { CandidatesBatchesComponent } from './components/approve-lists-raws/candidates-batches.component';
 import { ListsCandidatesBatchesComponent } from './lists-candidates-batches.component';
 
 @NgModule({
@@ -16,7 +16,7 @@ import { ListsCandidatesBatchesComponent } from './lists-candidates-batches.comp
                 children: [
                     {
                         path: ':id',
-                        component: ApproveListsRawsComponent,
+                        component: CandidatesBatchesComponent,
                         canActivate: [AuthGuard],
                         data: { roles: [Roles.FraudOfficer] },
                     },

@@ -4,11 +4,11 @@ import { Router } from '@angular/router';
 import { LAYOUT_GAP_L, LAYOUT_GAP_M } from '../../../../tokens';
 
 @Component({
-    templateUrl: './approve-lists-raws.component.html',
+    templateUrl: './candidates-batches.component.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
-    styleUrls: ['./approve-lists-raws.component.scss'],
+    styleUrls: ['./candidates-batches.component.scss'],
 })
-export class ApproveListsRawsComponent {
+export class CandidatesBatchesComponent {
     constructor(
         private router: Router,
         @Inject(LAYOUT_GAP_L) public layoutGapL: string,
