@@ -40,7 +40,7 @@ export class HistoricalChargebacksDataComponent {
         this.selectedChargebacks$ = $event;
     }
 
-    addToListReview() {
+    addToWbListCandidate() {
         this.paymentListsService
             .createCandidatesByChargebacks(this.selectedChargebacks$)
             .pipe(

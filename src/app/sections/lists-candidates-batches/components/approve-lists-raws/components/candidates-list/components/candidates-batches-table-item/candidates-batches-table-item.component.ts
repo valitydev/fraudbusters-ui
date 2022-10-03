@@ -4,12 +4,12 @@ import { WbListRecord } from '../../../../../../../../api/fb-management/swagger-
 import { LAYOUT_GAP_M, LAYOUT_GAP_S } from '../../../../../../../../tokens';
 
 @Component({
-    selector: 'fb-approve-candidate-item',
-    templateUrl: 'approve-candidate.component.html',
-    styleUrls: ['approve-candidate-item.component.scss'],
+    selector: 'fb-candidates-batches-table-item',
+    templateUrl: 'candidates-batches-table-item.component.html',
+    styleUrls: ['candidates-batches-table-item.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ApproveCandidateComponent {
+export class CandidatesBatchesTableItemComponent {
     @Input()
     candidate: WbListRecord;
 

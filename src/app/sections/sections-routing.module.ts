@@ -45,7 +45,7 @@ const ROUTES: Routes = [
     },
     {
         path: 'candidates',
-        loadChildren: () => import('./lists-candidates-approve').then((m) => m.ListsCandidatesApproveModule),
+        loadChildren: () => import('./lists-candidates-batches').then((m) => m.ListsCandidatesBatchesModule),
     },
     {
         path: 'list',

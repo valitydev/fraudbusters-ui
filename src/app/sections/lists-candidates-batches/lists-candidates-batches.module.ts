@@ -17,18 +17,18 @@ import { PaymentListsService } from '../../api/payments/lists';
 import { EmptySearchResultModule } from '../../shared/components/empty-search-result';
 import { SearchFieldService } from '../../shared/services/utils/search-field.service';
 import { ApproveListsRawsComponent } from './components/approve-lists-raws/approve-lists-raws.component';
-import { ApproveCandidatesListRawsModule } from './components/approve-lists-raws/components/candidates-list';
-import { ListsCandidatesApproveRoutingModule } from './lists-candidates-approve-routing.module';
-import { ListsCandidatesApproveComponent } from './lists-candidates-approve.component';
+import { CandidatesBatchesTableModule } from './components/approve-lists-raws/components/candidates-list';
+import { ListsCandidatesBatchesRoutingModule } from './lists-candidates-batches-routing.module';
+import { ListsCandidatesBatchesComponent } from './lists-candidates-batches.component';
 
 @NgModule({
-    declarations: [ListsCandidatesApproveComponent, ApproveListsRawsComponent],
+    declarations: [ListsCandidatesBatchesComponent, ApproveListsRawsComponent],
     imports: [
         EmptySearchResultModule,
         MatDividerModule,
         MatProgressSpinnerModule,
         MatSnackBarModule,
-        ListsCandidatesApproveRoutingModule,
+        ListsCandidatesBatchesRoutingModule,
         MatCardModule,
         MatToolbarModule,
         MatFormFieldModule,
@@ -39,8 +39,8 @@ import { ListsCandidatesApproveComponent } from './lists-candidates-approve.comp
         FlexModule,
         MatIconModule,
         CommonModule,
-        ApproveCandidatesListRawsModule,
+        CandidatesBatchesTableModule,
     ],
     providers: [SearchFieldService, PaymentListsService],
 })
-export class ListsCandidatesApproveModule {}
+export class ListsCandidatesBatchesModule {}

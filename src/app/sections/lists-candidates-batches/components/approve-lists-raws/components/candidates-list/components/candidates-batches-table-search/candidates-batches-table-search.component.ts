@@ -7,11 +7,11 @@ import { debounceTime, map, take } from 'rxjs/operators';
 import { removeEmptyProperties } from '../../../../../../../../shared/utils/remove-empty-properties';
 
 @Component({
-    selector: 'fb-approve-candidates-list-raws-search',
-    templateUrl: 'approve-candidates-list-raws-search.component.html',
-    styleUrls: ['search.component.scss'],
+    selector: 'fb-candidates-batches-table-search',
+    templateUrl: 'candidates-batches-table-search.component.html',
+    styleUrls: ['candidates-batches-table-search.component.scss'],
 })
-export class ApproveCandidatesListRawsSearchComponent {
+export class CandidatesBatchesTableSearchComponent {
     @Output() valueChanges: EventEmitter<string> = new EventEmitter();
 
     @Input() listNames$: Observable<string[]>;

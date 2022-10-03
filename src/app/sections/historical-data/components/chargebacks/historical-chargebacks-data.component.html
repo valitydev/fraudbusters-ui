@@ -1,8 +1,13 @@
 <div fxLayout="column" [fxLayoutGap]="layoutGapM">
     <fb-history-data-search (valueChanges)="search($event)"></fb-history-data-search>
     <div fxLayout fxLayoutAlign="end start">
-        <button mat-button color="primary" (click)="addToListReview()" [disabled]="selectedChargebacks$.length === 0">
-            ADD TO LIST REVIEW
+        <button
+            mat-button
+            color="primary"
+            (click)="addToWbListCandidate()"
+            [disabled]="selectedChargebacks$.length === 0"
+        >
+            ADD TO LIST CANDIDATE
         </button>
     </div>
     <div *ngIf="chargebacks$ | async as chargebacks; else Empty" fxLayout="column" [fxLayoutGap]="layoutGapM">

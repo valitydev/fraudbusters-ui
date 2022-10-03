@@ -3,14 +3,14 @@ import { RouterModule } from '@angular/router';
 
 import { AuthGuard, Roles } from '../../auth';
 import { ApproveListsRawsComponent } from './components/approve-lists-raws/approve-lists-raws.component';
-import { ListsCandidatesApproveComponent } from './lists-candidates-approve.component';
+import { ListsCandidatesBatchesComponent } from './lists-candidates-batches.component';
 
 @NgModule({
     imports: [
         RouterModule.forChild([
             {
                 path: '',
-                component: ListsCandidatesApproveComponent,
+                component: ListsCandidatesBatchesComponent,
                 canActivate: [AuthGuard],
                 data: { roles: [Roles.FraudOfficer] },
                 children: [
@@ -26,4 +26,4 @@ import { ListsCandidatesApproveComponent } from './lists-candidates-approve.comp
     ],
     exports: [RouterModule],
 })
-export class ListsCandidatesApproveRoutingModule {}
+export class ListsCandidatesBatchesRoutingModule {}

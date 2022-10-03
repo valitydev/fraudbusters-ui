@@ -1,20 +1,18 @@
 <div fxLayout="column" [fxLayoutGap]="layoutGapM">
     <div fxLayout fxLayoutAlign="space-between center">
-        <fb-approve-candidates-list-raws-search
-            (valueChanges)="search($event)"
-        ></fb-approve-candidates-list-raws-search>
+        <fb-candidates-batches-table-search (valueChanges)="search($event)"></fb-candidates-batches-table-search>
         <button mat-button color="primary" (click)="approveCandidates()" [disabled]="selectedRecords.length < 1">
-            APPROVE
+            ADD TO LIST
         </button>
     </div>
-    <fb-approve-candidate-header (changedAll)="onChangeAll($event)"></fb-approve-candidate-header>
+    <fb-candidates-batches-table-header (changedAll)="onChangeAll($event)"></fb-candidates-batches-table-header>
     <div *ngIf="candidates$ | async as candidates">
         <div *ngFor="let candidate of candidates" fxLayout="column" [fxLayoutGap]="layoutGapM">
-            <fb-approve-candidate-item
+            <fb-candidates-batches-table-item
                 [candidate]="candidate"
                 (approve)="onChange($event)"
                 [enabled]="allSelected"
-            ></fb-approve-candidate-item>
+            ></fb-candidates-batches-table-item>
         </div>
     </div>
     <fb-show-more-panel

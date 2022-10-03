@@ -13,12 +13,12 @@ import { LAYOUT_GAP_M } from '../../../../../../tokens';
 import { FetchCandidatesRecordService } from './services/fetch-candidates-record.service';
 
 @Component({
-    selector: 'fb-approve-candidates-list-raws',
-    templateUrl: 'approve-candidates-list-raws.component.html',
+    selector: 'fb-candidates-batches-table',
+    templateUrl: 'candidates-batches-table.component.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
     providers: [FetchCandidatesRecordService, ErrorHandlerService],
 })
-export class ApproveCandidatesListRawsComponent {
+export class CandidatesBatchesTableComponent {
     candidates$ = this.fetchCandidatesRecordService.searchResult$;
     inProgress$ = this.fetchCandidatesRecordService.inProgress$;
     hasMore$ = this.fetchCandidatesRecordService.hasMore$;

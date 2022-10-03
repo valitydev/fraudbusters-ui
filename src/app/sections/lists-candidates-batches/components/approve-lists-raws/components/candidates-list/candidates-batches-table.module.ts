@@ -19,11 +19,11 @@ import { ListHeaderModule } from '../../../../../../shared/components/list-heade
 import { ShowMorePanelModule } from '../../../../../../shared/components/show-more-panel';
 import { ShowMoreContinuationPanelModule } from '../../../../../../shared/components/show-more-panel-continuation';
 import { SharedPipesModule } from '../../../../../../shared/pipes';
-import { ApproveCandidatesListRawsComponent } from './approve-candidates-list-raws.component';
+import { CandidatesBatchesTableComponent } from './candidates-batches-table.component';
 import { ActionsComponent } from './components/actions/actions.component';
-import { ApproveCandidateHeaderComponent } from './components/approve-candidate-header/approve-candidate-header.component';
-import { ApproveCandidateComponent } from './components/approve-candidate-item/approve-candidate.component';
-import { ApproveCandidatesListRawsSearchComponent } from './components/approve-candidates-list-raws-search/approve-candidates-list-raws-search.component';
+import { CandidatesBatchesTableHeaderComponent } from './components/candidates-batches-table-header/candidates-batches-table-header.component';
+import { CandidatesBatchesTableItemComponent } from './components/candidates-batches-table-item/candidates-batches-table-item.component';
+import { CandidatesBatchesTableSearchComponent } from './components/candidates-batches-table-search/candidates-batches-table-search.component';
 
 @NgModule({
     imports: [
@@ -48,12 +48,12 @@ import { ApproveCandidatesListRawsSearchComponent } from './components/approve-c
         ShowMoreContinuationPanelModule,
     ],
     declarations: [
-        ApproveCandidatesListRawsComponent,
-        ApproveCandidateHeaderComponent,
-        ApproveCandidateComponent,
+        CandidatesBatchesTableComponent,
+        CandidatesBatchesTableHeaderComponent,
+        CandidatesBatchesTableItemComponent,
         ActionsComponent,
-        ApproveCandidatesListRawsSearchComponent,
+        CandidatesBatchesTableSearchComponent,
     ],
-    exports: [ApproveCandidatesListRawsComponent],
+    exports: [CandidatesBatchesTableComponent],
 })
-export class ApproveCandidatesListRawsModule {}
+export class CandidatesBatchesTableModule {}
