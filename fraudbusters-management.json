@@ -1240,6 +1240,160 @@
                 }
             }
         },
+        "/payments-lists/candidates": {
+            "get": {
+                "summary": "Получение кандидатов в ЧБ списки",
+                "operationId": "listCandidates",
+                "tags": ["lists"],
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/numericLastId"
+                    },
+                    {
+                        "$ref": "#/components/parameters/sortOrder"
+                    },
+                    {
+                        "$ref": "#/components/parameters/searchValue"
+                    },
+                    {
+                        "$ref": "#/components/parameters/sortBy"
+                    },
+                    {
+                        "$ref": "#/components/parameters/sortFieldValue"
+                    },
+                    {
+                        "$ref": "#/components/parameters/size"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "List candidates",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/WbListCandidatesResponse"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            },
+            "post": {
+                "summary": "Добавление в списки кандидатов",
+                "operationId": "insertListCandidates",
+                "tags": ["lists"],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/WbListCandidatesRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Add list candidates"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            }
+        },
+        "/payments-lists/candidates/approved": {
+            "post": {
+                "summary": "Добавление кандидатов в ЧБ списки",
+                "operationId": "approveListCandidates",
+                "tags": ["lists"],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/IdListRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Add fraud candidates to lists"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            }
+        },
+        "/payments-lists/candidates-batches": {
+            "get": {
+                "summary": "Получение информации о партиях кандидатов в ЧБ списки",
+                "operationId": "listCandidatesBatches",
+                "tags": ["lists"],
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/lastId"
+                    },
+                    {
+                        "$ref": "#/components/parameters/sortOrder"
+                    },
+                    {
+                        "$ref": "#/components/parameters/searchValue"
+                    },
+                    {
+                        "$ref": "#/components/parameters/sortBy"
+                    },
+                    {
+                        "$ref": "#/components/parameters/sortFieldValue"
+                    },
+                    {
+                        "$ref": "#/components/parameters/size"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "List candidates batches",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/WbListCandidatesBatchesResponse"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            }
+        },
         "/payments-templates": {
             "post": {
                 "summary": "Добавление нового темплейта",
@@ -3486,6 +3640,172 @@
                     }
                 }
             },
+            "WbListCandidatesResponse": {
+                "type": "object",
+                "required": ["source", "result"],
+                "properties": {
+                    "lastId": {
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "source": {
+                        "type": "string"
+                    },
+                    "result": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/WbListRecord"
+                        }
+                    }
+                }
+            },
+            "MerchantInfo": {
+                "type": "object",
+                "properties": {
+                    "partyId": {
+                        "type": "string"
+                    },
+                    "shopId": {
+                        "type": "string"
+                    }
+                }
+            },
+            "ProviderInfo": {
+                "type": "object",
+                "properties": {
+                    "providerId": {
+                        "type": "string"
+                    },
+                    "terminalId": {
+                        "type": "string"
+                    },
+                    "country": {
+                        "type": "string"
+                    }
+                }
+            },
+            "ClientInfo": {
+                "type": "object",
+                "properties": {
+                    "ip": {
+                        "type": "string"
+                    },
+                    "fingerprint": {
+                        "type": "string"
+                    },
+                    "email": {
+                        "type": "string"
+                    }
+                }
+            },
+            "Chargeback": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string"
+                    },
+                    "paymentId": {
+                        "type": "string"
+                    },
+                    "eventTime": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "merchantInfo": {
+                        "$ref": "#/components/schemas/MerchantInfo"
+                    },
+                    "paymentTool": {
+                        "type": "string"
+                    },
+                    "amount": {
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "currency": {
+                        "type": "string"
+                    },
+                    "provider": {
+                        "$ref": "#/components/schemas/ProviderInfo"
+                    },
+                    "status": {
+                        "type": "string"
+                    },
+                    "category": {
+                        "type": "string"
+                    },
+                    "chargebackCode": {
+                        "type": "string"
+                    },
+                    "clientInfo": {
+                        "$ref": "#/components/schemas/ClientInfo"
+                    },
+                    "payerType": {
+                        "type": "string"
+                    }
+                }
+            },
+            "WbListCandidatesRequest": {
+                "type": "object",
+                "required": ["records"],
+                "properties": {
+                    "records": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Chargeback"
+                        }
+                    }
+                }
+            },
+            "IdListRequest": {
+                "type": "object",
+                "required": ["ids"],
+                "properties": {
+                    "ids": {
+                        "type": "array",
+                        "items": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                }
+            },
+            "WbListCandidateBatch": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string"
+                    },
+                    "source": {
+                        "type": "string"
+                    },
+                    "size": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "fields": {
+                        "type": "string"
+                    },
+                    "createdAt": {
+                        "type": "string",
+                        "format": "date-time"
+                    }
+                }
+            },
+            "WbListCandidatesBatchesResponse": {
+                "type": "object",
+                "required": ["result"],
+                "properties": {
+                    "lastId": {
+                        "type": "string"
+                    },
+                    "result": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/WbListCandidateBatch"
+                        }
+                    }
+                }
+            },
             "Template": {
                 "type": "object",
                 "properties": {
@@ -3615,31 +3935,6 @@
                     }
                 }
             },
-            "MerchantInfo": {
-                "type": "object",
-                "properties": {
-                    "partyId": {
-                        "type": "string"
-                    },
-                    "shopId": {
-                        "type": "string"
-                    }
-                }
-            },
-            "ClientInfo": {
-                "type": "object",
-                "properties": {
-                    "ip": {
-                        "type": "string"
-                    },
-                    "fingerprint": {
-                        "type": "string"
-                    },
-                    "email": {
-                        "type": "string"
-                    }
-                }
-            },
             "Error": {
                 "type": "object",
                 "properties": {
@@ -3647,20 +3942,6 @@
                         "type": "string"
                     },
                     "errorReason": {
-                        "type": "string"
-                    }
-                }
-            },
-            "ProviderInfo": {
-                "type": "object",
-                "properties": {
-                    "providerId": {
-                        "type": "string"
-                    },
-                    "terminalId": {
-                        "type": "string"
-                    },
-                    "country": {
                         "type": "string"
                     }
                 }
@@ -3780,52 +4061,6 @@
                         "items": {
                             "$ref": "#/components/schemas/InspectResult"
                         }
-                    }
-                }
-            },
-            "Chargeback": {
-                "type": "object",
-                "properties": {
-                    "id": {
-                        "type": "string"
-                    },
-                    "paymentId": {
-                        "type": "string"
-                    },
-                    "eventTime": {
-                        "type": "string",
-                        "format": "date-time"
-                    },
-                    "merchantInfo": {
-                        "$ref": "#/components/schemas/MerchantInfo"
-                    },
-                    "paymentTool": {
-                        "type": "string"
-                    },
-                    "amount": {
-                        "type": "integer",
-                        "format": "int64"
-                    },
-                    "currency": {
-                        "type": "string"
-                    },
-                    "provider": {
-                        "$ref": "#/components/schemas/ProviderInfo"
-                    },
-                    "status": {
-                        "type": "string"
-                    },
-                    "category": {
-                        "type": "string"
-                    },
-                    "chargebackCode": {
-                        "type": "string"
-                    },
-                    "clientInfo": {
-                        "$ref": "#/components/schemas/ClientInfo"
-                    },
-                    "payerType": {
-                        "type": "string"
                     }
                 }
             },

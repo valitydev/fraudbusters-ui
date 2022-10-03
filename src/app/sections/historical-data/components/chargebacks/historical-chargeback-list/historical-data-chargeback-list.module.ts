@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FlexModule } from '@angular/flex-layout';
 import { MatButtonModule } from '@angular/material/button';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatExpansionModule } from '@angular/material/expansion';
 
@@ -23,6 +24,7 @@ import { HistoricalDataChargebackListComponent } from './historical-data-chargeb
         MatButtonModule,
         ListHeaderModule,
         TagModule,
+        MatCheckboxModule,
     ],
     declarations: [
         HistoricalDataChargebackListComponent,

@@ -44,6 +44,10 @@ const ROUTES: Routes = [
         loadChildren: () => import('./lists').then((m) => m.ListsModule),
     },
     {
+        path: 'candidates',
+        loadChildren: () => import('./lists-candidates-batches').then((m) => m.ListsCandidatesBatchesModule),
+    },
+    {
         path: 'list',
         loadChildren: () => import('./list').then((m) => m.ListModule),
     },

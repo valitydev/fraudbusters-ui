@@ -1,4 +1,7 @@
 <fb-list-header>
+    <div class="fb-body-checkbox" fxFlex="30px" matTooltip="Select only shown rows!">
+        <mat-checkbox color="primary" (change)="changeAll($event)"></mat-checkbox>
+    </div>
     <div class="fb-body-2" fxFlex="120px">ID</div>
     <div class="fb-body-2" fxFlex="120px">STATUS</div>
     <div class="fb-body-2" fxFlex>PARTY ID</div>

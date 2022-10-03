@@ -1,15 +1,19 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { filter, map } from 'rxjs/operators';
 
 import { ConfigService } from '../../../config';
 import { ListType } from '../../../shared/constants/list-type';
 import { HttpRequestModel } from '../../../shared/model/http-request-model';
+import { SearchParams } from '../../../shared/model/search-params';
 import { filterParameters } from '../../../shared/utils/filter-params';
+import { Chargeback } from '../../fb-management/swagger-codegen/model/chargeback';
 import { IdResponse } from '../../fb-management/swagger-codegen/model/idResponse';
 import { ListResponse } from '../../fb-management/swagger-codegen/model/listResponse';
 import { PaymentCountInfo } from '../../fb-management/swagger-codegen/model/paymentCountInfo';
+import { WbListCandidatesBatchesResponse } from '../../fb-management/swagger-codegen/model/wbListCandidatesBatchesResponse';
+import { WbListCandidatesResponse } from '../../fb-management/swagger-codegen/model/wbListCandidatesResponse';
 import { WbListRecordsResponse } from '../../fb-management/swagger-codegen/model/wbListRecordsResponse';
 import { SearchListsParams } from './search-lists-params';
 
@@ -62,9 +66,39 @@ export class PaymentListsService {
         const formData: FormData = new FormData();
         formData.append('file', file, file.name);
         formData.append('listType', listType);
-        return this.http.post<any>(`${this.fbPaymentReferenceEndpoint}/csv`, formData, {
-            reportProgress: true,
-            observe: 'events',
+        return this.http
+            .post<any>(`${this.fbPaymentReferenceEndpoint}/csv`, formData, {
+                reportProgress: true,
+                observe: 'events',
+            })
+            .pipe(filter((r) => r instanceof HttpResponse && r.status === 200));
+    }
+
+    findCandidatesBatch(params: SearchParams): Observable<WbListCandidatesBatchesResponse> {
+        return this.http.get<WbListCandidatesBatchesResponse>(`${this.fbPaymentReferenceEndpoint}/candidates-batches`, {
+            params: filterParameters(params),
         });
+    }
+
+    findCandidates(params: SearchParams): Observable<WbListCandidatesResponse> {
+        return this.http.get<WbListCandidatesResponse>(`${this.fbPaymentReferenceEndpoint}/candidates`, {
+            params: filterParameters(params),
+        });
+    }
+
+    approveCandidates(ids: string[]): Observable<string> {
+        return this.http
+            .post<void>(`${this.fbPaymentReferenceEndpoint}/candidates/approved`, {
+                ids,
+            })
+            .pipe(map(() => 'OK'));
+    }
+
+    createCandidatesByChargebacks(chargebacks: Chargeback[]): Observable<string> {
+        return this.http
+            .post<void>(`${this.fbPaymentReferenceEndpoint}/candidates`, {
+                records: chargebacks,
+            })
+            .pipe(map(() => 'OK'));
     }
 }
