@@ -12,6 +12,8 @@ import { WbListService } from '../wb-list.service';
 
 @Injectable()
 export class AddRowListService {
+    private readonly _sizeByte = 41943040;
+
     created$: Observable<any>;
     loadedFile$: Observable<any>;
     inProgress$: Observable<boolean>;
@@ -95,7 +97,7 @@ export class AddRowListService {
     }
 
     saveFileWithListRaws(listType: ListType, file: File): void {
-        if (this.csvUtilsService.isValidFile(file, 'text/csv', 2097152)) {
+        if (this.csvUtilsService.isValidFile(file, 'text/csv', this._sizeByte)) {
             this.loadFile$.next({ file, listType });
         }
     }
