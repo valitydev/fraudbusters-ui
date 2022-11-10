@@ -12,8 +12,6 @@ import { WbListService } from '../wb-list.service';
 
 @Injectable()
 export class AddRowListService {
-    private readonly _sizeByte = 41943040;
-
     created$: Observable<any>;
     loadedFile$: Observable<any>;
     inProgress$: Observable<boolean>;
@@ -22,6 +20,8 @@ export class AddRowListService {
     private loadFile$ = new Subject<any>();
     private create$ = new Subject<ListType>();
     private errors$ = new Subject();
+
+    private readonly _sizeByte = 41943040;
 
     constructor(
         private fb: FormBuilder,
