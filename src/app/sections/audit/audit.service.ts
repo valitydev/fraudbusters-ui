@@ -66,7 +66,7 @@ export class AuditService {
                         commandTypes: value[0].commandTypes,
                         from: this.datepipe.transform(value[0].from, DateFormat._yyyyMMDdHHMmSs),
                         to: this.datepipe.transform(value[0].to, DateFormat._yyyyMMDdHHMmSs),
-                        sortOrder: SortOrder[value[2]],
+                        sortOrder: SortOrder.Desc,
                         size: this.size,
                         lastId: this.isLoadMore(value) ? this.last.id : null,
                         sortFieldValue: this.isLoadMore(value) ? this.last.insertTime : null,
