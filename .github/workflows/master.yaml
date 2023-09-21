@@ -21,7 +21,7 @@ jobs:
       - name: Build
         run: npm run build
       - name: Deploy image
-        uses: valitydev/action-deploy-docker@v1.0.16
+        uses: valitydev/action-deploy-docker@v2
         with:
           registry-username: ${{ github.actor }}
           registry-access-token: ${{ secrets.GITHUB_TOKEN }}
