@@ -1,6 +1,6 @@
 {
   "name": "fraudbusters-ui",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -27,7 +27,7 @@
   "dependencies": {
     "@angular-eslint/eslint-plugin": "^13.1.0",
     "@angular-eslint/eslint-plugin-template": "^13.1.0",
-    "@angular-material-components/datetime-picker": "^7.0.1",
+    "@angular-material-components/datetime-picker": "^16.0.0",
     "@angular/animations": "^13.0.1",
     "@angular/cdk": "^13.0.1",
     "@angular/common": "^13.0.1",
