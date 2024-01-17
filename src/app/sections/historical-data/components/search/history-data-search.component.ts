@@ -38,6 +38,15 @@ export class HistoryDataSearchComponent {
             const params = Object.create(v);
             params.from = new Date(v.from).toISOString();
             params.to = new Date(v.to).toISOString();
+            params.cardToken = v.cardToken;
+            params.shopId = v.shopId;
+            params.partyId = v.partyId;
+            params.status = v.status;
+            params.id = v.id;
+            params.fingerprint = v.fingerprint;
+            params.email = v.email;
+            params.terminal = v.terminal;
+            params.country = v.country;
             this.router.navigate([location.pathname], { queryParams: params });
             this.valueChanges.emit(v);
         });
