@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, Inject } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { Payment } from '../../../../api/fb-management/swagger-codegen/model/payment';
 import { DataSetService } from '../../../../api/payments/data-set';
@@ -24,6 +24,7 @@ export class HistoricalPaymentsDataComponent {
         private profileService: ProfileService,
         private fetchPaymentsService: FetchHistoricalPaymentsService,
         private dataSetService: DataSetService,
+        private route: ActivatedRoute,
         @Inject(LAYOUT_GAP_M) public layoutGapM: string
     ) {}
 
