@@ -4136,7 +4136,7 @@
           }
         }
       },
-      "Error": {
+      "ModelError": {
         "type": "object",
         "properties": {
           "errorCode": {
@@ -4203,7 +4203,7 @@
             "type": "boolean"
           },
           "error": {
-            "$ref": "#/components/schemas/Error"
+            "$ref": "#/components/schemas/ModelError"
           },
           "paymentSystem": {
             "type": "string"
@@ -4357,7 +4357,7 @@
             "type": "string"
           },
           "error": {
-            "$ref": "#/components/schemas/Error"
+            "$ref": "#/components/schemas/ModelError"
           },
           "clientInfo": {
             "$ref": "#/components/schemas/ClientInfo"
