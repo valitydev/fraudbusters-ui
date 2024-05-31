@@ -22,9 +22,25 @@
             <div fxFlex>Token:</div>
             <div fxFlex>{{ payment.cardToken }}</div>
         </div>
-        <div class="row">
+        <div class="row" *ngIf="payment.clientInfo.bin">
+            <div fxFlex>BIN:</div>
+            <div fxFlex>{{ payment.bin }}</div>
+        </div>
+        <div class="row" *ngIf="payment.clientInfo.lastDigits">
+            <div fxFlex>Last Digits:</div>
+            <div fxFlex>{{ payment.lastDigits }}</div>
+        </div>
+        <div class="row" *ngIf="payment.clientInfo.paymentSystem">
+            <div fxFlex>Payment System:</div>
+            <div fxFlex>{{ payment.paymentSystem }}</div>
+        </div>
+        <div class="row" *ngIf="payment.clientInfo.fingerprint">
             <div fxFlex>Fingerprint:</div>
             <div fxFlex>{{ payment.clientInfo.fingerprint }}</div>
+        </div>
+        <div class="row" *ngIf="payment.clientInfo.ip">
+            <div fxFlex>IP:</div>
+            <div fxFlex>{{ payment.clientInfo.ip }}</div>
         </div>
         <div fxLayout="row">
             <div fxFlex>Country:</div>
@@ -33,6 +49,14 @@
         <div fxLayout="row">
             <div fxFlex>Terminal:</div>
             <div fxFlex>{{ payment.provider.terminalId }}</div>
+        </div>
+        <div class="row" *ngIf="payment.error.errorCode">
+            <div fxFlex>Error code:</div>
+            <div fxFlex>{{ payment.error.errorCode }}</div>
+        </div>
+        <div class="row" *ngIf="payment.error.errorReason">
+            <div fxFlex>Error reason:</div>
+            <div fxFlex>{{ payment.error.errorReason }}</div>
         </div>
         <mat-divider></mat-divider>
     </div>
