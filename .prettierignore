@@ -11,4 +11,4 @@ src/app/**/gen-model
 .swagger-codegen
 *.svg
 .angular
-.fraudbusters-management.json
+fraudbusters-management.json
