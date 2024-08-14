@@ -1158,6 +1158,47 @@
         }
       }
     },
+    "/payments-lists/remove/csv": {
+      "delete": {
+        "summary": "Удаление записей из ЧБ списки по csv",
+        "operationId": "deleteByCsv",
+        "tags": [
+          "lists"
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "listType": {
+                    "type": "string"
+                  },
+                  "file": {
+                    "type": "string",
+                    "format": "binary"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Remove process started"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
     "/payments-lists/availableListNames": {
       "get": {
         "summary": "Запросить перечень списков",
@@ -4136,7 +4177,7 @@
           }
         }
       },
-      "ModelError": {
+      "Error": {
         "type": "object",
         "properties": {
           "errorCode": {
@@ -4203,7 +4244,7 @@
             "type": "boolean"
           },
           "error": {
-            "$ref": "#/components/schemas/ModelError"
+            "$ref": "#/components/schemas/Error"
           },
           "paymentSystem": {
             "type": "string"
@@ -4357,7 +4398,7 @@
             "type": "string"
           },
           "error": {
-            "$ref": "#/components/schemas/ModelError"
+            "$ref": "#/components/schemas/Error"
           },
           "clientInfo": {
             "$ref": "#/components/schemas/ClientInfo"

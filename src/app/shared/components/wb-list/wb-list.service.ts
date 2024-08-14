@@ -51,4 +51,8 @@ export class WbListService {
     saveListRowsFromFile(listType: ListType, file: File): Observable<any> {
         return this.paymentListsService.saveListsRowsFromFile(listType, file);
     }
+
+    deleteListRowsByFile(listType: ListType, file: File): Observable<any> {
+        return this.paymentListsService.deleteListsRowsByFile(listType, file);
+    }
 }

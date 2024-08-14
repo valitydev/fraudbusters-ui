@@ -49,6 +49,10 @@ export class WbListComponent implements OnInit {
         this.removeWbListComponentService.remove({ rowId });
     }
 
+    deleteByFileWithList(file: File): void {
+        this.removeWbListComponentService.deleteByFileWithListRaws(this.listType, file);
+    }
+
     search(filter?: Filter) {
         this.fetchWbListService.search({
             searchValue: filter.searchValue,
