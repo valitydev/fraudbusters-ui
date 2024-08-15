@@ -1,7 +1,19 @@
-<div fxLayout="column" [fxLayoutGap]="layoutGapM">
+<div fxLayout="column" [fxLayoutGap]="layoutGapM" xmlns="http://www.w3.org/1999/html">
     <div fxLayout fxLayoutAlign="space-between center">
         <fb-wb-list-search (valueChanges)="search($event)" [listNames$]="listNames$"></fb-wb-list-search>
-        <button mat-button color="primary" (click)="createRow()">CREATE RECORD</button>
+        <div fxLayout fxLayoutAlign="space-between right">
+            <input
+                hidden
+                type="file"
+                #fileDropRef
+                id="fileDropRef"
+                (change)="deleteByFileWithList($event.target.files[0])"
+            />
+            <button mat-button color="accent" (click)="fileDropRef.click()" style="margin-right: 16px">
+                CLEAN BY CSV
+            </button>
+            <button mat-button color="primary" (click)="createRow()">CREATE RECORD</button>
+        </div>
     </div>
     <div *ngIf="rows$ | async as rows">
         <fb-wb-rows-list
