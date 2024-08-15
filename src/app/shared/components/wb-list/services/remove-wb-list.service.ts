@@ -7,9 +7,9 @@ import { catchError, filter, shareReplay, switchMap } from 'rxjs/operators';
 
 import { PaymentListsService } from '../../../../api/payments/lists';
 import { progress } from '../../../../shared/operators';
-import { ConfirmActionDialogComponent } from '../../confirm-action-dialog';
 import { ListType } from '../../../constants/list-type';
 import { CsvUtilsService } from '../../../services/utils/csv-utils.service';
+import { ConfirmActionDialogComponent } from '../../confirm-action-dialog';
 
 export interface RemoveListRowParams {
     rowId: string;
