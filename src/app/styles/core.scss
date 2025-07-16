@@ -1,5 +1,5 @@
-@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
-@import '~@angular/material/theming';
+@import '@angular/material';
+@import '@angular/material/prebuilt-themes/deeppurple-amber.css';
 
 @import './themes/deeppurple-amber';
 @import 'overrides/_body';
@@ -19,7 +19,6 @@
 }
 
 @mixin fb-typography($config) {
-    @include mat-core($config);
     @include fb-base-typography($config);
 }
 

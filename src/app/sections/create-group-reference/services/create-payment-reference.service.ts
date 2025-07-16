@@ -1,6 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { EMPTY, merge, Subject } from 'rxjs';
 import { catchError, filter, shareReplay, switchMap } from 'rxjs/operators';
@@ -13,14 +13,14 @@ export class CreatePaymentReferenceService {
     private create$ = new Subject();
     private errors$ = new Subject();
 
-    forms = this.fb.array([]);
+    forms = this.fb.array<FormGroup>([]);
 
     created$ = this.create$.pipe(
         switchMap(() =>
             this.referenceService.saveGroupReference(this.forms.value).pipe(
                 catchError((error: HttpErrorResponse) => {
                     this.snackBar.open(`${error.status}: ${error.message}`, 'OK');
-                    this.errors$.next();
+                    this.errors$.next(undefined);
                     return EMPTY;
                 })
             )
@@ -48,7 +48,7 @@ export class CreatePaymentReferenceService {
     }
 
     create() {
-        this.create$.next();
+        this.create$.next(undefined);
     }
 
     addItem() {

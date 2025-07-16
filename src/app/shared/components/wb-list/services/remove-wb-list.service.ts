@@ -23,7 +23,7 @@ export class RemoveWbListComponentService {
 
     private loadFile$ = new Subject<any>();
     private removeRow$ = new Subject<RemoveListRowParams>();
-    private hasError$ = new Subject();
+    private hasError$ = new Subject<any | undefined>();
 
     private readonly _sizeByte = 41943040;
 
@@ -49,7 +49,7 @@ export class RemoveWbListComponentService {
                         this.snackBar.open(`${error.status}: ${error.message}`, 'OK', {
                             duration: 1500,
                         });
-                        this.hasError$.next();
+                        this.hasError$.next(undefined);
                         return NEVER;
                     })
                 )
@@ -62,7 +62,7 @@ export class RemoveWbListComponentService {
                 return this.paymentListsService.deleteListsRowsByFile(value.listType, value.file).pipe(
                     catchError((error: HttpErrorResponse) => {
                         this.snackBar.open(`${error.status}: ${error.message}`, 'ERROR');
-                        this.hasError$.next();
+                        this.hasError$.next(undefined);
                         return EMPTY;
                     })
                 );

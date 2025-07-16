@@ -27,7 +27,7 @@ export class CreateDefaultPaymentReferenceService {
             this.defaultReferencesService.saveReference(OperationType.Payment, this.form.value).pipe(
                 catchError((error: HttpErrorResponse) => {
                     this.snackBar.open(`${error.status}: ${error.message}`, 'OK');
-                    this.errors$.next();
+                    this.errors$.next(undefined);
                     return EMPTY;
                 })
             )
@@ -53,6 +53,6 @@ export class CreateDefaultPaymentReferenceService {
     }
 
     create() {
-        this.create$.next();
+        this.create$.next(undefined);
     }
 }

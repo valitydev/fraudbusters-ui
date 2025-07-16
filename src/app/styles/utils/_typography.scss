@@ -1,20 +1,75 @@
-@import '~@angular/material/theming';
+@import '@angular/material';
 
 @function fb-typography-config(
     $font-family: 'Roboto, "Helvetica Neue", sans-serif',
-    $display-4: mat-typography-level(112px, 112px, 300, $letter-spacing: -0.05em),
-    $display-3: mat-typography-level(56px, 64px, 400, $letter-spacing: -0.02em),
-    $display-2: mat-typography-level(45px, 48px, 400, $letter-spacing: -0.005em),
-    $display-1: mat-typography-level(34px, 48px, 400),
-    $headline: mat-typography-level(24px, 32px, 400),
-    $title: mat-typography-level(20px, 32px, 500),
-    $subheading-2: mat-typography-level(16px, 32px, 400),
-    $subheading-1: mat-typography-level(15px, 24px, 400),
-    $body-2: mat-typography-level(14px, 24px, 500),
-    $body-1: mat-typography-level(14px, 24px, 400),
-    $caption: mat-typography-level(12px, 16px, 400),
-    $button: mat-typography-level(14px, 16px, 500),
-    $input: mat-typography-level(14px, 1.15, 400)
+    $display-4: (
+        font-size: 112px,
+        line-height: 112px,
+        font-weight: 300,
+        letter-spacing: -0.05em,
+    ),
+    $display-3: (
+        font-size: 56px,
+        line-height: 64px,
+        font-weight: 400,
+        letter-spacing: -0.02em,
+    ),
+    $display-2: (
+        font-size: 45px,
+        line-height: 48px,
+        font-weight: 400,
+        letter-spacing: -0.005em,
+    ),
+    $display-1: (
+        font-size: 34px,
+        line-height: 48px,
+        font-weight: 400,
+    ),
+    $headline: (
+        font-size: 24px,
+        line-height: 32px,
+        font-weight: 400,
+    ),
+    $title: (
+        font-size: 20px,
+        line-height: 32px,
+        font-weight: 500,
+    ),
+    $subheading-2: (
+        font-size: 16px,
+        line-height: 32px,
+        font-weight: 400,
+    ),
+    $subheading-1: (
+        font-size: 15px,
+        line-height: 24px,
+        font-weight: 400,
+    ),
+    $body-2: (
+        font-size: 14px,
+        line-height: 24px,
+        font-weight: 500,
+    ),
+    $body-1: (
+        font-size: 14px,
+        line-height: 24px,
+        font-weight: 400,
+    ),
+    $caption: (
+        font-size: 12px,
+        line-height: 16px,
+        font-weight: 400,
+    ),
+    $button: (
+        font-size: 14px,
+        line-height: 16px,
+        font-weight: 500,
+    ),
+    $input: (
+        font-size: 14px,
+        line-height: 1.15,
+        font-weight: 400,
+    )
 ) {
     // Declare an initial map with all of the levels.
     $config: (
@@ -69,67 +124,81 @@
     text-overflow: ellipsis;
 }
 
+@mixin apply-typography-level($level) {
+    $font-size: map-get($level, font-size);
+    $line-height: map-get($level, line-height);
+    $font-weight: map-get($level, font-weight);
+    $letter-spacing: map-get($level, letter-spacing);
+
+    font-size: $font-size;
+    line-height: $line-height;
+    font-weight: $font-weight;
+    @if $letter-spacing {
+        letter-spacing: $letter-spacing;
+    }
+}
+
 @mixin fb-base-typography($config, $selector: '.fb-typography') {
     .fb-headline,
     #{$selector} h1 {
-        @include mat-typography-level-to-styles($config, headline);
+        @include apply-typography-level(map-get($config, headline));
         margin: 0;
     }
 
     .fb-title,
     #{$selector} h2 {
-        @include mat-typography-level-to-styles($config, title);
+        @include apply-typography-level(map-get($config, title));
         margin: 0;
     }
 
     .fb-subheading-2,
     #{$selector} h3 {
-        @include mat-typography-level-to-styles($config, subheading-2);
+        @include apply-typography-level(map-get($config, subheading-2));
         margin: 0;
     }
 
     .fb-subheading-1,
     #{$selector} h4 {
-        @include mat-typography-level-to-styles($config, subheading-1);
+        @include apply-typography-level(map-get($config, subheading-1));
         margin: 0;
     }
 
     .fb-body-2 {
-        @include mat-typography-level-to-styles($config, body-2);
+        @include apply-typography-level(map-get($config, body-2));
     }
 
     .fb-body-1,
     #{$selector} {
-        @include mat-typography-level-to-styles($config, body-1);
+        @include apply-typography-level(map-get($config, body-1));
         p {
             margin: 0;
         }
     }
 
     .fb-caption {
-        @include mat-typography-level-to-styles($config, caption);
+        @include apply-typography-level(map-get($config, caption));
     }
 
     .fb-display-4,
     #{$selector} .fb-display-4 {
-        @include mat-typography-level-to-styles($config, display-4);
+        @include apply-typography-level(map-get($config, display-4));
         margin: 0;
     }
 
     #{$selector} .fb-display-3 {
-        @include mat-typography-level-to-styles($config, display-3);
+        @include apply-typography-level(map-get($config, display-3));
         margin: 0;
     }
 
     .fb-display-2,
     #{$selector} .fb-display-2 {
-        @include mat-typography-level-to-styles($config, display-2);
+        @include apply-typography-level(map-get($config, display-2));
         margin: 0;
     }
 
     .fb-display-1,
     #{$selector} .fb-display-1 {
-        @include mat-typography-level-to-styles($config, display-1);
+        @include apply-typography-level(map-get($config, display-1));
         margin: 0;
     }
 }

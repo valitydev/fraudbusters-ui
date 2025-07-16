@@ -1,4 +1,4 @@
-@import '~@angular/material/theming';
+@import '@angular/material';
 
 @mixin fb-tag-colors-theme($theme) {
     $foreground: map-get($theme, foreground);

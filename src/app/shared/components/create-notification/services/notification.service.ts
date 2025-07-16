@@ -19,7 +19,7 @@ export class NotificationService {
         period: '',
         frequency: '',
         channel: '',
-        id: null,
+        id: undefined,
     };
 
     private size = this.configService.pageSize;

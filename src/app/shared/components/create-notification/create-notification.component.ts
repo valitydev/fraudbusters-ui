@@ -67,7 +67,7 @@ export class CreateNotificationComponent implements OnInit {
 
     saveNotification() {
         this.notificationService.saveNotification({
-            id: this.form.getRawValue().id,
+            id: this.form.getRawValue().id as number,
             channel: this.form.getRawValue().channel,
             frequency: this.form.getRawValue().frequency,
             period: this.form.getRawValue().period,

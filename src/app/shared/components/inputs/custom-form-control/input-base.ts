@@ -1,17 +1,30 @@
-import { Constructor } from '@angular/cdk/table';
 import { FormGroupDirective, NgControl, NgForm } from '@angular/forms';
-import { CanUpdateErrorState, ErrorStateMatcher, mixinErrorState } from '@angular/material/core';
-import { AbstractConstructor } from '@angular/material/core/common-behaviors/constructor';
+import { ErrorStateMatcher } from '@angular/material/core';
+import { Subject } from 'rxjs';
 
 export class InputBase {
-    constructor(
-        public _defaultErrorStateMatcher: ErrorStateMatcher,
-        public _parentForm: NgForm,
-        public _parentFormGroup: FormGroupDirective,
-        public ngControl: NgControl
-    ) {}
+    errorState = false;
+    stateChanges = new Subject<void>();
+
+    constructor(public _defaultErrorStateMatcher: ErrorStateMatcher) {}
+
+    updateErrorState() {
+        const oldState = this.errorState;
+        const parent = this._parentFormGroup || this._parentForm;
+        const matcher = this._defaultErrorStateMatcher;
+        const control = this.ngControl ? this.ngControl.control : null;
+        const newState = matcher.isErrorState(control, parent);
+
+        if (newState !== oldState) {
+            this.errorState = newState;
+            this.stateChanges.next(undefined);
+        }
+    }
+
+    // These properties should be provided by the component using this base
+    ngControl: NgControl | null = null;
+    _parentFormGroup: FormGroupDirective | null = null;
+    _parentForm: NgForm | null = null;
 }
 
-type CanUpdateErrorStateCtor = Constructor<CanUpdateErrorState> & AbstractConstructor<CanUpdateErrorState>;
-
-export const INPUT_MIX_IN_BASE: CanUpdateErrorStateCtor & typeof InputBase = mixinErrorState(InputBase);
+export const INPUT_MIX_IN_BASE = InputBase;

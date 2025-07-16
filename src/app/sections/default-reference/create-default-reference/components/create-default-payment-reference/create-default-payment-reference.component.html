@@ -25,7 +25,7 @@
                 mat-raised-button
                 color="primary"
                 (click)="createReference()"
-                [disabled]="!form.valid || (inProgress$ | async) || form.value.length < 1"
+                [disabled]="!form.valid || (inProgress$ | async)"
             >
                 Create
             </button>

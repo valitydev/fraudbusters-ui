@@ -35,9 +35,7 @@ export abstract class CustomFormControlComponent<I extends any = any, P extends 
     /** The aria-describedby attribute on the input for improved a11y. */
     @HostBinding('attr.aria-describedby') _ariaDescribedby: string;
 
-    readonly errorState: boolean;
     readonly userAriaDescribedBy: string;
-    readonly stateChanges: Subject<void> = new Subject<void>();
 
     controlType = 'text';
     autofilled = false;
@@ -61,7 +59,7 @@ export abstract class CustomFormControlComponent<I extends any = any, P extends 
         // Reset from here to ensure that the element doesn't become stuck.
         if (this.focused) {
             this.focused = false;
-            this.stateChanges.next();
+            this.stateChanges.next(undefined);
         }
     }
 
@@ -94,7 +92,7 @@ export abstract class CustomFormControlComponent<I extends any = any, P extends 
     }
     set value(value: I) {
         this.formControl.setValue(value);
-        this.stateChanges.next();
+        this.stateChanges.next(undefined);
     }
 
     get publicValue() {
@@ -123,7 +121,7 @@ export abstract class CustomFormControlComponent<I extends any = any, P extends 
     }
     set focused(value: boolean) {
         this._focused = value;
-        this.stateChanges.next();
+        this.stateChanges.next(undefined);
     }
 
     formControl = new FormControl();
@@ -141,7 +139,13 @@ export abstract class CustomFormControlComponent<I extends any = any, P extends 
         @Optional() parentForm: NgForm,
         @Optional() parentFormGroup: FormGroupDirective
     ) {
-        super(defaultErrorStateMatcher, parentForm, parentFormGroup, ngControl);
+        super(defaultErrorStateMatcher);
+
+        // Set the parent form properties
+        this._parentForm = parentForm;
+        this._parentFormGroup = parentFormGroup;
+        this.ngControl = ngControl;
+
         if (this.ngControl !== null) {
             // Set the value accessor directly
             // (instead of providing NG_VALUE_ACCESSOR)
@@ -151,7 +155,7 @@ export abstract class CustomFormControlComponent<I extends any = any, P extends 
     }
 
     ngOnChanges(_changes?: SimpleChanges) {
-        this.stateChanges.next();
+        this.stateChanges.next(undefined);
     }
 
     ngDoCheck() {
@@ -241,7 +245,7 @@ export abstract class CustomFormControlComponent<I extends any = any, P extends 
             if (this.platform.isBrowser) {
                 this.autofillMonitor.monitor(this.inputRef).subscribe((event) => {
                     this.autofilled = event.isAutofilled;
-                    this.stateChanges.next();
+                    this.stateChanges.next(undefined);
                 });
             }
             this.focusMonitor.monitor(this.elementRef.nativeElement, true).subscribe((focusOrigin) => {
