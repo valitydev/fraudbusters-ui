@@ -33,7 +33,7 @@ jobs:
       - name: Init NodeJS
         uses: actions/setup-node@v3
         with:
-          node-version: '18.13.2'
+          node-version: '18.x'
           cache: 'npm'
       - name: Check
         run: npm run ci:check
@@ -51,7 +51,7 @@ jobs:
       - name: Init NodeJS
         uses: actions/setup-node@v3
         with:
-          node-version: '18.13.2'
+          node-version: '18.x'
           cache: 'npm'
       - name: Build
         run: npm run build
