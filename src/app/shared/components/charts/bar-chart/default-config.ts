@@ -1,4 +1,4 @@
-import { ApexOptions } from 'ng-apexcharts/lib/model/apex-types';
+import { ApexOptions } from 'ng-apexcharts';
 
 import { DEFAULT_ANIMATION } from '../default-animation';
 import { DEFAULT_LEGEND } from '../default-legend';

@@ -1,7 +1,7 @@
-@import '@angular/material';
+@use '@angular/material' as mat;
 
 @function fb-typography-config(
-    $font-family: 'Roboto, "Helvetica Neue", sans-serif',
+    $font-family: '"Roboto", "Helvetica Neue", sans-serif',
     $display-4: (
         font-size: 112px,
         line-height: 112px,

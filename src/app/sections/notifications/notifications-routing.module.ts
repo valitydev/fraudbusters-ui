@@ -30,6 +30,7 @@ import { NotificationsComponent } from './notifications.component';
                     {
                         path: '',
                         redirectTo: 'periodical',
+                        pathMatch: 'full',
                     },
                 ],
             },

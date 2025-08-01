@@ -44,6 +44,7 @@ import { ListsComponent } from './lists.component';
                     {
                         path: '',
                         redirectTo: 'black',
+                        pathMatch: 'full',
                     },
                 ],
             },

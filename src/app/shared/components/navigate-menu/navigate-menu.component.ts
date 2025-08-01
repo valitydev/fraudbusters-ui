@@ -6,6 +6,7 @@ import { NavItem } from '../../model/nav-item';
 @Component({
     selector: 'fb-navigate-menu',
     templateUrl: './navigate-menu.component.html',
+    styleUrls: ['./navigate-menu.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NavigateMenuComponent {

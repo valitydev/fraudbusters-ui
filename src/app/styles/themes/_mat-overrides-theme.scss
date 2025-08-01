@@ -2,20 +2,28 @@
     $background: map-get($theme, background);
     $foreground: map-get($theme, foreground);
 
-    .mat-card {
+    .mat-card,
+    .mat-mdc-card,
+    .mat-mdc-card {
         color: map-get($foreground, text);
     }
 
-    .mat-expansion-panel {
+    .mat-expansion-panel,
+    .mat-mdc-expansion-panel,
+    .mat-mdc-expansion-panel {
         color: map-get($foreground, text);
         border-color: map-get($foreground, divider);
     }
 
-    .mat-button {
+    .mat-button,
+    .mat-mdc-button,
+    .mat-mdc-button {
         color: map-get($foreground, text);
     }
 
-    .mat-button.mat-warn {
+    .mat-button.mat-warn,
+    .mat-mdc-button.mat-warn,
+    .mat-mdc-button.mat-warn {
         background-color: map-get($foreground, warn-button);
         color: map-get($foreground, button-text);
 

@@ -1,4 +1,4 @@
 {
-    "fbManagementEndpoint": "http://localhost:8085/fb-management/v1",
+    "fbManagementEndpoint": "https://api.empayre.com/fb-management/v1",
     "pageSize": 10
 }

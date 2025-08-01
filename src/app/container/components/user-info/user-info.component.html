@@ -1,6 +1,6 @@
 <div class="user-info" fxLayout="column" fxLayoutAlign="center center" [fxLayoutGap]="layoutGapS">
     <div class="username">{{ username }}</div>
-    <div class="fb-caption roles" fxLayout fxLayoutGap="8px">
+    <div class="fb-caption roles" fxLayoutGap="8px">
         <fb-tag
             *ngFor="let role of roles | filterRoles"
             [color]="role | roleToColor"

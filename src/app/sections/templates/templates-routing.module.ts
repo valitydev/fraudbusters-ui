@@ -37,6 +37,7 @@ import { TemplatesComponent } from './templates.component';
                     {
                         path: '',
                         redirectTo: 'templates',
+                        pathMatch: 'full',
                     },
                 ],
             },

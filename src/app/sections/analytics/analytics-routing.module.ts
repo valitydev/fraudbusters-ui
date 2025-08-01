@@ -23,6 +23,7 @@ import { BaseAnalyticsComponent } from './components/base/base-analytics.compone
                     {
                         path: '',
                         redirectTo: 'base',
+                        pathMatch: 'full',
                     },
                 ],
             },

@@ -30,6 +30,7 @@ import { GroupsComponent } from './groups.component';
                     {
                         path: '',
                         redirectTo: 'list',
+                        pathMatch: 'full',
                     },
                 ],
             },
