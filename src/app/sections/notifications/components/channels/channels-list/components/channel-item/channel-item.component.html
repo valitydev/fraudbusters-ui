@@ -2,7 +2,7 @@
     <div class="fb-body-2" fxFlex>{{ channel.name }}</div>
     <div class="fb-body-2" fxFlex>{{ channel.type }}</div>
     <div class="fb-body-2" fxFlex>{{ channel.destination }}</div>
-    <div class="fb-body-2" fxFlex="160px">{{ channel.createdAt | date: 'yyyy-MM-dd HH:mm:ss' }}</div>
+    <div class="fb-body-2" fxFlex="160px">{{ channel.createdAt | date : 'yyyy-MM-dd HH:mm:ss' }}</div>
     <ng-container>
         <button mat-icon-button [matMenuTriggerFor]="menu">
             <mat-icon>more_vert</mat-icon>

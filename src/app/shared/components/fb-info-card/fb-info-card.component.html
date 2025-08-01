@@ -8,7 +8,7 @@
             {{ value | formatNumber }} {{ units }}
         </h1>
         <h1 *ngIf="!(inProgress | async) && formatNumber" [class]="type" fxLayoutAlign="center">
-            {{ value | formatNumber | number: '.1-4' }} {{ units }}
+            {{ value | formatNumber | number : '.1-4' }} {{ units }}
         </h1>
     </mat-card-content>
 </mat-card>
