@@ -4,8 +4,8 @@
         width: 240px;
     }
 
-    .mat-calendar-body-cell-content {
-        border: none !important;
+    .mat-mdc-form-field-icon-suffix.mat-calendar-body-cell-content {
+        padding: 0 !important;
     }
 
     .mat-calendar-body-cell.mat-calendar-body-active {
@@ -74,6 +74,7 @@
 ::ng-deep .mat-toolbar {
     background: none;
     height: 48px;
+
     &.mat-primary {
         background: #fff;
         color: #655b76;
@@ -107,6 +108,22 @@
     }
 
     /* Datepicker and timepicker styles removed to reduce bundle size */
+
+    .mat-mdc-input-element {
+        &.mat-datepicker-input {
+            width: 160px;
+        }
+    }
+
+    .date-picker {
+        div.mat-mdc-form-field-infix {
+            width: 160px;
+        }
+    }
+
+    .mat-mdc-text-field-wrapper.mdc-text-field.mdc-text-field--filled.mdc-text-field--no-label {
+        padding-right: 12px;
+    }
 
     .mat-form-field-appearance-outline > .mat-form-field-wrapper,
     .mat-mdc-form-field-appearance-outline > .mat-mdc-form-field-wrapper {
@@ -208,7 +225,7 @@
         height: 100%;
         border: 1px solid #e6ecf5;
         font-size: 13px;
-        padding: 10px 20px;
+        padding: 5px 20px;
         border-radius: 4px;
         display: block;
 
