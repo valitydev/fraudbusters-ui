@@ -25,13 +25,13 @@ jobs:
     needs: [init]
     steps:
       - name: Cache
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         id: cache
         with:
           path: ./*
           key: ${{ github.sha }}
       - name: Init NodeJS
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
           node-version: '16.13.2'
           cache: 'npm'
