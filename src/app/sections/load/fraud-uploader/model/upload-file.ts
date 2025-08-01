@@ -5,3 +5,8 @@ export interface UploadFile {
     status: UploadStatus;
     errorMessage?: string;
 }
+
+export interface ExtendedFile extends File {
+    progress?: number;
+    status?: UploadStatus;
+}

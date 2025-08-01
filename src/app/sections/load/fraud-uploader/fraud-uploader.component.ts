@@ -4,7 +4,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 
 import { UploadStatus } from './constants/upload-status';
-import { UploadFile } from './model/upload-file';
+import { UploadFile, ExtendedFile } from './model/upload-file';
 import { PaymentLoadDataService } from '../../../api/payments/load-data';
 import { ErrorHandlerService } from '../../../shared/services/utils/error-handler.service';
 import { LAYOUT_GAP_L, LAYOUT_GAP_M } from '../../../tokens';
@@ -15,7 +15,7 @@ import { LAYOUT_GAP_L, LAYOUT_GAP_M } from '../../../tokens';
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FraudUploaderComponent {
-    files: File[] = [];
+    files: ExtendedFile[] = [];
     uploadFiles = new Map<string, UploadFile>();
 
     constructor(
@@ -66,8 +66,9 @@ export class FraudUploaderComponent {
             if (item.type !== 'text/csv') {
                 this.errorHandlerService.handleStringError('File only csv format!', this.snackBar);
             } else {
-                item.progress = 0;
-                this.files.push(item);
+                const extendedFile = item as ExtendedFile;
+                extendedFile.progress = 0;
+                this.files.push(extendedFile);
             }
         }
     }
