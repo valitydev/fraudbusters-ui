@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           submodules: recursive
       - name: Init
@@ -22,7 +22,7 @@ jobs:
       - name: Build
         run: npm run build
       - name: Deploy image
-        uses: valitydev/action-deploy-docker@v2
+        uses: valitydev/action-deploy-docker@v3
         with:
           registry-username: ${{ github.actor }}
           registry-access-token: ${{ secrets.GITHUB_TOKEN }}
