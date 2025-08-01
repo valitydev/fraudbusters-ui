@@ -3,33 +3,56 @@
     .mat-mdc-drawer-side {
         width: 240px;
     }
+
+    .mat-calendar-body-cell-content {
+        border: none !important;
+    }
+
+    .mat-calendar-body-cell.mat-calendar-body-active {
+        background-color: #673ab7;
+        color: #fff;
+        border-radius: 999px;
+    }
+
+    .mat-mdc-form-field-subscript-wrapper.mat-mdc-form-field-bottom-align {
+        height: 0;
+    }
+
     .mdc-text-field--no-label:not(.mdc-text-field--textarea) .mat-mdc-form-field-input-control.mdc-text-field__input,
     .mat-mdc-text-field-wrapper .mat-mdc-form-field-input-control {
         height: 100%;
+    }
+
+    .mat-mdc-text-field-wrapper.mdc-text-field.mdc-text-field--filled.mdc-text-field--no-label {
+        background: none;
     }
 
     .mat-mdc-text-field-wrapper.mdc-text-field {
         .mat-mdc-form-field-has-icon-suffix {
             padding-right: 10px;
         }
+
         .mdc-notched-outline__trailing,
         .mdc-notched-outline__notch,
         .mdc-notched-outline__leading {
             border: none;
             height: 100%;
         }
+
         .mat-mdc-form-field-infix,
         .mat-mdc-text-field-wrapper {
             min-height: 0;
         }
+
         .mat-mdc-icon-button .mat-mdc-button-touch-target,
         .mat-mdc-focus-indicator,
         .mat-ripple.mat-mdc-button-ripple,
         button.mdc-icon-button.mat-mdc-icon-button.mat-unthemed.mat-mdc-button-base {
             display: block;
-            width: 24px;
-            height: 24px;
+            width: 20px;
+            height: 20px;
         }
+
         .mat-mdc-icon-button svg {
             position: absolute;
             top: 0;
@@ -37,9 +60,11 @@
             right: 0;
             bottom: 0;
         }
+
         .mdc-line-ripple::before {
             border: none;
         }
+
         .mat-mdc-text-field-wrapper.mdc-text-field--outlined .mdc-text-field__input {
             display: block;
         }
@@ -53,11 +78,13 @@
         background: #fff;
         color: #655b76;
     }
+
     .mat-button,
     .mat-stroked-button {
         margin: 8px;
         border: 1px solid #e6ecf5;
     }
+
     &.toolbar.mat-primary.mat-toolbar-single-row {
         border-bottom: 1px solid #e6ecf5;
         height: 48px;
@@ -68,10 +95,12 @@
     .content {
         background: #f6f7fb;
     }
+
     .container-fluid {
         padding: 24px;
         min-height: calc(100vh - 134px);
     }
+
     textarea.code-editor {
         font-size: 14px;
         font-family: monospace;
@@ -82,6 +111,7 @@
     .mat-form-field-appearance-outline > .mat-form-field-wrapper,
     .mat-mdc-form-field-appearance-outline > .mat-mdc-form-field-wrapper {
         margin: 0 !important;
+
         .mat-form-field-flex,
         .mat-mdc-form-field-flex {
             padding: 0 !important;
@@ -93,23 +123,33 @@
     .mat-mdc-menu-panel {
         padding: 8px;
     }
+
+    .mat-mdc-card.mdc-card {
+        border: 1px solid #e6ecf5;
+        box-shadow: none;
+    }
+
     .mat-card-footer,
     .mat-mdc-card-footer {
         margin: -24px -24px -24px -24px !important;
+
         .mat-progress-bar,
         .mat-mdc-progress-bar {
             border-bottom-left-radius: 4px;
             border-bottom-right-radius: 4px;
         }
     }
+
     .mat-form-field-label,
     .mat-mdc-form-field-label {
         font-weight: 700 !important;
     }
+
     .mat-button > .mat-ripple,
     .mat-mdc-button > .mat-ripple {
         display: none;
     }
+
     .mat-simple-snackbar,
     .mat-mdc-simple-snackbar {
         .mat-button,
@@ -117,6 +157,7 @@
             color: #f6f2ff;
         }
     }
+
     .mat-form-field-disabled,
     .mat-mdc-form-field-disabled {
         .mat-form-field-infix:hover,
@@ -134,6 +175,7 @@
         z-index: 1000;
         height: 48px;
     }
+
     /* Icon sizes and menu styles removed to reduce bundle size */
 
     /* Container card styles removed to reduce bundle size */
@@ -145,21 +187,35 @@
             background: none;
             padding: 0;
         }
+
         .mat-form-field-appearance-fill .mat-select-arrow-wrapper,
         .mat-mdc-form-field-appearance-fill .mat-mdc-select-arrow-wrapper {
             transform: none;
         }
+
         a img {
             vertical-align: bottom;
             padding-bottom: 3px;
         }
     }
+
+    .mat-mdc-form-field-infix {
+        height: 15px;
+        padding: 0;
+    }
+
     .mat-mdc-text-field-wrapper.mdc-text-field {
         height: 100%;
         border: 1px solid #e6ecf5;
         font-size: 13px;
         padding: 10px 20px;
         border-radius: 4px;
+        display: block;
+
+        input {
+            height: 15px;
+        }
+
         &:hover,
         &:focus,
         &:active {
@@ -167,6 +223,7 @@
             box-shadow: none;
             border-color: #673ab7;
         }
+
         .mat-mdc-form-field-infix {
             height: 15px;
             padding: 0;
@@ -182,14 +239,17 @@
     mat-form-field.mat-form-field {
         &.full-width {
             width: 100%;
+
             textarea {
                 min-height: 400px;
             }
         }
+
         &.search {
             margin-top: 2px;
         }
     }
+
     /* Navigation list and button styles removed to reduce bundle size */
     .mat-form-field-type-mat-select:not(.mat-form-field-disabled) .mat-form-field-flex,
     .mat-mdc-form-field-type-mat-select:not(.mat-mdc-form-field-disabled) .mat-mdc-form-field-flex {
@@ -205,8 +265,13 @@
             margin-left: -30px;
             top: 6px;
             font-size: revert;
-            height: 1.5em;
-            width: 1.5em;
+            height: 20px;
+            width: 20px;
         }
+    }
+
+    .cdk-overlay-pane {
+        background-color: white;
+        border: 1px solid #e6ecf5;
     }
 }
