@@ -37,6 +37,7 @@ export class CreatePaymentReferenceComponent {
         this.createPaymentReferenceService.create();
     }
 
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     prepareFilesList(files: Array<any>): void {
         this.createPaymentReferenceService.prepareFilesList(files);
     }

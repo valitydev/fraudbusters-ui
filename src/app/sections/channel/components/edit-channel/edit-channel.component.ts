@@ -27,6 +27,6 @@ export class EditChannelComponent {
     ) {}
 
     back() {
-        this.router.navigate([`../notifications/channels`]);
+        void this.router.navigate([`../notifications/channels`]);
     }
 }

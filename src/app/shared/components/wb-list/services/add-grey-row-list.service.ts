@@ -78,7 +78,7 @@ export class AddGreyRowListService {
         this.forms.removeAt(i);
     }
 
-    prepareFilesList(files: Array<any>): void {
+    prepareFilesList(files: Array<File>): void {
         Object.values(files)
             .filter((value) => this.csvUtilsService.isValidFile(value, 'text/csv', SIZE_FILE_BYTE))
             .forEach((item) =>

@@ -27,6 +27,7 @@ export const scanFetchResult =
                         case 'search':
                             return fn(value).pipe(first(), handleFetchResultError());
                         case 'fetchMore':
+                            // eslint-disable-next-line @typescript-eslint/no-explicit-any
                             return fn(value, (result[result.length - 1] as any).id).pipe(
                                 first(),
                                 map((r) => ({

@@ -1,5 +1,5 @@
-import { Roles } from '../../auth';
 import { NavItem } from './nav-item';
+import { Roles } from '../../auth';
 
 export class MenuModel {
     public static navItems: NavItem[] = [

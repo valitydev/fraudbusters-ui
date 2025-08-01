@@ -52,6 +52,7 @@ export class AddGreyRowListComponent implements OnInit {
         this.addGreyRowListService.removeItem(index);
     }
 
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     prepareFilesList(files: Array<any>): void {
         this.addGreyRowListService.prepareFilesList(files);
     }

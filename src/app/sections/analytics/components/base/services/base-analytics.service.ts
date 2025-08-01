@@ -21,7 +21,7 @@ export class BaseAnalyticsService {
 
     searchParameters$ = new Subject<SearchBaseAnalyticsParams>();
 
-    finished$ = new Subject<any>();
+    finished$ = new Subject<unknown>();
     inProgress$ = progress(this.searchParameters$, this.finished$, true).pipe(shareReplay(1));
 
     constructor(private analyticsService: AnalyticsService) {
@@ -68,7 +68,7 @@ export class BaseAnalyticsService {
         ).subscribe((value) => this.finished$.next(value));
     }
 
-    search(params): void {
+    search(params: SearchBaseAnalyticsParams): void {
         this.searchParameters$.next(params);
     }
 }

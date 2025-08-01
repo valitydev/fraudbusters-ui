@@ -14,16 +14,16 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 
-import { EmptySearchResultModule } from '../../../../../../shared/components/empty-search-result';
-import { ListHeaderModule } from '../../../../../../shared/components/list-header';
-import { ShowMorePanelModule } from '../../../../../../shared/components/show-more-panel';
-import { ShowMoreContinuationPanelModule } from '../../../../../../shared/components/show-more-panel-continuation';
-import { SharedPipesModule } from '../../../../../../shared/pipes';
 import { CandidatesBatchesTableComponent } from './candidates-batches-table.component';
 import { ActionsComponent } from './components/actions/actions.component';
 import { CandidatesBatchesTableHeaderComponent } from './components/candidates-batches-table-header/candidates-batches-table-header.component';
 import { CandidatesBatchesTableItemComponent } from './components/candidates-batches-table-item/candidates-batches-table-item.component';
 import { CandidatesBatchesTableSearchComponent } from './components/candidates-batches-table-search/candidates-batches-table-search.component';
+import { EmptySearchResultModule } from '../../../../../../shared/components/empty-search-result';
+import { ListHeaderModule } from '../../../../../../shared/components/list-header';
+import { ShowMorePanelModule } from '../../../../../../shared/components/show-more-panel';
+import { ShowMoreContinuationPanelModule } from '../../../../../../shared/components/show-more-panel-continuation';
+import { SharedPipesModule } from '../../../../../../shared/pipes';
 
 @NgModule({
     imports: [

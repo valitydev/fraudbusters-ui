@@ -48,10 +48,12 @@ export class WbListService {
         return this.paymentListsService.saveListsRows(listType, rows);
     }
 
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     saveListRowsFromFile(listType: ListType, file: File): Observable<any> {
         return this.paymentListsService.saveListsRowsFromFile(listType, file);
     }
 
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     deleteListRowsByFile(listType: ListType, file: File): Observable<any> {
         return this.paymentListsService.deleteListsRowsByFile(listType, file);
     }

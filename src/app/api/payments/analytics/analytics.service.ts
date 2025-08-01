@@ -3,6 +3,8 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
+import { RiskSeriesMapperService } from './riskSeriesMapper.service';
+import { SearchBaseAnalyticsParams } from './searchBaseAnalyticsParams';
 import { ConfigService } from '../../../config';
 import { ChartData } from '../../../sections/analytics/model/chart-data';
 import { filterParameters } from '../../../shared/utils/filter-params';
@@ -13,8 +15,6 @@ import { ListResponse } from '../../fb-management/swagger-codegen/model/listResp
 import { RatioResponse } from '../../fb-management/swagger-codegen/model/ratioResponse';
 import { SplitRiskScoreCountRatioResponse } from '../../fb-management/swagger-codegen/model/splitRiskScoreCountRatioResponse';
 import { SumResponse } from '../../fb-management/swagger-codegen/model/sumResponse';
-import { RiskSeriesMapperService } from './riskSeriesMapper.service';
-import { SearchBaseAnalyticsParams } from './searchBaseAnalyticsParams';
 
 @Injectable()
 export class AnalyticsService {

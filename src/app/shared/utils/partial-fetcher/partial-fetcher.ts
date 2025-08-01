@@ -12,11 +12,11 @@ import {
     tap,
 } from 'rxjs/operators';
 
-import { progress } from '../../operators';
 import { FetchAction } from './fetch-action';
 import { FetchFn } from './fetch-fn';
 import { FetchResult } from './fetch-result';
 import { scanAction, scanFetchResult } from './operators';
+import { progress } from '../../operators';
 
 export abstract class PartialFetcher<R, P> {
     fetchResultChanges$: Observable<{ result: R[]; hasMore: boolean; count: number }>;

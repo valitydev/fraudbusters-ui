@@ -23,9 +23,9 @@ import { ShowMorePanelModule } from '../../shared/components/show-more-panel';
 import { SharedPipesModule } from '../../shared/pipes';
 import { ChannelsListModule } from './components/channels/channels-list';
 import { ChannelsComponent } from './components/channels/channels.component';
-import { PeriodicalSearchComponent } from './components/periodical-search/periodical-search.component';
 import { PeriodicalNotificationComponent } from './components/periodical/periodical-notification.component';
 import { PeriodicalNotificationsListModule } from './components/periodical/periodical-notifications-list';
+import { PeriodicalSearchComponent } from './components/periodical-search/periodical-search.component';
 import { NotificationsRoutingModule } from './notifications-routing.module';
 import { NotificationsComponent } from './notifications.component';
 

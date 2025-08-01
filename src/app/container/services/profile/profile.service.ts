@@ -14,6 +14,6 @@ export class ProfileService {
     }
 
     logout() {
-        this.keycloakService.logout();
+        void this.keycloakService.logout();
     }
 }

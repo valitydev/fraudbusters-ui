@@ -4,13 +4,13 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { NEVER, Subject } from 'rxjs';
 import { catchError, switchMap, tap } from 'rxjs/operators';
 
+import { FetchCandidatesRecordService } from './services/fetch-candidates-record.service';
 import { WbListRecord } from '../../../../../../api/fb-management/swagger-codegen/model/wbListRecord';
 import { PaymentListsService } from '../../../../../../api/payments/lists';
 import { ConfigService } from '../../../../../../config';
 import { SortOrder } from '../../../../../../shared/constants/sort-order';
 import { ErrorHandlerService } from '../../../../../../shared/services/utils/error-handler.service';
 import { LAYOUT_GAP_M } from '../../../../../../tokens';
-import { FetchCandidatesRecordService } from './services/fetch-candidates-record.service';
 
 @Component({
     selector: 'fb-candidates-batches-table',

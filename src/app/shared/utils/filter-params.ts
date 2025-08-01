@@ -1,5 +1,6 @@
 import { HttpParams } from '@angular/common/http';
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const filterParameters = (params: any): HttpParams => {
     let searchParams = new HttpParams();
     if (params) {

@@ -1,8 +1,3 @@
-import {
-    NgxMatDatetimePickerModule,
-    NgxMatNativeDateModule,
-    NgxMatTimepickerModule,
-} from '@angular-material-components/datetime-picker';
 import { CommonModule, DatePipe } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FlexModule } from '@angular/flex-layout';
@@ -24,7 +19,15 @@ import { MatTableModule } from '@angular/material/table';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import {
+    NgxMatDatetimePickerModule,
+    NgxMatNativeDateModule,
+    NgxMatTimepickerModule,
+} from '@angular-material-components/datetime-picker';
 
+import { AnalyticsRoutingModule } from './analytics-routing.module';
+import { AnalyticsComponent } from './analytics.component';
+import { BaseAnalyticsComponent } from './components/base/base-analytics.component';
 import { AnalyticsService } from '../../api/payments/analytics';
 import { RiskSeriesMapperService } from '../../api/payments/analytics/riskSeriesMapper.service';
 import { BarChartModule } from '../../shared/components/charts';
@@ -34,9 +37,6 @@ import { FbInfoCardModule } from '../../shared/components/fb-info-card';
 import { ShowMorePanelModule } from '../../shared/components/show-more-panel';
 import { SharedPipesModule } from '../../shared/pipes';
 import { ArraySortPipe } from '../../shared/pipes/sort-by-field.pipe';
-import { AnalyticsRoutingModule } from './analytics-routing.module';
-import { AnalyticsComponent } from './analytics.component';
-import { BaseAnalyticsComponent } from './components/base/base-analytics.component';
 import { FraudSummaryListModule } from './components/base/components/fraud-summary-list';
 import { BaseAnalyticsSearchComponent } from './components/base/components/search/base-analytics-search.component';
 import { BaseAnalyticsUtilService } from './components/base/services/base-analytics-util.service';

@@ -3,10 +3,10 @@ import { Sort } from '@angular/material/sort';
 import { ActivatedRoute } from '@angular/router';
 import { combineLatest } from 'rxjs';
 
+import { AuditService } from './audit.service';
 import { SortOrder } from '../../shared/constants/sort-order';
 import { SearchFieldService } from '../../shared/services/utils/search-field.service';
 import { LAYOUT_GAP_M, LAYOUT_GAP_S } from '../../tokens';
-import { AuditService } from './audit.service';
 import { Filter } from './model/filter';
 
 @Component({

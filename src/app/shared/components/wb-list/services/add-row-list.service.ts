@@ -1,4 +1,5 @@
 import { HttpErrorResponse } from '@angular/common/http';
+import { Injectable } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { EMPTY, merge, Observable, Subject } from 'rxjs';
@@ -8,15 +9,17 @@ import { progress } from '../../../../shared/operators';
 import { CsvUtilsService } from '../../../../shared/services/utils/csv-utils.service';
 import { ListType } from '../../../constants/list-type';
 import { WbListService } from '../wb-list.service';
-import { Injectable } from '@angular/core';
 
 @Injectable()
 export class AddRowListService {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     created$: Observable<any>;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     loadedFile$: Observable<any>;
     inProgress$: Observable<boolean>;
     forms = this.fb.array<FormGroup>([]);
 
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     private loadFile$ = new Subject<any>();
     private create$ = new Subject<ListType>();
     private errors$ = new Subject();

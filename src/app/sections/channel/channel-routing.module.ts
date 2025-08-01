@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
-import { AuthGuard, Roles } from '../../auth';
 import { ChannelComponent } from './channel.component';
+import { AuthGuard, Roles } from '../../auth';
 import { CreateChannelComponent } from './components/create-channel/create-channel.component';
 import { EditChannelComponent } from './components/edit-channel/edit-channel.component';
 

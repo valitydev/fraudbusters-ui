@@ -1,8 +1,3 @@
-import {
-    NgxMatDatetimePickerModule,
-    NgxMatNativeDateModule,
-    NgxMatTimepickerModule,
-} from '@angular-material-components/datetime-picker';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FlexModule } from '@angular/flex-layout';
@@ -25,16 +20,21 @@ import { MatTableModule } from '@angular/material/table';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import {
+    NgxMatDatetimePickerModule,
+    NgxMatNativeDateModule,
+    NgxMatTimepickerModule,
+} from '@angular-material-components/datetime-picker';
 
+import { CandidatesComponent } from './candidates.component';
+import { CandidatesListModule } from './components/candidates-list';
+import { CandidatesSearchComponent } from './components/candidates-search/candidates-search.component';
 import { EmptySearchResultModule } from '../../../../shared/components/empty-search-result';
 import { ShowMorePanelModule } from '../../../../shared/components/show-more-panel';
 import { ShowMoreContinuationPanelModule } from '../../../../shared/components/show-more-panel-continuation';
 import { AddRowListModule } from '../../../../shared/components/wb-list/components/add-row-list';
 import { WbListModule } from '../../../../shared/components/wb-list/wb-list.module';
 import { SearchFieldService } from '../../../../shared/services/utils/search-field.service';
-import { CandidatesComponent } from './candidates.component';
-import { CandidatesListModule } from './components/candidates-list';
-import { CandidatesSearchComponent } from './components/candidates-search/candidates-search.component';
 
 @NgModule({
     declarations: [CandidatesComponent, CandidatesSearchComponent],

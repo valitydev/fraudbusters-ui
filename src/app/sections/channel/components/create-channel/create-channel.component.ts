@@ -15,6 +15,6 @@ export class CreateChannelComponent {
     ) {}
 
     back() {
-        this.router.navigate([`../notifications/channels`]);
+        void this.router.navigate([`../notifications/channels`]);
     }
 }

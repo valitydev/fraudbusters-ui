@@ -1,8 +1,3 @@
-import {
-    NgxMatDatetimePickerModule,
-    NgxMatNativeDateModule,
-    NgxMatTimepickerModule,
-} from '@angular-material-components/datetime-picker';
 import { CommonModule, DatePipe } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
@@ -21,13 +16,18 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import {
+    NgxMatDatetimePickerModule,
+    NgxMatNativeDateModule,
+    NgxMatTimepickerModule,
+} from '@angular-material-components/datetime-picker';
 
-import { AuditRemoteModule } from '../../api/audit';
-import { ErrorHandlerService } from '../../shared/services/utils/error-handler.service';
-import { SearchFieldService } from '../../shared/services/utils/search-field.service';
 import { AuditRoutingModule } from './audit-routing.module';
 import { AuditComponent } from './audit.component';
 import { AuditService } from './audit.service';
+import { AuditRemoteModule } from '../../api/audit';
+import { ErrorHandlerService } from '../../shared/services/utils/error-handler.service';
+import { SearchFieldService } from '../../shared/services/utils/search-field.service';
 
 @NgModule({
     declarations: [AuditComponent],

@@ -10,7 +10,7 @@ import { ErrorHandlerService } from './error-handler.service';
 export class CsvUtilsService {
     constructor(private errorHandlerService: ErrorHandlerService, private snackBar: MatSnackBar) {}
 
-    isValidFile(item: any, type: string, sizeByte: number): boolean {
+    isValidFile(item: File, type: string, sizeByte: number): boolean {
         if (item.type !== type) {
             this.errorHandlerService.handleStringError('File only csv format!', this.snackBar);
             return false;
@@ -24,6 +24,7 @@ export class CsvUtilsService {
         return true;
     }
 
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     convertToMb(item: any): string {
         return Math.fround(item.size / 1024 / 1024).toFixed(2);
     }

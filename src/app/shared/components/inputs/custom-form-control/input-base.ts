@@ -6,6 +6,11 @@ export class InputBase {
     errorState = false;
     stateChanges = new Subject<void>();
 
+    // These properties should be provided by the component using this base
+    ngControl: NgControl | null = null;
+    _parentFormGroup: FormGroupDirective | null = null;
+    _parentForm: NgForm | null = null;
+
     constructor(public _defaultErrorStateMatcher: ErrorStateMatcher) {}
 
     updateErrorState() {
@@ -20,11 +25,6 @@ export class InputBase {
             this.stateChanges.next(undefined);
         }
     }
-
-    // These properties should be provided by the component using this base
-    ngControl: NgControl | null = null;
-    _parentFormGroup: FormGroupDirective | null = null;
-    _parentForm: NgForm | null = null;
 }
 
 export const INPUT_MIX_IN_BASE = InputBase;

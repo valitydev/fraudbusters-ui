@@ -44,12 +44,12 @@ export class NotificationsService {
         return this.http.get<Notification>(`${this.fbEndpoint}/${id}`);
     }
 
-    save(notification: Notification): Observable<any> {
+    save(notification: Notification): Observable<Notification> {
         return this.http.post<Notification>(`${this.fbEndpoint}`, notification, new HttpRequestModel());
     }
 
-    saveChannel(channel: Channel): Observable<any> {
-        return this.http.post<Notification>(`${this.fbEndpoint}/channels`, channel, new HttpRequestModel());
+    saveChannel(channel: Channel): Observable<Channel> {
+        return this.http.post<Channel>(`${this.fbEndpoint}/channels`, channel, new HttpRequestModel());
     }
 
     getChannels(params: SearchNotificationParams): Observable<ChannelListResponse> {

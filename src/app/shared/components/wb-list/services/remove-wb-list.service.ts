@@ -19,11 +19,16 @@ export interface RemoveListRowParams {
 export class RemoveWbListComponentService {
     removed$: Observable<string>;
     inProgress$: Observable<boolean>;
+
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     loadedFile$: Observable<any>;
 
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     private loadFile$ = new Subject<any>();
     private removeRow$ = new Subject<RemoveListRowParams>();
-    private hasError$ = new Subject<any | undefined>();
+
+    // eslint-disable-next-line @typescript-eslint/no-redundant-type-constituents
+    private hasError$ = new Subject<unknown | undefined>();
 
     private readonly _sizeByte = 41943040;
 

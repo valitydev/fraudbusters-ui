@@ -1,8 +1,3 @@
-import {
-    NgxMatDatetimePickerModule,
-    NgxMatNativeDateModule,
-    NgxMatTimepickerModule,
-} from '@angular-material-components/datetime-picker';
 import { CommonModule, DatePipe } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FlexModule } from '@angular/flex-layout';
@@ -25,13 +20,12 @@ import { MatTableModule } from '@angular/material/table';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import {
+    NgxMatDatetimePickerModule,
+    NgxMatNativeDateModule,
+    NgxMatTimepickerModule,
+} from '@angular-material-components/datetime-picker';
 
-import { DataSetService } from '../../api/payments/data-set';
-import { EmptySearchResultModule } from '../../shared/components/empty-search-result';
-import { ShowMorePanelModule } from '../../shared/components/show-more-panel';
-import { ShowMoreContinuationPanelModule } from '../../shared/components/show-more-panel-continuation';
-import { TestingDataSetListModule } from '../../shared/components/testing-data-set-list';
-import { SearchFieldService } from '../../shared/services/utils/search-field.service';
 import { EmulationModule } from './components/emulation';
 import { PaymentDataSetsListModule } from './components/payment-data-sets/payment-data-sets-list';
 import { PaymentDataSetsComponent } from './components/payment-data-sets/payment-data-sets.component';
@@ -40,6 +34,12 @@ import { FetchDataSetsService } from './services/payment-data-sets/fetch-data-se
 import { RemoveDataSetsService } from './services/payment-data-sets/remove-data-sets.service';
 import { TestingRoutingModule } from './testing-routing.module';
 import { TestingComponent } from './testing.component';
+import { DataSetService } from '../../api/payments/data-set';
+import { EmptySearchResultModule } from '../../shared/components/empty-search-result';
+import { ShowMorePanelModule } from '../../shared/components/show-more-panel';
+import { ShowMoreContinuationPanelModule } from '../../shared/components/show-more-panel-continuation';
+import { TestingDataSetListModule } from '../../shared/components/testing-data-set-list';
+import { SearchFieldService } from '../../shared/services/utils/search-field.service';
 
 @NgModule({
     declarations: [TestingComponent, PaymentDataSetsComponent, DataSetsSearchComponent],

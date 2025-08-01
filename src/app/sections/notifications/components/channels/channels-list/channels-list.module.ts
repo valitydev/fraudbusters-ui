@@ -8,11 +8,11 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 
-import { ListHeaderModule } from '../../../../../shared/components/list-header';
-import { SharedPipesModule } from '../../../../../shared/pipes';
 import { ChannelsListComponent } from './channels-list.component';
 import { ChannelHeaderComponent } from './components/channel-header/channel-header.component';
 import { ChannelItemComponent } from './components/channel-item/channel-item.component';
+import { ListHeaderModule } from '../../../../../shared/components/list-header';
+import { SharedPipesModule } from '../../../../../shared/pipes';
 
 @NgModule({
     imports: [

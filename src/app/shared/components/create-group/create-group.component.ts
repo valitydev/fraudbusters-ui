@@ -3,11 +3,11 @@ import { ChangeDetectionStrategy, Component, Inject, Input, OnInit } from '@angu
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 
+import { GroupService } from './services/group.service';
 import { PaymentTemplatesService } from '../../../api';
 import { Group } from '../../../api/fb-management/swagger-codegen/model/group';
 import { LAYOUT_GAP_L, LAYOUT_GAP_M } from '../../../tokens';
 import { ErrorHandlerService } from '../../services/utils/error-handler.service';
-import { GroupService } from './services/group.service';
 
 @Component({
     selector: 'fb-create-group',
