@@ -212,6 +212,14 @@
         border-radius: 4px;
         display: block;
 
+        .mat-mdc-form-field-textarea-control {
+            vertical-align: baseline;
+        }
+
+        textarea {
+            min-height: 400px;
+        }
+
         input {
             height: 15px;
         }
@@ -234,9 +242,7 @@
 
     /* Navigation and table styles removed to reduce bundle size */
 
-    /* Table and layout styles removed to reduce bundle size */
-
-    mat-form-field.mat-form-field {
+    .mat-mdc-input-element.mat-mdc-form-field-input-control {
         &.full-width {
             width: 100%;
 
