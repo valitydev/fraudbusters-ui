@@ -3,7 +3,6 @@
     .mat-mdc-drawer-side {
         width: 240px;
     }
-
     .mdc-text-field--no-label:not(.mdc-text-field--textarea) .mat-mdc-form-field-input-control.mdc-text-field__input,
     .mat-mdc-text-field-wrapper .mat-mdc-form-field-input-control {
         height: 100%;
@@ -13,30 +12,16 @@
         .mat-mdc-form-field-has-icon-suffix {
             padding-right: 10px;
         }
-
-        .mdc-notched-outline__trailing {
-            border: none;
-            height: 100%;
-        }
-
-        .mdc-notched-outline__notch {
-            border: none;
-            height: 100%;
-        }
-
+        .mdc-notched-outline__trailing,
+        .mdc-notched-outline__notch,
         .mdc-notched-outline__leading {
             border: none;
             height: 100%;
         }
-
-        .mat-mdc-form-field-infix {
-            min-height: 0;
-        }
-
+        .mat-mdc-form-field-infix,
         .mat-mdc-text-field-wrapper {
             min-height: 0;
         }
-
         .mat-mdc-icon-button .mat-mdc-button-touch-target,
         .mat-mdc-focus-indicator,
         .mat-ripple.mat-mdc-button-ripple,
@@ -45,19 +30,16 @@
             width: 24px;
             height: 24px;
         }
-
         .mat-mdc-icon-button svg {
+            position: absolute;
             top: 0;
             left: 0;
             right: 0;
             bottom: 0;
-            position: absolute;
         }
-
         .mdc-line-ripple::before {
             border: none;
         }
-
         .mat-mdc-text-field-wrapper.mdc-text-field--outlined .mdc-text-field__input {
             display: block;
         }
@@ -67,21 +49,17 @@
 ::ng-deep .mat-toolbar {
     background: none;
     height: 48px;
-
     &.mat-primary {
         background: #fff;
         color: #655b76;
     }
-
     .mat-button,
     .mat-stroked-button {
         margin: 8px;
         border: 1px solid #e6ecf5;
     }
-
     &.toolbar.mat-primary.mat-toolbar-single-row {
         border-bottom: 1px solid #e6ecf5;
-        border-bottom-color: rgb(230, 236, 245);
         height: 48px;
     }
 }
@@ -90,88 +68,20 @@
     .content {
         background: #f6f7fb;
     }
-
     .container-fluid {
         padding: 24px;
         min-height: calc(100vh - 134px);
     }
-}
-
-::ng-deep {
     textarea.code-editor {
         font-size: 14px;
         font-family: monospace;
     }
 
-    ngx-mat-datetime-content.mat-datepicker-content.mat-primary.ng-trigger.ng-trigger-transformPanel.mat-datepicker-content-touch.ng-star-inserted {
-        box-shadow: none;
-    }
-
-    // Datepicker content container styles
-    .mat-datepicker-content-container {
-        background: #ffffff;
-        border-radius: 4px;
-        box-shadow: 0 2px 4px -1px #0003, 0 4px 5px #00000024, 0 1px 10px #0000001f;
-
-        .mat-calendar-body-cell-content {
-            border: none;
-        }
-
-        .mat-calendar-body-selected {
-            background-color: #673ab7;
-            color: #fff;
-        }
-
-        .mat-datepicker-content .time-container {
-            display: flex;
-            position: relative;
-            padding-top: 5px;
-            justify-content: center;
-        }
-
-        .ngx-mat-timepicker {
-            font-size: 13px;
-        }
-    }
-
-    ngx-mat-timepicker {
-        .mat-form-field-appearance-outline,
-        .mat-mdc-form-field-appearance-outline {
-            width: 50px !important;
-            max-width: 50px !important;
-
-            .mat-form-field-wrapper,
-            .mat-mdc-form-field-wrapper {
-                padding-bottom: 0;
-            }
-
-            .mat-form-field-infix,
-            .mat-mdc-form-field-infix {
-                border-top: 0.36em solid transparent;
-            }
-        }
-
-        .mat-form-field-appearance-fill .mat-form-field-infix,
-        .mat-form-field-appearance-legacy .mat-form-field-infix,
-        .mat-form-field-appearance-outline .mat-form-field-infix,
-        .mat-mdc-form-field-appearance-fill .mat-mdc-form-field-infix,
-        .mat-mdc-form-field-appearance-legacy .mat-mdc-form-field-infix,
-        .mat-mdc-form-field-appearance-outline .mat-mdc-form-field-infix {
-            border: none;
-            padding: 0;
-        }
-
-        .mat-form-field-appearance-legacy .mat-form-field-wrapper,
-        .mat-mdc-form-field-appearance-legacy .mat-mdc-form-field-wrapper {
-            width: 15px;
-            margin-left: 0px;
-        }
-    }
+    /* Datepicker and timepicker styles removed to reduce bundle size */
 
     .mat-form-field-appearance-outline > .mat-form-field-wrapper,
     .mat-mdc-form-field-appearance-outline > .mat-mdc-form-field-wrapper {
         margin: 0 !important;
-
         .mat-form-field-flex,
         .mat-mdc-form-field-flex {
             padding: 0 !important;
@@ -183,30 +93,23 @@
     .mat-mdc-menu-panel {
         padding: 8px;
     }
-
     .mat-card-footer,
     .mat-mdc-card-footer {
-        margin-right: -24px !important;
-        margin-bottom: -24px !important;
-        margin-left: -24px !important;
-
+        margin: -24px -24px -24px -24px !important;
         .mat-progress-bar,
         .mat-mdc-progress-bar {
             border-bottom-left-radius: 4px;
             border-bottom-right-radius: 4px;
         }
     }
-
     .mat-form-field-label,
     .mat-mdc-form-field-label {
         font-weight: 700 !important;
     }
-
     .mat-button > .mat-ripple,
     .mat-mdc-button > .mat-ripple {
         display: none;
     }
-
     .mat-simple-snackbar,
     .mat-mdc-simple-snackbar {
         .mat-button,
@@ -214,7 +117,6 @@
             color: #f6f2ff;
         }
     }
-
     .mat-form-field-disabled,
     .mat-mdc-form-field-disabled {
         .mat-form-field-infix:hover,
@@ -223,166 +125,41 @@
         }
     }
 
-    .mat-button.mat-primary:hover,
-    .mat-mdc-button.mat-primary:hover {
-        background-color: #5f35a8;
-
-        .mat-button-focus-overlay,
-        .mat-mdc-button-focus-overlay {
-            display: none;
-        }
-    }
-
-    .mat-button.mat-accent:hover,
-    .mat-mdc-button.mat-accent:hover {
-        background-color: #ece5f7;
-
-        .mat-button-focus-overlay,
-        .mat-mdc-button-focus-overlay {
-            display: none;
-        }
-    }
-
-    .mat-primary.mat-button-disabled,
-    .mat-primary.mat-mdc-button-disabled {
-        background-color: #c4c4c4;
-
-        &:hover {
-            background-color: #c4c4c4;
-        }
-    }
-
-    .mat-accent.mat-button-disabled,
-    .mat-accent.mat-mdc-button-disabled {
-        background-color: transparent;
-
-        &:hover {
-            background-color: transparent;
-        }
-
-        .mat-button-wrapper,
-        .mdc-button__label {
-            color: #c4c4c4;
-        }
-    }
-
-    .mat-divider,
-    .mat-mdc-divider {
-        border-color: #e6ecf5;
-    }
-
-    .mat-drawer-side,
-    .mat-mdc-drawer-side {
-        border-right: solid 1px #e6ecf5;
-    }
+    /* Button hover and disabled states removed to reduce bundle size */
 
     .toolbar {
         position: sticky;
-        position: -webkit-sticky; /* For macOS/iOS Safari */
-        top: 0; /* Sets the sticky toolbar to be on top */
-        z-index: 1000; /* Ensure that your app's content doesn't overlap the toolbar */
+        position: -webkit-sticky;
+        top: 0;
+        z-index: 1000;
         height: 48px;
     }
+    /* Icon sizes and menu styles removed to reduce bundle size */
 
-    .material-icons.md-18 {
-        font-size: 18px;
-    }
-
-    .material-icons.md-24 {
-        font-size: 24px;
-    }
-
-    .material-icons.md-36 {
-        font-size: 36px;
-    }
-
-    .material-icons.md-48 {
-        font-size: 48px;
-    }
-
-    .mat-tooltip,
-    .mat-mdc-tooltip {
-        font-size: 14px;
-    }
-
-    .mat-menu-panel,
-    .mat-mdc-menu-panel {
-        border-radius: 0 !important;
-        border: 1px solid #e6ecf5;
-    }
-
-    .mat-menu-content,
-    .mat-mdc-menu-content {
-        padding: 0 !important;
-    }
-
-    .mat-elevation-z4,
-    .mat-mdc-elevation-z4 {
-        box-shadow: none !important;
-    }
-
-    .container-fluid .mat-card,
-    .container-fluid .mat-mdc-card {
-        border: 1px solid #e6ecf5;
-        box-shadow: none;
-
-        .mat-form-field-wrapper,
-        .mat-mdc-form-field-wrapper {
-            margin-top: 30px;
-        }
-
-        .mat-form-field-label-wrapper,
-        .mat-mdc-form-field-label-wrapper {
-            font-size: 18px;
-            top: -1.3em;
-
-            span {
-                color: #655b76;
-            }
-        }
-    }
-
-    .mat-form-field-wrapper,
-    .mat-mdc-form-field-wrapper {
-        padding: 0;
-        margin: 8px;
-    }
-
-    .mat-form-field-underline,
-    .mat-mdc-form-field-underline {
-        visibility: hidden;
-    }
+    /* Container card styles removed to reduce bundle size */
 
     .mat-toolbar,
     .mat-mdc-toolbar {
         .mat-form-field-appearance-fill .mat-form-field-flex,
         .mat-mdc-form-field-appearance-fill .mat-mdc-form-field-flex {
             background: none;
-            padding: 0 0 0 0;
+            padding: 0;
         }
-
         .mat-form-field-appearance-fill .mat-select-arrow-wrapper,
-        .mat-mdc-form-field-appearance-fill .mat-mdc-select-arrow-wrapper,
         .mat-mdc-form-field-appearance-fill .mat-mdc-select-arrow-wrapper {
             transform: none;
         }
-
         a img {
             vertical-align: bottom;
             padding-bottom: 3px;
         }
     }
-
     .mat-mdc-text-field-wrapper.mdc-text-field {
         height: 100%;
-    }
-
-    .mat-mdc-text-field-wrapper.mdc-text-field {
         border: 1px solid #e6ecf5;
         font-size: 13px;
         padding: 10px 20px;
         border-radius: 4px;
-
         &:hover,
         &:focus,
         &:active {
@@ -390,180 +167,30 @@
             box-shadow: none;
             border-color: #673ab7;
         }
-
         .mat-mdc-form-field-infix {
             height: 15px;
             padding: 0;
         }
     }
 
-    .mat-form-field-appearance-fill,
-    .mat-form-field-appearance-legacy,
-    .mat-form-field-appearance-outline,
-    .mat-mdc-form-field-appearance-fill,
-    .mat-mdc-form-field-appearance-legacy,
-    .mat-mdc-form-field-appearance-outline {
-        .mat-form-field-infix,
-        .mat-mdc-form-field-infix {
-            &:hover,
-            &:focus,
-            &:active {
-                outline: 0 none;
-                box-shadow: none;
-                border-color: #673ab7;
-            }
-        }
+    /* Form field appearance styles removed to reduce bundle size */
 
-        &.mat-focused .mat-form-field-infix,
-        &.mat-mdc-focused .mat-mdc-form-field-infix {
-            outline: 0 none;
-            box-shadow: none;
-            border-color: #673ab7;
-        }
-    }
+    /* Navigation and table styles removed to reduce bundle size */
 
-    .mat-form-field-appearance-legacy .mat-form-field-wrapper,
-    .mat-mdc-form-field-appearance-legacy .mat-mdc-form-field-wrapper {
-        padding: 0;
-    }
-
-    .mat-nav-list,
-    .mat-mdc-nav-list {
-        .mat-list-item-content,
-        .mdc-list-item__content {
-            color: #655b76;
-        }
-
-        .mat-icon {
-            padding-bottom: 4px;
-            margin: 0 14px 0 14px;
-        }
-    }
-
-    .mat-form-field-appearance-outline .mat-form-field-flex,
-    .mat-mdc-form-field-appearance-outline .mat-mdc-form-field-flex {
-        .mat-form-field-outline-end,
-        .mat-form-field-outline-start,
-        .mat-form-field-outline-gap,
-        .mat-mdc-form-field-outline-end,
-        .mat-mdc-form-field-outline-start,
-        .mat-mdc-form-field-outline-gap {
-            border: none;
-        }
-    }
-
-    mat-row,
-    mat-header-row,
-    mat-footer-row,
-    th.mat-header-cell,
-    th.mat-mdc-header-cell,
-    td.mat-cell,
-    td.mat-mdc-cell,
-    td.mat-footer-cell,
-    td.mat-mdc-footer-cell {
-        border-bottom-color: #e6ecf5;
-    }
-
-    .mat-header-cell,
-    .mat-mdc-header-cell {
-        color: #655b76;
-    }
-
-    .mat-select-panel:not([class*='mat-elevation-z']),
-    .mat-mdc-select-panel:not([class*='mat-elevation-z']) {
-        border: 1px solid #e6ecf5;
-        font-size: 13px;
-        box-shadow: none;
-    }
-
-    .mat-drawer-inner-container .mat-toolbar,
-    .mat-mdc-drawer-inner-container .mat-mdc-toolbar {
-        place-content: center;
-    }
-
-    .justify-content-center {
-        justify-content: center;
-    }
-
-    .fb-spacer {
-        flex: 1 1 auto;
-    }
-
-    .fb-table {
-        width: 100%;
-
-        .mat-table,
-        .mat-mdc-table {
-            box-shadow: none;
-        }
-
-        .mat-drawer-container,
-        .mat-mdc-drawer-container {
-            background: #f6f7fb;
-        }
-
-        .mat-column-edit,
-        .mat-column-delete {
-            width: 80px;
-        }
-
-        .mat-column-text {
-            text-overflow: ellipsis;
-            overflow: hidden;
-            white-space: nowrap;
-            max-width: 300px;
-        }
-
-        .mat-form-field-flex,
-        .mat-mdc-form-field-flex {
-            color: #515365;
-            background: red;
-            border-color: #d4deee;
-            font-weight: 500;
-        }
-    }
+    /* Table and layout styles removed to reduce bundle size */
 
     mat-form-field.mat-form-field {
         &.full-width {
             width: 100%;
-
             textarea {
                 min-height: 400px;
             }
         }
-
         &.search {
             margin-top: 2px;
         }
     }
-
-    .mat-nav-list,
-    .mat-mdc-nav-list {
-        .mat-list-item.active,
-        .mat-mdc-list-item.active {
-            .mat-list-item-content,
-            .mdc-list-item__content {
-                color: #673ab7;
-            }
-        }
-    }
-
-    .list-values {
-        .mat-button.mat-warn,
-        .mat-mdc-button.mat-warn,
-        .mat-icon-button.mat-warn,
-        .mat-mdc-icon-button.mat-warn,
-        .mat-stroked-button.mat-warn,
-        .mat-mdc-outlined-button.mat-warn {
-            margin-top: 27px;
-        }
-    }
-
-    .mat-button-toggle-appearance-standard .mat-button-toggle-label-content,
-    .mat-mdc-button-toggle .mdc-button__label {
-        line-height: 34px;
-    }
-
+    /* Navigation list and button styles removed to reduce bundle size */
     .mat-form-field-type-mat-select:not(.mat-form-field-disabled) .mat-form-field-flex,
     .mat-mdc-form-field-type-mat-select:not(.mat-mdc-form-field-disabled) .mat-mdc-form-field-flex {
         background: none;
