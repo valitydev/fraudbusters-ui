@@ -32,7 +32,16 @@ export abstract class PartialFetcher<R, P> {
         const actionWithParams$ = this.getActionWithParams(debounceActionTime);
         const fetchResult$ = this.getFetchResult(actionWithParams$);
 
-        this.fetchResultChanges$ = fetchResult$.pipe(
+        // Handle errors after progress operators have processed them
+        const fetchResultWithErrorHandling$ = fetchResult$.pipe(
+            catchError((error) => {
+                this.errors$.next(error);
+                console.error('Partial fetcher error: ', error);
+                return of({ result: [], count: 0 });
+            })
+        );
+
+        this.fetchResultChanges$ = fetchResultWithErrorHandling$.pipe(
             map(({ result, count }) => ({
                 result,
                 count,
@@ -49,10 +58,10 @@ export abstract class PartialFetcher<R, P> {
             shareReplay(1)
         );
 
-        this.doAction$ = progress(actionWithParams$, fetchResult$, true).pipe(shareReplay(1));
+        this.doAction$ = progress(actionWithParams$, fetchResultWithErrorHandling$, true).pipe(shareReplay(1));
         this.doSearchAction$ = progress(
             actionWithParams$.pipe(filter(({ type }) => type === 'search')),
-            fetchResult$,
+            fetchResultWithErrorHandling$,
             true
         ).pipe(shareReplay(1));
 
@@ -82,15 +91,7 @@ export abstract class PartialFetcher<R, P> {
 
     protected getFetchResult(actionWithParams$: Observable<FetchAction<P>>): Observable<FetchResult<R>> {
         const fetchFn = this.fetch.bind(this) as FetchFn<P, R>;
-        return actionWithParams$.pipe(
-            scanFetchResult(fetchFn),
-            shareReplay(1),
-            catchError((error) => {
-                this.errors$.next(error);
-                console.error('Partial fetcher error: ', error);
-                return error ? of(error) : EMPTY;
-            })
-        );
+        return actionWithParams$.pipe(scanFetchResult(fetchFn), shareReplay(1));
     }
 
     private getActionWithParams(debounceActionTime: number): Observable<FetchAction<P>> {

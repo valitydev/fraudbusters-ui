@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { catchError, map } from 'rxjs/operators';
 
 import { ConfigService } from '../../../config';
 import { HttpRequestModel } from '../../../shared/model/http-request-model';
@@ -22,9 +22,16 @@ export class PaymentTemplatesService {
     constructor(private http: HttpClient, private configService: ConfigService) {}
 
     findTemplates(params?: SearchParams): Observable<TemplatesResponse> {
-        return this.http.get<HttpSearchResponse<Template>>(`${this.fbPaymentTemplatesEndpoint}/filter`, {
-            params: filterParameters(params),
-        });
+        return this.http
+            .get<HttpSearchResponse<Template>>(`${this.fbPaymentTemplatesEndpoint}/filter`, {
+                params: filterParameters(params),
+            })
+            .pipe(
+                catchError((error) => {
+                    console.error('Error fetching templates:', error);
+                    throw error;
+                })
+            );
     }
 
     deleteTemplate(id: string): Observable<string> {
