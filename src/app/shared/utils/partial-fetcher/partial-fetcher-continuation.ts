@@ -94,7 +94,7 @@ export abstract class PartialFetcherContinuation<R, P> {
 
     protected getFetchResult(actionWithParams$: Observable<FetchAction<P>>): Observable<FetchResultContinuation<R>> {
         const fetchFn = this.fetch.bind(this) as FetchFnContinuation<P, R>;
-        return actionWithParams$.pipe(scanFetchResultContinuation(fetchFn), shareReplay(1));
+        return actionWithParams$.pipe(scanFetchResultContinuation(fetchFn));
     }
 
     private getActionWithParams(debounceActionTime: number): Observable<FetchAction<P>> {

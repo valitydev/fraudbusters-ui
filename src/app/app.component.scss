@@ -1,4 +1,8 @@
 ::ng-deep {
+    .mat-card.mat-mdc-card.mdc-card.list-header {
+        height: 48px !important;
+    }
+
     .mat-drawer-side,
     .mat-mdc-drawer-side {
         width: 240px;
