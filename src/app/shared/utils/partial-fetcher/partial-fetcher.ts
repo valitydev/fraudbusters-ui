@@ -5,7 +5,6 @@ import {
     distinctUntilChanged,
     filter,
     map,
-    pluck,
     share,
     shareReplay,
     startWith,
@@ -49,10 +48,13 @@ export abstract class PartialFetcher<R, P> {
             })),
             share()
         );
-        this.searchResult$ = this.fetchResultChanges$.pipe(pluck('result'), shareReplay(1));
+        this.searchResult$ = this.fetchResultChanges$.pipe(
+            map((changes) => changes.result),
+            shareReplay(1)
+        );
 
         this.hasMore$ = this.fetchResultChanges$.pipe(
-            pluck('hasMore'),
+            map((changes) => changes.hasMore),
             startWith(null as boolean),
             distinctUntilChanged(),
             shareReplay(1)
@@ -91,7 +93,7 @@ export abstract class PartialFetcher<R, P> {
 
     protected getFetchResult(actionWithParams$: Observable<FetchAction<P>>): Observable<FetchResult<R>> {
         const fetchFn = this.fetch.bind(this) as FetchFn<P, R>;
-        return actionWithParams$.pipe(scanFetchResult(fetchFn));
+        return actionWithParams$.pipe(scanFetchResult(fetchFn), shareReplay(1));
     }
 
     private getActionWithParams(debounceActionTime: number): Observable<FetchAction<P>> {

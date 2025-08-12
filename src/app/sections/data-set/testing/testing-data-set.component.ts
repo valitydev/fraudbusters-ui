@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, Inject } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { pluck, shareReplay, switchMap } from 'rxjs/operators';
+import { map, shareReplay, switchMap } from 'rxjs/operators';
 
 import { DataSetService } from '../../../api/payments/data-set';
 import { TestingDataSetService } from '../../../shared/components/testing-data-set-list/services/data-set/testing-data-set.service';
@@ -14,7 +14,7 @@ import { LAYOUT_GAP_L, LAYOUT_GAP_M } from '../../../tokens';
 })
 export class TestingDataSetComponent {
     dataSet$ = this.route.params.pipe(
-        pluck('id'),
+        map((params) => params.id),
         switchMap((id) => {
             return this.dataSetService.getCheckedById(id);
         }),

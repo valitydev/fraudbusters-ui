@@ -19,9 +19,14 @@ export class PaymentReferencesService {
     constructor(private http: HttpClient, private configService: ConfigService) {}
 
     findReferences(params?: SearchReferenceParams): Observable<ReferencesResponse> {
-        return this.http.get<ReferencesResponse>(`${this.fbPaymentReferenceEndpoint}/filter`, {
-            params: filterParameters(params),
-        });
+        return this.http
+            .get<ReferencesResponse>(`${this.fbPaymentReferenceEndpoint}/filter`, {
+                params: filterParameters(params),
+            })
+            .pipe((source) => {
+                console.log('source: ' + source);
+                return source;
+            });
     }
 
     deleteReference(reference: PaymentReference): Observable<string> {

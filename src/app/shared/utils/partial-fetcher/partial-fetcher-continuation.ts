@@ -5,7 +5,6 @@ import {
     distinctUntilChanged,
     filter,
     map,
-    pluck,
     share,
     shareReplay,
     startWith,
@@ -52,10 +51,13 @@ export abstract class PartialFetcherContinuation<R, P> {
             })),
             share()
         );
-        this.searchResult$ = this.fetchResultChanges$.pipe(pluck('result'), shareReplay(1));
+        this.searchResult$ = this.fetchResultChanges$.pipe(
+            map((changes) => changes.result),
+            shareReplay(1)
+        );
 
         this.hasMore$ = this.fetchResultChanges$.pipe(
-            pluck('hasMore'),
+            map((changes) => changes.hasMore),
             startWith(null as boolean),
             distinctUntilChanged(),
             shareReplay(1)
@@ -94,7 +96,7 @@ export abstract class PartialFetcherContinuation<R, P> {
 
     protected getFetchResult(actionWithParams$: Observable<FetchAction<P>>): Observable<FetchResultContinuation<R>> {
         const fetchFn = this.fetch.bind(this) as FetchFnContinuation<P, R>;
-        return actionWithParams$.pipe(scanFetchResultContinuation(fetchFn));
+        return actionWithParams$.pipe(scanFetchResultContinuation(fetchFn), shareReplay(1));
     }
 
     private getActionWithParams(debounceActionTime: number): Observable<FetchAction<P>> {

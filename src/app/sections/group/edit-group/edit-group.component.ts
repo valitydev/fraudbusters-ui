@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, Inject } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { map, pluck, shareReplay, switchMap, withLatestFrom } from 'rxjs/operators';
+import { map, shareReplay, switchMap, withLatestFrom } from 'rxjs/operators';
 
 import { PaymentGroupsService } from '../../../api/payments/groups';
 import { LAYOUT_GAP_L, LAYOUT_GAP_M } from '../../../tokens';
@@ -11,12 +11,12 @@ import { LAYOUT_GAP_L, LAYOUT_GAP_M } from '../../../tokens';
 })
 export class EditGroupComponent {
     group$ = this.route.params.pipe(
-        pluck('id'),
+        map((params) => params.id),
         withLatestFrom(),
         switchMap(([id]) => {
             return this.paymentGroupsService.filter(id);
         }),
-        pluck('result'),
+        map((response) => response.result),
         map((res) => res[0]),
         shareReplay(1)
     );
