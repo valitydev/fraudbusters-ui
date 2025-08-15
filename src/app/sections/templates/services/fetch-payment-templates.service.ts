@@ -1,12 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { shareReplay } from 'rxjs/operators';
+import { distinctUntilChanged, shareReplay, tap } from 'rxjs/operators';
 
 import { Template } from '../../../api/fb-management/swagger-codegen/model/template';
 import { PaymentTemplatesService } from '../../../api/payments/templates';
 import { ConfigService } from '../../../config';
 import { SortOrder } from '../../../shared/constants/sort-order';
-import { booleanDebounceTime } from '../../../shared/operators';
 import { FetchResult, PartialFetcher } from '../../../shared/utils/partial-fetcher';
 
 export interface FetchTemplatesParams {
@@ -17,7 +16,12 @@ export interface FetchTemplatesParams {
 
 @Injectable()
 export class FetchPaymentTemplatesService extends PartialFetcher<Template, FetchTemplatesParams> {
-    inProgress$ = this.doAction$.pipe(booleanDebounceTime(), shareReplay(1));
+    inProgress$ = this.doAction$.pipe(
+        tap((value) => console.log('doAction$ emitted:', value)),
+        distinctUntilChanged(),
+        tap((value) => console.log('inProgress$ after distinctUntilChanged:', value)),
+        shareReplay(1)
+    );
     private pageSize = this.configService.pageSize;
 
     constructor(private paymentTemplatesService: PaymentTemplatesService, private configService: ConfigService) {

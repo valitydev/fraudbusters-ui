@@ -17,10 +17,14 @@ export class TemplatesSearchComponent {
     });
 
     constructor(private route: ActivatedRoute, private router: Router, private fb: FormBuilder) {
-        this.form.valueChanges.pipe(debounceTime(600), map(removeEmptyProperties)).subscribe((v) => {
-            this.router.navigate([location.pathname], { queryParams: v });
+        this.form.valueChanges.pipe(debounceTime(1600), map(removeEmptyProperties)).subscribe((v) => {
+            console.log('in value');
+            void this.router.navigate([location.pathname], { queryParams: v });
             this.valueChanges.emit(v.searchQuery);
         });
-        this.route.queryParams.pipe(take(1)).subscribe((v) => this.form.patchValue(v));
+        this.route.queryParams.pipe(take(1)).subscribe((v) => {
+            console.log('in query');
+            this.form.patchValue(v);
+        });
     }
 }

@@ -60,7 +60,11 @@ export abstract class PartialFetcher<R, P> {
             shareReplay(1)
         );
 
-        this.doAction$ = progress(actionWithParams$, fetchResultWithErrorHandling$, true).pipe(shareReplay(1));
+        this.doAction$ = progress(actionWithParams$, fetchResultWithErrorHandling$, true).pipe(
+            tap((value) => console.log('actionWithParams$: ', actionWithParams$)),
+            tap((value) => console.log('fetchResultWithErrorHandling$: ', fetchResultWithErrorHandling$)),
+            shareReplay(1)
+        );
         this.doSearchAction$ = progress(
             actionWithParams$.pipe(filter(({ type }) => type === 'search')),
             fetchResultWithErrorHandling$,
@@ -93,10 +97,10 @@ export abstract class PartialFetcher<R, P> {
 
     protected getFetchResult(actionWithParams$: Observable<FetchAction<P>>): Observable<FetchResult<R>> {
         const fetchFn = this.fetch.bind(this) as FetchFn<P, R>;
-        return actionWithParams$.pipe(scanFetchResult(fetchFn), shareReplay(1));
+        return actionWithParams$.pipe(scanFetchResult(fetchFn));
     }
 
     private getActionWithParams(debounceActionTime: number): Observable<FetchAction<P>> {
-        return this.action$.pipe(scanAction, debounceActionTime ? debounceTime(debounceActionTime) : tap(), share());
+        return this.action$.pipe(scanAction, debounceActionTime ? debounceTime(debounceActionTime) : tap());
     }
 }

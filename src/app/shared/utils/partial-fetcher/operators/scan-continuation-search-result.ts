@@ -23,28 +23,16 @@ export const scanFetchResultContinuation =
         s.pipe(
             mergeScan<FetchAction<P>, FetchResultContinuation<R>>(
                 ({ result, continuationId }, { type, value }) => {
-                    console.log('scanFetchResultContinuation action:', { type, value });
                     switch (type) {
                         case 'search':
-                            return fn(value).pipe(
-                                first(),
-                                map((r) => {
-                                    console.log('scanFetchResultContinuation search result:', r);
-                                    return r;
-                                }),
-                                handleFetchResultError()
-                            );
+                            return fn(value).pipe(first(), handleFetchResultError());
                         case 'fetchMore':
                             return fn(value, continuationId).pipe(
                                 first(),
-                                map((r) => {
-                                    const newResult = {
-                                        result: result.concat(r.result),
-                                        continuationId: r.continuationId,
-                                    };
-                                    console.log('scanFetchResultContinuation fetchMore result:', newResult);
-                                    return newResult;
-                                }),
+                                map((r) => ({
+                                    result: result.concat(r.result),
+                                    continuationId: r.continuationId,
+                                })),
                                 handleFetchResultError(result, continuationId)
                             );
                     }
