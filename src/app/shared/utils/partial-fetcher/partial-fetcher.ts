@@ -60,11 +60,7 @@ export abstract class PartialFetcher<R, P> {
             shareReplay(1)
         );
 
-        this.doAction$ = progress(actionWithParams$, fetchResultWithErrorHandling$, true).pipe(
-            tap((value) => console.log('actionWithParams$: ', actionWithParams$)),
-            tap((value) => console.log('fetchResultWithErrorHandling$: ', fetchResultWithErrorHandling$)),
-            shareReplay(1)
-        );
+        this.doAction$ = progress(actionWithParams$, fetchResultWithErrorHandling$, true).pipe(shareReplay(1));
         this.doSearchAction$ = progress(
             actionWithParams$.pipe(filter(({ type }) => type === 'search')),
             fetchResultWithErrorHandling$,
