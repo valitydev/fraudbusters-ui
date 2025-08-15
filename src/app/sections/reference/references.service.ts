@@ -72,12 +72,10 @@ export class ReferencesService {
     private pipeReferences(filterReference: FilterReference): Observable<any> {
         return this.getReferences(filterReference).pipe(
             catchError((error) => {
-                console.log('error: ' + error);
                 this.errorHandlerService.handleError(error, this.snackBar);
                 return of(error);
             }),
             map((ref) => {
-                console.log('ref: ' + ref);
                 this.lastRefSubject$.next(ref.result[ref.result.length - 1]);
                 return { references: ref.result, filter: filterReference, count: ref.count };
             })
