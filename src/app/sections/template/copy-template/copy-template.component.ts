@@ -13,8 +13,7 @@ import { TemplatesService } from '../services/templates/templates.service';
 export class CopyTemplateComponent {
     template$ = this.route.params.pipe(
         map((params) => params.id),
-        withLatestFrom(),
-        switchMap(([id]) => {
+        switchMap((id) => {
             return this.templateService.getTemplates(1, id);
         }),
         map((response) => response.result),

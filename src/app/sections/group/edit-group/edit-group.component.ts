@@ -12,8 +12,7 @@ import { LAYOUT_GAP_L, LAYOUT_GAP_M } from '../../../tokens';
 export class EditGroupComponent {
     group$ = this.route.params.pipe(
         map((params) => params.id),
-        withLatestFrom(),
-        switchMap(([id]) => {
+        switchMap((id) => {
             return this.paymentGroupsService.filter(id);
         }),
         map((response) => response.result),
