@@ -17,12 +17,13 @@ export class TemplatesSearchComponent {
     });
 
     constructor(private route: ActivatedRoute, private router: Router, private fb: FormBuilder) {
+        this.route.queryParams.pipe(take(1)).subscribe((v) => {
+            this.form.patchValue(v, { emitEvent: false });
+        });
+
         this.form.valueChanges.pipe(debounceTime(1600), map(removeEmptyProperties)).subscribe((v) => {
             void this.router.navigate([location.pathname], { queryParams: v });
             this.valueChanges.emit(v.searchQuery);
-        });
-        this.route.queryParams.pipe(take(1)).subscribe((v) => {
-            this.form.patchValue(v);
         });
     }
 }
