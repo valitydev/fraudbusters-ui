@@ -31,9 +31,9 @@ jobs:
           path: ./*
           key: ${{ github.sha }}
       - name: Init NodeJS
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v4
         with:
-          node-version: '16.13.2'
+          node-version: '18'
           cache: 'npm'
       - name: Check
         run: npm run ci:check
@@ -49,9 +49,9 @@ jobs:
           path: ./*
           key: ${{ github.sha }}
       - name: Init NodeJS
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v4
         with:
-          node-version: '16.13.2'
+          node-version: '18'
           cache: 'npm'
       - name: Build
         run: npm run build
