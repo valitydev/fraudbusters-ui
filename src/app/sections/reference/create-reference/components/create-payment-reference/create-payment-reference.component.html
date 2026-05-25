@@ -46,7 +46,14 @@
                 multiple
                 (change)="prepareFilesList($event.target.files)"
             />
-            <button mat-button color="accent" (click)="fileDropRef.click()">Add from CSV</button>
+            <button
+                mat-button
+                color="accent"
+                matTooltip="CSV format: template,partyId,shopId"
+                (click)="fileDropRef.click()"
+            >
+                Add from CSV
+            </button>
             <button
                 mat-button
                 color="accent"
