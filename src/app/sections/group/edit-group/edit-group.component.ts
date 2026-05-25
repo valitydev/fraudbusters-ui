@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, Inject } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { map, shareReplay, switchMap, withLatestFrom } from 'rxjs/operators';
+import { map, shareReplay, switchMap } from 'rxjs/operators';
 
 import { PaymentGroupsService } from '../../../api/payments/groups';
 import { LAYOUT_GAP_L, LAYOUT_GAP_M } from '../../../tokens';
