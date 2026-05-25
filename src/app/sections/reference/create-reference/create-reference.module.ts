@@ -9,6 +9,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 import { PaymentReferencesModule, PaymentReferencesService } from '../../../api/payments/references';
 import { HeadlineModule } from '../../../shared/components/headline';
@@ -35,6 +36,7 @@ import { CreateReferenceComponent } from './create-reference.component';
         MatIconModule,
         MatSnackBarModule,
         MatProgressBarModule,
+        MatTooltipModule,
         HeadlineModule,
     ],
     exports: [CreateReferenceComponent],
