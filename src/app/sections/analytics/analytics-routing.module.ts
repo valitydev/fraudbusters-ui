@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
-import { AuthGuard, Roles } from '../../auth';
 import { AnalyticsComponent } from './analytics.component';
+import { AuthGuard, Roles } from '../../auth';
 import { BaseAnalyticsComponent } from './components/base/base-analytics.component';
 
 @NgModule({
@@ -23,6 +23,7 @@ import { BaseAnalyticsComponent } from './components/base/base-analytics.compone
                     {
                         path: '',
                         redirectTo: 'base',
+                        pathMatch: 'full',
                     },
                 ],
             },

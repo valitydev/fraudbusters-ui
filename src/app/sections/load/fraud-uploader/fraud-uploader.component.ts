@@ -3,11 +3,11 @@ import { ChangeDetectionStrategy, Component, Inject } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 
+import { UploadStatus } from './constants/upload-status';
+import { UploadFile, ExtendedFile } from './model/upload-file';
 import { PaymentLoadDataService } from '../../../api/payments/load-data';
 import { ErrorHandlerService } from '../../../shared/services/utils/error-handler.service';
 import { LAYOUT_GAP_L, LAYOUT_GAP_M } from '../../../tokens';
-import { UploadStatus } from './constants/upload-status';
-import { UploadFile } from './model/upload-file';
 
 @Component({
     templateUrl: './fraud-uploader.component.html',
@@ -15,7 +15,7 @@ import { UploadFile } from './model/upload-file';
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FraudUploaderComponent {
-    files: any[] = [];
+    files: ExtendedFile[] = [];
     uploadFiles = new Map<string, UploadFile>();
 
     constructor(
@@ -60,13 +60,15 @@ export class FraudUploaderComponent {
         this.prepareFilesList(files);
     }
 
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     prepareFilesList(files: Array<any>): void {
         for (const item of files) {
             if (item.type !== 'text/csv') {
                 this.errorHandlerService.handleStringError('File only csv format!', this.snackBar);
             } else {
-                item.progress = 0;
-                this.files.push(item);
+                const extendedFile = item as ExtendedFile;
+                extendedFile.progress = 0;
+                this.files.push(extendedFile);
             }
         }
     }

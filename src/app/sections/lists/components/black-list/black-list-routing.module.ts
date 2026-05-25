@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
-import { AuthGuard, Roles } from '../../../../auth';
 import { AddRowBlackListComponent } from './add-row-black-list/add-row-black-list.component';
 import { BlackListComponent } from './black-list.component';
+import { AuthGuard, Roles } from '../../../../auth';
 
 @NgModule({
     imports: [

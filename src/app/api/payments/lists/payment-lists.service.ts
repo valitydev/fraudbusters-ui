@@ -1,8 +1,9 @@
-import { HttpClient, HttpResponse } from '@angular/common/http';
+import { HttpClient, HttpEvent, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { filter, map } from 'rxjs/operators';
 
+import { SearchListsParams } from './search-lists-params';
 import { ConfigService } from '../../../config';
 import { ListType } from '../../../shared/constants/list-type';
 import { HttpRequestModel } from '../../../shared/model/http-request-model';
@@ -15,7 +16,6 @@ import { PaymentCountInfo } from '../../fb-management/swagger-codegen/model/paym
 import { WbListCandidatesBatchesResponse } from '../../fb-management/swagger-codegen/model/wbListCandidatesBatchesResponse';
 import { WbListCandidatesResponse } from '../../fb-management/swagger-codegen/model/wbListCandidatesResponse';
 import { WbListRecordsResponse } from '../../fb-management/swagger-codegen/model/wbListRecordsResponse';
-import { SearchListsParams } from './search-lists-params';
 
 @Injectable()
 export class PaymentListsService {
@@ -62,24 +62,24 @@ export class PaymentListsService {
             .pipe(map((response: ListResponse) => response.result));
     }
 
-    saveListsRowsFromFile(listType: ListType, file: File): Observable<any> {
+    saveListsRowsFromFile(listType: ListType, file: File): Observable<HttpEvent<File>> {
         const formData: FormData = new FormData();
         formData.append('file', file, file.name);
         formData.append('listType', listType);
         return this.http
-            .post<any>(`${this.fbPaymentReferenceEndpoint}/csv`, formData, {
+            .post<File>(`${this.fbPaymentReferenceEndpoint}/csv`, formData, {
                 reportProgress: true,
                 observe: 'events',
             })
             .pipe(filter((r) => r instanceof HttpResponse && r.status === 200));
     }
 
-    deleteListsRowsByFile(listType: ListType, file: File): Observable<any> {
+    deleteListsRowsByFile(listType: ListType, file: File): Observable<HttpEvent<File>> {
         const formData: FormData = new FormData();
         formData.append('file', file, file.name);
         formData.append('listType', listType);
         return this.http
-            .post<any>(`${this.fbPaymentReferenceEndpoint}/remove/csv`, formData, {
+            .post<File>(`${this.fbPaymentReferenceEndpoint}/remove/csv`, formData, {
                 reportProgress: true,
                 observe: 'events',
             })

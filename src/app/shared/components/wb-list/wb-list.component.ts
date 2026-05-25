@@ -3,13 +3,13 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 
+import { Filter } from './model/filter';
+import { FetchWbListService } from './services/fetch-wb-list.service';
+import { RemoveWbListComponentService } from './services/remove-wb-list.service';
 import { PaymentListsService } from '../../../api/payments/lists';
 import { LAYOUT_GAP_M } from '../../../tokens';
 import { ListType } from '../../constants/list-type';
 import { ErrorHandlerService } from '../../services/utils/error-handler.service';
-import { Filter } from './model/filter';
-import { FetchWbListService } from './services/fetch-wb-list.service';
-import { RemoveWbListComponentService } from './services/remove-wb-list.service';
 
 @Component({
     selector: 'fb-wb-list',

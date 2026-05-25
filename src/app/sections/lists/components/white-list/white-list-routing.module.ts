@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
-import { AuthGuard, Roles } from '../../../../auth';
 import { AddRowWhiteListComponent } from './add-row-white-list/add-row-white-list.component';
 import { WhiteListComponent } from './white-list.component';
+import { AuthGuard, Roles } from '../../../../auth';
 
 @NgModule({
     imports: [

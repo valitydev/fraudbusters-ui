@@ -1,13 +1,12 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { shareReplay } from 'rxjs/operators';
+import { shareReplay, distinctUntilChanged } from 'rxjs/operators';
 
 import { WbListRecord } from '../../../../api/fb-management/swagger-codegen/model/wbListRecord';
 import { PaymentListsService } from '../../../../api/payments/lists';
 import { ConfigService } from '../../../../config';
 import { ListType } from '../../../constants/list-type';
 import { SortOrder } from '../../../constants/sort-order';
-import { booleanDebounceTime } from '../../../operators';
 import { FetchResult, PartialFetcher } from '../../../utils/partial-fetcher';
 
 export interface FetchRowsParams {
@@ -20,7 +19,7 @@ export interface FetchRowsParams {
 
 @Injectable()
 export class FetchWbListService extends PartialFetcher<WbListRecord, FetchRowsParams> {
-    inProgress$ = this.doAction$.pipe(booleanDebounceTime(), shareReplay(1));
+    inProgress$ = this.doAction$.pipe(distinctUntilChanged(), shareReplay(1));
     private pageSize = this.configService.pageSize;
 
     constructor(private paymentListsService: PaymentListsService, private configService: ConfigService) {

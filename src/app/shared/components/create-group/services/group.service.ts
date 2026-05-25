@@ -1,6 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { EMPTY, Observable, Subject } from 'rxjs';
 import { catchError, filter, shareReplay, switchMap } from 'rxjs/operators';
@@ -17,7 +17,7 @@ export class GroupService {
     form = this.fb.group({
         id: '',
     });
-    forms = this.fb.array([]);
+    forms = this.fb.array<FormGroup>([]);
 
     private save$ = new Subject<Group>();
     private errors$ = new Subject();
@@ -36,7 +36,7 @@ export class GroupService {
                     .pipe(
                         catchError((error: HttpErrorResponse) => {
                             this.snackBar.open(`${error.status}: ${error.message}`, 'ERROR');
-                            this.errors$.next();
+                            this.errors$.next(undefined);
                             return EMPTY;
                         })
                     )
@@ -55,7 +55,7 @@ export class GroupService {
     }
 
     save() {
-        this.save$.next();
+        this.save$.next(undefined);
     }
 
     addItem() {

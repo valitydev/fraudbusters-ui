@@ -1,3 +1,8 @@
-.mat-card {
+.mat-card,
+.mat-mdc-card {
     padding: 8px 24px !important;
+}
+
+mat-card.mat-mdc-card.mdc-card.list-header {
+    max-height: 48px;
 }

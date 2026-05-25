@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
+import { SearchReferenceParams } from './search-reference-params';
 import { ConfigService } from '../../../config';
 import { HttpRequestModel } from '../../../shared/model/http-request-model';
 import { filterParameters } from '../../../shared/utils/filter-params';
@@ -10,7 +11,6 @@ import { IdResponse } from '../../fb-management/swagger-codegen/model/idResponse
 import { ListResponse } from '../../fb-management/swagger-codegen/model/listResponse';
 import { PaymentReference } from '../../fb-management/swagger-codegen/model/paymentReference';
 import { ReferencesResponse } from '../../fb-management/swagger-codegen/model/referencesResponse';
-import { SearchReferenceParams } from './search-reference-params';
 
 @Injectable()
 export class PaymentReferencesService {

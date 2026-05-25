@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
-import { AuthGuard, Roles } from '../../../auth';
 import { FraudUploaderComponent } from './fraud-uploader.component';
+import { AuthGuard, Roles } from '../../../auth';
 
 @NgModule({
     imports: [

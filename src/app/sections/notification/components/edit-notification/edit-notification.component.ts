@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, Inject } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { pluck, shareReplay, switchMap } from 'rxjs/operators';
+import { map, shareReplay, switchMap } from 'rxjs/operators';
 
 import { LAYOUT_GAP_L, LAYOUT_GAP_M } from '../../../../tokens';
 import { NotificationService } from '../../services/notification.service';
@@ -11,7 +11,7 @@ import { NotificationService } from '../../services/notification.service';
 })
 export class EditNotificationComponent {
     notification$ = this.route.params.pipe(
-        pluck('id'),
+        map((params) => params.id),
         switchMap((id) => {
             return this.notificationService.getNotificationById(id);
         }),

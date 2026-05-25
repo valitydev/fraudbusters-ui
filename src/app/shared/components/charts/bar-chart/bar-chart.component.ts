@@ -1,6 +1,5 @@
 import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
-import cloneDeep from 'lodash-es/cloneDeep';
-import { ApexAxisChartSeries } from 'ng-apexcharts/lib/model/apex-types';
+import { ApexAxisChartSeries } from 'ng-apexcharts';
 
 import { DEFAULT_CONFIG } from './default-config';
 
@@ -19,7 +18,7 @@ export class BarChartComponent implements OnChanges {
     @Input()
     height?: number;
 
-    config = cloneDeep(DEFAULT_CONFIG);
+    config = structuredClone(DEFAULT_CONFIG);
 
     ngOnChanges(changes: SimpleChanges) {
         if (changes.height && changes.height.currentValue !== changes.height.previousValue) {

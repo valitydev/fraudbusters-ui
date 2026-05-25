@@ -5,7 +5,7 @@ import { shareReplay } from 'rxjs/operators';
 import { Notification } from '../../../api/fb-management/swagger-codegen/model/notification';
 import { NotificationsService } from '../../../api/payments/notifications';
 import { ConfigService } from '../../../config';
-import { booleanDebounceTime } from '../../../shared/operators';
+import { distinctUntilChanged } from 'rxjs/operators';
 import { FetchResultContinuation } from '../../../shared/utils/partial-fetcher/fetch-result-continuation';
 import { PartialFetcherContinuation } from '../../../shared/utils/partial-fetcher/partial-fetcher-continuation';
 
@@ -17,7 +17,7 @@ export interface FetchNotificationsParams {
 
 @Injectable()
 export class FetchNotificationsService extends PartialFetcherContinuation<Notification, FetchNotificationsParams> {
-    inProgress$ = this.doAction$.pipe(booleanDebounceTime(), shareReplay(1));
+    inProgress$ = this.doAction$.pipe(distinctUntilChanged(), shareReplay(1));
     private SIZE = this.configService.pageSize;
 
     constructor(private notificationsService: NotificationsService, private configService: ConfigService) {

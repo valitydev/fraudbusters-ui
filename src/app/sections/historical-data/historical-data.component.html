@@ -1,6 +1,6 @@
 <div class="mat-headline">Historical data</div>
 <div fxLayout="column" fxLayoutGap="8px">
-    <nav mat-tab-nav-bar>
+    <nav mat-tab-nav-bar [tabPanel]="tabPanel">
         <a
             mat-tab-link
             *ngFor="let link of links"
@@ -12,5 +12,7 @@
             {{ link.name }}
         </a>
     </nav>
-    <router-outlet></router-outlet>
+    <mat-tab-nav-panel #tabPanel>
+        <router-outlet></router-outlet>
+    </mat-tab-nav-panel>
 </div>

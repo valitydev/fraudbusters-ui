@@ -5,9 +5,9 @@ import { Router } from '@angular/router';
 
 import { Template } from '../../../api/fb-management/swagger-codegen/model/template';
 import { LAYOUT_GAP_L, LAYOUT_GAP_M } from '../../../tokens';
+import { TemplateService } from './services/template/template.service';
 import { checkValidateResponse } from '../../services/utils/check-validation-response';
 import { ErrorHandlerService } from '../../services/utils/error-handler.service';
-import { TemplateService } from './services/template/template.service';
 
 @Component({
     selector: 'fb-create-template',

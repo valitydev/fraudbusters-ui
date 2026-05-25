@@ -4,8 +4,7 @@ import { AutofillMonitor } from '@angular/cdk/text-field';
 import { Component, ElementRef, Input, Optional, Self } from '@angular/core';
 import { FormGroupDirective, NgControl, NgForm } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
-import { FloatLabelType } from '@angular/material/form-field';
-import { MatFormFieldAppearance } from '@angular/material/form-field/form-field';
+import { FloatLabelType, MatFormFieldAppearance } from '@angular/material/form-field';
 import { debounceTime, shareReplay, switchMap } from 'rxjs/operators';
 
 import { TemplatesService } from '../../../../sections/template/services/templates/templates.service';
@@ -19,7 +18,7 @@ import { CustomFormControlComponent } from '../custom-form-control/custom-form-c
 })
 export class TemplateIdComponent extends CustomFormControlComponent {
     @Input() floatLabelType: FloatLabelType = 'always';
-    @Input() appearanceType: MatFormFieldAppearance = 'legacy';
+    @Input() appearanceType: MatFormFieldAppearance = 'outline';
 
     templates$ = this.formControl.valueChanges.pipe(
         debounceTime(300),

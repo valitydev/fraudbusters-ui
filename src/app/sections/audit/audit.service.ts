@@ -5,12 +5,12 @@ import { Router } from '@angular/router';
 import { BehaviorSubject, combineLatest, Observable, of, ReplaySubject, Subject } from 'rxjs';
 import { catchError, debounceTime, map, scan, switchMap, tap } from 'rxjs/operators';
 
+import { Filter } from './model/filter';
+import { Log } from './model/log';
 import { AuditRemoteService } from '../../api/audit';
 import { DateFormat } from '../../shared/constants/date-format';
 import { SortOrder } from '../../shared/constants/sort-order';
 import { ErrorHandlerService } from '../../shared/services/utils/error-handler.service';
-import { Filter } from './model/filter';
-import { Log } from './model/log';
 
 @Injectable()
 export class AuditService {
@@ -97,18 +97,18 @@ export class AuditService {
         this.isLoadMore$ = this.isLoadMoreSubject$.pipe();
     }
 
-    mergeQueryParam(params): void {
+    mergeQueryParam(params: Record<string, unknown>): void {
         this.router.navigate([], {
             queryParams: params,
             queryParamsHandling: 'merge',
         });
     }
 
-    private isLoadMore(value: any): boolean {
+    private isLoadMore(value: [Filter, boolean, SortOrder]): boolean {
         return value[1] && !this.isRefresh && !!this.last;
     }
 
-    private checkMore(logs: any[]): void {
+    private checkMore(logs: Log[]): void {
         this.isLoadMoreSubject$.next(logs ? logs.length < this.count : false);
     }
 }

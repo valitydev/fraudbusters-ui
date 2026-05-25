@@ -1,8 +1,3 @@
-import {
-    NgxMatDatetimePickerModule,
-    NgxMatNativeDateModule,
-    NgxMatTimepickerModule,
-} from '@angular-material-components/datetime-picker';
 import { CommonModule, DatePipe } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FlexModule } from '@angular/flex-layout';
@@ -25,13 +20,12 @@ import { MatTableModule } from '@angular/material/table';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import {
+    NgxMatDatetimePickerModule,
+    NgxMatNativeDateModule,
+    NgxMatTimepickerModule,
+} from '@angular-material-components/datetime-picker';
 
-import { DataSetService } from '../../api/payments/data-set';
-import { HistoricalDataService } from '../../api/payments/historical-data';
-import { EmptySearchResultModule } from '../../shared/components/empty-search-result';
-import { ShowMorePanelModule } from '../../shared/components/show-more-panel';
-import { ShowMoreContinuationPanelModule } from '../../shared/components/show-more-panel-continuation';
-import { SearchFieldService } from '../../shared/services/utils/search-field.service';
 import { HistoricalDataChargebackListModule } from './components/chargebacks/historical-chargeback-list';
 import { HistoricalChargebacksDataComponent } from './components/chargebacks/historical-chargebacks-data.component';
 import { HistoricalFraudPaymentsDataComponent } from './components/fraud-payments/historical-fraud-payments-data.component';
@@ -50,6 +44,12 @@ import { FetchHistoricalFraudPaymentsService } from './services/fetch-historical
 import { FetchHistoricalInspectResultsService } from './services/fetch-historical-inspect-results.service';
 import { FetchHistoricalPaymentsService } from './services/fetch-historical-payments.service';
 import { FetchHistoricalRefundsService } from './services/fetch-historical-refunds.service';
+import { DataSetService } from '../../api/payments/data-set';
+import { HistoricalDataService } from '../../api/payments/historical-data';
+import { EmptySearchResultModule } from '../../shared/components/empty-search-result';
+import { ShowMorePanelModule } from '../../shared/components/show-more-panel';
+import { ShowMoreContinuationPanelModule } from '../../shared/components/show-more-panel-continuation';
+import { SearchFieldService } from '../../shared/services/utils/search-field.service';
 
 @NgModule({
     declarations: [

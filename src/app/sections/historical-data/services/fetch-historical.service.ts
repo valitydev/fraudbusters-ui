@@ -1,11 +1,10 @@
 import { DatePipe } from '@angular/common';
 import { Observable } from 'rxjs';
-import { shareReplay } from 'rxjs/operators';
+import { shareReplay, distinctUntilChanged } from 'rxjs/operators';
 
 import { ConfigService } from '../../../config';
 import { DateFormat } from '../../../shared/constants/date-format';
 import { SortOrder } from '../../../shared/constants/sort-order';
-import { booleanDebounceTime } from '../../../shared/operators';
 import { FetchResultContinuation } from '../../../shared/utils/partial-fetcher/fetch-result-continuation';
 import { PartialFetcherContinuation } from '../../../shared/utils/partial-fetcher/partial-fetcher-continuation';
 import { SearchHistoricalParams } from '../search-historical-params';
@@ -27,7 +26,7 @@ export interface FetchPaymentParams {
 }
 
 export abstract class FetchHistoricalService<T, P> extends PartialFetcherContinuation<T, FetchPaymentParams> {
-    inProgress$ = this.doAction$.pipe(booleanDebounceTime(), shareReplay(1));
+    inProgress$ = this.doAction$.pipe(distinctUntilChanged(), shareReplay(1));
     protected pageSize = this.configService.pageSize;
 
     constructor(protected configService: ConfigService, protected datepipe: DatePipe) {

@@ -1,6 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { EMPTY, merge, Observable, Subject } from 'rxjs';
 import { catchError, filter, shareReplay, switchMap } from 'rxjs/operators';
@@ -12,11 +12,14 @@ import { WbListService } from '../wb-list.service';
 
 @Injectable()
 export class AddRowListService {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     created$: Observable<any>;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     loadedFile$: Observable<any>;
     inProgress$: Observable<boolean>;
-    forms = this.fb.array([]);
+    forms = this.fb.array<FormGroup>([]);
 
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     private loadFile$ = new Subject<any>();
     private create$ = new Subject<ListType>();
     private errors$ = new Subject();
@@ -40,7 +43,7 @@ export class AddRowListService {
                     .pipe(
                         catchError((error: HttpErrorResponse) => {
                             this.snackBar.open(`${error.status}: ${error.message}`, 'ERROR');
-                            this.errors$.next();
+                            this.errors$.next(undefined);
                             return EMPTY;
                         })
                     );
@@ -54,7 +57,7 @@ export class AddRowListService {
                 return this.wbListService.saveListRowsFromFile(value.listType, value.file).pipe(
                     catchError((error: HttpErrorResponse) => {
                         this.snackBar.open(`${error.status}: ${error.message}`, 'ERROR');
-                        this.errors$.next();
+                        this.errors$.next(undefined);
                         return EMPTY;
                     })
                 );
@@ -66,7 +69,7 @@ export class AddRowListService {
         );
 
         this.created$.subscribe(() => {
-            this.forms = this.fb.array([]);
+            this.forms = this.fb.array<FormGroup>([]);
             this.addItem();
         });
         this.loadedFile$.subscribe(() => this.snackBar.open('File success send to load', 'OK'));

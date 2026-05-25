@@ -1,8 +1,3 @@
-import {
-    NgxMatDatetimePickerModule,
-    NgxMatNativeDateModule,
-    NgxMatTimepickerModule,
-} from '@angular-material-components/datetime-picker';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FlexLayoutModule, FlexModule } from '@angular/flex-layout';
@@ -19,14 +14,19 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import {
+    NgxMatDatetimePickerModule,
+    NgxMatNativeDateModule,
+    NgxMatTimepickerModule,
+} from '@angular-material-components/datetime-picker';
 
+import { AddRowListComponent } from './add-row-list.component';
 import { PaymentListsService } from '../../../../../api/payments/lists';
 import { CsvUtilsService } from '../../../../services/utils/csv-utils.service';
 import { ErrorHandlerService } from '../../../../services/utils/error-handler.service';
 import { HeadlineModule } from '../../../headline';
 import { AddRowListService } from '../../services/add-row-list.service';
 import { WbListService } from '../../wb-list.service';
-import { AddRowListComponent } from './add-row-list.component';
 
 @NgModule({
     declarations: [AddRowListComponent],

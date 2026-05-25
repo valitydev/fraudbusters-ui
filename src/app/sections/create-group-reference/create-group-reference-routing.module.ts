@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
-import { AuthGuard, Roles } from '../../auth';
 import { CreatePaymentReferenceComponent } from './components';
 import { CreateGroupReferenceComponent } from './create-group-reference.component';
+import { AuthGuard, Roles } from '../../auth';
 
 @NgModule({
     imports: [

@@ -3467,8 +3467,7 @@
             "type": "string"
           },
           "templateId": {
-            "type": "integer",
-            "format": "int64"
+            "type": "string"
           },
           "updatedAt": {
             "type": "string",

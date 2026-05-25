@@ -31,6 +31,16 @@ export class PaymentTemplatesComponent {
             });
             this.fetchTemplatesService.search({});
         });
+
+        this.fetchTemplatesService.errors$.subscribe((error) => {
+            const errorMessage =
+                error && typeof error === 'object' && 'message' in error
+                    ? (error as { message: string }).message
+                    : String(error);
+            this.snackBar.open(`Error loading templates: ${errorMessage}`, 'OK', {
+                duration: 3000,
+            });
+        });
     }
 
     action(action: Action) {

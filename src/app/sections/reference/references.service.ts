@@ -3,13 +3,13 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { BehaviorSubject, Observable, of, Subject } from 'rxjs';
 import { catchError, map, scan, switchMap } from 'rxjs/operators';
 
+import { FilterReference } from './model/filter-reference';
 import { PaymentReference } from '../../api/fb-management/swagger-codegen/model/paymentReference';
 import { PaymentReferencesService } from '../../api/payments/references';
 import { OperationType } from '../../shared/constants/operation-type';
 import { SortOrder } from '../../shared/constants/sort-order';
 import { HttpSearchResponse } from '../../shared/model/http-search-response';
 import { ErrorHandlerService } from '../../shared/services/utils/error-handler.service';
-import { FilterReference } from './model/filter-reference';
 
 @Injectable()
 export class ReferencesService {
@@ -61,12 +61,14 @@ export class ReferencesService {
         return this.paymentReferencesService.saveReferences(references);
     }
 
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     private checkMoreReferences(result: any, references: any[]): void {
         this.isLoadMoreSubject$.next(
             result.references ? references.length + result.references.length < result.count : false
         );
     }
 
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     private pipeReferences(filterReference: FilterReference): Observable<any> {
         return this.getReferences(filterReference).pipe(
             catchError((error) => {

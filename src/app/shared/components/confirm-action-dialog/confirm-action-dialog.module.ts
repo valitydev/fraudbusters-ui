@@ -9,7 +9,6 @@ import { ConfirmActionDialogComponent } from './confirm-action-dialog.component'
     imports: [MatDialogModule, MatButtonModule, FlexLayoutModule],
     declarations: [ConfirmActionDialogComponent],
     exports: [ConfirmActionDialogComponent],
-    entryComponents: [ConfirmActionDialogComponent],
     providers: [
         {
             provide: MAT_DIALOG_DEFAULT_OPTIONS,

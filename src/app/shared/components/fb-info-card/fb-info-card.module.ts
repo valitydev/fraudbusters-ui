@@ -4,8 +4,8 @@ import { FlexModule } from '@angular/flex-layout';
 import { MatCardModule } from '@angular/material/card';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
-import { SharedPipesModule } from '../../pipes';
 import { FbInfoCardComponent } from './fb-info-card.component';
+import { SharedPipesModule } from '../../pipes';
 
 @NgModule({
     declarations: [FbInfoCardComponent],

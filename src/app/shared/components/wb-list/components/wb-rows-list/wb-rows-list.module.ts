@@ -8,12 +8,12 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 
-import { ListHeaderModule } from '../../../../../shared/components/list-header';
-import { SharedPipesModule } from '../../../../../shared/pipes';
 import { ActionsComponent } from './components/actions/actions.component';
 import { WbRowsHeaderComponent } from './components/wb-rows-header/wb-rows-header.component';
 import { WbRowsItemComponent } from './components/wb-rows-item/wb-rows-item.component';
 import { WbRowsListComponent } from './wb-rows-list.component';
+import { ListHeaderModule } from '../../../../../shared/components/list-header';
+import { SharedPipesModule } from '../../../../../shared/pipes';
 
 @NgModule({
     imports: [

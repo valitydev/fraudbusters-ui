@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { firstValueFrom } from 'rxjs';
 
 import { BASE_CONFIG } from './config';
 
@@ -15,7 +16,7 @@ export class ConfigService extends BASE_CONFIG {
     }
 
     async init({ configUrl }: { configUrl: string }) {
-        const appConfig = await this.http.get<AppConfig>(configUrl).toPromise();
+        const appConfig = await firstValueFrom(this.http.get<AppConfig>(configUrl));
         for (const [name, config] of Object.entries(appConfig)) {
             this[name] = config;
         }

@@ -3,10 +3,10 @@ import { ChangeDetectionStrategy, Component, Inject, Input, OnInit } from '@angu
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 
+import { NotificationService } from './services/notification.service';
 import { Notification } from '../../../api/fb-management/swagger-codegen/model/notification';
 import { LAYOUT_GAP_L, LAYOUT_GAP_M } from '../../../tokens';
 import { ErrorHandlerService } from '../../services/utils/error-handler.service';
-import { NotificationService } from './services/notification.service';
 
 @Component({
     selector: 'fb-create-notification',
@@ -67,7 +67,7 @@ export class CreateNotificationComponent implements OnInit {
 
     saveNotification() {
         this.notificationService.saveNotification({
-            id: this.form.getRawValue().id,
+            id: this.form.getRawValue().id as number,
             channel: this.form.getRawValue().channel,
             frequency: this.form.getRawValue().frequency,
             period: this.form.getRawValue().period,

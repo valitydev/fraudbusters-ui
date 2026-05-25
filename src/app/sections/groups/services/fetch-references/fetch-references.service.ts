@@ -8,7 +8,7 @@ import { PaymentGroupsReferencesService } from '../../../../api/payments/groups-
 import { ConfigService } from '../../../../config';
 import { OperationType } from '../../../../shared/constants/operation-type';
 import { SortOrder } from '../../../../shared/constants/sort-order';
-import { booleanDebounceTime } from '../../../../shared/operators';
+import { distinctUntilChanged } from 'rxjs/operators';
 import { PartialFetcher } from '../../../../shared/utils/partial-fetcher';
 
 export interface FetchReferencesParams {
@@ -23,7 +23,7 @@ export interface FetchReferencesParams {
 
 @Injectable()
 export class FetchReferencesService extends PartialFetcher<GroupReference, FetchReferencesParams> {
-    inProgress$ = this.doAction$.pipe(booleanDebounceTime(0), shareReplay(1));
+    inProgress$ = this.doAction$.pipe(distinctUntilChanged(), shareReplay(1));
     private pageSize = this.configService.pageSize;
 
     constructor(

@@ -12,7 +12,7 @@
             <div class="fb-body-2" fxFlex>{{ checkedDataSetRow.payment.amount }}</div>
             <div class="fb-body-2" fxFlex>{{ checkedDataSetRow.payment.currency }}</div>
             <div class="fb-body-2" fxFlex>{{ checkedDataSetRow.payment.clientInfo.email }}</div>
-            <div class="fb-body-2" fxFlex>{{ checkedDataSetRow.payment.eventTime | date: 'yyyy-MM-dd HH:mm:ss' }}</div>
+            <div class="fb-body-2" fxFlex>{{ checkedDataSetRow.payment.eventTime | date : 'yyyy-MM-dd HH:mm:ss' }}</div>
         </div>
     </mat-expansion-panel-header>
     <div class="panel-content" fxLayout="column" [fxLayoutGap]="layoutGapM">

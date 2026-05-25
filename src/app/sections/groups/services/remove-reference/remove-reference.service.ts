@@ -37,7 +37,7 @@ export class RemoveReferenceService {
                     this.snackBar.open(`${error.status}: ${error.message}`, 'OK', {
                         duration: 1500,
                     });
-                    this.hasError$.next();
+                    this.hasError$.next(undefined);
                     return NEVER;
                 })
             )

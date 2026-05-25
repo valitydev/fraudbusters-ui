@@ -56,6 +56,6 @@ async function swaggerCodegenAngularCli({
     swaggerLog('Successfully generated 😀');
 }
 
-(async () => {
+void (async () => {
     await swaggerCodegenAngularCli(config);
 })();

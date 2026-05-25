@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, Inject } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { map, pluck, shareReplay, switchMap, withLatestFrom } from 'rxjs/operators';
+import { map, shareReplay, switchMap } from 'rxjs/operators';
 
 import { LAYOUT_GAP_L, LAYOUT_GAP_M } from '../../../tokens';
 import { TemplatesService } from '../services/templates/templates.service';
@@ -13,12 +13,11 @@ import { TemplatesService } from '../services/templates/templates.service';
 export class EditTemplateComponent {
     operationType$ = this.route.fragment;
     template$ = this.route.params.pipe(
-        pluck('id'),
-        withLatestFrom(),
-        switchMap(([id]) => {
+        map((params) => params.id),
+        switchMap((id) => {
             return this.templateService.getTemplates(1, id);
         }),
-        pluck('result'),
+        map((response) => response.result),
         map((res) => res[0]),
         shareReplay(1)
     );

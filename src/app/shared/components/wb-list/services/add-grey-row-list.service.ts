@@ -1,6 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Papa } from 'ngx-papaparse';
 import { EMPTY, merge, Observable, Subject } from 'rxjs';
@@ -17,7 +17,7 @@ const SIZE_FILE_BYTE = 2097152;
 export class AddGreyRowListService {
     created$: Observable<string[]>;
     inProgress$: Observable<boolean>;
-    forms = this.fb.array([]);
+    forms = this.fb.array<FormGroup>([]);
 
     private create$ = new Subject<ListType>();
     private errors$ = new Subject();
@@ -43,7 +43,7 @@ export class AddGreyRowListService {
                     .pipe(
                         catchError((error: HttpErrorResponse) => {
                             this.snackBar.open(`${error.status}: ${error.message}`, 'ERROR');
-                            this.errors$.next();
+                            this.errors$.next(undefined);
                             return EMPTY;
                         })
                     );
@@ -52,7 +52,7 @@ export class AddGreyRowListService {
             shareReplay(1, 1000)
         );
         this.created$.subscribe(() => {
-            this.forms = this.fb.array([]);
+            this.forms = this.fb.array<FormGroup>([]);
             this.addItem();
         });
         this.inProgress$ = progress(this.create$, merge(this.created$, this.errors$));
@@ -67,7 +67,7 @@ export class AddGreyRowListService {
     }
 
     create() {
-        this.create$.next();
+        this.create$.next(undefined);
     }
 
     addItem() {
@@ -78,7 +78,7 @@ export class AddGreyRowListService {
         this.forms.removeAt(i);
     }
 
-    prepareFilesList(files: Array<any>): void {
+    prepareFilesList(files: Array<File>): void {
         Object.values(files)
             .filter((value) => this.csvUtilsService.isValidFile(value, 'text/csv', SIZE_FILE_BYTE))
             .forEach((item) =>

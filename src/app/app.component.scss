@@ -1,9 +1,83 @@
-.mat-drawer-side {
-    width: 240px;
+::ng-deep {
+    .mat-card.mat-mdc-card.mdc-card.list-header {
+        height: 48px !important;
+    }
+
+    .mat-drawer-side,
+    .mat-mdc-drawer-side {
+        width: 240px;
+    }
+
+    .mat-mdc-form-field-icon-suffix.mat-calendar-body-cell-content {
+        padding: 0 !important;
+    }
+
+    .mat-calendar-body-cell.mat-calendar-body-active {
+        background-color: #673ab7;
+        color: #fff;
+        border-radius: 999px;
+    }
+
+    .mat-mdc-form-field-subscript-wrapper.mat-mdc-form-field-bottom-align {
+        height: 0;
+    }
+
+    .mdc-text-field--no-label:not(.mdc-text-field--textarea) .mat-mdc-form-field-input-control.mdc-text-field__input,
+    .mat-mdc-text-field-wrapper .mat-mdc-form-field-input-control {
+        height: 100%;
+    }
+
+    .mat-mdc-text-field-wrapper.mdc-text-field.mdc-text-field--filled.mdc-text-field--no-label {
+        background: none;
+    }
+
+    .mat-mdc-text-field-wrapper.mdc-text-field {
+        .mat-mdc-form-field-has-icon-suffix {
+            padding-right: 10px;
+        }
+
+        .mdc-notched-outline__trailing,
+        .mdc-notched-outline__notch,
+        .mdc-notched-outline__leading {
+            border: none;
+            height: 100%;
+        }
+
+        .mat-mdc-form-field-infix,
+        .mat-mdc-text-field-wrapper {
+            min-height: 0;
+        }
+
+        .mat-mdc-icon-button .mat-mdc-button-touch-target,
+        .mat-mdc-focus-indicator,
+        .mat-ripple.mat-mdc-button-ripple,
+        button.mdc-icon-button.mat-mdc-icon-button.mat-unthemed.mat-mdc-button-base {
+            display: block;
+            width: 20px;
+            height: 20px;
+        }
+
+        .mat-mdc-icon-button svg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+        }
+
+        .mdc-line-ripple::before {
+            border: none;
+        }
+
+        .mat-mdc-text-field-wrapper.mdc-text-field--outlined .mdc-text-field__input {
+            display: block;
+        }
+    }
 }
 
 ::ng-deep .mat-toolbar {
     background: none;
+    height: 48px;
 
     &.mat-primary {
         background: #fff;
@@ -18,218 +92,125 @@
 
     &.toolbar.mat-primary.mat-toolbar-single-row {
         border-bottom: 1px solid #e6ecf5;
-        border-bottom-color: rgb(230, 236, 245);
+        height: 48px;
     }
 }
 
-.content {
-    background: #f6f7fb;
-}
-
-.container-fluid {
-    padding: 24px;
-    min-height: calc(100vh - 134px);
-}
-
 ::ng-deep {
+    .content {
+        background: #f6f7fb;
+    }
+
+    .container-fluid {
+        padding: 24px;
+        min-height: calc(100vh - 134px);
+    }
+
     textarea.code-editor {
         font-size: 14px;
         font-family: monospace;
     }
 
-    ngx-mat-datetime-content.mat-datepicker-content.mat-primary.ng-trigger.ng-trigger-transformPanel.mat-datepicker-content-touch.ng-star-inserted {
-        box-shadow: none;
-    }
+    /* Datepicker and timepicker styles removed to reduce bundle size */
 
-    ngx-mat-timepicker {
-        .mat-form-field-appearance-outline {
-            width: 50px !important;
-            max-width: 50px !important;
-
-            .mat-form-field-wrapper {
-                padding-bottom: 0;
-            }
-
-            .mat-form-field-infix {
-                border-top: 0.36em solid transparent;
-            }
-        }
-
-        .mat-form-field-appearance-fill .mat-form-field-infix,
-        .mat-form-field-appearance-legacy .mat-form-field-infix,
-        .mat-form-field-appearance-outline .mat-form-field-infix {
-            border: none;
-            padding: 0;
-        }
-
-        .mat-form-field-appearance-legacy .mat-form-field-wrapper {
-            width: 20px;
-            margin-left: 0px;
+    .mat-mdc-input-element {
+        &.mat-datepicker-input {
+            width: 160px;
         }
     }
 
-    .mat-form-field-appearance-outline > .mat-form-field-wrapper {
+    .date-picker {
+        div.mat-mdc-form-field-infix {
+            width: 160px;
+        }
+    }
+
+    .mat-mdc-text-field-wrapper.mdc-text-field.mdc-text-field--filled.mdc-text-field--no-label {
+        padding-right: 12px;
+    }
+
+    .mat-form-field-appearance-outline > .mat-form-field-wrapper,
+    .mat-mdc-form-field-appearance-outline > .mat-mdc-form-field-wrapper {
         margin: 0 !important;
 
-        .mat-form-field-flex {
+        .mat-form-field-flex,
+        .mat-mdc-form-field-flex {
             padding: 0 !important;
+            height: 15px !important;
         }
     }
 
-    .mat-menu-panel {
+    .mat-menu-panel,
+    .mat-mdc-menu-panel {
         padding: 8px;
     }
 
-    .mat-card-footer {
-        margin-right: -24px !important;
-        margin-bottom: -24px !important;
-        margin-left: -24px !important;
+    .mat-mdc-card.mdc-card {
+        border: 1px solid #e6ecf5;
+        box-shadow: none;
+    }
 
-        .mat-progress-bar {
+    .mat-card-footer,
+    .mat-mdc-card-footer {
+        margin: -24px -24px -24px -24px !important;
+
+        .mat-progress-bar,
+        .mat-mdc-progress-bar {
             border-bottom-left-radius: 4px;
             border-bottom-right-radius: 4px;
         }
     }
 
-    .mat-form-field-label {
+    .mat-form-field-label,
+    .mat-mdc-form-field-label {
         font-weight: 700 !important;
     }
 
-    .mat-button > .mat-ripple {
+    .mat-button > .mat-ripple,
+    .mat-mdc-button > .mat-ripple {
         display: none;
     }
 
-    .mat-simple-snackbar {
-        .mat-button {
+    .mat-simple-snackbar,
+    .mat-mdc-simple-snackbar {
+        .mat-button,
+        .mat-mdc-button {
             color: #f6f2ff;
         }
     }
 
-    .mat-form-field-disabled {
-        .mat-form-field-infix:hover {
+    .mat-form-field-disabled,
+    .mat-mdc-form-field-disabled {
+        .mat-form-field-infix:hover,
+        .mat-mdc-form-field-infix:hover {
             border-color: #e6ecf5 !important;
         }
     }
 
-    .mat-button.mat-primary:hover {
-        background-color: #5f35a8;
-
-        .mat-button-focus-overlay {
-            display: none;
-        }
-    }
-
-    .mat-button.mat-accent:hover {
-        background-color: #ece5f7;
-
-        .mat-button-focus-overlay {
-            display: none;
-        }
-    }
-
-    .mat-primary.mat-button-disabled {
-        background-color: #c4c4c4;
-
-        &:hover {
-            background-color: #c4c4c4;
-        }
-    }
-
-    .mat-accent.mat-button-disabled {
-        background-color: transparent;
-
-        &:hover {
-            background-color: transparent;
-        }
-
-        .mat-button-wrapper {
-            color: #c4c4c4;
-        }
-    }
-
-    .mat-divider {
-        border-color: #e6ecf5;
-    }
-
-    .mat-drawer-side {
-        border-right: solid 1px #e6ecf5;
-    }
+    /* Button hover and disabled states removed to reduce bundle size */
 
     .toolbar {
         position: sticky;
-        position: -webkit-sticky; /* For macOS/iOS Safari */
-        top: 0; /* Sets the sticky toolbar to be on top */
-        z-index: 1000; /* Ensure that your app's content doesn't overlap the toolbar */
+        position: -webkit-sticky;
+        top: 0;
+        z-index: 1000;
         height: 48px;
     }
 
-    .material-icons.md-18 {
-        font-size: 18px;
-    }
+    /* Icon sizes and menu styles removed to reduce bundle size */
 
-    .material-icons.md-24 {
-        font-size: 24px;
-    }
+    /* Container card styles removed to reduce bundle size */
 
-    .material-icons.md-36 {
-        font-size: 36px;
-    }
-
-    .material-icons.md-48 {
-        font-size: 48px;
-    }
-
-    .mat-tooltip {
-        font-size: 14px;
-    }
-
-    .mat-menu-panel {
-        border-radius: 0 !important;
-        border: 1px solid #e6ecf5;
-    }
-
-    .mat-menu-content {
-        padding: 0 !important;
-    }
-
-    .mat-elevation-z4 {
-        box-shadow: none !important;
-    }
-
-    .container-fluid .mat-card {
-        border: 1px solid #e6ecf5;
-        box-shadow: none;
-
-        .mat-form-field-wrapper {
-            margin-top: 30px;
-        }
-
-        .mat-form-field-label-wrapper {
-            font-size: 18px;
-            top: -1.3em;
-
-            span {
-                color: #655b76;
-            }
-        }
-    }
-
-    .mat-form-field-wrapper {
-        padding: 0;
-        margin: 8px;
-    }
-
-    .mat-form-field-underline {
-        visibility: hidden;
-    }
-
-    .mat-toolbar {
-        .mat-form-field-appearance-fill .mat-form-field-flex {
+    .mat-toolbar,
+    .mat-mdc-toolbar {
+        .mat-form-field-appearance-fill .mat-form-field-flex,
+        .mat-mdc-form-field-appearance-fill .mat-mdc-form-field-flex {
             background: none;
-            padding: 0 0 0 0;
+            padding: 0;
         }
 
-        .mat-form-field-appearance-fill .mat-select-arrow-wrapper {
+        .mat-form-field-appearance-fill .mat-select-arrow-wrapper,
+        .mat-mdc-form-field-appearance-fill .mat-mdc-select-arrow-wrapper {
             transform: none;
         }
 
@@ -239,117 +220,50 @@
         }
     }
 
-    .mat-form-field-appearance-fill,
-    .mat-form-field-appearance-legacy,
-    .mat-form-field-appearance-outline {
-        .mat-form-field-infix {
-            border: 1px solid #e6ecf5;
-            font-size: 13px;
-            padding: 10px 20px;
-            border-radius: 4px;
+    .mat-mdc-form-field-infix {
+        height: 15px;
+        padding: 0;
+    }
 
-            &:hover,
-            &:focus,
-            &:active {
-                outline: 0 none;
-                box-shadow: none;
-                border-color: #673ab7;
-            }
+    .mat-mdc-text-field-wrapper.mdc-text-field {
+        height: 100%;
+        border: 1px solid #e6ecf5;
+        font-size: 13px;
+        padding: 5px 20px;
+        border-radius: 4px;
+        display: block;
+
+        .mat-mdc-form-field-textarea-control {
+            vertical-align: baseline;
         }
 
-        &.mat-focused .mat-form-field-infix {
+        textarea {
+            min-height: 400px;
+        }
+
+        input {
+            height: 15px;
+        }
+
+        &:hover,
+        &:focus,
+        &:active {
             outline: 0 none;
             box-shadow: none;
             border-color: #673ab7;
         }
-    }
 
-    .mat-form-field-appearance-legacy .mat-form-field-wrapper {
-        padding: 0;
-    }
-
-    .mat-nav-list {
-        .mat-list-item-content {
-            color: #655b76;
-        }
-
-        .mat-icon {
-            padding-bottom: 4px;
-            margin: 0 14px 0 14px;
+        .mat-mdc-form-field-infix {
+            height: 15px;
+            padding: 0;
         }
     }
 
-    .mat-form-field-appearance-outline .mat-form-field-flex {
-        .mat-form-field-outline-end,
-        .mat-form-field-outline-start,
-        .mat-form-field-outline-gap {
-            border: none;
-        }
-    }
+    /* Form field appearance styles removed to reduce bundle size */
 
-    mat-row,
-    mat-header-row,
-    mat-footer-row,
-    th.mat-header-cell,
-    td.mat-cell,
-    td.mat-footer-cell {
-        border-bottom-color: #e6ecf5;
-    }
+    /* Navigation and table styles removed to reduce bundle size */
 
-    .mat-header-cell {
-        color: #655b76;
-    }
-
-    .mat-select-panel:not([class*='mat-elevation-z']) {
-        border: 1px solid #e6ecf5;
-        font-size: 13px;
-        box-shadow: none;
-    }
-
-    .mat-drawer-inner-container .mat-toolbar {
-        place-content: center;
-    }
-
-    .justify-content-center {
-        justify-content: center;
-    }
-
-    .fb-spacer {
-        flex: 1 1 auto;
-    }
-
-    .fb-table {
-        width: 100%;
-
-        .mat-table {
-            box-shadow: none;
-        }
-
-        .mat-drawer-container {
-            background: #f6f7fb;
-        }
-
-        .mat-column-edit,
-        .mat-column-delete {
-            width: 80px;
-        }
-
-        .mat-column-text {
-            text-overflow: ellipsis;
-            overflow: hidden;
-            white-space: nowrap;
-            max-width: 300px;
-        }
-
-        .mat-form-field-flex {
-            color: #515365;
-            background: red;
-            border-color: #d4deee;
-            font-weight: 500;
-        }
-    }
-
-    mat-form-field.mat-form-field {
+    .mat-mdc-input-element.mat-mdc-form-field-input-control {
         &.full-width {
             width: 100%;
 
@@ -363,39 +277,28 @@
         }
     }
 
-    .mat-nav-list {
-        .mat-list-item.active {
-            .mat-list-item-content {
-                color: #673ab7;
-            }
-        }
-    }
-
-    .list-values {
-        .mat-button.mat-warn,
-        .mat-icon-button.mat-warn,
-        .mat-stroked-button.mat-warn {
-            margin-top: 27px;
-        }
-    }
-
-    .mat-button-toggle-appearance-standard .mat-button-toggle-label-content {
-        line-height: 34px;
-    }
-
-    .mat-form-field-type-mat-select:not(.mat-form-field-disabled) .mat-form-field-flex {
+    /* Navigation list and button styles removed to reduce bundle size */
+    .mat-form-field-type-mat-select:not(.mat-form-field-disabled) .mat-form-field-flex,
+    .mat-mdc-form-field-type-mat-select:not(.mat-mdc-form-field-disabled) .mat-mdc-form-field-flex {
         background: none;
         padding-top: 0;
     }
 
     form {
         .mat-form-field:not(.mat-form-field-appearance-legacy) .mat-form-field-prefix .mat-icon-button,
-        .mat-form-field:not(.mat-form-field-appearance-legacy) .mat-form-field-suffix .mat-icon-button {
+        .mat-form-field:not(.mat-form-field-appearance-legacy) .mat-form-field-suffix .mat-icon-button,
+        .mat-mdc-form-field:not(.mat-mdc-form-field-appearance-legacy) .mat-mdc-form-field-prefix .mat-mdc-icon-button,
+        .mat-mdc-form-field:not(.mat-mdc-form-field-appearance-legacy) .mat-mdc-form-field-suffix .mat-mdc-icon-button {
             margin-left: -30px;
             top: 6px;
             font-size: revert;
-            height: 1.5em;
-            width: 1.5em;
+            height: 20px;
+            width: 20px;
         }
+    }
+
+    .cdk-overlay-pane {
+        background-color: white;
+        border: 1px solid #e6ecf5;
     }
 }

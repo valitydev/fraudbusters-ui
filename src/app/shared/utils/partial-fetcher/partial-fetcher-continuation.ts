@@ -1,23 +1,22 @@
-import { EMPTY, merge, Observable, of, Subject } from 'rxjs';
+import { merge, Observable, of, Subject } from 'rxjs';
 import {
     catchError,
     debounceTime,
     distinctUntilChanged,
     filter,
     map,
-    pluck,
     share,
     shareReplay,
     startWith,
     tap,
 } from 'rxjs/operators';
 
-import { progress } from '../../operators';
 import { FetchAction } from './fetch-action';
 import { FetchFn } from './fetch-fn';
 import { FetchFnContinuation } from './fetch-fn-continuation';
 import { FetchResultContinuation } from './fetch-result-continuation';
 import { scanAction } from './operators';
+import { progress } from '../../operators';
 import { scanFetchResultContinuation } from './operators/scan-continuation-search-result';
 
 export abstract class PartialFetcherContinuation<R, P> {
@@ -35,7 +34,16 @@ export abstract class PartialFetcherContinuation<R, P> {
         const actionWithParams$ = this.getActionWithParams(debounceActionTime);
         const fetchResult$ = this.getFetchResult(actionWithParams$);
 
-        this.fetchResultChanges$ = fetchResult$.pipe(
+        // Handle errors after progress operators have processed them
+        const fetchResultWithErrorHandling$ = fetchResult$.pipe(
+            catchError((error) => {
+                this.errors$.next(error);
+                console.error('Partial fetcher error: ', error);
+                return of({ result: [], continuationId: null });
+            })
+        );
+
+        this.fetchResultChanges$ = fetchResultWithErrorHandling$.pipe(
             map(({ result, continuationId }) => ({
                 result,
                 continuationId,
@@ -43,19 +51,22 @@ export abstract class PartialFetcherContinuation<R, P> {
             })),
             share()
         );
-        this.searchResult$ = this.fetchResultChanges$.pipe(pluck('result'), shareReplay(1));
+        this.searchResult$ = this.fetchResultChanges$.pipe(
+            map((changes) => changes.result),
+            shareReplay(1)
+        );
 
         this.hasMore$ = this.fetchResultChanges$.pipe(
-            pluck('hasMore'),
+            map((changes) => changes.hasMore),
             startWith(null as boolean),
             distinctUntilChanged(),
             shareReplay(1)
         );
 
-        this.doAction$ = progress(actionWithParams$, fetchResult$, true).pipe(shareReplay(1));
+        this.doAction$ = progress(actionWithParams$, fetchResultWithErrorHandling$, true).pipe(shareReplay(1));
         this.doSearchAction$ = progress(
             actionWithParams$.pipe(filter(({ type }) => type === 'search')),
-            fetchResult$,
+            fetchResultWithErrorHandling$,
             true
         ).pipe(shareReplay(1));
 
@@ -85,15 +96,7 @@ export abstract class PartialFetcherContinuation<R, P> {
 
     protected getFetchResult(actionWithParams$: Observable<FetchAction<P>>): Observable<FetchResultContinuation<R>> {
         const fetchFn = this.fetch.bind(this) as FetchFnContinuation<P, R>;
-        return actionWithParams$.pipe(
-            scanFetchResultContinuation(fetchFn),
-            shareReplay(1),
-            catchError((error) => {
-                this.errors$.next(error);
-                console.error('Partial fetcher error: ', error);
-                return error ? of(error) : EMPTY;
-            })
-        );
+        return actionWithParams$.pipe(scanFetchResultContinuation(fetchFn), shareReplay(1));
     }
 
     private getActionWithParams(debounceActionTime: number): Observable<FetchAction<P>> {

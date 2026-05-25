@@ -13,13 +13,13 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatToolbarModule } from '@angular/material/toolbar';
 
 import { PaymentTemplatesModule } from '../../api';
-import { PaymentListsService } from '../../api/payments/lists';
-import { EmptySearchResultModule } from '../../shared/components/empty-search-result';
-import { SearchFieldService } from '../../shared/services/utils/search-field.service';
 import { CandidatesBatchesComponent } from './components/approve-lists-raws/candidates-batches.component';
 import { CandidatesBatchesTableModule } from './components/approve-lists-raws/components/candidates-list';
 import { ListsCandidatesBatchesRoutingModule } from './lists-candidates-batches-routing.module';
 import { ListsCandidatesBatchesComponent } from './lists-candidates-batches.component';
+import { PaymentListsService } from '../../api/payments/lists';
+import { EmptySearchResultModule } from '../../shared/components/empty-search-result';
+import { SearchFieldService } from '../../shared/services/utils/search-field.service';
 
 @NgModule({
     declarations: [ListsCandidatesBatchesComponent, CandidatesBatchesComponent],

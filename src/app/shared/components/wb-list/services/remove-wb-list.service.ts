@@ -19,11 +19,16 @@ export interface RemoveListRowParams {
 export class RemoveWbListComponentService {
     removed$: Observable<string>;
     inProgress$: Observable<boolean>;
+
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     loadedFile$: Observable<any>;
 
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     private loadFile$ = new Subject<any>();
     private removeRow$ = new Subject<RemoveListRowParams>();
-    private hasError$ = new Subject();
+
+    // eslint-disable-next-line @typescript-eslint/no-redundant-type-constituents
+    private hasError$ = new Subject<unknown | undefined>();
 
     private readonly _sizeByte = 41943040;
 
@@ -49,7 +54,7 @@ export class RemoveWbListComponentService {
                         this.snackBar.open(`${error.status}: ${error.message}`, 'OK', {
                             duration: 1500,
                         });
-                        this.hasError$.next();
+                        this.hasError$.next(undefined);
                         return NEVER;
                     })
                 )
@@ -62,7 +67,7 @@ export class RemoveWbListComponentService {
                 return this.paymentListsService.deleteListsRowsByFile(value.listType, value.file).pipe(
                     catchError((error: HttpErrorResponse) => {
                         this.snackBar.open(`${error.status}: ${error.message}`, 'ERROR');
-                        this.hasError$.next();
+                        this.hasError$.next(undefined);
                         return EMPTY;
                     })
                 );
