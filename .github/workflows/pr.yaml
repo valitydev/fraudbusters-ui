@@ -8,13 +8,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
         with:
           submodules: recursive
       - name: Init
         uses: ./.github/actions/init
       - name: Cache
-        uses: actions/cache@v2
+        uses: actions/cache@v4
         id: cache
         with:
           path: ./*
@@ -25,15 +25,15 @@ jobs:
     needs: [init]
     steps:
       - name: Cache
-        uses: actions/cache@v2
+        uses: actions/cache@v4
         id: cache
         with:
           path: ./*
           key: ${{ github.sha }}
       - name: Init NodeJS
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v4
         with:
-          node-version: '16.13.2'
+          node-version: '18'
           cache: 'npm'
       - name: Check
         run: npm run ci:check
@@ -43,15 +43,15 @@ jobs:
     needs: [init]
     steps:
       - name: Cache
-        uses: actions/cache@v2
+        uses: actions/cache@v4
         id: cache
         with:
           path: ./*
           key: ${{ github.sha }}
       - name: Init NodeJS
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v4
         with:
-          node-version: '16.13.2'
+          node-version: '18'
           cache: 'npm'
       - name: Build
         run: npm run build
