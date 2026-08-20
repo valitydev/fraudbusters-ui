@@ -1,4 +1,7 @@
 import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
+// Apex options contain formatter callbacks, which structuredClone cannot clone.
+// eslint-disable-next-line you-dont-need-lodash-underscore/clone-deep
+import cloneDeep from 'lodash-es/cloneDeep';
 import { ApexAxisChartSeries } from 'ng-apexcharts';
 
 import { DEFAULT_CONFIG } from './default-config';
@@ -18,7 +21,7 @@ export class BarChartComponent implements OnChanges {
     @Input()
     height?: number;
 
-    config = structuredClone(DEFAULT_CONFIG);
+    config = cloneDeep(DEFAULT_CONFIG);
 
     ngOnChanges(changes: SimpleChanges) {
         if (changes.height && changes.height.currentValue !== changes.height.previousValue) {
