@@ -14,4 +14,6 @@ export interface SearchHistoricalParams {
     email?: string;
     terminal?: string;
     maskedPan?: string;
+    template?: string;
+    rule?: string;
 }
