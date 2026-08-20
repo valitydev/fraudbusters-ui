@@ -59,5 +59,11 @@
         <mat-form-field appearance="outline">
             <input matInput placeholder="terminal" formControlName="terminal" type="string" autocomplete="false" />
         </mat-form-field>
+        <mat-form-field *ngIf="showRuleFilters" appearance="outline">
+            <input matInput placeholder="template" formControlName="template" type="string" autocomplete="false" />
+        </mat-form-field>
+        <mat-form-field *ngIf="showRuleFilters" appearance="outline">
+            <input matInput placeholder="rule" formControlName="rule" type="string" autocomplete="false" />
+        </mat-form-field>
     </div>
 </form>

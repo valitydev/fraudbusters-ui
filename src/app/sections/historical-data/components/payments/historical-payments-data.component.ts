@@ -62,6 +62,8 @@ export class HistoricalPaymentsDataComponent {
             email: event.email,
             terminal: event.terminal,
             maskedPan: event.maskedPan,
+            template: event.template,
+            rule: event.rule,
             from: event.from,
             to: event.to,
         };

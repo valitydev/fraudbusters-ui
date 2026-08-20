@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { debounceTime, map, take } from 'rxjs/operators';
@@ -12,6 +12,7 @@ import { removeEmptyProperties } from '../../../../shared/utils/remove-empty-pro
     styleUrls: ['search.component.scss'],
 })
 export class HistoryDataSearchComponent {
+    @Input() showRuleFilters = false;
     @Output() valueChanges: EventEmitter<string> = new EventEmitter();
 
     form: FormGroup = this.fb.group({
@@ -24,6 +25,8 @@ export class HistoryDataSearchComponent {
         fingerprint: '',
         email: '',
         terminal: '',
+        template: '',
+        rule: '',
         from: this.searchFieldService.todayFromTime().toISOString(),
         to: new Date().toISOString(),
     });
@@ -46,6 +49,8 @@ export class HistoryDataSearchComponent {
             params.fingerprint = v.fingerprint;
             params.email = v.email;
             params.terminal = v.terminal;
+            params.template = v.template;
+            params.rule = v.rule;
             params.country = v.country;
             this.router.navigate([location.pathname], { queryParams: params });
             this.valueChanges.emit(v);

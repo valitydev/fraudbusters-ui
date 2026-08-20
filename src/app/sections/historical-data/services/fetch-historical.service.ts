@@ -23,6 +23,8 @@ export interface FetchPaymentParams {
     status?: string;
     fingerprint?: string;
     email?: string;
+    template?: string;
+    rule?: string;
 }
 
 export abstract class FetchHistoricalService<T, P> extends PartialFetcherContinuation<T, FetchPaymentParams> {
@@ -36,7 +38,21 @@ export abstract class FetchHistoricalService<T, P> extends PartialFetcherContinu
     protected abstract filter(params: SearchHistoricalParams): Observable<P>;
 
     protected fetch(params: FetchPaymentParams, continuationId?: string): Observable<FetchResultContinuation<T>> {
-        const { sortOrder, size, from, to, paymentId, cardToken, shopId, partyId, status, fingerprint, email } = params;
+        const {
+            sortOrder,
+            size,
+            from,
+            to,
+            paymentId,
+            cardToken,
+            shopId,
+            partyId,
+            status,
+            fingerprint,
+            email,
+            template,
+            rule,
+        } = params;
         return this.filter({
             from: this.datepipe.transform(from, DateFormat._yyyyMMDdHHMmSs),
             to: this.datepipe.transform(to, DateFormat._yyyyMMDdHHMmSs),
@@ -48,6 +64,8 @@ export abstract class FetchHistoricalService<T, P> extends PartialFetcherContinu
             status: status || '',
             fingerprint: fingerprint || '',
             email: email || '',
+            template: template || '',
+            rule: rule || '',
             size: size ? size : this.pageSize,
             ...(continuationId ? { continuationId } : {}),
         });
