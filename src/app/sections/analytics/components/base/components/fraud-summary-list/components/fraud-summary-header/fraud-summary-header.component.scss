@@ -1,13 +1,6 @@
 @import '../fraud-summary-grid';
 
-.fb-list-item {
-    height: 48px !important;
-}
-
 .fraud-summary-grid {
     @include fraud-summary-grid;
-}
-
-.wrap {
-    word-wrap: anywhere;
+    width: 100%;
 }
