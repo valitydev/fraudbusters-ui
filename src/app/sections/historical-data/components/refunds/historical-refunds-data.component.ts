@@ -22,8 +22,8 @@ export class HistoricalRefundsDataComponent {
         this.fetchPaymentsSefetchHistoricalRefundsServicevice.search(this.initParams(event));
     }
 
-    fetchMore(event) {
-        this.fetchPaymentsSefetchHistoricalRefundsServicevice.fetchMore(this.initParams(event));
+    fetchMore() {
+        this.fetchPaymentsSefetchHistoricalRefundsServicevice.fetchMore();
     }
 
     private initParams(event) {

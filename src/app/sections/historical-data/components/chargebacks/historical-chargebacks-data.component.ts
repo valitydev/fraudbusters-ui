@@ -32,8 +32,8 @@ export class HistoricalChargebacksDataComponent {
         this.fetchHistoricalChargebacksService.search(this.initParams(event));
     }
 
-    fetchMore(event) {
-        this.fetchHistoricalChargebacksService.fetchMore(this.initParams(event));
+    fetchMore() {
+        this.fetchHistoricalChargebacksService.fetchMore();
     }
 
     checkChargebacks($event) {

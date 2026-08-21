@@ -24,8 +24,8 @@ export class HistoricalFraudPaymentsDataComponent {
         this.fetchHistoricalFraudPaymentsService.search(this.initParams(event));
     }
 
-    fetchMore(event) {
-        this.fetchHistoricalFraudPaymentsService.fetchMore(this.initParams(event));
+    fetchMore() {
+        this.fetchHistoricalFraudPaymentsService.fetchMore();
     }
 
     loadFraudPayments() {

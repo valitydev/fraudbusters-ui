@@ -8,7 +8,7 @@
         <fb-show-more-continuation-panel
             *ngIf="hasMore$ | async"
             [isLoading]="inProgress$ | async"
-            (showMore)="fetchMore($event)"
+            (showMore)="fetchMore()"
         ></fb-show-more-continuation-panel>
     </div>
     <ng-template #Empty>

@@ -7,6 +7,10 @@ import { formatAmount } from '../format-amount';
 
 const COLUMN_WIDTH = '30%';
 
+type ZoomOptionsWithMouseWheelControl = NonNullable<NonNullable<ApexOptions['chart']>['zoom']> & {
+    allowMouseWheelZoom: boolean;
+};
+
 export const DEFAULT_CONFIG: ApexOptions = {
     chart: {
         type: 'bar',
@@ -16,6 +20,11 @@ export const DEFAULT_CONFIG: ApexOptions = {
         toolbar: {
             show: false,
         },
+        zoom: {
+            enabled: true,
+            type: 'x',
+            allowMouseWheelZoom: false,
+        } as ZoomOptionsWithMouseWheelControl,
         animations: DEFAULT_ANIMATION,
     },
     dataLabels: {

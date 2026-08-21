@@ -1,6 +1,6 @@
 <mat-expansion-panel>
     <mat-expansion-panel-header>
-        <div fxLayout fxFlexFill [fxLayoutGap]="layoutGapM">
+        <div fxLayout fxFlexFill fxLayoutAlign="start center" [fxLayoutGap]="layoutGapM">
             <div class="fb-body-2" fxFlex>{{ template.id }}</div>
             <div class="fb-body-2" fxFlex>{{ template.lastUpdateDate | date : 'yyyy-MM-dd HH:mm:ss' }}</div>
         </div>

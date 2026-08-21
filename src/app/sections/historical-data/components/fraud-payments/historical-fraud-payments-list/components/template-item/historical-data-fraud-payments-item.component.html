@@ -1,8 +1,8 @@
 <mat-expansion-panel>
     <mat-expansion-panel-header>
-        <div fxLayout fxFlexFill [fxLayoutGap]="layoutGapM">
-            <div class="fb-body-2" fxFlex="120px">{{ fraudPayment.payment.id }}</div>
-            <div class="fb-body-2" fxFlex="120px">
+        <div fxLayout fxFlexFill fxLayoutAlign="start center" [fxLayoutGap]="layoutGapM">
+            <div class="fb-body-2" fxFlex="0 0 120px">{{ fraudPayment.payment.id }}</div>
+            <div class="fb-body-2" fxFlex="0 0 120px">
                 <fb-tag
                     [color]="fraudPayment.payment.status | paymentStatusToColor"
                     [title]="fraudPayment.payment.status"
@@ -10,11 +10,11 @@
             </div>
             <div class="fb-body-2" fxFlex>{{ fraudPayment.payment.merchantInfo.partyId }}</div>
             <div class="fb-body-2" fxFlex>{{ fraudPayment.payment.merchantInfo.shopId }}</div>
-            <div class="fb-body-2" fxFlex="120px">{{ fraudPayment.payment.amount }}</div>
-            <div class="fb-body-2" fxFlex="120px">{{ fraudPayment.payment.currency }}</div>
+            <div class="fb-body-2" fxFlex="0 0 120px">{{ fraudPayment.payment.amount }}</div>
+            <div class="fb-body-2" fxFlex="0 0 120px">{{ fraudPayment.payment.currency }}</div>
             <div class="fb-body-2" fxFlex>{{ fraudPayment.payment.clientInfo.email }}</div>
-            <div class="fb-body-2" fxFlex="120px">{{ fraudPayment.type }}</div>
-            <div class="fb-body-2" fxFlex="160px">
+            <div class="fb-body-2" fxFlex="0 0 120px">{{ fraudPayment.type }}</div>
+            <div class="fb-body-2" fxFlex="0 0 160px">
                 {{ fraudPayment.payment.eventTime | date : 'yyyy-MM-dd HH:mm:ss' }}
             </div>
         </div>

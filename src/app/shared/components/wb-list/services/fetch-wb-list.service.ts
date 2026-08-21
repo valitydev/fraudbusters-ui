@@ -29,8 +29,7 @@ export class FetchWbListService extends PartialFetcher<WbListRecord, FetchRowsPa
     protected fetch(
         params: FetchRowsParams,
         lastId?: string,
-        listTypeNew?: ListType,
-        listNamesNew?: string[]
+        lastRecord?: WbListRecord
     ): Observable<FetchResult<WbListRecord>> {
         const { searchValue, sortOrder, pageSize, listType, listNames } = params;
         return this.paymentListsService.findListRows({
@@ -38,8 +37,9 @@ export class FetchWbListService extends PartialFetcher<WbListRecord, FetchRowsPa
             sortOrder: sortOrder || SortOrder.Asc,
             ...(searchValue ? { searchValue } : {}),
             ...(lastId ? { lastId } : {}),
-            listType: listType ? listType : listTypeNew,
-            listNames: listNames ? listNames : listNamesNew,
+            ...(lastRecord?.insertTime ? { sortFieldValue: String(lastRecord.insertTime) } : {}),
+            listType,
+            listNames,
         });
     }
 }

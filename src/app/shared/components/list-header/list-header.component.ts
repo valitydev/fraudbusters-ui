@@ -1,4 +1,4 @@
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, Input } from '@angular/core';
 
 import { LAYOUT_GAP_M } from '../../../tokens';
 
@@ -8,5 +8,8 @@ import { LAYOUT_GAP_M } from '../../../tokens';
     styleUrls: ['list-header.component.scss'],
 })
 export class ListHeaderComponent {
+    @Input()
+    reserveToggleSpace = false;
+
     constructor(@Inject(LAYOUT_GAP_M) public layoutGapM: string) {}
 }

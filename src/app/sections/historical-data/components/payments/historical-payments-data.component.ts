@@ -32,8 +32,8 @@ export class HistoricalPaymentsDataComponent {
         this.fetchPaymentsService.search(this.initParams(event));
     }
 
-    fetchMore(event) {
-        this.fetchPaymentsService.fetchMore(this.initParams(event));
+    fetchMore() {
+        this.fetchPaymentsService.fetchMore();
     }
 
     checkPayments($event) {
