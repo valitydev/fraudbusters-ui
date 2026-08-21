@@ -26,9 +26,10 @@ export const scanFetchResult =
                     switch (type) {
                         case 'search':
                             return fn(value).pipe(first(), handleFetchResultError());
-                        case 'fetchMore':
+                        case 'fetchMore': {
+                            const lastItem = result[result.length - 1];
                             // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                            return fn(value, (result[result.length - 1] as any).id).pipe(
+                            return fn(value, (lastItem as any).id, lastItem).pipe(
                                 first(),
                                 map((r) => ({
                                     result: result.concat(r.result),
@@ -36,6 +37,7 @@ export const scanFetchResult =
                                 })),
                                 handleFetchResultError(result, count)
                             );
+                        }
                     }
                 },
                 { result: [] },

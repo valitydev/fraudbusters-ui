@@ -22,8 +22,8 @@ export class HistoricalInspectResultsDataComponent {
         this.fetchHistoricalInspectResultsService.search(this.initParams(event));
     }
 
-    fetchMore(event) {
-        this.fetchHistoricalInspectResultsService.fetchMore(this.initParams(event));
+    fetchMore() {
+        this.fetchHistoricalInspectResultsService.fetchMore();
     }
 
     private initParams(event) {

@@ -1,8 +1,8 @@
 <mat-expansion-panel>
     <mat-expansion-panel-header>
-        <div fxLayout fxFlexFill [fxLayoutGap]="layoutGapM">
-            <div class="fb-body-2" fxFlex="120px">{{ inspectResult.payment.id }}</div>
-            <div class="fb-body-2" fxFlex="120px">
+        <div fxLayout fxFlexFill fxLayoutAlign="start center" [fxLayoutGap]="layoutGapM">
+            <div class="fb-body-2" fxFlex="0 0 120px">{{ inspectResult.payment.id }}</div>
+            <div class="fb-body-2" fxFlex="0 0 120px">
                 <fb-tag
                     [color]="inspectResult.resultStatus | inspectResultToColor"
                     [title]="inspectResult.resultStatus"
@@ -20,7 +20,7 @@
                 <div *ngIf="inspectResult.checkedTemplate === 'RULE_NOT_CHECKED'">-</div>
             </div>
             <div class="fb-body-2" fxFlex>{{ inspectResult.ruleChecked }}</div>
-            <div class="fb-body-2" fxFlex="160px">
+            <div class="fb-body-2" fxFlex="0 0 160px">
                 {{ inspectResult.payment.eventTime | date : 'yyyy-MM-dd HH:mm:ss' }}
             </div>
         </div>
