@@ -1,5 +1,5 @@
 import { Component, Inject } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { OperationType } from '../../../../../shared/constants/operation-type';
 import { CsvUtilsService } from '../../../../../shared/services/utils/csv-utils.service';
@@ -17,11 +17,14 @@ export class CreatePaymentReferenceComponent {
 
     constructor(
         private createPaymentReferenceService: CreatePaymentReferenceService,
+        private route: ActivatedRoute,
         private router: Router,
         @Inject(LAYOUT_GAP_M) public layoutGapM: string
     ) {
         this.createPaymentReferenceService.created$.subscribe(() => {
-            this.router.navigate(['/templates/references']);
+            void this.router.navigateByUrl(
+                this.route.snapshot.queryParamMap.get('returnUrl') || '/templates/references'
+            );
         });
     }
 

@@ -24,12 +24,14 @@ export class PaymentReferencesComponent {
         @Inject(LAYOUT_GAP_M) public layoutGapM: string
     ) {
         this.removeReferenceService.removed$.subscribe(() => {
-            this.fetchReferencesService.search({ isGlobal: false, isDefault: false });
+            this.fetchReferencesService.refresh();
         });
     }
 
     createReference() {
-        this.router.navigate(['/reference/new/payment']);
+        void this.router.navigate(['/reference/new/payment'], {
+            queryParams: { returnUrl: this.router.url },
+        });
     }
 
     search(searchValue: string) {
@@ -49,7 +51,9 @@ export class PaymentReferencesComponent {
     }
 
     goToTemplate(id: string) {
-        this.router.navigate([`/template/${id}`]);
+        void this.router.navigate([`/template/${id}`], {
+            queryParams: { returnUrl: this.router.url },
+        });
     }
 
     removeReference(reference: PaymentReference) {

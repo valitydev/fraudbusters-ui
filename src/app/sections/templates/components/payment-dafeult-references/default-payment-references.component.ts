@@ -24,12 +24,14 @@ export class DefaultPaymentReferencesComponent {
         @Inject(LAYOUT_GAP_M) public layoutGapM: string
     ) {
         this.removeDefaultReferenceService.removed$.subscribe(() => {
-            this.fetchDefaultReferencesService.search({ isGlobal: false, isDefault: false });
+            this.fetchDefaultReferencesService.refresh();
         });
     }
 
     createReference() {
-        this.router.navigate(['/default-references/new/payment']);
+        void this.router.navigate(['/default-references/new/payment'], {
+            queryParams: { returnUrl: this.router.url },
+        });
     }
 
     search(searchValue: string) {
@@ -49,7 +51,10 @@ export class DefaultPaymentReferencesComponent {
     }
 
     goToTemplate(id: string) {
-        this.router.navigate([`/template/${id}`], { fragment: OperationType.Payment });
+        void this.router.navigate([`/template/${id}`], {
+            fragment: OperationType.Payment,
+            queryParams: { returnUrl: this.router.url },
+        });
     }
 
     removeReference(reference: PaymentReference) {

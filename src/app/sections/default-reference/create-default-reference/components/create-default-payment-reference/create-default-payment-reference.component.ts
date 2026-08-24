@@ -1,5 +1,5 @@
 import { Component, Inject } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { LAYOUT_GAP_M } from '../../../../../tokens';
 import { CreateDefaultPaymentReferenceService } from '../../services/create-default-payment-reference.service';
@@ -14,11 +14,14 @@ export class CreateDefaultPaymentReferenceComponent {
 
     constructor(
         private createDefaultPaymentReferenceService: CreateDefaultPaymentReferenceService,
+        private route: ActivatedRoute,
         private router: Router,
         @Inject(LAYOUT_GAP_M) public layoutGapM: string
     ) {
         this.createDefaultPaymentReferenceService.created$.subscribe(() => {
-            this.router.navigate(['/templates/default-references']);
+            void this.router.navigateByUrl(
+                this.route.snapshot.queryParamMap.get('returnUrl') || '/templates/default-references'
+            );
         });
     }
 
