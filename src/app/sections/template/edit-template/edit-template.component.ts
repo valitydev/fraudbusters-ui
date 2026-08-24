@@ -31,6 +31,11 @@ export class EditTemplateComponent {
     ) {}
 
     back() {
-        this.router.navigate([`../templates`]);
+        const returnUrl = this.route.snapshot.queryParamMap.get('returnUrl');
+        if (returnUrl) {
+            void this.router.navigateByUrl(returnUrl);
+        } else {
+            void this.router.navigate([`../templates`]);
+        }
     }
 }
